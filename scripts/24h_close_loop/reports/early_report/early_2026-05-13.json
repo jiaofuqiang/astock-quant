@@ -1,0 +1,25 @@
+{
+  "type": "early_report",
+  "date": "2026-05-13",
+  "generate_time": "11:31",
+  "morning_market": {
+    "上证指数": {
+      "change_pct": 0.09
+    },
+    "深证成指": {
+      "change_pct": 0.36
+    },
+    "创业板指": {
+      "change_pct": 0.3
+    }
+  },
+  "original_scenario": "震荡",
+  "prediction_correct": true,
+  "afternoon_adjustment": "震荡延续，等待方向选择",
+  "trade_adjustment": {
+    "action": "维持原计划",
+    "risk": "正常"
+  },
+  "morning_buy_count": 0,
+  "morning_sell_count": 0
+}

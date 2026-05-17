@@ -1,0 +1,30 @@
+{
+  "date": "2026-05-12",
+  "market": {
+    "actual_pct": 0,
+    "predicted": "",
+    "correct": false
+  },
+  "sectors": {
+    "predicted": [],
+    "actual_top5": [
+      "地产基建",
+      "光模块与光通信",
+      "机器人",
+      "软件与应用",
+      "光伏"
+    ],
+    "hit_count": 0,
+    "accuracy": 0
+  },
+  "plan_hits": {},
+  "success_items": [
+    "今日热点明确(涨停≥5板块5个)"
+  ],
+  "fail_items": [
+    "大盘方向偏差(预测/实际+0.00%)",
+    "题材预测完全偏差"
+  ],
+  "improvements": [],
+  "consecutive_fails": 1
+}

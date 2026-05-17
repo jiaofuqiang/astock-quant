@@ -1,0 +1,244 @@
+{
+  "generated_at": "2026-05-17T09:36:11.488326",
+  "meta": {
+    "tables": [
+      {
+        "table": "stock_lhb_stats",
+        "rows": 2
+      },
+      {
+        "table": "dept_return_rank",
+        "rows": 3
+      },
+      {
+        "table": "dept_lhb_rank",
+        "rows": 2
+      },
+      {
+        "table": "inst_buy_sell",
+        "rows": 0
+      },
+      {
+        "table": "inst_seat_track",
+        "rows": 0
+      },
+      {
+        "table": "daily_active_dept",
+        "rows": 0
+      }
+    ],
+    "db_path": "/home/ubuntu/astock/data/em_lhb_cache.db"
+  },
+  "tables": {
+    "stock_lhb_stats": {
+      "latest_date": "2026-05-08",
+      "period": "1m",
+      "rows": 2,
+      "data": [
+        {
+          "date": "2026-05-08",
+          "period": "1m",
+          "code": "920088",
+          "name": "科力股份",
+          "上榜次数": 38,
+          "龙虎榜净买额_万": -28937.89,
+          "龙虎榜买入额_万": 265110.29,
+          "龙虎榜卖出额_万": 294048.18,
+          "龙虎榜总成交额_万": 559158.47
+        },
+        {
+          "date": "2026-05-08",
+          "period": "1m",
+          "code": "002361",
+          "name": "神剑股份",
+          "上榜次数": 29,
+          "龙虎榜净买额_万": -136183.93,
+          "龙虎榜买入额_万": 1662678.42,
+          "龙虎榜卖出额_万": 1798862.36,
+          "龙虎榜总成交额_万": 3461540.78
+        }
+      ]
+    },
+    "dept_return_rank": {
+      "latest_date": "2026-05-08",
+      "period": "1m",
+      "rows": 3,
+      "top10": [
+        {
+          "date": "2026-05-08",
+          "period": "1m",
+          "rank_num": 1,
+          "dept_name": "深股通专用",
+          "d1_count": 839,
+          "d1_avg_pct": 0.004,
+          "d1_winrate": 0.4839,
+          "d2_count": 816,
+          "d2_avg_pct": 0.0003,
+          "d2_winrate": 0.4522,
+          "d3_count": 802,
+          "d3_avg_pct": -0.0025,
+          "d3_winrate": 0.4464,
+          "d5_count": 769,
+          "d5_avg_pct": -0.0104,
+          "d5_winrate": 0.41350000000000003,
+          "d10_count": 683,
+          "d10_avg_pct": -0.0258,
+          "d10_winrate": 0.37479999999999997
+        },
+        {
+          "date": "2026-05-08",
+          "period": "1m",
+          "rank_num": 2,
+          "dept_name": "国泰海通",
+          "d1_count": 616,
+          "d1_avg_pct": 0.0027,
+          "d1_winrate": 0.4854,
+          "d2_count": 597,
+          "d2_avg_pct": 0.0060999999999999995,
+          "d2_winrate": 0.5109,
+          "d3_count": 580,
+          "d3_avg_pct": 0.0064,
+          "d3_winrate": 0.4879,
+          "d5_count": 541,
+          "d5_avg_pct": 0.0064,
+          "d5_winrate": 0.47130000000000005,
+          "d10_count": 465,
+          "d10_avg_pct": 0.0026,
+          "d10_winrate": 0.42369999999999997
+        },
+        {
+          "date": "2026-05-08",
+          "period": "1m",
+          "rank_num": 3,
+          "dept_name": "沪股通专用",
+          "d1_count": 595,
+          "d1_avg_pct": 0.0072,
+          "d1_winrate": 0.5126,
+          "d2_count": 580,
+          "d2_avg_pct": 0.0078000000000000005,
+          "d2_winrate": 0.4914,
+          "d3_count": 573,
+          "d3_avg_pct": 0.0075,
+          "d3_winrate": 0.4782,
+          "d5_count": 547,
+          "d5_avg_pct": -0.0011,
+          "d5_winrate": 0.44789999999999996,
+          "d10_count": 493,
+          "d10_avg_pct": -0.022000000000000002,
+          "d10_winrate": 0.38130000000000003
+        }
+      ]
+    },
+    "dept_lhb_rank": {
+      "latest_date": "2026-05-08",
+      "period": "1m",
+      "rows": 2,
+      "top10": [
+        {
+          "date": "2026-05-08",
+          "period": "1m",
+          "rank_num": 1,
+          "dept_name": "深股通专用",
+          "成交金额_万": 30920201.51,
+          "上榜次数": 991,
+          "买入额_万": 16526483.6,
+          "买入次数": 978,
+          "卖出额_万": 14393717.91,
+          "卖出次数": 988
+        },
+        {
+          "date": "2026-05-08",
+          "period": "1m",
+          "rank_num": 2,
+          "dept_name": "沪股通专用",
+          "成交金额_万": 19125045.09,
+          "上榜次数": 1322,
+          "买入额_万": 9821781.55,
+          "买入次数": 642,
+          "卖出额_万": 9303263.54,
+          "卖出次数": 680
+        }
+      ]
+    },
+    "inst_buy_sell": {
+      "rows": 0,
+      "top5_net_buy": []
+    },
+    "inst_seat_track": {
+      "rows": 0,
+      "top5": []
+    },
+    "daily_active_dept": {
+      "rows": 0,
+      "top10": []
+    }
+  },
+  "digest": {
+    "top10_dept_by_volume": [
+      {
+        "rank": 1,
+        "name": "深股通专用",
+        "volume_wan": 30920201.51,
+        "buy_wan": 16526483.6,
+        "sell_wan": 14393717.91,
+        "appearances": 991
+      },
+      {
+        "rank": 2,
+        "name": "沪股通专用",
+        "volume_wan": 19125045.09,
+        "buy_wan": 9821781.55,
+        "sell_wan": 9303263.54,
+        "appearances": 1322
+      }
+    ],
+    "top10_dept_by_winrate": [
+      {
+        "rank": 1,
+        "name": "深股通专用",
+        "d1_winrate": 48.4,
+        "d1_avg_pct": 0.4,
+        "d1_count": 839,
+        "d2_winrate": 45.2,
+        "d5_winrate": 41.4,
+        "d10_winrate": 37.5
+      },
+      {
+        "rank": 2,
+        "name": "国泰海通",
+        "d1_winrate": 48.5,
+        "d1_avg_pct": 0.27,
+        "d1_count": 616,
+        "d2_winrate": 51.1,
+        "d5_winrate": 47.1,
+        "d10_winrate": 42.4
+      },
+      {
+        "rank": 3,
+        "name": "沪股通专用",
+        "d1_winrate": 51.3,
+        "d1_avg_pct": 0.72,
+        "d1_count": 595,
+        "d2_winrate": 49.1,
+        "d5_winrate": 44.8,
+        "d10_winrate": 38.1
+      }
+    ],
+    "stock_appear_rank": [
+      {
+        "code": "920088",
+        "name": "科力股份",
+        "appearances": 38,
+        "net_buy_wan": -28937.89,
+        "total_volume_wan": 559158.47
+      },
+      {
+        "code": "002361",
+        "name": "神剑股份",
+        "appearances": 29,
+        "net_buy_wan": -136183.93,
+        "total_volume_wan": 3461540.78
+      }
+    ]
+  }
+}

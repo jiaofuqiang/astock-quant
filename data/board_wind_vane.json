@@ -1,0 +1,126 @@
+{
+  "engine": "board-wind-vane-v1",
+  "timestamp": "2026-05-17T09:36:18.579208",
+  "profit_vane": {
+    "score": 31,
+    "level": "🟠较差",
+    "signals": [
+      {
+        "name": "隔夜溢价",
+        "value": "0.2%",
+        "impact": "neutral",
+        "weight": 0
+      },
+      {
+        "name": "封板率",
+        "value": "暂无数据",
+        "impact": "neutral",
+        "weight": 0
+      },
+      {
+        "name": "连板高度",
+        "value": "17板",
+        "impact": "positive",
+        "weight": 10
+      },
+      {
+        "name": "板块主线",
+        "value": "无主线/轮动",
+        "impact": "negative",
+        "weight": -8
+      },
+      {
+        "name": "涨停数量",
+        "value": "72只",
+        "impact": "positive",
+        "weight": 10
+      },
+      {
+        "name": "涨跌比",
+        "value": "29.6%",
+        "impact": "negative",
+        "weight": -10
+      },
+      {
+        "name": "竞价强弱",
+        "value": "竞价偏弱",
+        "impact": "negative",
+        "weight": -5
+      },
+      {
+        "name": "大盘涨跌",
+        "value": "上证-1.0%",
+        "impact": "negative",
+        "weight": -8
+      },
+      {
+        "name": "游资活跃",
+        "value": "得分20",
+        "impact": "negative",
+        "weight": -8
+      }
+    ],
+    "top_strategy_today": "🛡️ 防守为主——M12超卖反弹首板、M01隔夜溢价·极品(缩量极小)"
+  },
+  "risk_vane": {
+    "score": 100,
+    "level": "极高",
+    "signals": [
+      {
+        "name": "炸板率",
+        "value": "暂无数据",
+        "severity": "low",
+        "weight": 0
+      },
+      {
+        "name": "跌停数量",
+        "value": "44只",
+        "severity": "high",
+        "weight": -15
+      },
+      {
+        "name": "散户情绪",
+        "value": "9只接盘",
+        "severity": "low",
+        "weight": 0
+      },
+      {
+        "name": "板块预警",
+        "value": "5条",
+        "severity": "high",
+        "weight": -10
+      },
+      {
+        "name": "龙头高度",
+        "value": "17板",
+        "severity": "low",
+        "weight": 0
+      },
+      {
+        "name": "隔日溢价",
+        "value": "0.2%",
+        "severity": "medium",
+        "weight": -5
+      },
+      {
+        "name": "游资活跃度",
+        "value": "得分20",
+        "severity": "high",
+        "weight": -10
+      },
+      {
+        "name": "市场宽度",
+        "value": "29.6%",
+        "severity": "high",
+        "weight": -14
+      }
+    ],
+    "danger_signals": [
+      "⚠️ 跌停44只＞30，恐慌蔓延",
+      "⚠️ 板块预警5条，板块退潮信号",
+      "⚠️ 游资活跃度低(得分20)，不出手",
+      "⚠️ 涨跌比29.6%＜40，市场宽度极差"
+    ]
+  },
+  "verdict": "🟠 赚钱概率低 + 风险偏高 → 防守为主，不打板或少打板"
+}

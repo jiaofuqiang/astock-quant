@@ -1,0 +1,27 @@
+{
+  "date": "2026-05-13",
+  "market": {
+    "actual_pct": 0,
+    "predicted": "震荡",
+    "correct": true
+  },
+  "sectors": {
+    "predicted": [
+      "地产基建"
+    ],
+    "actual_top5": [],
+    "hit_count": 0,
+    "accuracy": 0.0
+  },
+  "plan_hits": {},
+  "success_items": [
+    "大盘方向正确(预测震荡/实际+0.00%)"
+  ],
+  "fail_items": [
+    "题材预测完全偏差"
+  ],
+  "improvements": [
+    "无明确热点，应降低仓位预期"
+  ],
+  "consecutive_fails": 1
+}

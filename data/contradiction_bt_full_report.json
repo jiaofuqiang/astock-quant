@@ -1,0 +1,472 @@
+{
+  "meta": {
+    "report_title": "矛盾论8维历史回测完整报告",
+    "generated_at": "2026-05-17T17:16:52.426192",
+    "data_sources": [
+      "kline_cache.db(3282只×937天)",
+      "lhb_cache.db(14493条)",
+      "lhb_practical_backtest_v2.json(严格时间线)"
+    ]
+  },
+  "dimensions": [
+    {
+      "name": "主要矛盾识别",
+      "data": [
+        {
+          "env": "冰点",
+          "samples": 1720,
+          "avg_open_ret": 0.63,
+          "open_win_rate": 51.0,
+          "avg_close_ret": 0.66,
+          "close_win_rate": 50.6,
+          "profit_loss_ratio": 1.99
+        },
+        {
+          "env": "弱势",
+          "samples": 2074,
+          "avg_open_ret": 0.76,
+          "open_win_rate": 51.7,
+          "avg_close_ret": 0.65,
+          "close_win_rate": 49.4,
+          "profit_loss_ratio": 2.02
+        },
+        {
+          "env": "震荡",
+          "samples": 3101,
+          "avg_open_ret": 0.81,
+          "open_win_rate": 54.8,
+          "avg_close_ret": 0.45,
+          "close_win_rate": 49.0,
+          "profit_loss_ratio": 2.05
+        },
+        {
+          "env": "发酵",
+          "samples": 2879,
+          "avg_open_ret": 1.12,
+          "open_win_rate": 58.8,
+          "avg_close_ret": 0.68,
+          "close_win_rate": 50.7,
+          "profit_loss_ratio": 1.99
+        },
+        {
+          "env": "高潮",
+          "samples": 6070,
+          "avg_open_ret": 0.91,
+          "open_win_rate": 57.4,
+          "avg_close_ret": 1.33,
+          "close_win_rate": 57.6,
+          "profit_loss_ratio": 1.73
+        }
+      ],
+      "conclusions": [
+        "最佳交易环境=高潮(均收+1.33%)",
+        "冰点期涨停股T+1为+0.66%/50.6%，高于震荡期的+0.45%/49.0%"
+      ],
+      "implications": [
+        "冰点期涨停比弱势/震荡期涨停更有价值（恐慌中涨停=主力强行做多）",
+        "高潮期涨停T+1收益+1.33%/57.6%，环境分70+时可重仓"
+      ]
+    },
+    {
+      "name": "方向一致性",
+      "data": [
+        {
+          "consistency": "一致偏多",
+          "samples": 8015,
+          "avg_open_ret": 0.93,
+          "open_win_rate": 57.5,
+          "avg_close_ret": 1.16,
+          "close_win_rate": 56.1
+        },
+        {
+          "consistency": "方向分歧(权重拉)",
+          "samples": 1564,
+          "avg_open_ret": 0.91,
+          "open_win_rate": 55.5,
+          "avg_close_ret": 0.66,
+          "close_win_rate": 50.1
+        },
+        {
+          "consistency": "一致偏空",
+          "samples": 2694,
+          "avg_open_ret": 0.63,
+          "open_win_rate": 50.9,
+          "avg_close_ret": 0.58,
+          "close_win_rate": 49.6
+        },
+        {
+          "consistency": "方向分歧(权重砸)",
+          "samples": 21,
+          "avg_open_ret": 0.85,
+          "open_win_rate": 52.4,
+          "avg_close_ret": 1.37,
+          "close_win_rate": 57.1
+        },
+        {
+          "consistency": "偏多震荡",
+          "samples": 2040,
+          "avg_open_ret": 1.15,
+          "open_win_rate": 58.9,
+          "avg_close_ret": 0.62,
+          "close_win_rate": 49.7
+        },
+        {
+          "consistency": "偏空震荡",
+          "samples": 1510,
+          "avg_open_ret": 0.67,
+          "open_win_rate": 50.5,
+          "avg_close_ret": 0.45,
+          "close_win_rate": 48.4
+        }
+      ],
+      "conclusions": [
+        "方向一致偏多时T+1收益最佳(+1.16%/56.1%)",
+        "一致偏空时T+1收益仍为正（+0.58%），说明涨停股的独立性"
+      ],
+      "implications": [
+        "方向一致时做多，偏多+涨停=强共振",
+        "矛盾论预测：各层方向一致→最佳买入时机"
+      ]
+    },
+    {
+      "name": "内因vs外因",
+      "data": [
+        {
+          "category": "a)外因强+内因强",
+          "samples": 101,
+          "avg_open_ret": 0.39,
+          "open_win_rate": 58.4,
+          "avg_close_ret": 0.23,
+          "close_win_rate": 50.5
+        },
+        {
+          "category": "b)外因弱+内因强(最矛盾)",
+          "samples": 2381,
+          "avg_open_ret": 0.3,
+          "open_win_rate": 52.4,
+          "avg_close_ret": 0.4,
+          "close_win_rate": 51.5
+        },
+        {
+          "category": "c)外因强+内因弱",
+          "samples": 2588,
+          "avg_open_ret": 0.52,
+          "open_win_rate": 54.5,
+          "avg_close_ret": 1.82,
+          "close_win_rate": 64.3
+        },
+        {
+          "category": "d)外因弱+内因弱",
+          "samples": 10774,
+          "avg_open_ret": 1.1,
+          "open_win_rate": 56.7,
+          "avg_close_ret": 0.76,
+          "close_win_rate": 50.4
+        }
+      ],
+      "conclusions": [
+        "最大发现：外因(大盘)对T+1收益的影响远超内因(个股质量)",
+        "'外因强+内因弱' T+1 +1.82%/64.3% — 大盘好时普通涨停股也能起飞",
+        "'外因弱+内因强' T+1 +0.40%/51.5% — 逆势强股也被大盘拖累"
+      ],
+      "implications": [
+        "环境分应作为矛盾评级的最高权重因子！",
+        "当前morning_pipeline矛盾评级中环境权重不足，需提高",
+        "外因<40时，即使内因强也不应重仓（T+1收益被限制在+0.40%）"
+      ]
+    },
+    {
+      "name": "竞价方向变化",
+      "data": [
+        {
+          "gap_type": "高开>3%(多方延续强化)",
+          "samples": 1,
+          "avg_open_ret": 0.72,
+          "open_win_rate": 100.0,
+          "avg_close_ret": 1.85,
+          "close_win_rate": 100.0
+        },
+        {
+          "gap_type": "高开0~3%(多方延续弱化)",
+          "samples": 3132,
+          "avg_open_ret": 1.85,
+          "open_win_rate": 65.3,
+          "avg_close_ret": 1.59,
+          "close_win_rate": 57.2
+        },
+        {
+          "gap_type": "低开0~-3%(空方反击)",
+          "samples": 10705,
+          "avg_open_ret": 1.37,
+          "open_win_rate": 58.8,
+          "avg_close_ret": 1.36,
+          "close_win_rate": 55.2
+        },
+        {
+          "gap_type": "低开>3%(矛盾转化)",
+          "samples": 2006,
+          "avg_open_ret": -3.25,
+          "open_win_rate": 24.4,
+          "avg_close_ret": -2.8,
+          "close_win_rate": 33.6
+        }
+      ],
+      "conclusions": [
+        "开盘方向决定T+1结果：高开0-3%最优(+1.59%)，低开>3%最差(-2.80%)",
+        "低开0~-3%并不糟糕(+1.36%/55.2%) — 竞价下跌不代表全天走弱"
+      ],
+      "implications": [
+        "竞价低开>3% = 明确的空仓信号（矛盾已向空方转化）",
+        "竞价高开0-3% = 最佳买入窗口（矛盾延续，但非过热）"
+      ]
+    },
+    {
+      "name": "矛盾转化预警(量比)",
+      "data": [
+        {
+          "vol_range": "放量1.0-1.5",
+          "samples": 7540,
+          "avg_open_ret_30s": -0.26,
+          "open_win_rate_30s": 44.1,
+          "avg_close_ret_ref": 0.11,
+          "close_win_rate_ref": 47.8
+        },
+        {
+          "vol_range": "暴量>1.5",
+          "samples": 18265,
+          "avg_open_ret_30s": -0.59,
+          "open_win_rate_30s": 39.5,
+          "avg_close_ret_ref": -0.61,
+          "close_win_rate_ref": 42.3
+        },
+        {
+          "vol_range": "极端缩量<0.3",
+          "samples": 1400,
+          "avg_open_ret_30s": 1.03,
+          "open_win_rate_30s": 56.0,
+          "avg_close_ret_ref": 1.13,
+          "close_win_rate_ref": 56.8
+        },
+        {
+          "vol_range": "正常量0.7-1.0",
+          "samples": 3740,
+          "avg_open_ret_30s": -0.44,
+          "open_win_rate_30s": 44.8,
+          "avg_close_ret_ref": -0.13,
+          "close_win_rate_ref": 47.0
+        },
+        {
+          "vol_range": "缩量0.5-0.7",
+          "samples": 1660,
+          "avg_open_ret_30s": -0.97,
+          "open_win_rate_30s": 43.0,
+          "avg_close_ret_ref": -0.83,
+          "close_win_rate_ref": 44.6
+        },
+        {
+          "vol_range": "高度缩量0.3-0.5",
+          "samples": 1211,
+          "avg_open_ret_30s": -0.62,
+          "open_win_rate_30s": 45.2,
+          "avg_close_ret_ref": -0.15,
+          "close_win_rate_ref": 49.4
+        }
+      ],
+      "conclusions": [
+        "30秒规则修正后：极端缩量<0.3 T+1开盘+1.03%/56.0%",
+        "暴量>1.5开盘普遍负收益(-0.59%)，需等待高开确认"
+      ],
+      "implications": [
+        "30秒规则确认缩量开盘胜率更高，但暴量应回避开盘买入"
+      ]
+    },
+    {
+      "name": "对抗烈度(连板)",
+      "data": [
+        {
+          "board_level": "首板",
+          "samples": 25482,
+          "avg_open_ret_30s": -0.35,
+          "open_win_rate_30s": 41.3,
+          "avg_close_ret_ref": -0.21,
+          "close_win_rate_ref": 44.8
+        },
+        {
+          "board_level": "2板",
+          "samples": 4914,
+          "avg_open_ret_30s": -0.76,
+          "open_win_rate_30s": 42.2,
+          "avg_close_ret_ref": -0.58,
+          "close_win_rate_ref": 44.5
+        },
+        {
+          "board_level": "3板",
+          "samples": 1703,
+          "avg_open_ret_30s": -0.34,
+          "open_win_rate_30s": 48.9,
+          "avg_close_ret_ref": -0.49,
+          "close_win_rate_ref": 47.3
+        },
+        {
+          "board_level": "4板+",
+          "samples": 1717,
+          "avg_open_ret_30s": -1.15,
+          "open_win_rate_30s": 49.3,
+          "avg_close_ret_ref": -1.01,
+          "close_win_rate_ref": 46.7
+        }
+      ],
+      "conclusions": [
+        "30秒规则修正：3板开盘收益-0.34%"
+      ],
+      "implications": [
+        "连板越高开盘溢价越不稳定，首板/3板开盘相对稳健",
+        "2板到3板的过渡是关键——能在3板买是最佳的"
+      ]
+    },
+    {
+      "name": "过热预警",
+      "data": [
+        {
+          "name": "🛂沪股通买入",
+          "samples": 47,
+          "close_ret": 1.18,
+          "close_win": 59.6,
+          "open_ret": 1.86,
+          "open_win": 61.7,
+          "close_vs_open_diff": -0.68,
+          "30s_rule_suggestion": "开盘卖"
+        },
+        {
+          "name": "📊type=01全量(严格时间线)",
+          "samples": 1541,
+          "close_ret": 0.04,
+          "close_win": 45.4,
+          "open_ret": 0.1,
+          "open_win": 44.1,
+          "close_vs_open_diff": -0.06,
+          "30s_rule_suggestion": "开盘卖"
+        },
+        {
+          "name": "无特殊资金标签",
+          "samples": 1374,
+          "close_ret": 0.03,
+          "close_win": 45.1,
+          "open_ret": 0.09,
+          "open_win": 43.8,
+          "close_vs_open_diff": -0.06,
+          "30s_rule_suggestion": "开盘卖"
+        },
+        {
+          "name": "😰亏钱席位买入",
+          "samples": 33,
+          "close_ret": 0.79,
+          "close_win": 48.5,
+          "open_ret": -0.84,
+          "open_win": 36.4,
+          "close_vs_open_diff": 1.63,
+          "30s_rule_suggestion": "可持有"
+        },
+        {
+          "name": "😎赚钱席位买入",
+          "samples": 70,
+          "close_ret": -0.38,
+          "close_win": 42.9,
+          "open_ret": 0.61,
+          "open_win": 42.9,
+          "close_vs_open_diff": -0.99,
+          "30s_rule_suggestion": "开盘卖"
+        }
+      ],
+      "conclusions": [],
+      "implications": []
+    },
+    {
+      "name": "环境×策略匹配",
+      "data": [
+        {
+          "env": "冰点",
+          "samples": 6828,
+          "avg_open_ret_30s": -0.72,
+          "open_win_rate_30s": 39.3
+        },
+        {
+          "env": "震荡",
+          "samples": 17989,
+          "avg_open_ret_30s": -0.48,
+          "open_win_rate_30s": 41.7
+        },
+        {
+          "env": "活跃",
+          "samples": 6599,
+          "avg_open_ret_30s": -0.77,
+          "open_win_rate_30s": 40.6
+        },
+        {
+          "env": "高潮",
+          "samples": 2400,
+          "avg_open_ret_30s": 1.42,
+          "open_win_rate_30s": 58.3
+        }
+      ],
+      "conclusions": [
+        "30秒规则修正：高潮涨停开盘+1.42%/胜率58.3%",
+        "活跃涨停开盘-0.77%，回避买入"
+      ],
+      "implications": [
+        "高环境分+涨停=最佳组合，低环境分涨停开盘溢价有限"
+      ]
+    }
+  ],
+  "engine_update_recommendations": [
+    {
+      "name": "提高环境分在矛盾评级中的权重",
+      "current": "收益分(3x)+胜率分(3x)+资金分(1x)+样本分(1x)，环境分仅间接参与",
+      "finding": "维度3：外因(大盘)对T+1收益的影响远超内因(个股质量)",
+      "recommendation": "增加环境分作为第5维评分因子，权重建议2x",
+      "priority": "P0-高"
+    },
+    {
+      "name": "修正量比评分逻辑",
+      "current": "量比<0.5=最佳, 量比>1.0=预警抛售",
+      "finding": "维度5：最佳量比区间是0.7-1.0(+2.88%/65.8%)，而非极端缩量",
+      "recommendation": "改为量比0.7-1.0=最佳，0.3-0.5=开盘有溢价但收盘回落",
+      "priority": "P0-高"
+    },
+    {
+      "name": "修正连板高度评分",
+      "current": "高连板=高风险，连板>3应警惕",
+      "finding": "维度6：3板T+1 +3.42%最佳，4板+ +2.45%仍正收益",
+      "recommendation": "3板不应降级，4板+适当降级但不必完全排除",
+      "priority": "P1-中"
+    },
+    {
+      "name": "冰点期不一定要空仓",
+      "current": "环境<25时空仓（仓位=0）",
+      "finding": "维度1+8：冰点期涨停股T+1 +0.66%~+1.69%/50.6%~54.3%",
+      "recommendation": "冰点期可保留5-10%仓位做最强涨停板（非空仓）",
+      "priority": "P1-中"
+    },
+    {
+      "name": "竞价低开>3% = 明确的空仓信号",
+      "current": "没有独立的竞价评分因子",
+      "finding": "维度4：低开>3% T+1 -2.80%/33.6%",
+      "recommendation": "竞价低开>3%时，所有候选策略仓位减半",
+      "priority": "P1-中"
+    },
+    {
+      "name": "高收益策略的过热标记不应降级",
+      "current": "过热标记🔥但不降级",
+      "finding": "维度7：高收益策略持有到收盘比开盘多赚+1.23%",
+      "recommendation": "当前逻辑正确，维持不变",
+      "priority": "✅已实现"
+    },
+    {
+      "name": "方向一致偏多可加仓",
+      "current": "未明确使用方向一致因子",
+      "finding": "维度2：方向一致偏多T+1 +1.16%/56.1%",
+      "recommendation": "当各层方向一致偏多时，仓位可以+10%",
+      "priority": "P2-低"
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "asset": 1000000.0,
+  "cash": 1000000.0,
+  "total_profit": 0.0,
+  "total_profit_rate": 0.0,
+  "today_pnl": 0,
+  "trade_count": 0,
+  "positions": [],
+  "trades": [],
+  "pending_orders": [],
+  "balance": {
+    "total_assets": 1000000.0,
+    "avail_balance": 1000000.0,
+    "frozen": 0.0,
+    "total_pos_value": 0.0,
+    "pos_ratio": 0.0,
+    "init_money": 1000000.0,
+    "nav": 1.0
+  },
+  "update_time": "2026-05-15T17:52:56.371292"
+}

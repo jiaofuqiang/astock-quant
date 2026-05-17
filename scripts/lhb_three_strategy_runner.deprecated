@@ -1,0 +1,148 @@
+#!/usr/bin/env python3
+"""
+龙虎榜四策略统一调度器 v1.1
+整合：追首板、跟风板、龙头板、全量龙虎榜 → 统一输出
+"""
+import sys, json, os, subprocess
+from datetime import datetime
+
+SCRIPTS_DIR = os.path.dirname(os.path.abspath(__file__))
+OUTPUT_DIR = os.path.expanduser("~/V2board/data")
+
+STRATEGIES = [
+    ('first_board', 'first_board_lhb_strategy.py', '🔥 追首板'),
+    ('follow_board', 'follow_board_lhb_strategy.py', '🟢 跟风板'),
+    ('top_board', 'top_board_lhb_strategy.py', '🐉 龙头板'),
+    ('full_lhb', 'full_lhb_strategy.py', '💎 全量龙虎榜'),
+]
+
+def run_strategy(name, script, date_arg):
+    cmd = [sys.executable, os.path.join(SCRIPTS_DIR, script), '--json', f'--date={date_arg}']
+    try:
+        r = subprocess.run(cmd, capture_output=True, timeout=60, text=True)
+        if r.returncode == 0 and r.stdout.strip():
+            return json.loads(r.stdout)
+    except json.JSONDecodeError as e:
+        print(f"  {name} JSON解析失败: {e}")
+    except Exception as e:
+        print(f"  {name} 运行失败: {e}")
+    return None
+
+def main():
+    target_date = None
+    for arg in sys.argv[1:]:
+        if arg.startswith('--date='):
+            target_date = arg.split('=')[1]
+
+    if target_date is None:
+        from lhb_shared import get_recent_trade_dates
+        dates = get_recent_trade_dates(5)
+        target_date = dates[0] if dates else datetime.now().strftime('%Y-%m-%d')
+
+    print(f"📡 龙虎榜四策略统一扫描")
+    print(f"   数据日期: {target_date}")
+    print("=" * 60)
+
+    results = {}
+    all_actionable = []
+
+    for name, script, label in STRATEGIES:
+        print(f"\n▶ 运行 {label}...")
+        result = run_strategy(name, script, target_date)
+        if result:
+            results[name] = result
+            if name == 'full_lhb':
+                # 全量策略的actionable在顶层
+                act = result.get('actionable', [])
+                golds = result.get('gold_signals', [])
+                for c in act:
+                    c['_strategy_name'] = label
+                    c['_strategy_key'] = name
+                    all_actionable.append(c)
+                print(f"  ✓ {len(act)}只买入信号 ({len(golds)}个黄金)")
+            else:
+                act = result.get('actionable', [])
+                for c in act:
+                    c['_strategy_name'] = label
+                    c['_strategy_key'] = name
+                    all_actionable.append(c)
+                print(f"  ✓ {len(act)}只买入信号")
+        else:
+            print(f"  ✗ 失败")
+            results[name] = {'strategy': name, 'actionable': [], 'total': 0}
+
+    # 汇总
+    print(f"\n{'='*60}")
+    print(f"📊 四策略汇总")
+    print("=" * 60)
+
+    total = sum(r.get('total', 0) for r in results.values())
+    total_buy = len(all_actionable)
+    gold_count = sum(1 for c in all_actionable if c.get('gold_signal'))
+
+    print(f"   总信号: {total}只 | 可买: {total_buy}只 | 黄金: {gold_count}个")
+
+    for name, _, label in STRATEGIES:
+        r = results.get(name, {})
+        if name == 'full_lhb':
+            act = r.get('actionable', [])
+            golds = r.get('gold_signals', [])
+            if act:
+                print(f"\n  {label} ({len(golds)}黄金):")
+                for c in act:
+                    gold = '🏆' if c.get('gold_signal') else ''
+                    print(f"    {gold} {c['code']} {c['name']} S{c['score']:.0f} 仓位{c.get('position_pct',0)}% 开盘{c.get('t_open',0):+.1f}%")
+            else:
+                print(f"\n  {label}: 无买入信号")
+        else:
+            act = r.get('actionable', [])
+            if act:
+                print(f"\n  {label}:")
+                for c in act:
+                    print(f"    {c['code']} {c['name']} 仓位{c.get('position_pct',0)}% 开盘{c.get('t_open',0):+.1f}%")
+            else:
+                print(f"\n  {label}: 无买入信号")
+
+    # 排序：全量黄金 > 首板 > 龙头 > 跟风 > 全量普通
+    def sort_key(c):
+        priority = {'full_lhb': 0, 'first_board': 1, 'top_board': 2, 'follow_board': 3}
+        base = priority.get(c.get('_strategy_key'), 99)
+        gold_bonus = -10 if c.get('gold_signal') else 0
+        return (base + gold_bonus, -c.get('position_pct', 0))
+
+    sorted_buys = sorted(all_actionable, key=sort_key)
+
+    print(f"\n{'─'*60}")
+    print(f"🏆 买入优先级排序:")
+    for i, c in enumerate(sorted_buys):
+        gold = '🏆' if c.get('gold_signal') else ''
+        print(f"  #{i+1} {gold}[{c.get('_strategy_name','')}] {c['code']} {c['name']} 仓位{c.get('position_pct',0)}% 开盘{c.get('t_open',0):+.1f}% SP{c.get('score',0):.0f}")
+
+    # 输出统一JSON
+    max_pos = sum(c.get('position_pct', 0) for c in sorted_buys[:5])
+
+    out = {
+        'date': target_date,
+        'engine': 'lhb-4-strategy-v1.1',
+        'total_signals': total,
+        'total_actionable': total_buy,
+        'gold_count': gold_count,
+        'max_position': min(max_pos, 50),
+        'strategies': results,
+        'actionable_by_priority': sorted_buys,
+        'generated_at': datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
+    }
+
+    os.makedirs(OUTPUT_DIR, exist_ok=True)
+    out_path = os.path.join(OUTPUT_DIR, 'lhb_4_strategy.json')
+    with open(out_path, 'w') as f:
+        json.dump(out, f, ensure_ascii=False, indent=2)
+    print(f"\n💾 已写入: {out_path}")
+
+    if '--json' in sys.argv:
+        print(json.dumps(out, ensure_ascii=False, indent=2))
+
+    print(f"\n✅ 四策略扫描完成!")
+
+if __name__ == '__main__':
+    main()

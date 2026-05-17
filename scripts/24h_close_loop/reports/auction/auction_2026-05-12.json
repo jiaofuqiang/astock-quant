@@ -1,0 +1,141 @@
+{
+  "type": "auction_report",
+  "date": "2026-05-12",
+  "generate_time": "09:19",
+  "market_prediction_scenario": "震荡",
+  "plans_priority": [
+    {
+      "name": "plan_1",
+      "sectors": [
+        "光模块与光通信"
+      ],
+      "confidence": "high"
+    },
+    {
+      "name": "plan_2",
+      "sectors": [
+        "AI算力/服务器"
+      ],
+      "confidence": "medium"
+    },
+    {
+      "name": "plan_3",
+      "sectors": [
+        "数据中心"
+      ],
+      "confidence": "low"
+    }
+  ],
+  "buy_signals": [
+    {
+      "code": "002179",
+      "name": "中航光电",
+      "action": "买入",
+      "reason": "竞价开+3.18%",
+      "priority": "中",
+      "expected": "+6.9% ~ +7.6%"
+    }
+  ],
+  "stocks_monitored": 11,
+  "auction_data": [
+    {
+      "code": "002179",
+      "name": "中航光电",
+      "price": 41.9,
+      "yesterday_close": 40.61,
+      "auction_pct": 3.18,
+      "volume_ratio": 46.21,
+      "amount_wan": 0.0
+    },
+    {
+      "code": "001267",
+      "name": "汇绿生态",
+      "price": 65.0,
+      "yesterday_close": 63.8,
+      "auction_pct": 1.88,
+      "volume_ratio": 614.02,
+      "amount_wan": 0.0
+    },
+    {
+      "code": "000779",
+      "name": "甘咨询",
+      "price": 8.95,
+      "yesterday_close": 8.82,
+      "auction_pct": 1.47,
+      "volume_ratio": 27.33,
+      "amount_wan": 0.0
+    },
+    {
+      "code": "603019",
+      "name": "中科曙光",
+      "price": 101.34,
+      "yesterday_close": 100.05,
+      "auction_pct": 1.29,
+      "volume_ratio": 66.86,
+      "amount_wan": 0.0
+    },
+    {
+      "code": "000890",
+      "name": "法尔胜",
+      "price": 13.47,
+      "yesterday_close": 13.34,
+      "auction_pct": 0.97,
+      "volume_ratio": -74.25,
+      "amount_wan": 0.0
+    },
+    {
+      "code": "000338",
+      "name": "潍柴动力",
+      "price": 33.6,
+      "yesterday_close": 33.53,
+      "auction_pct": 0.21,
+      "volume_ratio": 25.89,
+      "amount_wan": 0.0
+    },
+    {
+      "code": "000063",
+      "name": "中兴通讯",
+      "price": 39.12,
+      "yesterday_close": 39.11,
+      "auction_pct": 0.03,
+      "volume_ratio": 41.82,
+      "amount_wan": 0.0
+    },
+    {
+      "code": "002222",
+      "name": "福晶科技",
+      "price": 108.71,
+      "yesterday_close": 108.69,
+      "auction_pct": 0.02,
+      "volume_ratio": 173.94,
+      "amount_wan": 0.0
+    },
+    {
+      "code": "002025",
+      "name": "航天电器",
+      "price": 76.36,
+      "yesterday_close": 76.36,
+      "auction_pct": 0.0,
+      "volume_ratio": 184.45,
+      "amount_wan": 0.0
+    },
+    {
+      "code": "000034",
+      "name": "神州数码",
+      "price": 42.5,
+      "yesterday_close": 42.62,
+      "auction_pct": -0.28,
+      "volume_ratio": 56.98,
+      "amount_wan": 0.0
+    },
+    {
+      "code": "000066",
+      "name": "中国长城",
+      "price": 23.05,
+      "yesterday_close": 23.4,
+      "auction_pct": -1.5,
+      "volume_ratio": 3685.69,
+      "amount_wan": 0.0
+    }
+  ]
+}

@@ -1,0 +1,223 @@
+{
+  "type": "prediction_report",
+  "date": "2026-05-13",
+  "generate_time": "17:35",
+  "market_scenarios": [
+    {
+      "scenario": "强转弱",
+      "probability": 40,
+      "condition": "涨停仅0只，热点不足"
+    },
+    {
+      "scenario": "强更强",
+      "probability": 30,
+      "condition": "大盘中性，高开可能冲高"
+    },
+    {
+      "scenario": "震荡",
+      "probability": 30,
+      "condition": "方向不明，多空平衡"
+    }
+  ],
+  "sector_scenarios": [
+    {
+      "scenario": "主线持续",
+      "probability": 30,
+      "sectors": [
+        "光模块",
+        "AI算力",
+        "存储芯片"
+      ],
+      "condition": "无明确强势题材，关注AI主线"
+    },
+    {
+      "scenario": "主线轮动",
+      "probability": 70,
+      "sectors": [
+        "机器人",
+        "新能源",
+        "消费电子"
+      ],
+      "condition": "高位板块分歧时，低位题材可能接力"
+    }
+  ],
+  "stock_scenarios": [
+    {
+      "scenario": "强更强",
+      "probability": 20,
+      "stocks": [],
+      "condition": "无明确强势个股"
+    },
+    {
+      "scenario": "轮动",
+      "probability": 35,
+      "stocks": [],
+      "condition": "龙头分歧后，新标的接力"
+    },
+    {
+      "scenario": "转弱",
+      "probability": 45,
+      "stocks": [],
+      "condition": "连续涨停后高位见顶，注意风险"
+    }
+  ],
+  "fund_predictions": {
+    "youzi": "活跃打板，重点关注龙虎榜标的",
+    "lianghua": "量化偏观望，减少追涨操作",
+    "jigou": "机构偏观望，减少趋势持仓"
+  },
+  "lhb_count": 20,
+  "lhb_stocks": [
+    {
+      "name": "红板科技",
+      "reason": ""
+    },
+    {
+      "name": "远东股份",
+      "reason": ""
+    },
+    {
+      "name": "芯源微",
+      "reason": ""
+    },
+    {
+      "name": "通鼎互联",
+      "reason": ""
+    },
+    {
+      "name": "金海通",
+      "reason": ""
+    },
+    {
+      "name": "通光线缆",
+      "reason": ""
+    },
+    {
+      "name": "线上线下",
+      "reason": ""
+    },
+    {
+      "name": "唯科科技",
+      "reason": ""
+    },
+    {
+      "name": "汉缆股份",
+      "reason": ""
+    },
+    {
+      "name": "四方股份",
+      "reason": ""
+    }
+  ],
+  "holder_new": [],
+  "raw_data": {
+    "lhb": [
+      {
+        "code": "603459",
+        "name": "红板科技",
+        "net_buy_wan": 66469,
+        "total_buy_wan": 95236,
+        "pattern": "游资主导买入",
+        "top_buyers": [
+          {
+            "dealer": "瑞银证券有限责任公司上海",
+            "net": 25934
+          },
+          {
+            "dealer": "国泰海通证券股份有限公司",
+            "net": 20959
+          },
+          {
+            "dealer": "高盛（中国）证券有限责任",
+            "net": 16888
+          }
+        ]
+      },
+      {
+        "code": "600869",
+        "name": "远东股份",
+        "net_buy_wan": 38704,
+        "total_buy_wan": 83576,
+        "pattern": "游资主导买入",
+        "top_buyers": [
+          {
+            "dealer": "沪股通专用",
+            "net": 21424
+          },
+          {
+            "dealer": "国泰海通证券股份有限公司",
+            "net": 18863
+          },
+          {
+            "dealer": "摩根大通证券（中国）有限",
+            "net": 18540
+          }
+        ]
+      },
+      {
+        "code": "688037",
+        "name": "芯源微",
+        "net_buy_wan": 36629,
+        "total_buy_wan": 80652,
+        "pattern": "机构主导买入",
+        "top_buyers": [
+          {
+            "dealer": "机构专用",
+            "net": 33235
+          },
+          {
+            "dealer": "沪股通专用",
+            "net": 19882
+          },
+          {
+            "dealer": "机构专用",
+            "net": 12543
+          }
+        ]
+      },
+      {
+        "code": "002491",
+        "name": "通鼎互联",
+        "net_buy_wan": 33277,
+        "total_buy_wan": 98378,
+        "pattern": "北上买入",
+        "top_buyers": [
+          {
+            "dealer": "深股通专用",
+            "net": 15316
+          },
+          {
+            "dealer": "深股通专用",
+            "net": 15316
+          },
+          {
+            "dealer": "开源证券股份有限公司西安",
+            "net": 12585
+          }
+        ]
+      },
+      {
+        "code": "603061",
+        "name": "金海通",
+        "net_buy_wan": 32524,
+        "total_buy_wan": 93002,
+        "pattern": "北上买入",
+        "top_buyers": [
+          {
+            "dealer": "沪股通专用",
+            "net": 32263
+          },
+          {
+            "dealer": "机构专用",
+            "net": 20660
+          },
+          {
+            "dealer": "瑞银证券有限责任公司上海",
+            "net": 16694
+          }
+        ]
+      }
+    ],
+    "holders": []
+  }
+}

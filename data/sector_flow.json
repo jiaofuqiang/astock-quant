@@ -1,0 +1,94 @@
+{
+  "records": [
+    {
+      "date": "2026-05-02",
+      "sectors": {
+        "光模块": {
+          "amount_wan": 5321022.0,
+          "avg_change": 2.17,
+          "up_count": 3,
+          "down_count": 2
+        },
+        "半导体": {
+          "amount_wan": 3441203.0,
+          "avg_change": 6.71,
+          "up_count": 5,
+          "down_count": 0
+        },
+        "AI算力": {
+          "amount_wan": 6536216.0,
+          "avg_change": 0.39,
+          "up_count": 3,
+          "down_count": 2
+        },
+        "新能源汽车": {
+          "amount_wan": 3385914.0,
+          "avg_change": 1.26,
+          "up_count": 3,
+          "down_count": 2
+        },
+        "光伏": {
+          "amount_wan": 1490713.0,
+          "avg_change": 2.04,
+          "up_count": 3,
+          "down_count": 2
+        },
+        "机器人": {
+          "amount_wan": 1664579.0,
+          "avg_change": 3.91,
+          "up_count": 5,
+          "down_count": 0
+        },
+        "信创": {
+          "amount_wan": 1778513.0,
+          "avg_change": 3.82,
+          "up_count": 5,
+          "down_count": 0
+        },
+        "消费电子": {
+          "amount_wan": 1486426.0,
+          "avg_change": -0.7,
+          "up_count": 1,
+          "down_count": 3
+        },
+        "创新药": {
+          "amount_wan": 1356029.0,
+          "avg_change": -1.02,
+          "up_count": 0,
+          "down_count": 4
+        },
+        "军工": {
+          "amount_wan": 386728.0,
+          "avg_change": 0.45,
+          "up_count": 3,
+          "down_count": 1
+        },
+        "白酒": {
+          "amount_wan": 1238672.0,
+          "avg_change": -1.02,
+          "up_count": 1,
+          "down_count": 4
+        },
+        "银行": {
+          "amount_wan": 1353244.0,
+          "avg_change": -0.22,
+          "up_count": 1,
+          "down_count": 4
+        },
+        "证券": {
+          "amount_wan": 1667237.0,
+          "avg_change": -0.12,
+          "up_count": 1,
+          "down_count": 2
+        },
+        "地产": {
+          "amount_wan": 246830.0,
+          "avg_change": -0.55,
+          "up_count": 2,
+          "down_count": 2
+        }
+      },
+      "timestamp": "2026-05-02T19:19:50.397725"
+    }
+  ]
+}

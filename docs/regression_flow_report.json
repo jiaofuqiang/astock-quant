@@ -1,0 +1,83 @@
+{
+  "timestamp": "2026-05-17 16:42:42",
+  "comparison": {
+    "type=01_sell=close": {
+      "n": 1541,
+      "avg_return": 0.04,
+      "win_rate": 45.4,
+      "median_return": -0.88,
+      "std_return": 7.73,
+      "max_return": 26.34,
+      "min_return": -23.09,
+      "big_win_rate": 23.0,
+      "big_loss_rate": 25.2,
+      "sharpe": 0.0,
+      "profit_factor": 1.01
+    },
+    "type=01_sell=open": {
+      "n": 1541,
+      "avg_return": 0.1,
+      "win_rate": 44.1,
+      "median_return": -0.76,
+      "std_return": 6.63,
+      "max_return": 25.08,
+      "min_return": -23.66,
+      "big_win_rate": 19.9,
+      "big_loss_rate": 18.8,
+      "sharpe": 0.01,
+      "profit_factor": 1.04
+    },
+    "type=04_sell=close": {
+      "n": 1468,
+      "avg_return": 0.12,
+      "win_rate": 45.4,
+      "median_return": -0.9,
+      "std_return": 8.08,
+      "max_return": 29.06,
+      "min_return": -22.28,
+      "big_win_rate": 23.4,
+      "big_loss_rate": 26.7,
+      "sharpe": 0.02,
+      "profit_factor": 1.04
+    },
+    "type=04_sell=open": {
+      "n": 1468,
+      "avg_return": -0.31,
+      "win_rate": 42.2,
+      "median_return": -0.78,
+      "std_return": 6.34,
+      "max_return": 34.46,
+      "min_return": -18.76,
+      "big_win_rate": 17.3,
+      "big_loss_rate": 21.0,
+      "sharpe": -0.05,
+      "profit_factor": 0.88
+    },
+    "type=*_sell=close": {
+      "n": 8278,
+      "avg_return": -0.2,
+      "win_rate": 44.6,
+      "median_return": -0.98,
+      "std_return": 8.03,
+      "max_return": 34.65,
+      "min_return": -26.38,
+      "big_win_rate": 23.2,
+      "big_loss_rate": 27.2,
+      "sharpe": -0.03,
+      "profit_factor": 0.94
+    },
+    "type=*_sell=open": {
+      "n": 8278,
+      "avg_return": -0.32,
+      "win_rate": 43.1,
+      "median_return": -0.82,
+      "std_return": 6.77,
+      "max_return": 34.46,
+      "min_return": -26.38,
+      "big_win_rate": 19.1,
+      "big_loss_rate": 22.2,
+      "sharpe": -0.05,
+      "profit_factor": 0.88
+    }
+  }
+}

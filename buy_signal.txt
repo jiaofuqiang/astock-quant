@@ -1,0 +1,34 @@
+{
+  "timestamp": "2026-05-15T15:59:54.581231",
+  "signals": [
+    {
+      "level": "WATCH",
+      "sector": "人形机器人",
+      "stocks": [
+        {
+          "name": "🚀绿的谐波",
+          "pct": "+15.3%",
+          "total": 66,
+          "jg": 14,
+          "lh": 30,
+          "yz": 14
+        },
+        {
+          "name": "中大力德",
+          "pct": "+3.9%",
+          "total": 59,
+          "jg": 15,
+          "lh": 23,
+          "yz": 21
+        }
+      ]
+    }
+  ],
+  "f2_signal": {
+    "f2_count": 0,
+    "f2_plus_count": 0,
+    "weipan_count": 0,
+    "weipan_superb": 0,
+    "timestamp": "2026-05-08T00:00:00"
+  }
+}

@@ -1,0 +1,3946 @@
+{
+  "000004": {
+    "score": 13,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.8,
+    "youzi_net_avg": 427.0,
+    "total_list": 5,
+    "youzi_buy_days": 5
+  },
+  "000016": {
+    "score": 10.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 5791.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "000021": {
+    "score": 10.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 11775.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "000025": {
+    "score": 9.0,
+    "youzi_ratio": 0.5,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 7975.0,
+    "total_list": 2,
+    "youzi_buy_days": 1
+  },
+  "000035": {
+    "score": 6.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 0.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "000056": {
+    "score": 7.0,
+    "youzi_ratio": 0.5,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 709.0,
+    "total_list": 2,
+    "youzi_buy_days": 1
+  },
+  "000060": {
+    "score": 10.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 6297.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "000066": {
+    "score": 10.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 11064.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "000070": {
+    "score": 9.0,
+    "youzi_ratio": 0.5,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 22775.0,
+    "total_list": 2,
+    "youzi_buy_days": 1
+  },
+  "000428": {
+    "score": 9.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 1719.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "000430": {
+    "score": 11.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.5,
+    "youzi_net_avg": 283.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "000504": {
+    "score": 11.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.5,
+    "youzi_net_avg": 146.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "000509": {
+    "score": 9.0,
+    "youzi_ratio": 0.5,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 7850.0,
+    "total_list": 2,
+    "youzi_buy_days": 1
+  },
+  "000510": {
+    "score": 9.0,
+    "youzi_ratio": 0.833,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 2174.0,
+    "total_list": 6,
+    "youzi_buy_days": 5
+  },
+  "000533": {
+    "score": 12.7,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.333,
+    "youzi_net_avg": 4683.0,
+    "total_list": 6,
+    "youzi_buy_days": 6
+  },
+  "000534": {
+    "score": 5.0,
+    "youzi_ratio": 0.5,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": -343.0,
+    "total_list": 2,
+    "youzi_buy_days": 1
+  },
+  "000554": {
+    "score": 9.0,
+    "youzi_ratio": 0.8,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 2115.0,
+    "total_list": 5,
+    "youzi_buy_days": 4
+  },
+  "000573": {
+    "score": 10.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 4084.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "000592": {
+    "score": 10.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 8602.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "000599": {
+    "score": 10.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 4697.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "000609": {
+    "score": 11,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 1.0,
+    "youzi_net_avg": 0.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "000620": {
+    "score": 6.0,
+    "youzi_ratio": 0.667,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 0.0,
+    "total_list": 3,
+    "youzi_buy_days": 2
+  },
+  "000622": {
+    "score": 12,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 1.0,
+    "youzi_net_avg": 100.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "000626": {
+    "score": 11.7,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.333,
+    "youzi_net_avg": 2211.0,
+    "total_list": 3,
+    "youzi_buy_days": 3
+  },
+  "000627": {
+    "score": 9.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 1140.0,
+    "total_list": 4,
+    "youzi_buy_days": 4
+  },
+  "000630": {
+    "score": 5.0,
+    "youzi_ratio": 0.5,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 0.0,
+    "total_list": 2,
+    "youzi_buy_days": 1
+  },
+  "000632": {
+    "score": 9.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 1591.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "000637": {
+    "score": 9.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 1078.0,
+    "total_list": 3,
+    "youzi_buy_days": 3
+  },
+  "000638": {
+    "score": 13,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.8,
+    "youzi_net_avg": 460.0,
+    "total_list": 5,
+    "youzi_buy_days": 5
+  },
+  "000668": {
+    "score": 6.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 0.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "000679": {
+    "score": 13.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.5,
+    "youzi_net_avg": 2412.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "000703": {
+    "score": 9.0,
+    "youzi_ratio": 0.5,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 35703.0,
+    "total_list": 2,
+    "youzi_buy_days": 1
+  },
+  "000705": {
+    "score": 9.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 1164.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "000759": {
+    "score": 14.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.5,
+    "youzi_net_avg": 4292.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "000815": {
+    "score": 10.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 5492.0,
+    "total_list": 5,
+    "youzi_buy_days": 5
+  },
+  "000833": {
+    "score": 10.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 3551.0,
+    "total_list": 4,
+    "youzi_buy_days": 4
+  },
+  "000852": {
+    "score": 14.0,
+    "youzi_ratio": 0.75,
+    "youzi_solo_ratio": 0.5,
+    "youzi_net_avg": 7905.0,
+    "total_list": 4,
+    "youzi_buy_days": 3
+  },
+  "000859": {
+    "score": 10.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 11287.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "000880": {
+    "score": 2.5,
+    "youzi_ratio": 0.25,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 0.0,
+    "total_list": 4,
+    "youzi_buy_days": 1
+  },
+  "000882": {
+    "score": 10.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 8373.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "000890": {
+    "score": 9.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 1084.0,
+    "total_list": 4,
+    "youzi_buy_days": 4
+  },
+  "000903": {
+    "score": 9.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 2044.0,
+    "total_list": 3,
+    "youzi_buy_days": 3
+  },
+  "000952": {
+    "score": 9.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 1002.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "000960": {
+    "score": 9.0,
+    "youzi_ratio": 0.5,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 16945.0,
+    "total_list": 2,
+    "youzi_buy_days": 1
+  },
+  "000965": {
+    "score": 14.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.5,
+    "youzi_net_avg": 3059.0,
+    "total_list": 4,
+    "youzi_buy_days": 4
+  },
+  "000968": {
+    "score": 10.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 3363.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "000995": {
+    "score": 14.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.5,
+    "youzi_net_avg": 3134.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "001209": {
+    "score": 10.0,
+    "youzi_ratio": 0.75,
+    "youzi_solo_ratio": 0.25,
+    "youzi_net_avg": 349.0,
+    "total_list": 4,
+    "youzi_buy_days": 3
+  },
+  "001231": {
+    "score": 13,
+    "youzi_ratio": 0.667,
+    "youzi_solo_ratio": 0.667,
+    "youzi_net_avg": 801.0,
+    "total_list": 3,
+    "youzi_buy_days": 2
+  },
+  "001234": {
+    "score": 14,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 1.0,
+    "youzi_net_avg": 1207.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "001255": {
+    "score": 7.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 241.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "001267": {
+    "score": 10.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 10487.0,
+    "total_list": 5,
+    "youzi_buy_days": 5
+  },
+  "001270": {
+    "score": 9.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 2424.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "001282": {
+    "score": 7.0,
+    "youzi_ratio": 0.5,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 477.0,
+    "total_list": 4,
+    "youzi_buy_days": 2
+  },
+  "001287": {
+    "score": 9.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 1875.0,
+    "total_list": 4,
+    "youzi_buy_days": 4
+  },
+  "001309": {
+    "score": 5.0,
+    "youzi_ratio": 0.5,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 0.0,
+    "total_list": 2,
+    "youzi_buy_days": 1
+  },
+  "001339": {
+    "score": 9.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 2102.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "001356": {
+    "score": 10.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 3556.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "001382": {
+    "score": 8.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 807.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "001390": {
+    "score": 11.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.5,
+    "youzi_net_avg": 96.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "001400": {
+    "score": 0.0,
+    "youzi_ratio": 0.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 0,
+    "total_list": 4,
+    "youzi_buy_days": 0
+  },
+  "001896": {
+    "score": 9.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 1607.0,
+    "total_list": 5,
+    "youzi_buy_days": 5
+  },
+  "002031": {
+    "score": 10.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 14896.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "002040": {
+    "score": 9.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 1897.0,
+    "total_list": 3,
+    "youzi_buy_days": 3
+  },
+  "002047": {
+    "score": 7.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 288.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "002052": {
+    "score": 10.7,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.333,
+    "youzi_net_avg": 353.0,
+    "total_list": 3,
+    "youzi_buy_days": 3
+  },
+  "002076": {
+    "score": 12,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 1.0,
+    "youzi_net_avg": 63.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "002080": {
+    "score": 9.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 2796.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "002082": {
+    "score": 9.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 1508.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "002084": {
+    "score": 8.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 943.0,
+    "total_list": 3,
+    "youzi_buy_days": 3
+  },
+  "002104": {
+    "score": 10.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 10946.0,
+    "total_list": 6,
+    "youzi_buy_days": 6
+  },
+  "002112": {
+    "score": 6.0,
+    "youzi_ratio": 0.667,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 0.0,
+    "total_list": 3,
+    "youzi_buy_days": 2
+  },
+  "002117": {
+    "score": 10.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 5367.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "002119": {
+    "score": 10.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 3276.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "002155": {
+    "score": 10.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 69472.0,
+    "total_list": 3,
+    "youzi_buy_days": 3
+  },
+  "002164": {
+    "score": 9.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 1784.0,
+    "total_list": 3,
+    "youzi_buy_days": 3
+  },
+  "002165": {
+    "score": 10.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 8092.0,
+    "total_list": 8,
+    "youzi_buy_days": 8
+  },
+  "002178": {
+    "score": 10.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 7081.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "002187": {
+    "score": 9.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 2679.0,
+    "total_list": 3,
+    "youzi_buy_days": 3
+  },
+  "002194": {
+    "score": 9.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 1167.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "002207": {
+    "score": 8.0,
+    "youzi_ratio": 0.857,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 868.0,
+    "total_list": 7,
+    "youzi_buy_days": 6
+  },
+  "002209": {
+    "score": 8.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 921.0,
+    "total_list": 4,
+    "youzi_buy_days": 4
+  },
+  "002211": {
+    "score": 12.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.5,
+    "youzi_net_avg": 406.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "002213": {
+    "score": 10.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 3522.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "002218": {
+    "score": 7.0,
+    "youzi_ratio": 0.5,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 715.0,
+    "total_list": 2,
+    "youzi_buy_days": 1
+  },
+  "002221": {
+    "score": 9.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 1933.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "002222": {
+    "score": 10.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 3115.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "002231": {
+    "score": 9.7,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.333,
+    "youzi_net_avg": 184.0,
+    "total_list": 3,
+    "youzi_buy_days": 3
+  },
+  "002246": {
+    "score": 8.0,
+    "youzi_ratio": 0.5,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 2765.0,
+    "total_list": 2,
+    "youzi_buy_days": 1
+  },
+  "002261": {
+    "score": 10.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 18293.0,
+    "total_list": 3,
+    "youzi_buy_days": 3
+  },
+  "002265": {
+    "score": 10.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 10118.0,
+    "total_list": 4,
+    "youzi_buy_days": 4
+  },
+  "002272": {
+    "score": 10.0,
+    "youzi_ratio": 0.75,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 9268.0,
+    "total_list": 4,
+    "youzi_buy_days": 3
+  },
+  "002278": {
+    "score": 10.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 5355.0,
+    "total_list": 4,
+    "youzi_buy_days": 4
+  },
+  "002281": {
+    "score": 10.0,
+    "youzi_ratio": 0.667,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 15804.0,
+    "total_list": 3,
+    "youzi_buy_days": 2
+  },
+  "002289": {
+    "score": 8.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 398.0,
+    "total_list": 3,
+    "youzi_buy_days": 3
+  },
+  "002291": {
+    "score": 10.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 9302.0,
+    "total_list": 3,
+    "youzi_buy_days": 3
+  },
+  "002295": {
+    "score": 9.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 1083.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "002297": {
+    "score": 15,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 1.0,
+    "youzi_net_avg": 3296.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "002309": {
+    "score": 13,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 1.0,
+    "youzi_net_avg": 501.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "002339": {
+    "score": 5.0,
+    "youzi_ratio": 0.5,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 0.0,
+    "total_list": 2,
+    "youzi_buy_days": 1
+  },
+  "002342": {
+    "score": 10.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 17426.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "002361": {
+    "score": 10.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 19747.0,
+    "total_list": 3,
+    "youzi_buy_days": 3
+  },
+  "002384": {
+    "score": 10.0,
+    "youzi_ratio": 0.667,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 7492.0,
+    "total_list": 3,
+    "youzi_buy_days": 2
+  },
+  "002401": {
+    "score": 10.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 6201.0,
+    "total_list": 3,
+    "youzi_buy_days": 3
+  },
+  "002418": {
+    "score": 8.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 624.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "002427": {
+    "score": 10.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 3284.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "002449": {
+    "score": 10.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 5183.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "002459": {
+    "score": 6.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 0.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "002471": {
+    "score": 10.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 32568.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "002490": {
+    "score": 9.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 1813.0,
+    "total_list": 7,
+    "youzi_buy_days": 7
+  },
+  "002491": {
+    "score": 10.0,
+    "youzi_ratio": 0.714,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 11143.0,
+    "total_list": 7,
+    "youzi_buy_days": 5
+  },
+  "002498": {
+    "score": 10.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 8581.0,
+    "total_list": 3,
+    "youzi_buy_days": 3
+  },
+  "002506": {
+    "score": 12.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.25,
+    "youzi_net_avg": 29020.0,
+    "total_list": 4,
+    "youzi_buy_days": 4
+  },
+  "002512": {
+    "score": 13.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.5,
+    "youzi_net_avg": 2007.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "002513": {
+    "score": 9.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 1364.0,
+    "total_list": 5,
+    "youzi_buy_days": 5
+  },
+  "002550": {
+    "score": 6.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": -356.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "002552": {
+    "score": 9.0,
+    "youzi_ratio": 0.667,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 2744.0,
+    "total_list": 3,
+    "youzi_buy_days": 2
+  },
+  "002553": {
+    "score": 9.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 2619.0,
+    "total_list": 4,
+    "youzi_buy_days": 4
+  },
+  "002554": {
+    "score": 0.0,
+    "youzi_ratio": 0.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 0,
+    "total_list": 2,
+    "youzi_buy_days": 0
+  },
+  "002564": {
+    "score": 8.0,
+    "youzi_ratio": 0.5,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 2381.0,
+    "total_list": 2,
+    "youzi_buy_days": 1
+  },
+  "002570": {
+    "score": 10.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 5553.0,
+    "total_list": 4,
+    "youzi_buy_days": 4
+  },
+  "002575": {
+    "score": 10.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 5594.0,
+    "total_list": 3,
+    "youzi_buy_days": 3
+  },
+  "002581": {
+    "score": 8.0,
+    "youzi_ratio": 0.667,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 533.0,
+    "total_list": 3,
+    "youzi_buy_days": 2
+  },
+  "002582": {
+    "score": 10.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 4139.0,
+    "total_list": 5,
+    "youzi_buy_days": 5
+  },
+  "002629": {
+    "score": 11.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.25,
+    "youzi_net_avg": 2180.0,
+    "total_list": 4,
+    "youzi_buy_days": 4
+  },
+  "002634": {
+    "score": 5.3,
+    "youzi_ratio": 0.333,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 576.0,
+    "total_list": 3,
+    "youzi_buy_days": 1
+  },
+  "002645": {
+    "score": 10.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 3947.0,
+    "total_list": 5,
+    "youzi_buy_days": 5
+  },
+  "002647": {
+    "score": 10.0,
+    "youzi_ratio": 0.5,
+    "youzi_solo_ratio": 0.5,
+    "youzi_net_avg": 258.0,
+    "total_list": 2,
+    "youzi_buy_days": 1
+  },
+  "002648": {
+    "score": 9.0,
+    "youzi_ratio": 0.5,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 5530.0,
+    "total_list": 2,
+    "youzi_buy_days": 1
+  },
+  "002657": {
+    "score": 10.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 6737.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "002667": {
+    "score": 10.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 3379.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "002713": {
+    "score": 12.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.5,
+    "youzi_net_avg": 476.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "002716": {
+    "score": 10.0,
+    "youzi_ratio": 0.833,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 3124.0,
+    "total_list": 6,
+    "youzi_buy_days": 5
+  },
+  "002719": {
+    "score": 12.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.5,
+    "youzi_net_avg": 933.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "002728": {
+    "score": 7.0,
+    "youzi_ratio": 0.5,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 672.0,
+    "total_list": 2,
+    "youzi_buy_days": 1
+  },
+  "002730": {
+    "score": 13,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 1.0,
+    "youzi_net_avg": 654.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "002731": {
+    "score": 10.7,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.333,
+    "youzi_net_avg": 854.0,
+    "total_list": 3,
+    "youzi_buy_days": 3
+  },
+  "002733": {
+    "score": 10.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 5625.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "002748": {
+    "score": 6.3,
+    "youzi_ratio": 0.333,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 2166.0,
+    "total_list": 3,
+    "youzi_buy_days": 1
+  },
+  "002800": {
+    "score": 14,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 1.0,
+    "youzi_net_avg": 1342.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "002808": {
+    "score": 7.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 45.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "002809": {
+    "score": 8.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 514.0,
+    "total_list": 4,
+    "youzi_buy_days": 4
+  },
+  "002820": {
+    "score": 8.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 405.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "002828": {
+    "score": 8.0,
+    "youzi_ratio": 0.5,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 2211.0,
+    "total_list": 4,
+    "youzi_buy_days": 2
+  },
+  "002830": {
+    "score": 13.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.5,
+    "youzi_net_avg": 1368.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "002842": {
+    "score": 3.3,
+    "youzi_ratio": 0.333,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 0.0,
+    "total_list": 3,
+    "youzi_buy_days": 1
+  },
+  "002843": {
+    "score": 10.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 6871.0,
+    "total_list": 3,
+    "youzi_buy_days": 3
+  },
+  "002877": {
+    "score": 9.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 1239.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "002896": {
+    "score": 10.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 6260.0,
+    "total_list": 3,
+    "youzi_buy_days": 3
+  },
+  "002903": {
+    "score": 8.0,
+    "youzi_ratio": 0.5,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 1191.0,
+    "total_list": 2,
+    "youzi_buy_days": 1
+  },
+  "002911": {
+    "score": 8.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 596.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "002917": {
+    "score": 12.7,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.333,
+    "youzi_net_avg": 3459.0,
+    "total_list": 3,
+    "youzi_buy_days": 3
+  },
+  "002940": {
+    "score": 6.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 0.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "002951": {
+    "score": 13.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.5,
+    "youzi_net_avg": 2582.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "002952": {
+    "score": 7.0,
+    "youzi_ratio": 0.5,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 747.0,
+    "total_list": 2,
+    "youzi_buy_days": 1
+  },
+  "002980": {
+    "score": 5.0,
+    "youzi_ratio": 0.5,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 0.0,
+    "total_list": 2,
+    "youzi_buy_days": 1
+  },
+  "002986": {
+    "score": 8.0,
+    "youzi_ratio": 0.5,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 1978.0,
+    "total_list": 2,
+    "youzi_buy_days": 1
+  },
+  "002995": {
+    "score": 14.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.5,
+    "youzi_net_avg": 3057.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "003018": {
+    "score": 9.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 1073.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "003037": {
+    "score": 8.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 530.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "200016": {
+    "score": 12,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 1.0,
+    "youzi_net_avg": 87.0,
+    "total_list": 4,
+    "youzi_buy_days": 4
+  },
+  "200488": {
+    "score": 12,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 1.0,
+    "youzi_net_avg": 103.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "300052": {
+    "score": 10.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 5248.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "300084": {
+    "score": 9.0,
+    "youzi_ratio": 0.5,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 19563.0,
+    "total_list": 2,
+    "youzi_buy_days": 1
+  },
+  "300108": {
+    "score": 12,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 1.0,
+    "youzi_net_avg": 129.0,
+    "total_list": 3,
+    "youzi_buy_days": 3
+  },
+  "300111": {
+    "score": 9.0,
+    "youzi_ratio": 0.667,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 1192.0,
+    "total_list": 3,
+    "youzi_buy_days": 2
+  },
+  "300127": {
+    "score": 10.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 3681.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "300139": {
+    "score": 9.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 2965.0,
+    "total_list": 4,
+    "youzi_buy_days": 4
+  },
+  "300157": {
+    "score": 0.0,
+    "youzi_ratio": 0.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 0,
+    "total_list": 2,
+    "youzi_buy_days": 0
+  },
+  "300164": {
+    "score": 9.0,
+    "youzi_ratio": 0.833,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 2597.0,
+    "total_list": 6,
+    "youzi_buy_days": 5
+  },
+  "300189": {
+    "score": 9.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 2305.0,
+    "total_list": 5,
+    "youzi_buy_days": 5
+  },
+  "300191": {
+    "score": 8.0,
+    "youzi_ratio": 0.667,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 968.0,
+    "total_list": 3,
+    "youzi_buy_days": 2
+  },
+  "300195": {
+    "score": 10.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 3981.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "300208": {
+    "score": 12,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 1.0,
+    "youzi_net_avg": 58.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "300280": {
+    "score": 10.2,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.4,
+    "youzi_net_avg": 245.0,
+    "total_list": 5,
+    "youzi_buy_days": 5
+  },
+  "300283": {
+    "score": 5.0,
+    "youzi_ratio": 0.5,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 0.0,
+    "total_list": 2,
+    "youzi_buy_days": 1
+  },
+  "300303": {
+    "score": 10.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 12546.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "300313": {
+    "score": 12.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.5,
+    "youzi_net_avg": 405.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "300323": {
+    "score": 9.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 2575.0,
+    "total_list": 3,
+    "youzi_buy_days": 3
+  },
+  "300344": {
+    "score": 14,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 1.0,
+    "youzi_net_avg": 1431.0,
+    "total_list": 4,
+    "youzi_buy_days": 4
+  },
+  "300352": {
+    "score": 9.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 1165.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "300379": {
+    "score": 11.7,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.333,
+    "youzi_net_avg": 1076.0,
+    "total_list": 6,
+    "youzi_buy_days": 6
+  },
+  "300391": {
+    "score": 12,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 1.0,
+    "youzi_net_avg": 142.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "300427": {
+    "score": 10.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 3138.0,
+    "total_list": 3,
+    "youzi_buy_days": 3
+  },
+  "300430": {
+    "score": 7.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 73.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "300444": {
+    "score": 10.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 8198.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "300472": {
+    "score": 7.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 269.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "300530": {
+    "score": 9.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 1495.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "300561": {
+    "score": 10.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 9800.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "300615": {
+    "score": 10.6,
+    "youzi_ratio": 0.8,
+    "youzi_solo_ratio": 0.2,
+    "youzi_net_avg": 2342.0,
+    "total_list": 5,
+    "youzi_buy_days": 4
+  },
+  "300629": {
+    "score": 10.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 3369.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "300630": {
+    "score": 10.7,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.333,
+    "youzi_net_avg": 826.0,
+    "total_list": 3,
+    "youzi_buy_days": 3
+  },
+  "300658": {
+    "score": 10.0,
+    "youzi_ratio": 0.667,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 3970.0,
+    "total_list": 3,
+    "youzi_buy_days": 2
+  },
+  "300708": {
+    "score": 9.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 2616.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "300715": {
+    "score": 13.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.5,
+    "youzi_net_avg": 1200.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "300723": {
+    "score": 10.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 3365.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "300807": {
+    "score": 11.7,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.333,
+    "youzi_net_avg": 1379.0,
+    "total_list": 3,
+    "youzi_buy_days": 3
+  },
+  "300819": {
+    "score": 5.0,
+    "youzi_ratio": 0.5,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 0.0,
+    "total_list": 2,
+    "youzi_buy_days": 1
+  },
+  "300822": {
+    "score": 8.0,
+    "youzi_ratio": 0.5,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 2954.0,
+    "total_list": 2,
+    "youzi_buy_days": 1
+  },
+  "300846": {
+    "score": 10.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 8540.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "300871": {
+    "score": 14,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 1.0,
+    "youzi_net_avg": 2066.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "300911": {
+    "score": 10.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 3919.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "300927": {
+    "score": 10.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 5533.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "300941": {
+    "score": 9.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 1100.0,
+    "total_list": 4,
+    "youzi_buy_days": 4
+  },
+  "300948": {
+    "score": 10.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 3274.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "300955": {
+    "score": 7.0,
+    "youzi_ratio": 0.5,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 639.0,
+    "total_list": 2,
+    "youzi_buy_days": 1
+  },
+  "300963": {
+    "score": 10.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 4508.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "300986": {
+    "score": 12.7,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.333,
+    "youzi_net_avg": 3855.0,
+    "total_list": 3,
+    "youzi_buy_days": 3
+  },
+  "301000": {
+    "score": 10.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 8339.0,
+    "total_list": 3,
+    "youzi_buy_days": 3
+  },
+  "301013": {
+    "score": 10.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 4917.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "301079": {
+    "score": 9.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 1189.0,
+    "total_list": 3,
+    "youzi_buy_days": 3
+  },
+  "301120": {
+    "score": 10.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 6414.0,
+    "total_list": 3,
+    "youzi_buy_days": 3
+  },
+  "301156": {
+    "score": 13,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.75,
+    "youzi_net_avg": 892.0,
+    "total_list": 4,
+    "youzi_buy_days": 4
+  },
+  "301157": {
+    "score": 10.6,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.2,
+    "youzi_net_avg": 1523.0,
+    "total_list": 5,
+    "youzi_buy_days": 5
+  },
+  "301171": {
+    "score": 9.0,
+    "youzi_ratio": 0.5,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 16204.0,
+    "total_list": 4,
+    "youzi_buy_days": 2
+  },
+  "301183": {
+    "score": 8.0,
+    "youzi_ratio": 0.5,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 2602.0,
+    "total_list": 2,
+    "youzi_buy_days": 1
+  },
+  "301202": {
+    "score": 9.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 1495.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "301205": {
+    "score": 0.0,
+    "youzi_ratio": 0.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 0,
+    "total_list": 2,
+    "youzi_buy_days": 0
+  },
+  "301208": {
+    "score": 8.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 722.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "301209": {
+    "score": 8.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 666.0,
+    "total_list": 3,
+    "youzi_buy_days": 3
+  },
+  "301218": {
+    "score": 7.0,
+    "youzi_ratio": 0.5,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 954.0,
+    "total_list": 2,
+    "youzi_buy_days": 1
+  },
+  "301232": {
+    "score": 10.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 3075.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "301252": {
+    "score": 8.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 397.0,
+    "total_list": 4,
+    "youzi_buy_days": 4
+  },
+  "301287": {
+    "score": 12.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.5,
+    "youzi_net_avg": 849.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "301315": {
+    "score": 9.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 1227.0,
+    "total_list": 5,
+    "youzi_buy_days": 5
+  },
+  "301348": {
+    "score": 9.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 2892.0,
+    "total_list": 3,
+    "youzi_buy_days": 3
+  },
+  "301357": {
+    "score": 9.0,
+    "youzi_ratio": 0.667,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 1421.0,
+    "total_list": 6,
+    "youzi_buy_days": 4
+  },
+  "301362": {
+    "score": 6.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 0.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "301365": {
+    "score": 5.3,
+    "youzi_ratio": 0.333,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 558.0,
+    "total_list": 3,
+    "youzi_buy_days": 1
+  },
+  "301373": {
+    "score": 8.0,
+    "youzi_ratio": 0.5,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 1754.0,
+    "total_list": 4,
+    "youzi_buy_days": 2
+  },
+  "301388": {
+    "score": 9.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 1605.0,
+    "total_list": 7,
+    "youzi_buy_days": 7
+  },
+  "301392": {
+    "score": 9.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 2171.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "301396": {
+    "score": 10.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 18863.0,
+    "total_list": 3,
+    "youzi_buy_days": 3
+  },
+  "301421": {
+    "score": 9.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 1864.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "301500": {
+    "score": 6.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 0.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "301511": {
+    "score": 10.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 18227.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "301535": {
+    "score": 8.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 453.0,
+    "total_list": 5,
+    "youzi_buy_days": 5
+  },
+  "301558": {
+    "score": 10.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 8669.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "301563": {
+    "score": 5.0,
+    "youzi_ratio": 0.4,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 234.0,
+    "total_list": 5,
+    "youzi_buy_days": 2
+  },
+  "301568": {
+    "score": 11.7,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.333,
+    "youzi_net_avg": 2497.0,
+    "total_list": 3,
+    "youzi_buy_days": 3
+  },
+  "301581": {
+    "score": 9.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 1743.0,
+    "total_list": 3,
+    "youzi_buy_days": 3
+  },
+  "301584": {
+    "score": 5.0,
+    "youzi_ratio": 0.5,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 0.0,
+    "total_list": 2,
+    "youzi_buy_days": 1
+  },
+  "301606": {
+    "score": 9.0,
+    "youzi_ratio": 0.667,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 1266.0,
+    "total_list": 3,
+    "youzi_buy_days": 2
+  },
+  "301616": {
+    "score": 7.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 14.0,
+    "total_list": 3,
+    "youzi_buy_days": 3
+  },
+  "301617": {
+    "score": 6.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 0.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "301628": {
+    "score": 9.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 1108.0,
+    "total_list": 3,
+    "youzi_buy_days": 3
+  },
+  "301629": {
+    "score": 9.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 2892.0,
+    "total_list": 5,
+    "youzi_buy_days": 5
+  },
+  "301638": {
+    "score": 10.0,
+    "youzi_ratio": 0.667,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 7734.0,
+    "total_list": 3,
+    "youzi_buy_days": 2
+  },
+  "301658": {
+    "score": 9.0,
+    "youzi_ratio": 0.833,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 1730.0,
+    "total_list": 6,
+    "youzi_buy_days": 5
+  },
+  "301666": {
+    "score": 0.0,
+    "youzi_ratio": 0.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 0,
+    "total_list": 2,
+    "youzi_buy_days": 0
+  },
+  "301668": {
+    "score": 8.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 706.0,
+    "total_list": 3,
+    "youzi_buy_days": 3
+  },
+  "301696": {
+    "score": 10.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 5353.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "600026": {
+    "score": 10.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 9848.0,
+    "total_list": 4,
+    "youzi_buy_days": 4
+  },
+  "600028": {
+    "score": 9.0,
+    "youzi_ratio": 0.5,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 8174.0,
+    "total_list": 2,
+    "youzi_buy_days": 1
+  },
+  "600083": {
+    "score": 12,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 1.0,
+    "youzi_net_avg": 28.0,
+    "total_list": 3,
+    "youzi_buy_days": 3
+  },
+  "600084": {
+    "score": 9.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 1255.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "600108": {
+    "score": 10.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 5674.0,
+    "total_list": 4,
+    "youzi_buy_days": 4
+  },
+  "600121": {
+    "score": 10.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 9899.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "600128": {
+    "score": 14,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 1.0,
+    "youzi_net_avg": 1628.0,
+    "total_list": 3,
+    "youzi_buy_days": 3
+  },
+  "600172": {
+    "score": 11.1,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.143,
+    "youzi_net_avg": 14245.0,
+    "total_list": 7,
+    "youzi_buy_days": 7
+  },
+  "600173": {
+    "score": 14,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 1.0,
+    "youzi_net_avg": 2403.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "600180": {
+    "score": 14,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 1.0,
+    "youzi_net_avg": 2970.0,
+    "total_list": 3,
+    "youzi_buy_days": 3
+  },
+  "600187": {
+    "score": 11.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.5,
+    "youzi_net_avg": 249.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "600190": {
+    "score": 12,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 1.0,
+    "youzi_net_avg": 164.0,
+    "total_list": 3,
+    "youzi_buy_days": 3
+  },
+  "600201": {
+    "score": 9.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 2418.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "600219": {
+    "score": 10.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 10224.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "600227": {
+    "score": 15,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 1.0,
+    "youzi_net_avg": 3629.0,
+    "total_list": 7,
+    "youzi_buy_days": 7
+  },
+  "600230": {
+    "score": 10.0,
+    "youzi_ratio": 0.667,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 4472.0,
+    "total_list": 3,
+    "youzi_buy_days": 2
+  },
+  "600249": {
+    "score": 15,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 1.0,
+    "youzi_net_avg": 4401.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "600268": {
+    "score": 10.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 13476.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "600289": {
+    "score": 14,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 1.0,
+    "youzi_net_avg": 1627.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "600303": {
+    "score": 14,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 1.0,
+    "youzi_net_avg": 2568.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "600313": {
+    "score": 10.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 13458.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "600339": {
+    "score": 9.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 2626.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "600340": {
+    "score": 10.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 7009.0,
+    "total_list": 3,
+    "youzi_buy_days": 3
+  },
+  "600354": {
+    "score": 15,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 1.0,
+    "youzi_net_avg": 12089.0,
+    "total_list": 3,
+    "youzi_buy_days": 3
+  },
+  "600355": {
+    "score": 13,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 1.0,
+    "youzi_net_avg": 538.0,
+    "total_list": 3,
+    "youzi_buy_days": 3
+  },
+  "600376": {
+    "score": 12.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.25,
+    "youzi_net_avg": 9149.0,
+    "total_list": 4,
+    "youzi_buy_days": 4
+  },
+  "600381": {
+    "score": 13,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 1.0,
+    "youzi_net_avg": 918.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "600397": {
+    "score": 12.7,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.333,
+    "youzi_net_avg": 3442.0,
+    "total_list": 3,
+    "youzi_buy_days": 3
+  },
+  "600403": {
+    "score": 10.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 5023.0,
+    "total_list": 3,
+    "youzi_buy_days": 3
+  },
+  "600408": {
+    "score": 15,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 1.0,
+    "youzi_net_avg": 3365.0,
+    "total_list": 3,
+    "youzi_buy_days": 3
+  },
+  "600410": {
+    "score": 10.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 19444.0,
+    "total_list": 8,
+    "youzi_buy_days": 8
+  },
+  "600423": {
+    "score": 14,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 1.0,
+    "youzi_net_avg": 1873.0,
+    "total_list": 3,
+    "youzi_buy_days": 3
+  },
+  "600462": {
+    "score": 12,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 1.0,
+    "youzi_net_avg": 181.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "600470": {
+    "score": 15,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.667,
+    "youzi_net_avg": 5446.0,
+    "total_list": 3,
+    "youzi_buy_days": 3
+  },
+  "600481": {
+    "score": 10.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 3767.0,
+    "total_list": 3,
+    "youzi_buy_days": 3
+  },
+  "600490": {
+    "score": 10.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 8797.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "600498": {
+    "score": 9.0,
+    "youzi_ratio": 0.5,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 35850.0,
+    "total_list": 2,
+    "youzi_buy_days": 1
+  },
+  "600513": {
+    "score": 15,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 1.0,
+    "youzi_net_avg": 4903.0,
+    "total_list": 4,
+    "youzi_buy_days": 4
+  },
+  "600516": {
+    "score": 10.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 9658.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "600537": {
+    "score": 15,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 1.0,
+    "youzi_net_avg": 5282.0,
+    "total_list": 5,
+    "youzi_buy_days": 5
+  },
+  "600540": {
+    "score": 15,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 1.0,
+    "youzi_net_avg": 3578.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "600545": {
+    "score": 14,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 1.0,
+    "youzi_net_avg": 1566.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "600556": {
+    "score": 14.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.5,
+    "youzi_net_avg": 16914.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "600571": {
+    "score": 10.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 6085.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "600589": {
+    "score": 10.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 11243.0,
+    "total_list": 3,
+    "youzi_buy_days": 3
+  },
+  "600590": {
+    "score": 14.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.5,
+    "youzi_net_avg": 3516.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "600604": {
+    "score": 11.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.25,
+    "youzi_net_avg": 2916.0,
+    "total_list": 4,
+    "youzi_buy_days": 4
+  },
+  "600606": {
+    "score": 10.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 4670.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "600617": {
+    "score": 9.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 2370.0,
+    "total_list": 3,
+    "youzi_buy_days": 3
+  },
+  "600629": {
+    "score": 12.2,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.4,
+    "youzi_net_avg": 1631.0,
+    "total_list": 5,
+    "youzi_buy_days": 5
+  },
+  "600644": {
+    "score": 15,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 1.0,
+    "youzi_net_avg": 7979.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "600673": {
+    "score": 10.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 4632.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "600678": {
+    "score": 15,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 1.0,
+    "youzi_net_avg": 6714.0,
+    "total_list": 3,
+    "youzi_buy_days": 3
+  },
+  "600681": {
+    "score": 8.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 787.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "600683": {
+    "score": 13.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.5,
+    "youzi_net_avg": 1607.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "600688": {
+    "score": 10.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 6241.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "600693": {
+    "score": 15,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 1.0,
+    "youzi_net_avg": 9769.0,
+    "total_list": 3,
+    "youzi_buy_days": 3
+  },
+  "600714": {
+    "score": 15,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.75,
+    "youzi_net_avg": 5192.0,
+    "total_list": 4,
+    "youzi_buy_days": 4
+  },
+  "600719": {
+    "score": 15,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 1.0,
+    "youzi_net_avg": 7823.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "600722": {
+    "score": 15,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 1.0,
+    "youzi_net_avg": 7982.0,
+    "total_list": 4,
+    "youzi_buy_days": 4
+  },
+  "600735": {
+    "score": 14,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 1.0,
+    "youzi_net_avg": 1950.0,
+    "total_list": 6,
+    "youzi_buy_days": 6
+  },
+  "600744": {
+    "score": 10.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 12832.0,
+    "total_list": 3,
+    "youzi_buy_days": 3
+  },
+  "600748": {
+    "score": 9.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 2335.0,
+    "total_list": 4,
+    "youzi_buy_days": 4
+  },
+  "600759": {
+    "score": 10.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 14606.0,
+    "total_list": 5,
+    "youzi_buy_days": 5
+  },
+  "600777": {
+    "score": 13,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 1.0,
+    "youzi_net_avg": 787.0,
+    "total_list": 3,
+    "youzi_buy_days": 3
+  },
+  "600785": {
+    "score": 15,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.667,
+    "youzi_net_avg": 4682.0,
+    "total_list": 3,
+    "youzi_buy_days": 3
+  },
+  "600792": {
+    "score": 14,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 1.0,
+    "youzi_net_avg": 1624.0,
+    "total_list": 3,
+    "youzi_buy_days": 3
+  },
+  "600794": {
+    "score": 14,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 1.0,
+    "youzi_net_avg": 1266.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "600800": {
+    "score": 14,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 1.0,
+    "youzi_net_avg": 1624.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "600802": {
+    "score": 14,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 1.0,
+    "youzi_net_avg": 1727.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "600804": {
+    "score": 14,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 1.0,
+    "youzi_net_avg": 1684.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "600807": {
+    "score": 13,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 1.0,
+    "youzi_net_avg": 886.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "600815": {
+    "score": 14,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.667,
+    "youzi_net_avg": 2949.0,
+    "total_list": 3,
+    "youzi_buy_days": 3
+  },
+  "600821": {
+    "score": 10.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 17388.0,
+    "total_list": 3,
+    "youzi_buy_days": 3
+  },
+  "600822": {
+    "score": 15,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 1.0,
+    "youzi_net_avg": 7291.0,
+    "total_list": 4,
+    "youzi_buy_days": 4
+  },
+  "600826": {
+    "score": 10.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 7009.0,
+    "total_list": 4,
+    "youzi_buy_days": 4
+  },
+  "600865": {
+    "score": 14,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 1.0,
+    "youzi_net_avg": 2358.0,
+    "total_list": 3,
+    "youzi_buy_days": 3
+  },
+  "600871": {
+    "score": 10.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 3573.0,
+    "total_list": 6,
+    "youzi_buy_days": 6
+  },
+  "600898": {
+    "score": 12,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 1.0,
+    "youzi_net_avg": 32.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "600936": {
+    "score": 10.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.25,
+    "youzi_net_avg": 844.0,
+    "total_list": 4,
+    "youzi_buy_days": 4
+  },
+  "600939": {
+    "score": 8.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 649.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "600968": {
+    "score": 9.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 2212.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "600986": {
+    "score": 10.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 24775.0,
+    "total_list": 3,
+    "youzi_buy_days": 3
+  },
+  "601003": {
+    "score": 10.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 5087.0,
+    "total_list": 4,
+    "youzi_buy_days": 4
+  },
+  "601008": {
+    "score": 14.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.5,
+    "youzi_net_avg": 6134.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "601010": {
+    "score": 11.7,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.333,
+    "youzi_net_avg": 1142.0,
+    "total_list": 3,
+    "youzi_buy_days": 3
+  },
+  "601011": {
+    "score": 10.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 5731.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "601015": {
+    "score": 8.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 921.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "601022": {
+    "score": 9.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 1998.0,
+    "total_list": 3,
+    "youzi_buy_days": 3
+  },
+  "601083": {
+    "score": 9.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 1858.0,
+    "total_list": 3,
+    "youzi_buy_days": 3
+  },
+  "601086": {
+    "score": 15,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 1.0,
+    "youzi_net_avg": 7153.0,
+    "total_list": 3,
+    "youzi_buy_days": 3
+  },
+  "601133": {
+    "score": 10.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 3646.0,
+    "total_list": 3,
+    "youzi_buy_days": 3
+  },
+  "601179": {
+    "score": 10.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 48861.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "601231": {
+    "score": 10.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 6974.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "601279": {
+    "score": 9.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 1639.0,
+    "total_list": 3,
+    "youzi_buy_days": 3
+  },
+  "601599": {
+    "score": 15,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 1.0,
+    "youzi_net_avg": 5460.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "601608": {
+    "score": 10.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 10420.0,
+    "total_list": 3,
+    "youzi_buy_days": 3
+  },
+  "601789": {
+    "score": 14.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.5,
+    "youzi_net_avg": 22904.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "601975": {
+    "score": 10.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 21833.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "601991": {
+    "score": 10.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 28339.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "603001": {
+    "score": 15,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 1.0,
+    "youzi_net_avg": 3483.0,
+    "total_list": 3,
+    "youzi_buy_days": 3
+  },
+  "603011": {
+    "score": 14.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.5,
+    "youzi_net_avg": 19726.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "603042": {
+    "score": 11.7,
+    "youzi_ratio": 0.667,
+    "youzi_solo_ratio": 0.333,
+    "youzi_net_avg": 1768.0,
+    "total_list": 3,
+    "youzi_buy_days": 2
+  },
+  "603045": {
+    "score": 10.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 5331.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "603063": {
+    "score": 9.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 2582.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "603072": {
+    "score": 15,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.8,
+    "youzi_net_avg": 9871.0,
+    "total_list": 5,
+    "youzi_buy_days": 5
+  },
+  "603086": {
+    "score": 12.7,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.333,
+    "youzi_net_avg": 4543.0,
+    "total_list": 3,
+    "youzi_buy_days": 3
+  },
+  "603103": {
+    "score": 10.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 5182.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "603115": {
+    "score": 9.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 1043.0,
+    "total_list": 4,
+    "youzi_buy_days": 4
+  },
+  "603118": {
+    "score": 10.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 7932.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "603119": {
+    "score": 10.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 8626.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "603120": {
+    "score": 10.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 4283.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "603121": {
+    "score": 13.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.5,
+    "youzi_net_avg": 1053.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "603124": {
+    "score": 11.7,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.333,
+    "youzi_net_avg": 1755.0,
+    "total_list": 3,
+    "youzi_buy_days": 3
+  },
+  "603129": {
+    "score": 9.0,
+    "youzi_ratio": 0.5,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 4020.0,
+    "total_list": 2,
+    "youzi_buy_days": 1
+  },
+  "603132": {
+    "score": 9.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 2887.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "603138": {
+    "score": 15,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 1.0,
+    "youzi_net_avg": 9265.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "603150": {
+    "score": 15,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 1.0,
+    "youzi_net_avg": 10539.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "603158": {
+    "score": 15,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 1.0,
+    "youzi_net_avg": 14511.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "603162": {
+    "score": 9.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 2568.0,
+    "total_list": 4,
+    "youzi_buy_days": 4
+  },
+  "603163": {
+    "score": 10.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 4361.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "603166": {
+    "score": 15,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 1.0,
+    "youzi_net_avg": 4325.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "603172": {
+    "score": 12.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.5,
+    "youzi_net_avg": 894.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "603176": {
+    "score": 14,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 1.0,
+    "youzi_net_avg": 1380.0,
+    "total_list": 3,
+    "youzi_buy_days": 3
+  },
+  "603207": {
+    "score": 14,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 1.0,
+    "youzi_net_avg": 2461.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "603256": {
+    "score": 10.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 21281.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "603257": {
+    "score": 14.6,
+    "youzi_ratio": 0.857,
+    "youzi_solo_ratio": 0.571,
+    "youzi_net_avg": 3126.0,
+    "total_list": 7,
+    "youzi_buy_days": 6
+  },
+  "603269": {
+    "score": 14.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.5,
+    "youzi_net_avg": 5341.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "603307": {
+    "score": 14,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 1.0,
+    "youzi_net_avg": 2921.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "603316": {
+    "score": 15,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 1.0,
+    "youzi_net_avg": 15267.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "603318": {
+    "score": 15,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 1.0,
+    "youzi_net_avg": 4584.0,
+    "total_list": 7,
+    "youzi_buy_days": 7
+  },
+  "603353": {
+    "score": 14.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.5,
+    "youzi_net_avg": 5304.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "603359": {
+    "score": 11.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.5,
+    "youzi_net_avg": 21.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "603378": {
+    "score": 14,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.667,
+    "youzi_net_avg": 2739.0,
+    "total_list": 3,
+    "youzi_buy_days": 3
+  },
+  "603388": {
+    "score": 12,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 1.0,
+    "youzi_net_avg": 272.0,
+    "total_list": 4,
+    "youzi_buy_days": 4
+  },
+  "603389": {
+    "score": 14,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 1.0,
+    "youzi_net_avg": 1295.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "603398": {
+    "score": 14,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.75,
+    "youzi_net_avg": 2186.0,
+    "total_list": 4,
+    "youzi_buy_days": 4
+  },
+  "603399": {
+    "score": 10.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 13037.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "603406": {
+    "score": 14,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 1.0,
+    "youzi_net_avg": 2188.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "603421": {
+    "score": 15,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 1.0,
+    "youzi_net_avg": 4014.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "603459": {
+    "score": 15,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 1.0,
+    "youzi_net_avg": 6187.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "603500": {
+    "score": 15,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 1.0,
+    "youzi_net_avg": 3488.0,
+    "total_list": 3,
+    "youzi_buy_days": 3
+  },
+  "603559": {
+    "score": 13,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 1.0,
+    "youzi_net_avg": 793.0,
+    "total_list": 4,
+    "youzi_buy_days": 4
+  },
+  "603601": {
+    "score": 15,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 1.0,
+    "youzi_net_avg": 7536.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "603617": {
+    "score": 15,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 1.0,
+    "youzi_net_avg": 4563.0,
+    "total_list": 3,
+    "youzi_buy_days": 3
+  },
+  "603618": {
+    "score": 10.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 22638.0,
+    "total_list": 3,
+    "youzi_buy_days": 3
+  },
+  "603619": {
+    "score": 10.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 5217.0,
+    "total_list": 5,
+    "youzi_buy_days": 5
+  },
+  "603629": {
+    "score": 10.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 6479.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "603709": {
+    "score": 14,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 1.0,
+    "youzi_net_avg": 1504.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "603716": {
+    "score": 14.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.5,
+    "youzi_net_avg": 9188.0,
+    "total_list": 4,
+    "youzi_buy_days": 4
+  },
+  "603727": {
+    "score": 13.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.5,
+    "youzi_net_avg": 2372.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "603729": {
+    "score": 7.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 15.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "603778": {
+    "score": 15,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.875,
+    "youzi_net_avg": 7848.0,
+    "total_list": 8,
+    "youzi_buy_days": 8
+  },
+  "603800": {
+    "score": 9.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 1319.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "603813": {
+    "score": 14,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 1.0,
+    "youzi_net_avg": 1150.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "603828": {
+    "score": 13,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 1.0,
+    "youzi_net_avg": 957.0,
+    "total_list": 4,
+    "youzi_buy_days": 4
+  },
+  "603838": {
+    "score": 14,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 1.0,
+    "youzi_net_avg": 1202.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "603900": {
+    "score": 14,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 1.0,
+    "youzi_net_avg": 2215.0,
+    "total_list": 3,
+    "youzi_buy_days": 3
+  },
+  "603937": {
+    "score": 14.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.5,
+    "youzi_net_avg": 4963.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "603938": {
+    "score": 9.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 2206.0,
+    "total_list": 3,
+    "youzi_buy_days": 3
+  },
+  "603958": {
+    "score": 15,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 1.0,
+    "youzi_net_avg": 4046.0,
+    "total_list": 3,
+    "youzi_buy_days": 3
+  },
+  "603959": {
+    "score": 13,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 1.0,
+    "youzi_net_avg": 845.0,
+    "total_list": 3,
+    "youzi_buy_days": 3
+  },
+  "605006": {
+    "score": 15,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 1.0,
+    "youzi_net_avg": 4173.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "605033": {
+    "score": 14,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.75,
+    "youzi_net_avg": 2082.0,
+    "total_list": 4,
+    "youzi_buy_days": 4
+  },
+  "605118": {
+    "score": 8.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 970.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "605122": {
+    "score": 15,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.667,
+    "youzi_net_avg": 5190.0,
+    "total_list": 3,
+    "youzi_buy_days": 3
+  },
+  "605138": {
+    "score": 14,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 1.0,
+    "youzi_net_avg": 1409.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "605188": {
+    "score": 15,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 1.0,
+    "youzi_net_avg": 3219.0,
+    "total_list": 4,
+    "youzi_buy_days": 4
+  },
+  "605255": {
+    "score": 14,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 1.0,
+    "youzi_net_avg": 2625.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "605259": {
+    "score": 12.7,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.333,
+    "youzi_net_avg": 3747.0,
+    "total_list": 3,
+    "youzi_buy_days": 3
+  },
+  "605268": {
+    "score": 13,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.667,
+    "youzi_net_avg": 664.0,
+    "total_list": 3,
+    "youzi_buy_days": 3
+  },
+  "605336": {
+    "score": 14,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 1.0,
+    "youzi_net_avg": 1245.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "605366": {
+    "score": 14,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 1.0,
+    "youzi_net_avg": 2639.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "605500": {
+    "score": 15,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 1.0,
+    "youzi_net_avg": 3610.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "688022": {
+    "score": 13.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.5,
+    "youzi_net_avg": 2077.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "688031": {
+    "score": 10.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 6677.0,
+    "total_list": 4,
+    "youzi_buy_days": 4
+  },
+  "688048": {
+    "score": 10.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 17392.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "688066": {
+    "score": 10.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 6772.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "688109": {
+    "score": 9.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 2521.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "688158": {
+    "score": 14.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.5,
+    "youzi_net_avg": 15044.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "688176": {
+    "score": 9.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 2497.0,
+    "total_list": 3,
+    "youzi_buy_days": 3
+  },
+  "688229": {
+    "score": 15,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.667,
+    "youzi_net_avg": 9169.0,
+    "total_list": 3,
+    "youzi_buy_days": 3
+  },
+  "688282": {
+    "score": 9.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 2216.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "688297": {
+    "score": 10.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 7614.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "688307": {
+    "score": 14.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.5,
+    "youzi_net_avg": 4076.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "688313": {
+    "score": 10.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 4315.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "688380": {
+    "score": 10.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 3348.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "688480": {
+    "score": 10.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 11535.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "688510": {
+    "score": 10.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 6945.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "688525": {
+    "score": 10.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 65511.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "688536": {
+    "score": 5.0,
+    "youzi_ratio": 0.5,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 0.0,
+    "total_list": 2,
+    "youzi_buy_days": 1
+  },
+  "688585": {
+    "score": 15,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 1.0,
+    "youzi_net_avg": 4657.0,
+    "total_list": 4,
+    "youzi_buy_days": 4
+  },
+  "688622": {
+    "score": 10.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 4281.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "688757": {
+    "score": 13.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.5,
+    "youzi_net_avg": 1651.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "688811": {
+    "score": 14.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.5,
+    "youzi_net_avg": 4838.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "688818": {
+    "score": 15,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.75,
+    "youzi_net_avg": 18887.0,
+    "total_list": 4,
+    "youzi_buy_days": 4
+  },
+  "900952": {
+    "score": 12,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 1.0,
+    "youzi_net_avg": 2.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "920012": {
+    "score": 6.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 0.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "920014": {
+    "score": 13.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.5,
+    "youzi_net_avg": 1784.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "920015": {
+    "score": 8.0,
+    "youzi_ratio": 0.75,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 642.0,
+    "total_list": 4,
+    "youzi_buy_days": 3
+  },
+  "920021": {
+    "score": 11.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.25,
+    "youzi_net_avg": 1640.0,
+    "total_list": 4,
+    "youzi_buy_days": 4
+  },
+  "920036": {
+    "score": 9.7,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.333,
+    "youzi_net_avg": 200.0,
+    "total_list": 3,
+    "youzi_buy_days": 3
+  },
+  "920037": {
+    "score": 7.0,
+    "youzi_ratio": 0.75,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 251.0,
+    "total_list": 4,
+    "youzi_buy_days": 3
+  },
+  "920039": {
+    "score": 13.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.5,
+    "youzi_net_avg": 1102.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "920046": {
+    "score": 8.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 337.0,
+    "total_list": 6,
+    "youzi_buy_days": 6
+  },
+  "920060": {
+    "score": 8.0,
+    "youzi_ratio": 0.5,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 1759.0,
+    "total_list": 2,
+    "youzi_buy_days": 1
+  },
+  "920061": {
+    "score": 13.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.5,
+    "youzi_net_avg": 1105.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "920078": {
+    "score": 8.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 414.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "920082": {
+    "score": 13,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 1.0,
+    "youzi_net_avg": 544.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "920086": {
+    "score": 12.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.5,
+    "youzi_net_avg": 561.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "920087": {
+    "score": 14,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 1.0,
+    "youzi_net_avg": 2033.0,
+    "total_list": 3,
+    "youzi_buy_days": 3
+  },
+  "920088": {
+    "score": 9.9,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.111,
+    "youzi_net_avg": 1740.0,
+    "total_list": 9,
+    "youzi_buy_days": 9
+  },
+  "920116": {
+    "score": 13,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.667,
+    "youzi_net_avg": 447.0,
+    "total_list": 3,
+    "youzi_buy_days": 3
+  },
+  "920132": {
+    "score": 14,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 1.0,
+    "youzi_net_avg": 1975.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "920158": {
+    "score": 8.9,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.111,
+    "youzi_net_avg": 459.0,
+    "total_list": 9,
+    "youzi_buy_days": 9
+  },
+  "920159": {
+    "score": 11.2,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.4,
+    "youzi_net_avg": 459.0,
+    "total_list": 5,
+    "youzi_buy_days": 5
+  },
+  "920183": {
+    "score": 9.7,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.333,
+    "youzi_net_avg": 178.0,
+    "total_list": 3,
+    "youzi_buy_days": 3
+  },
+  "920227": {
+    "score": 9.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 1339.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "920273": {
+    "score": 13.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.5,
+    "youzi_net_avg": 1312.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "920299": {
+    "score": 12.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.5,
+    "youzi_net_avg": 852.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "920346": {
+    "score": 13,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 1.0,
+    "youzi_net_avg": 694.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "920351": {
+    "score": 12.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.5,
+    "youzi_net_avg": 975.0,
+    "total_list": 6,
+    "youzi_buy_days": 6
+  },
+  "920371": {
+    "score": 13,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 1.0,
+    "youzi_net_avg": 311.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "920375": {
+    "score": 14,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.75,
+    "youzi_net_avg": 1262.0,
+    "total_list": 4,
+    "youzi_buy_days": 4
+  },
+  "920392": {
+    "score": 14,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 1.0,
+    "youzi_net_avg": 1361.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "920403": {
+    "score": 11.7,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.333,
+    "youzi_net_avg": 1656.0,
+    "total_list": 3,
+    "youzi_buy_days": 3
+  },
+  "920427": {
+    "score": 13,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 1.0,
+    "youzi_net_avg": 590.0,
+    "total_list": 3,
+    "youzi_buy_days": 3
+  },
+  "920438": {
+    "score": 13.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.5,
+    "youzi_net_avg": 2425.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "920471": {
+    "score": 10.7,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.333,
+    "youzi_net_avg": 632.0,
+    "total_list": 3,
+    "youzi_buy_days": 3
+  },
+  "920509": {
+    "score": 13.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.5,
+    "youzi_net_avg": 1934.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "920571": {
+    "score": 9.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.0,
+    "youzi_net_avg": 1180.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "920651": {
+    "score": 10.7,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.333,
+    "youzi_net_avg": 458.0,
+    "total_list": 3,
+    "youzi_buy_days": 3
+  },
+  "920662": {
+    "score": 12.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.5,
+    "youzi_net_avg": 781.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "920706": {
+    "score": 11.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.5,
+    "youzi_net_avg": 183.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "920725": {
+    "score": 11.2,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.4,
+    "youzi_net_avg": 522.0,
+    "total_list": 5,
+    "youzi_buy_days": 5
+  },
+  "920770": {
+    "score": 13,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 1.0,
+    "youzi_net_avg": 566.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "920786": {
+    "score": 13,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 1.0,
+    "youzi_net_avg": 852.0,
+    "total_list": 3,
+    "youzi_buy_days": 3
+  },
+  "920807": {
+    "score": 13,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.75,
+    "youzi_net_avg": 414.0,
+    "total_list": 4,
+    "youzi_buy_days": 4
+  },
+  "920821": {
+    "score": 12.0,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.5,
+    "youzi_net_avg": 710.0,
+    "total_list": 2,
+    "youzi_buy_days": 2
+  },
+  "920826": {
+    "score": 12,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 1.0,
+    "youzi_net_avg": 83.0,
+    "total_list": 3,
+    "youzi_buy_days": 3
+  },
+  "920873": {
+    "score": 13,
+    "youzi_ratio": 1.0,
+    "youzi_solo_ratio": 0.667,
+    "youzi_net_avg": 619.0,
+    "total_list": 3,
+    "youzi_buy_days": 3
+  }
+}

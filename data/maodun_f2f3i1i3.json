@@ -1,0 +1,180 @@
+{
+  "meta": {
+    "script": "矛盾论未覆盖维度回测 v1.0 — F2/F3/I1/I3",
+    "generated_at": "2026-05-17T13:38:41.568090",
+    "date_range": "2024-01-01 ~ 2026-05-15",
+    "total_trading_days": 569,
+    "elapsed_seconds": 9.0
+  },
+  "dimensions": {
+    "F2": {
+      "dimension": "F2",
+      "name": "量变临界点细化",
+      "description": "涨停数5日变化率7档位, 统计次日主线升级率/降级率/净差",
+      "best_threshold": "≤-50%",
+      "best_net_diff": 22.2,
+      "buckets": [
+        {
+          "bucket": "≤-50%",
+          "range": "-70%~-50%",
+          "samples": 18,
+          "upgrade_rate": 50.0,
+          "downgrade_rate": 27.8,
+          "net_diff": 22.2
+        },
+        {
+          "bucket": "-50%~-30%",
+          "range": "-50%~-30%",
+          "samples": 56,
+          "upgrade_rate": 39.3,
+          "downgrade_rate": 32.1,
+          "net_diff": 7.2
+        },
+        {
+          "bucket": "-30%~-10%",
+          "range": "-30%~-10%",
+          "samples": 128,
+          "upgrade_rate": 35.9,
+          "downgrade_rate": 27.3,
+          "net_diff": 8.6
+        },
+        {
+          "bucket": "-10%~+10%",
+          "range": "-10%~10%",
+          "samples": 152,
+          "upgrade_rate": 33.6,
+          "downgrade_rate": 36.8,
+          "net_diff": -3.2
+        },
+        {
+          "bucket": "+10%~+30%",
+          "range": "10%~30%",
+          "samples": 94,
+          "upgrade_rate": 30.9,
+          "downgrade_rate": 31.9,
+          "net_diff": -1.0
+        },
+        {
+          "bucket": "+30%~+50%",
+          "range": "30%~50%",
+          "samples": 41,
+          "upgrade_rate": 12.2,
+          "downgrade_rate": 48.8,
+          "net_diff": -36.6
+        },
+        {
+          "bucket": "≥+50%",
+          "range": "50%~70%",
+          "samples": 72,
+          "upgrade_rate": 20.8,
+          "downgrade_rate": 37.5,
+          "net_diff": -16.7
+        }
+      ]
+    },
+    "F3": {
+      "dimension": "F3",
+      "name": "连续量变 vs 跳跃式量变",
+      "description": "跳跃式=3日变化率超±50%, 连续式=3日±15%内但5日累计±30%",
+      "jump": {
+        "samples": 4494,
+        "t1_avg_ret": 2.08,
+        "t1_win_rate": 62.3,
+        "t2_avg_ret": 2.9,
+        "t3_avg_ret": 3.1
+      },
+      "continuous": {
+        "samples": 1188,
+        "t1_avg_ret": 1.21,
+        "t1_win_rate": 55.4,
+        "t2_avg_ret": 0.87,
+        "t3_avg_ret": 1.23
+      },
+      "comparison": {
+        "t1_diff": 0.87,
+        "better": "跳跃式量变"
+      }
+    },
+    "I1": {
+      "dimension": "I1",
+      "name": "急降vs缓降后收益",
+      "description": "急降=环境分3日跌>20, 缓降=3日跌10-20, 急升=3日涨>20, 缓升=3日涨10-20",
+      "categories": [
+        {
+          "category": "急升",
+          "samples": 5375,
+          "t1_avg_ret": 1.84,
+          "t1_win_rate": 60.1,
+          "t3_avg_ret": 2.37,
+          "t5_avg_ret": 2.64
+        },
+        {
+          "category": "缓升",
+          "samples": 2705,
+          "t1_avg_ret": 1.25,
+          "t1_win_rate": 53.5,
+          "t3_avg_ret": 1.31,
+          "t5_avg_ret": 1.14
+        },
+        {
+          "category": "急降",
+          "samples": 2153,
+          "t1_avg_ret": 0.9,
+          "t1_win_rate": 50.3,
+          "t3_avg_ret": 0.33,
+          "t5_avg_ret": -0.09
+        },
+        {
+          "category": "缓降",
+          "samples": 1642,
+          "t1_avg_ret": 0.4,
+          "t1_win_rate": 48.4,
+          "t3_avg_ret": 0.43,
+          "t5_avg_ret": 0.29
+        }
+      ]
+    },
+    "I3": {
+      "dimension": "I3",
+      "name": "切换后收益衰减曲线",
+      "description": "跟踪主线切换后第1/3/5/10天的涨停T+1收益",
+      "total_switches": 398,
+      "decay_curve": [
+        {
+          "offset": 1,
+          "label": "切换后第1天",
+          "samples": 11032,
+          "avg_ret": 1.38,
+          "win_rate": 55.7
+        },
+        {
+          "offset": 3,
+          "label": "切换后第3天",
+          "samples": 10613,
+          "avg_ret": 1.14,
+          "win_rate": 53.4
+        },
+        {
+          "offset": 5,
+          "label": "切换后第5天",
+          "samples": 10376,
+          "avg_ret": 1.15,
+          "win_rate": 53.6
+        },
+        {
+          "offset": 10,
+          "label": "切换后第10天",
+          "samples": 10803,
+          "avg_ret": 1.25,
+          "win_rate": 54.7
+        }
+      ],
+      "optimal_retention": {
+        "best_return": "第1天",
+        "best_return_value": 1.38,
+        "best_win_rate": "第1天",
+        "best_win_rate_value": 55.7
+      }
+    }
+  }
+}

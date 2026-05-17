@@ -1,0 +1,309 @@
+#!/usr/bin/env python3
+"""
+龙虎榜V7完整决策引擎 — 四层穿透动态决策
+
+层1: 宏观环境过滤器（阶段1回测结论）
+层2: 板块主线强化（阶段4）
+层3: 因子评分系统（阶段2）
+层4: 组合风控
+
+输出: 可直接注入bundle的数据格式
+"""
+
+import sqlite3, json, sys, os, re
+from datetime import datetime, date, timedelta
+from collections import defaultdict
+
+BASE = os.path.expanduser('~/astock')
+DB = f'{BASE}/data'
+KLINE = f'{DB}/kline_cache.db'
+LHB = f'{DB}/lhb_cache.db'
+MARKET = f'{DB}/market_daily.db'
+V2BOARD = '/home/ubuntu/V2board'
+
+TYPE_PATTERNS = {
+    'youzi': ['中信.*杭州', '华泰.*总部', '国泰.*总部', '中国银河.*杭州',
+              '招商.*深圳', '华鑫.*上海', '申万宏源.*上海', '中泰.*',
+              '财通.*杭州', '国金.*', '长城.*', '光大.*', '东方财富.*拉萨'],
+    'jigou': ['机构专用'],
+    'quant': ['.*量化.*'],
+}
+
+def classf(d, sblx=''):
+    n = d or ''
+    if '机构专用' in n: return 'jigou'
+    if '量化' in n or sblx in ('lh','qt'): return 'quant'
+    for p in TYPE_PATTERNS['youzi']:
+        if re.search(p, n): return 'youzi'
+    return 'other'
+
+def db(p):
+    c = sqlite3.connect(p, timeout=10); c.row_factory = sqlite3.Row; return c
+
+def env_score(kd):
+    if not kd or len(kd) < 50: return 50
+    up = sum(1 for r in kd if r.get('c') and r['c'] > 0)
+    down = sum(1 for r in kd if r.get('c') and r['c'] <= 0)
+    t = up + down
+    zh = up/t*100 if t > 0 else 50
+    lu = sum(1 for r in kd if r.get('c') and r['c'] >= 9.9)
+    ld = sum(1 for r in kd if r.get('c') and r['c'] <= -9.9)
+    bu = sum(1 for r in kd if r.get('c') and r['c'] > 5)
+    bd = sum(1 for r in kd if r.get('c') and r['c'] < -5)
+    ac = sum((r.get('c') or 0) for r in kd)/t if t > 0 else 0
+    s1 = 20 if zh>60 else(15 if zh>45 else(10 if zh>30 else(5 if zh>20 else 0)))
+    lur = lu/t*100 if t>0 else 0
+    s2 = 25 if lur>5 else(20 if lur>3 else(15 if lur>1.5 else(8 if lur>0.5 else 0)))
+    er = bu/bd if bd>0 else(10 if bu>0 else 1)
+    s3 = 25 if er>3 else(20 if er>1.5 else(15 if er>0.8 else(8 if er>0.3 else 0)))
+    s4 = 15 if ac>0.5 else(10 if ac>0 else(5 if ac>-0.3 else 0))
+    ldr = ld/t*100 if t>0 else 0
+    s5 = 15 if ldr<3 else(10 if ldr<6 else(5 if ldr<10 else 0))
+    return s1+s2+s3+s4+s5
+
+def kline_day(ck, d):
+    rr = ck.execute('SELECT code,open,close,high,low,volume FROM kline WHERE date=?',(d,)).fetchall()
+    if not rr or len(rr)<50: return None
+    res = []
+    for r in rr:
+        if r['open']>0 and r['close']>0:
+            res.append({'c':(r['close']-r['open'])/r['open']*100,'v':r['volume']or 0,
+                       'o':r['open'],'cl':r['close'],'h':r['high'],'l':r['low'],
+                       'code':r['code']})
+    return res
+
+def get_top_sectors(cm, d):
+    try:
+        r = cm.execute('SELECT top_sectors,concept_top FROM day_full WHERE date=?',(d,)).fetchone()
+        if not r: return [],[]
+        top = json.loads(r['top_sectors']) if r['top_sectors'] else []
+        return top[:10], (json.loads(r['concept_top']) if r['concept_top'] else [])[:10]
+    except: return [],[]
+
+def main():
+    td = None
+    for a in sys.argv[1:]:
+        if a.startswith('--date='): td = a.split('=',1)[1]
+    if not td: td = str(date.today())
+    
+    ck = db(KLINE)
+    cl = db(LHB)
+    cm = db(MARKET)
+    
+    # 层1: 环境分
+    kd = kline_day(ck, td)
+    es = env_score(kd)
+    
+    if es >= 70:
+        env_tier, total_cap = '🟢高潮', 0.8
+    elif es >= 50:
+        env_tier, total_cap = '🔵发酵', 0.6
+    elif es >= 35:
+        env_tier, total_cap = '🟡震荡', 0.4
+    else:
+        env_tier, total_cap = '🔴冰点', 0.1
+    
+    # 获取TOP板块
+    top_sec, top_conc = get_top_sectors(cm, td)
+    top_names = [s['name'] if isinstance(s,dict) else str(s) for s in top_sec[:5]]
+    
+    # 扫描龙虎榜
+    lrows = cl.execute('SELECT DISTINCT code,name FROM lhb_list WHERE date=?',(td,)).fetchall()
+    
+    candidates = []
+    for r in lrows:
+        code = r['code']; name = r['name']
+        if code.startswith(('300','688','920','8','4')): continue
+        if 'ST' in name.upper() or name.startswith('*'): continue
+        
+        # 层3: 7维因子评分
+        dr = cl.execute('SELECT direction,dealer,buy_amt,sell_amt FROM lhb_detail WHERE date=? AND code=?',
+                        (td,code)).fetchall()
+        if not dr: continue
+        
+        # 营业部分类
+        dealers = []
+        for x in dr:
+            dealers.append({'t': classf(x['dealer']), 'd': x['direction'],
+                           'b': x['buy_amt'] or 0, 's': x['sell_amt'] or 0})
+        buy_d = [x for x in dealers if x['d']=='buy']
+        sell_d = [x for x in dealers if x['d']=='sell']
+        
+        total_b = sum(x['b'] for x in buy_d)
+        total_s = sum(x['s'] for x in sell_d)
+        net = total_b - total_s
+        
+        jigou_b = sum(x['b'] for x in buy_d if x['t']=='jigou')
+        jigou_s = sum(x['s'] for x in sell_d if x['t']=='jigou')
+        jigou_n = jigou_b - jigou_s
+        youzi_b = sum(x['b'] for x in buy_d if x['t'] in ('youzi','quant'))
+        youzi_n = youzi_b - sum(x['s'] for x in sell_d if x['t'] in ('youzi','quant'))
+        
+        # K线因子
+        pk = ck.execute('SELECT date,open,close,volume FROM kline WHERE code=? AND date<=? ORDER BY date DESC LIMIT 6',
+                       (code,td)).fetchall()
+        tk = ck.execute('SELECT open,close,volume FROM kline WHERE code=? AND date=?',(code,td)).fetchone()
+        
+        # 量价 (15)
+        vs = 8
+        if tk and len(pk)>=4:
+            tv = tk['volume'] or 0
+            av = sum((k['volume'] or 0) for k in pk[:5])/5
+            vr = tv/av if av>0 else 1
+            if vr<0.5: vs=15
+            elif vr<0.8: vs=12
+            elif vr<1.2: vs=8
+            elif vr<2: vs=5
+            else: vs=0
+        
+        # 资金 (20)
+        fs = 5
+        if jigou_n>100: fs+=10
+        elif jigou_n>0: fs+=5
+        elif jigou_n<-100: fs-=5
+        if youzi_n>200: fs+=6
+        elif youzi_n>0: fs+=3
+        if net>500: fs+=4
+        elif net<-500: fs-=4
+        fs = max(-5, min(20, fs))
+        
+        # 情绪 (15)
+        ms = 5
+        if total_b>total_s*1.5: ms+=5
+        elif total_b<total_s*0.5: ms-=5
+        # 买方集中度
+        if buy_d:
+            t1 = max(x['b'] for x in buy_d)
+            tb = sum(x['b'] for x in buy_d)
+            t1r = t1/tb if tb>0 else 0
+            if 0.2<t1r<0.5: ms+=5
+            elif t1r>0.8: ms-=3
+        ms = max(-5, min(15, ms))
+        
+        # 动量 (10)
+        mms = 2
+        if len(pk)>=6:
+            if pk[0]['close'] and pk[-1]['close']>0:
+                p5 = (pk[0]['close']-pk[-1]['close'])/pk[-1]['close']*100
+                if -10<p5<-3: mms=10
+                elif -3<p5<3: mms=7
+                elif 3<p5<10: mms=5
+                else: mms=2
+        
+        # 盘口 (10)
+        ds = 5
+        if tk and len(pk)>=2:
+            yc = pk[0]['close'] if pk else None
+            if yc and yc>0 and tk['open']>0:
+                topen = (tk['open']-yc)/yc*100
+                if 0<topen<7: ds=8
+                elif topen<0: ds=3
+                elif topen>9: ds=0
+                else: ds=5
+        
+        # 营业部 (15)
+        dls = 5
+        ut = set(x['t'] for x in buy_d)
+        if 'jigou' in ut and 'youzi' in ut: dls+=8
+        elif 'jigou' in ut: dls+=5
+        elif 'youzi' in ut: dls+=4
+        if 'quant' in ut: dls+=3
+        dls = min(15, dls)
+        
+        # 环境 (15)
+        esf = es/100*15
+        
+        # 板块强化
+        sb = 1.0
+        for sn in top_names:
+            if sn and sn[:2] in name[:4] or (sn and sn[:2] in (code[:2] if code.startswith('6') else code[:3])):
+                sb = 1.2 if top_sec[:3] and sn==top_names[0] else 1.05
+                break
+        
+        raw = vs+fs+ms+mms+ds+dls+esf
+        final = raw*sb
+        
+        # 等级 - 根据实际评分分布校准
+        if final>=80: ti, pp = 'S', 15
+        elif final>=60: ti, pp = 'A', 10
+        elif final>=40: ti, pp = 'B', 5
+        else: ti, pp = 'C', 0
+        
+        # 环境风控修正(S级不超20%)
+        if es<35 and pp>10: pp=6  # 冰点期降仓
+        pp = min(pp, 20)
+        
+        candidates.append({
+            'code': code, 'name': name, 'score': round(final,1), 'tier': ti,
+            'pos': pp, 'boost': round(sb,2),
+            'net_wan': round(net,1), 'jigou_net': round(jigou_n,1), 'youzi_net': round(youzi_n,1),
+            'buyer_types': list(ut),
+            'details': {'vol': vs, 'fund': fs, 'mood': ms, 'momentum': mms, 'dish': ds, 'dealer': dls, 'env': round(esf,1)},
+        })
+    
+    candidates.sort(key=lambda x: x['score'], reverse=True)
+    
+    # 层4: 组合风控
+    # 策略: 只从TOP N中选择可操作标的，总仓位不超过max_total
+    actionable_list = [c for c in candidates if c['tier'] in ('S', 'A') and c['pos'] > 0]
+    max_total = total_cap * 100
+    
+    # 从高分到低分依次分配仓位，直到总仓位接近max_total
+    allocated = []
+    remaining = max_total
+    for c in actionable_list:
+        if remaining <= 0 or len(allocated) >= 5:
+            c['pos'] = 0
+            c['actionable'] = False
+            continue
+        slot = min(c['pos'], remaining)
+        c['pos'] = round(slot, 0)
+        c['actionable'] = c['pos'] >= 3
+        if c['actionable']:
+            allocated.append(c)
+            remaining -= slot
+        else:
+            c['pos'] = 0
+    
+    # 确保至少TOP1可操作
+    if not allocated and actionable_list:
+        actionable_list[0]['pos'] = min(actionable_list[0]['pos'], max_total, 10)
+        actionable_list[0]['actionable'] = True
+        allocated.append(actionable_list[0])
+    
+    # 输出
+    out = {
+        'engine': 'lhb-v7-penetration',
+        'date': td,
+        'env_score': es,
+        'env_tier': env_tier,
+        'total_cap_pct': total_cap*100,
+        'total_signals': len(candidates),
+        'actionable': [c for c in candidates if c.get('actionable')][:10],
+        'ranked': candidates[:15],
+        'top_sectors': top_names,
+        'version': 'v7.1',
+        'buckets': {
+            'ice': {'score_range':'<35','desc':'冰点期-0.68%/44.6%'},
+            'shake': {'score_range':'35-49','desc':'震荡期+0.91%/50.7%'},
+            'ferment': {'score_range':'50-69','desc':'发酵期+0.19%/48.7%'},
+            'high': {'score_range':'≥70','desc':'高潮期-0.10%/51.9%.small sample'},
+        }
+    }
+    
+    op = f'{V2BOARD}/data/lhb_v7_decision.json'
+    with open(op, 'w') as f:
+        json.dump(out, f, ensure_ascii=False, indent=2)
+    
+    print(f"✅ V7四层穿透引擎完成!")
+    print(f"  环境: {env_tier} {es}/100 (总仓位上限{total_cap*100:.0f}%)")
+    print(f"  信号: {len(candidates)}只 > actionable: {sum(1 for c in candidates if c['pos']>=6)}只")
+    print(f"  TOP板块: {', '.join(top_names[:3])}")
+    top5_str = ', '.join(f'{c["name"]}({c["tier"]}/{c["score"]}分)' for c in candidates[:5])
+    print(f"  TOP5候选: {top5_str}")
+    print(f"  已保存: {op}")
+    
+    ck.close(); cl.close(); cm.close()
+
+if __name__ == '__main__':
+    main()

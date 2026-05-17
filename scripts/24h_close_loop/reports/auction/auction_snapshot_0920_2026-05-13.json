@@ -1,0 +1,366 @@
+{
+  "time": "0920",
+  "date": "2026-05-13",
+  "stocks": [
+    {
+      "code": "000890",
+      "name": "法尔胜",
+      "price": 13.81,
+      "yesterday_close": 13.38,
+      "auction_pct": 3.21,
+      "volume": 470148,
+      "amount_wan": 65248.0
+    },
+    {
+      "code": "001267",
+      "name": "汇绿生态",
+      "price": 62.5,
+      "yesterday_close": 64.29,
+      "auction_pct": -2.78,
+      "volume": 144025,
+      "amount_wan": 91248.0
+    },
+    {
+      "code": "002025",
+      "name": "航天电器",
+      "price": 72.93,
+      "yesterday_close": 74.9,
+      "auction_pct": -2.63,
+      "volume": 85830,
+      "amount_wan": 62647.0
+    },
+    {
+      "code": "002179",
+      "name": "中航光电",
+      "price": 41.55,
+      "yesterday_close": 40.85,
+      "auction_pct": 1.71,
+      "volume": 302200,
+      "amount_wan": 124724.0
+    },
+    {
+      "code": "002222",
+      "name": "福晶科技",
+      "price": 113.35,
+      "yesterday_close": 113.36,
+      "auction_pct": -0.01,
+      "volume": 234556,
+      "amount_wan": 263498.0
+    },
+    {
+      "code": "000586",
+      "name": "汇源通信",
+      "price": 19.75,
+      "yesterday_close": 19.19,
+      "auction_pct": 2.92,
+      "volume": 171566,
+      "amount_wan": 34294.0
+    },
+    {
+      "code": "603019",
+      "name": "中科曙光",
+      "price": 96.25,
+      "yesterday_close": 97.42,
+      "auction_pct": -1.2,
+      "volume": 289173,
+      "amount_wan": 277244.0
+    },
+    {
+      "code": "000100",
+      "name": "TCL科技",
+      "price": 4.3,
+      "yesterday_close": 4.27,
+      "auction_pct": 0.7,
+      "volume": 1517137,
+      "amount_wan": 65067.0
+    },
+    {
+      "code": "002049",
+      "name": "紫光国微",
+      "price": 78.98,
+      "yesterday_close": 79.59,
+      "auction_pct": -0.77,
+      "volume": 119999,
+      "amount_wan": 93775.0
+    },
+    {
+      "code": "002195",
+      "name": "岩山科技",
+      "price": 8.94,
+      "yesterday_close": 8.9,
+      "auction_pct": 0.45,
+      "volume": 643983,
+      "amount_wan": 57122.0
+    },
+    {
+      "code": "002290",
+      "name": "禾盛新材",
+      "price": 90.33,
+      "yesterday_close": 90.01,
+      "auction_pct": 0.36,
+      "volume": 58769,
+      "amount_wan": 53178.0
+    },
+    {
+      "code": "002392",
+      "name": "北京利尔",
+      "price": 10.98,
+      "yesterday_close": 10.61,
+      "auction_pct": 3.49,
+      "volume": 267135,
+      "amount_wan": 29218.0
+    },
+    {
+      "code": "000034",
+      "name": "神州数码",
+      "price": 42.13,
+      "yesterday_close": 41.79,
+      "auction_pct": 0.81,
+      "volume": 151308,
+      "amount_wan": 62946.0
+    },
+    {
+      "code": "000063",
+      "name": "中兴通讯",
+      "price": 38.27,
+      "yesterday_close": 38.09,
+      "auction_pct": 0.47,
+      "volume": 408922,
+      "amount_wan": 155519.0
+    },
+    {
+      "code": "000066",
+      "name": "中国长城",
+      "price": 24.61,
+      "yesterday_close": 25.36,
+      "auction_pct": -2.96,
+      "volume": 2592913,
+      "amount_wan": 634899.0
+    },
+    {
+      "code": "000338",
+      "name": "潍柴动力",
+      "price": 33.8,
+      "yesterday_close": 32.7,
+      "auction_pct": 3.36,
+      "volume": 582983,
+      "amount_wan": 192006.0
+    },
+    {
+      "code": "000779",
+      "name": "甘咨询",
+      "price": 8.77,
+      "yesterday_close": 8.64,
+      "auction_pct": 1.5,
+      "volume": 23344,
+      "amount_wan": 2029.0
+    },
+    {
+      "code": "000021",
+      "name": "深科技",
+      "price": 32.65,
+      "yesterday_close": 32.31,
+      "auction_pct": 1.05,
+      "volume": 486622,
+      "amount_wan": 156301.0
+    },
+    {
+      "code": "000620",
+      "name": "盈新发展",
+      "price": 3.06,
+      "yesterday_close": 3.09,
+      "auction_pct": -0.97,
+      "volume": 764246,
+      "amount_wan": 23418.0
+    },
+    {
+      "code": "000670",
+      "name": "盈方微",
+      "price": 8.0,
+      "yesterday_close": 8.03,
+      "auction_pct": -0.37,
+      "volume": 135077,
+      "amount_wan": 10703.0
+    },
+    {
+      "code": "000818",
+      "name": "航锦科技",
+      "price": 17.51,
+      "yesterday_close": 17.46,
+      "auction_pct": 0.29,
+      "volume": 155577,
+      "amount_wan": 27151.0
+    },
+    {
+      "code": "001331",
+      "name": "胜通能源",
+      "price": 54.19,
+      "yesterday_close": 53.35,
+      "auction_pct": 1.57,
+      "volume": 32535,
+      "amount_wan": 17647.0
+    },
+    {
+      "code": "603486",
+      "name": "科沃斯",
+      "price": 62.54,
+      "yesterday_close": 63.84,
+      "auction_pct": -2.04,
+      "volume": 37519,
+      "amount_wan": 23485.0
+    },
+    {
+      "code": "688071",
+      "name": "华依科技",
+      "price": 35.18,
+      "yesterday_close": 34.15,
+      "auction_pct": 3.02,
+      "volume": 1038345,
+      "amount_wan": 3583.0
+    },
+    {
+      "code": "688090",
+      "name": "瑞松科技",
+      "price": 90.9,
+      "yesterday_close": 90.92,
+      "auction_pct": -0.02,
+      "volume": 2294755,
+      "amount_wan": 20627.0
+    },
+    {
+      "code": "603061",
+      "name": "金海通",
+      "price": 309.88,
+      "yesterday_close": 313.49,
+      "auction_pct": -1.15,
+      "volume": 21852,
+      "amount_wan": 68963.0
+    },
+    {
+      "code": "603360",
+      "name": "百傲化学",
+      "price": 20.3,
+      "yesterday_close": 19.86,
+      "auction_pct": 2.22,
+      "volume": 89087,
+      "amount_wan": 18089.0
+    },
+    {
+      "code": "603501",
+      "name": "豪威集团",
+      "price": 100.48,
+      "yesterday_close": 103.31,
+      "auction_pct": -2.74,
+      "volume": 147725,
+      "amount_wan": 147973.0
+    },
+    {
+      "code": "603991",
+      "name": "至正股份",
+      "price": 125.0,
+      "yesterday_close": 126.0,
+      "auction_pct": -0.79,
+      "volume": 8395,
+      "amount_wan": 10470.0
+    },
+    {
+      "code": "688012",
+      "name": "中微公司",
+      "price": 379.8,
+      "yesterday_close": 388.45,
+      "auction_pct": -2.23,
+      "volume": 6694526,
+      "amount_wan": 252891.0
+    },
+    {
+      "code": "000017",
+      "name": "深中华A",
+      "price": 6.16,
+      "yesterday_close": 6.18,
+      "auction_pct": -0.32,
+      "volume": 29560,
+      "amount_wan": 1823.0
+    },
+    {
+      "code": "000404",
+      "name": "长虹华意",
+      "price": 8.32,
+      "yesterday_close": 8.35,
+      "auction_pct": -0.36,
+      "volume": 64914,
+      "amount_wan": 5424.0
+    },
+    {
+      "code": "000571",
+      "name": "新大洲A",
+      "price": 5.21,
+      "yesterday_close": 5.15,
+      "auction_pct": 1.17,
+      "volume": 183590,
+      "amount_wan": 9573.0
+    },
+    {
+      "code": "000573",
+      "name": "粤宏远Ａ",
+      "price": 4.63,
+      "yesterday_close": 4.67,
+      "auction_pct": -0.86,
+      "volume": 116346,
+      "amount_wan": 5402.0
+    },
+    {
+      "code": "000723",
+      "name": "美锦能源",
+      "price": 4.13,
+      "yesterday_close": 4.1,
+      "auction_pct": 0.73,
+      "volume": 212789,
+      "amount_wan": 8772.0
+    },
+    {
+      "code": "000547",
+      "name": "航天发展",
+      "price": 27.8,
+      "yesterday_close": 27.66,
+      "auction_pct": 0.51,
+      "volume": 689097,
+      "amount_wan": 190194.0
+    },
+    {
+      "code": "000559",
+      "name": "万向钱潮",
+      "price": 17.37,
+      "yesterday_close": 17.51,
+      "auction_pct": -0.8,
+      "volume": 272581,
+      "amount_wan": 47184.0
+    },
+    {
+      "code": "000561",
+      "name": "烽火电子",
+      "price": 9.84,
+      "yesterday_close": 9.71,
+      "auction_pct": 1.34,
+      "volume": 58308,
+      "amount_wan": 5677.0
+    },
+    {
+      "code": "000753",
+      "name": "漳州发展",
+      "price": 6.78,
+      "yesterday_close": 6.7,
+      "auction_pct": 1.19,
+      "volume": 163172,
+      "amount_wan": 10986.0
+    },
+    {
+      "code": "001283",
+      "name": "豪鹏科技",
+      "price": 74.25,
+      "yesterday_close": 75.17,
+      "auction_pct": -1.22,
+      "volume": 15749,
+      "amount_wan": 11743.0
+    }
+  ]
+}

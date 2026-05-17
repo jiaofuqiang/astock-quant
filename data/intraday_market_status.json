@@ -1,0 +1,31 @@
+{
+  "state": {
+    "timestamp": "12:22:06",
+    "tag": "❄️恐慌冰点·机构趋势·轮动打地鼠·🌫️无主线·⚖️量价温和·🚀加速冲顶·😰恐慌·🐢盘中·🃏盘中估算",
+    "detail": {
+      "limit_up": 0,
+      "zh_ratio": 28.0,
+      "avg_vol_ratio": 1.23,
+      "sector_booms": 0,
+      "max_board": 0,
+      "l1": "❄️恐慌冰点",
+      "l2": "机构趋势",
+      "l3": "轮动打地鼠",
+      "l4": "🌫️无主线",
+      "l5": "⚖️量价温和",
+      "l6": "🚀加速冲顶",
+      "l7": "😰恐慌"
+    },
+    "limit_up_count": 0,
+    "zh_ratio": 28.0,
+    "avg_vol_ratio": 1.23,
+    "sector_booms": 0,
+    "scanned_codes": 25,
+    "elapsed": 0.2
+  },
+  "change": {
+    "changed": false,
+    "message": "首次运行，无对比基准"
+  },
+  "recommendations": null
+}

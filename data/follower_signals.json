@@ -1,0 +1,103 @@
+{
+  "timestamp": "2026-05-17 09:36:18",
+  "count": 8,
+  "summary": "基于10个板块排名和8个买入候选，生成8个跟风信号",
+  "stocks": [
+    {
+      "code": "002196",
+      "name": "方正电机",
+      "reason": "买入候选评分74分，层级A，适合跟风",
+      "sector": "A",
+      "rank_in_sector": 0,
+      "confidence": 0.74,
+      "expected_return": 7.9,
+      "source": "buy_candidates_scoring",
+      "current_change_pct": 0,
+      "amount_wan": 0
+    },
+    {
+      "code": "601991",
+      "name": "大唐发电",
+      "reason": "买入候选评分73分，层级A，适合跟风",
+      "sector": "A",
+      "rank_in_sector": 0,
+      "confidence": 0.73,
+      "expected_return": 7.8,
+      "source": "buy_candidates_scoring",
+      "current_change_pct": 0,
+      "amount_wan": 0
+    },
+    {
+      "code": "600386",
+      "name": "北巴传媒",
+      "reason": "买入候选评分67分，层级A，适合跟风",
+      "sector": "A",
+      "rank_in_sector": 0,
+      "confidence": 0.67,
+      "expected_return": 7.4,
+      "source": "buy_candidates_scoring",
+      "current_change_pct": 0,
+      "amount_wan": 0
+    },
+    {
+      "code": "002407",
+      "name": "多氟多",
+      "reason": "买入候选评分61分，层级A，适合跟风",
+      "sector": "A",
+      "rank_in_sector": 0,
+      "confidence": 0.61,
+      "expected_return": 6.9,
+      "source": "buy_candidates_scoring",
+      "current_change_pct": 0,
+      "amount_wan": 0
+    },
+    {
+      "code": "002031",
+      "name": "巨轮智能",
+      "reason": "买入候选评分60分，层级A，适合跟风",
+      "sector": "A",
+      "rank_in_sector": 0,
+      "confidence": 0.6,
+      "expected_return": 6.8,
+      "source": "buy_candidates_scoring",
+      "current_change_pct": 0,
+      "amount_wan": 0
+    },
+    {
+      "code": "603363",
+      "name": "傲农生物",
+      "reason": "买入候选评分57分，层级A，适合跟风",
+      "sector": "A",
+      "rank_in_sector": 0,
+      "confidence": 0.57,
+      "expected_return": 6.6,
+      "source": "buy_candidates_scoring",
+      "current_change_pct": 0,
+      "amount_wan": 0
+    },
+    {
+      "code": "601996",
+      "name": "丰林集团",
+      "reason": "买入候选评分50分，层级A，适合跟风",
+      "sector": "A",
+      "rank_in_sector": 0,
+      "confidence": 0.5,
+      "expected_return": 6.0,
+      "source": "buy_candidates_scoring",
+      "current_change_pct": 0,
+      "amount_wan": 0
+    },
+    {
+      "code": "002181",
+      "name": "粤传媒",
+      "reason": "买入候选评分46.9分，层级B，适合跟风",
+      "sector": "B",
+      "rank_in_sector": 0,
+      "confidence": 0.47,
+      "expected_return": 5.8,
+      "source": "buy_candidates_scoring",
+      "current_change_pct": 0,
+      "amount_wan": 0
+    }
+  ]
+}

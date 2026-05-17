@@ -1,0 +1,1408 @@
+{
+  "date": "2026-05-15",
+  "timestamp": "2026-05-15T19:00:51.689587",
+  "total_stocks": 77,
+  "analyzed": 22,
+  "strong_buy": 18,
+  "watch": 4,
+  "neutral": 0,
+  "top_youzi_actions": [
+    {
+      "code": "600130",
+      "name": "波导股份",
+      "type": "04",
+      "chg": 27.77,
+      "price": 6.39,
+      "is_core": false,
+      "analysis": {
+        "code": "600130",
+        "score": 100,
+        "action": "✅ 跟买",
+        "level": "强烈推荐",
+        "reasons": [
+          "游资合力(4家)",
+          "顶级游资买入9524万",
+          "一线游资买入2001万"
+        ],
+        "total_net": 8416.82,
+        "top_youzi": [
+          "国泰海通证券股份有限公司上海松江区中山东",
+          "中信证券股份有限公司东阳吴宁西路证券营业",
+          "国泰海通证券股份有限公司总部"
+        ],
+        "top_youzi_net": 1.0,
+        "tier1_net": 0.0,
+        "is_heli": true,
+        "is_dushi": true,
+        "has_quant": false,
+        "elastic_grade": "未知",
+        "t1_mean": 0
+      }
+    },
+    {
+      "code": "601996",
+      "name": "丰林集团",
+      "type": "01",
+      "chg": 11.13,
+      "price": 3.05,
+      "is_core": false,
+      "analysis": {
+        "code": "601996",
+        "score": 100,
+        "action": "✅ 跟买",
+        "level": "强烈推荐",
+        "reasons": [
+          "游资合力(3家)",
+          "顶级游资买入2111万",
+          "一线游资买入1527万"
+        ],
+        "total_net": 1848.8479999999995,
+        "top_youzi": [
+          "国泰海通证券股份有限公司总部",
+          "中国国际金融股份有限公司上海分公司"
+        ],
+        "top_youzi_net": 0.0,
+        "tier1_net": 0.0,
+        "is_heli": true,
+        "is_dushi": true,
+        "has_quant": false,
+        "elastic_grade": "未知",
+        "t1_mean": 0
+      }
+    },
+    {
+      "code": "600386",
+      "name": "北巴传媒",
+      "type": "01",
+      "chg": 11.12,
+      "price": 4.36,
+      "is_core": false,
+      "analysis": {
+        "code": "600386",
+        "score": 100,
+        "action": "✅ 跟买",
+        "level": "强烈推荐",
+        "reasons": [
+          "游资合力(2家)",
+          "顶级游资买入577万",
+          "一线游资买入3111万"
+        ],
+        "total_net": 3602.9069999999992,
+        "top_youzi": [
+          "中信证券股份有限公司上海分公司"
+        ],
+        "top_youzi_net": 0.0,
+        "tier1_net": 0.0,
+        "is_heli": true,
+        "is_dushi": false,
+        "has_quant": false,
+        "elastic_grade": "未知",
+        "t1_mean": 0
+      }
+    },
+    {
+      "code": "603363",
+      "name": "傲农生物",
+      "type": "01",
+      "chg": 11.08,
+      "price": 3.5,
+      "is_core": false,
+      "analysis": {
+        "code": "603363",
+        "score": 100,
+        "action": "✅ 跟买",
+        "level": "强烈推荐",
+        "reasons": [
+          "游资合力(3家)",
+          "顶级游资买入2168万",
+          "一线游资买入2045万"
+        ],
+        "total_net": 6001.361000000001,
+        "top_youzi": [
+          "兴业证券股份有限公司泉州丰泽街证券营业部",
+          "国泰海通证券股份有限公司总部"
+        ],
+        "top_youzi_net": 0.0,
+        "tier1_net": 0.0,
+        "is_heli": true,
+        "is_dushi": false,
+        "has_quant": false,
+        "elastic_grade": "未知",
+        "t1_mean": 0
+      }
+    },
+    {
+      "code": "601678",
+      "name": "滨化股份",
+      "type": "01",
+      "chg": 11.06,
+      "price": 5.81,
+      "is_core": false,
+      "analysis": {
+        "code": "601678",
+        "score": 100,
+        "action": "✅ 跟买",
+        "level": "强烈推荐",
+        "reasons": [
+          "游资合力(4家)",
+          "顶级游资买入1773万",
+          "一线游资买入8408万"
+        ],
+        "total_net": 22.80000000000291,
+        "top_youzi": [
+          "国泰海通证券股份有限公司广州东风中路证券"
+        ],
+        "top_youzi_net": 0.0,
+        "tier1_net": 1.0,
+        "is_heli": true,
+        "is_dushi": true,
+        "has_quant": false,
+        "elastic_grade": "未知",
+        "t1_mean": 0
+      }
+    },
+    {
+      "code": "002181",
+      "name": "粤传媒",
+      "type": "01",
+      "chg": 10.88,
+      "price": 19.69,
+      "is_core": false,
+      "analysis": {
+        "code": "002181",
+        "score": 100,
+        "action": "✅ 跟买",
+        "level": "强烈推荐",
+        "reasons": [
+          "游资合力(3家)",
+          "顶级游资买入15750万"
+        ],
+        "total_net": 27273.5078,
+        "top_youzi": [
+          "国泰海通证券股份有限公司上海松江区中山东",
+          "平安证券股份有限公司浙江分公司",
+          "平安证券股份有限公司杭州曙光路证券营业部"
+        ],
+        "top_youzi_net": 2.0,
+        "tier1_net": 0.0,
+        "is_heli": true,
+        "is_dushi": false,
+        "has_quant": false,
+        "elastic_grade": "未知",
+        "t1_mean": 0
+      }
+    },
+    {
+      "code": "002196",
+      "name": "方正电机",
+      "type": "01",
+      "chg": 10.88,
+      "price": 15.36,
+      "is_core": false,
+      "analysis": {
+        "code": "002196",
+        "score": 100,
+        "action": "✅ 跟买",
+        "level": "强烈推荐",
+        "reasons": [
+          "游资合力(3家)",
+          "顶级游资买入4782万",
+          "一线游资买入8309万"
+        ],
+        "total_net": 16763.7057,
+        "top_youzi": [
+          "国泰海通证券股份有限公司南京太平南路证券"
+        ],
+        "top_youzi_net": 0.0,
+        "tier1_net": 1.0,
+        "is_heli": true,
+        "is_dushi": false,
+        "has_quant": false,
+        "elastic_grade": "未知",
+        "t1_mean": 0
+      }
+    },
+    {
+      "code": "002407",
+      "name": "多氟多",
+      "type": "01",
+      "chg": 10.88,
+      "price": 36.47,
+      "is_core": false,
+      "analysis": {
+        "code": "002407",
+        "score": 100,
+        "action": "✅ 跟买",
+        "level": "强烈推荐",
+        "reasons": [
+          "游资合力(3家)",
+          "顶级游资买入44941万"
+        ],
+        "total_net": 77131.87649999998,
+        "top_youzi": [
+          "国泰海通证券股份有限公司湛江万豪世家证券",
+          "国泰海通证券股份有限公司北京知春路证券营",
+          "国泰海通证券股份有限公司上海松江区中山东"
+        ],
+        "top_youzi_net": 4.0,
+        "tier1_net": 0.0,
+        "is_heli": true,
+        "is_dushi": false,
+        "has_quant": false,
+        "elastic_grade": "未知",
+        "t1_mean": 0
+      }
+    },
+    {
+      "code": "603007",
+      "name": "顺景科技",
+      "type": "04",
+      "chg": 37.29,
+      "price": 8.37,
+      "is_core": false,
+      "analysis": {
+        "code": "603007",
+        "score": 98,
+        "action": "✅ 跟买",
+        "level": "强烈推荐",
+        "reasons": [
+          "游资合力(2家)",
+          "游资接盘(买5607万/总净-2433万)",
+          "一线游资买入4300万"
+        ],
+        "total_net": -2433.159999999996,
+        "top_youzi": [
+          "国泰海通证券股份有限公司总部"
+        ],
+        "top_youzi_net": 1.0,
+        "tier1_net": 0.0,
+        "is_heli": true,
+        "is_dushi": false,
+        "has_quant": false,
+        "elastic_grade": "未知",
+        "t1_mean": 0
+      }
+    },
+    {
+      "code": "920580",
+      "name": "科创新材",
+      "type": "04",
+      "chg": 37.31,
+      "price": 16.6,
+      "is_core": false,
+      "analysis": {
+        "code": "920580",
+        "score": 93,
+        "action": "✅ 跟买",
+        "level": "强烈推荐",
+        "reasons": [
+          "游资合力(3家)",
+          "顶级游资买入492万",
+          "一线游资买入1063万"
+        ],
+        "total_net": -2442.3393000000005,
+        "top_youzi": [
+          "东方财富证券股份有限公司拉萨团结路第一证",
+          "东方财富证券股份有限公司拉萨金融城南环路"
+        ],
+        "top_youzi_net": 0.0,
+        "tier1_net": 0.0,
+        "is_heli": true,
+        "is_dushi": false,
+        "has_quant": false,
+        "elastic_grade": "未知",
+        "t1_mean": 0
+      }
+    },
+    {
+      "code": "920012",
+      "name": "创达新材",
+      "type": "04",
+      "chg": 35.31,
+      "price": 75.66,
+      "is_core": false,
+      "analysis": {
+        "code": "920012",
+        "score": 93,
+        "action": "✅ 跟买",
+        "level": "强烈推荐",
+        "reasons": [
+          "游资合力(4家)",
+          "游资接盘(买1470万/总净-1378万)"
+        ],
+        "total_net": -1377.7191,
+        "top_youzi": [
+          "广发证券股份有限公司广州天河北路营业部",
+          "中信建投证券股份有限公司厦门分公司",
+          "东方财富证券股份有限公司拉萨团结路第一证"
+        ],
+        "top_youzi_net": 0.0,
+        "tier1_net": 0.0,
+        "is_heli": true,
+        "is_dushi": false,
+        "has_quant": false,
+        "elastic_grade": "未知",
+        "t1_mean": 0
+      }
+    },
+    {
+      "code": "301538",
+      "name": "骏鼎达",
+      "type": "38",
+      "chg": 35.35,
+      "price": 117.0,
+      "is_core": false,
+      "analysis": {
+        "code": "301538",
+        "score": 90,
+        "action": "✅ 跟买",
+        "level": "强烈推荐",
+        "reasons": [
+          "顶级游资买入3795万"
+        ],
+        "total_net": 9753.011999999999,
+        "top_youzi": [
+          "东方财富证券股份有限公司拉萨金融城南环路"
+        ],
+        "top_youzi_net": 0.0,
+        "tier1_net": 0.0,
+        "is_heli": false,
+        "is_dushi": false,
+        "has_quant": false,
+        "elastic_grade": "未知",
+        "t1_mean": 0
+      }
+    },
+    {
+      "code": "300632",
+      "name": "光莆股份",
+      "type": "37",
+      "chg": 30.78,
+      "price": 35.26,
+      "is_core": false,
+      "analysis": {
+        "code": "300632",
+        "score": 90,
+        "action": "✅ 跟买",
+        "level": "强烈推荐",
+        "reasons": [
+          "顶级游资买入3963万"
+        ],
+        "total_net": 10705.138400000002,
+        "top_youzi": [
+          "中信建投证券股份有限公司长沙金星中路证券"
+        ],
+        "top_youzi_net": 0.0,
+        "tier1_net": 0.0,
+        "is_heli": false,
+        "is_dushi": false,
+        "has_quant": false,
+        "elastic_grade": "未知",
+        "t1_mean": 0
+      }
+    },
+    {
+      "code": "920011",
+      "name": "晨光电机",
+      "type": "04",
+      "chg": 44.36,
+      "price": 29.36,
+      "is_core": false,
+      "analysis": {
+        "code": "920011",
+        "score": 83,
+        "action": "✅ 跟买",
+        "level": "强烈推荐",
+        "reasons": [
+          "游资合力(2家)",
+          "顶级游资买入499万"
+        ],
+        "total_net": -312.15329999999994,
+        "top_youzi": [
+          "中国银河证券股份有限公司成都科华北路证券",
+          "东方财富证券股份有限公司拉萨金融城南环路"
+        ],
+        "top_youzi_net": 0.0,
+        "tier1_net": 0.0,
+        "is_heli": true,
+        "is_dushi": false,
+        "has_quant": false,
+        "elastic_grade": "未知",
+        "t1_mean": 0
+      }
+    },
+    {
+      "code": "920100",
+      "name": "三协电机",
+      "type": "04",
+      "chg": 31.53,
+      "price": 66.91,
+      "is_core": false,
+      "analysis": {
+        "code": "920100",
+        "score": 83,
+        "action": "✅ 跟买",
+        "level": "强烈推荐",
+        "reasons": [
+          "游资合力(3家)",
+          "游资接盘(买1833万/总净-3047万)"
+        ],
+        "total_net": -3046.9183999999996,
+        "top_youzi": [
+          "平安证券股份有限公司浙江分公司",
+          "中信建投证券股份有限公司广州珠江新城证券",
+          "东方财富证券股份有限公司拉萨东环路第二证"
+        ],
+        "top_youzi_net": 0.0,
+        "tier1_net": 0.0,
+        "is_heli": true,
+        "is_dushi": false,
+        "has_quant": false,
+        "elastic_grade": "未知",
+        "t1_mean": 0
+      }
+    },
+    {
+      "code": "603344",
+      "name": "星德胜",
+      "type": "04",
+      "chg": 27.13,
+      "price": 32.62,
+      "is_core": false,
+      "analysis": {
+        "code": "603344",
+        "score": 83,
+        "action": "✅ 跟买",
+        "level": "强烈推荐",
+        "reasons": [
+          "游资合力(2家)",
+          "游资接盘(买2385万/总净-976万)"
+        ],
+        "total_net": -976.3250000000016,
+        "top_youzi": [
+          "中国国际金融股份有限公司上海分公司",
+          "广发证券股份有限公司佛山禅城石湾证券营业"
+        ],
+        "top_youzi_net": 0.0,
+        "tier1_net": 0.0,
+        "is_heli": true,
+        "is_dushi": false,
+        "has_quant": false,
+        "elastic_grade": "未知",
+        "t1_mean": 0
+      }
+    },
+    {
+      "code": "603082",
+      "name": "北自科技",
+      "type": "04",
+      "chg": 23.56,
+      "price": 42.3,
+      "is_core": false,
+      "analysis": {
+        "code": "603082",
+        "score": 83,
+        "action": "✅ 跟买",
+        "level": "强烈推荐",
+        "reasons": [
+          "游资合力(2家)",
+          "游资接盘(买1862万/总净-1058万)"
+        ],
+        "total_net": -1057.8100000000004,
+        "top_youzi": [
+          "华泰证券股份有限公司辽宁分公司",
+          "东方财富证券股份有限公司拉萨金融城南环路"
+        ],
+        "top_youzi_net": 0.0,
+        "tier1_net": 0.0,
+        "is_heli": true,
+        "is_dushi": false,
+        "has_quant": false,
+        "elastic_grade": "未知",
+        "t1_mean": 0
+      }
+    },
+    {
+      "code": "920177",
+      "name": "恒道科技",
+      "type": "04",
+      "chg": 37.71,
+      "price": 38.35,
+      "is_core": false,
+      "analysis": {
+        "code": "920177",
+        "score": 80,
+        "action": "✅ 跟买",
+        "level": "强烈推荐",
+        "reasons": [
+          "一线游资买入1062万"
+        ],
+        "total_net": 3140.9269,
+        "top_youzi": [],
+        "top_youzi_net": 0.0,
+        "tier1_net": 0.0,
+        "is_heli": false,
+        "is_dushi": false,
+        "has_quant": false,
+        "elastic_grade": "未知",
+        "t1_mean": 0
+      }
+    },
+    {
+      "code": "002165",
+      "name": "红宝丽",
+      "type": "04",
+      "chg": 33.18,
+      "price": 9.74,
+      "is_core": false,
+      "analysis": {
+        "code": "002165",
+        "score": 65,
+        "action": "✅ 关注",
+        "level": "可关注",
+        "reasons": [
+          "游资接盘(买1661万/总净-20342万)"
+        ],
+        "total_net": -20342.016,
+        "top_youzi": [
+          "东方财富证券股份有限公司拉萨团结路第一证"
+        ],
+        "top_youzi_net": 0.0,
+        "tier1_net": 0.0,
+        "is_heli": false,
+        "is_dushi": false,
+        "has_quant": false,
+        "elastic_grade": "未知",
+        "t1_mean": 0
+      }
+    },
+    {
+      "code": "002809",
+      "name": "红墙股份",
+      "type": "04",
+      "chg": 32.03,
+      "price": 11.4,
+      "is_core": false,
+      "analysis": {
+        "code": "002809",
+        "score": 65,
+        "action": "✅ 关注",
+        "level": "可关注",
+        "reasons": [
+          "游资接盘(买562万/总净-4399万)"
+        ],
+        "total_net": -4399.2390000000005,
+        "top_youzi": [
+          "招商证券股份有限公司深圳益田路免税商务大"
+        ],
+        "top_youzi_net": 0.0,
+        "tier1_net": 0.0,
+        "is_heli": false,
+        "is_dushi": false,
+        "has_quant": false,
+        "elastic_grade": "未知",
+        "t1_mean": 0
+      }
+    },
+    {
+      "code": "002902",
+      "name": "铭普光磁",
+      "type": "04",
+      "chg": 29.71,
+      "price": 39.6,
+      "is_core": false,
+      "analysis": {
+        "code": "002902",
+        "score": 65,
+        "action": "✅ 关注",
+        "level": "可关注",
+        "reasons": [
+          "游资接盘(买6144万/总净-6548万)"
+        ],
+        "total_net": -6547.838499999998,
+        "top_youzi": [
+          "国泰海通证券股份有限公司上海自贸试验区第"
+        ],
+        "top_youzi_net": 1.0,
+        "tier1_net": 0.0,
+        "is_heli": false,
+        "is_dushi": false,
+        "has_quant": false,
+        "elastic_grade": "未知",
+        "t1_mean": 0
+      }
+    },
+    {
+      "code": "002940",
+      "name": "昂利康",
+      "type": "04",
+      "chg": 28.78,
+      "price": 43.23,
+      "is_core": false,
+      "analysis": {
+        "code": "002940",
+        "score": 65,
+        "action": "✅ 关注",
+        "level": "可关注",
+        "reasons": [],
+        "total_net": 16172.271499999997,
+        "top_youzi": [],
+        "top_youzi_net": 0.0,
+        "tier1_net": 0.0,
+        "is_heli": false,
+        "is_dushi": false,
+        "has_quant": false,
+        "elastic_grade": "未知",
+        "t1_mean": 0
+      }
+    }
+  ],
+  "all_analyses": [
+    {
+      "code": "600130",
+      "score": 100,
+      "action": "✅ 跟买",
+      "level": "强烈推荐",
+      "reasons": [
+        "游资合力(4家)",
+        "顶级游资买入9524万",
+        "一线游资买入2001万"
+      ],
+      "total_net": 8416.82,
+      "top_youzi": [
+        "国泰海通证券股份有限公司上海松江区中山东",
+        "中信证券股份有限公司东阳吴宁西路证券营业",
+        "国泰海通证券股份有限公司总部"
+      ],
+      "top_youzi_net": 1.0,
+      "tier1_net": 0.0,
+      "is_heli": true,
+      "is_dushi": true,
+      "has_quant": false,
+      "elastic_grade": "未知",
+      "t1_mean": 0
+    },
+    {
+      "code": "601996",
+      "score": 100,
+      "action": "✅ 跟买",
+      "level": "强烈推荐",
+      "reasons": [
+        "游资合力(3家)",
+        "顶级游资买入2111万",
+        "一线游资买入1527万"
+      ],
+      "total_net": 1848.8479999999995,
+      "top_youzi": [
+        "国泰海通证券股份有限公司总部",
+        "中国国际金融股份有限公司上海分公司"
+      ],
+      "top_youzi_net": 0.0,
+      "tier1_net": 0.0,
+      "is_heli": true,
+      "is_dushi": true,
+      "has_quant": false,
+      "elastic_grade": "未知",
+      "t1_mean": 0
+    },
+    {
+      "code": "600386",
+      "score": 100,
+      "action": "✅ 跟买",
+      "level": "强烈推荐",
+      "reasons": [
+        "游资合力(2家)",
+        "顶级游资买入577万",
+        "一线游资买入3111万"
+      ],
+      "total_net": 3602.9069999999992,
+      "top_youzi": [
+        "中信证券股份有限公司上海分公司"
+      ],
+      "top_youzi_net": 0.0,
+      "tier1_net": 0.0,
+      "is_heli": true,
+      "is_dushi": false,
+      "has_quant": false,
+      "elastic_grade": "未知",
+      "t1_mean": 0
+    },
+    {
+      "code": "603363",
+      "score": 100,
+      "action": "✅ 跟买",
+      "level": "强烈推荐",
+      "reasons": [
+        "游资合力(3家)",
+        "顶级游资买入2168万",
+        "一线游资买入2045万"
+      ],
+      "total_net": 6001.361000000001,
+      "top_youzi": [
+        "兴业证券股份有限公司泉州丰泽街证券营业部",
+        "国泰海通证券股份有限公司总部"
+      ],
+      "top_youzi_net": 0.0,
+      "tier1_net": 0.0,
+      "is_heli": true,
+      "is_dushi": false,
+      "has_quant": false,
+      "elastic_grade": "未知",
+      "t1_mean": 0
+    },
+    {
+      "code": "601678",
+      "score": 100,
+      "action": "✅ 跟买",
+      "level": "强烈推荐",
+      "reasons": [
+        "游资合力(4家)",
+        "顶级游资买入1773万",
+        "一线游资买入8408万"
+      ],
+      "total_net": 22.80000000000291,
+      "top_youzi": [
+        "国泰海通证券股份有限公司广州东风中路证券"
+      ],
+      "top_youzi_net": 0.0,
+      "tier1_net": 1.0,
+      "is_heli": true,
+      "is_dushi": true,
+      "has_quant": false,
+      "elastic_grade": "未知",
+      "t1_mean": 0
+    },
+    {
+      "code": "002181",
+      "score": 100,
+      "action": "✅ 跟买",
+      "level": "强烈推荐",
+      "reasons": [
+        "游资合力(3家)",
+        "顶级游资买入15750万"
+      ],
+      "total_net": 27273.5078,
+      "top_youzi": [
+        "国泰海通证券股份有限公司上海松江区中山东",
+        "平安证券股份有限公司浙江分公司",
+        "平安证券股份有限公司杭州曙光路证券营业部"
+      ],
+      "top_youzi_net": 2.0,
+      "tier1_net": 0.0,
+      "is_heli": true,
+      "is_dushi": false,
+      "has_quant": false,
+      "elastic_grade": "未知",
+      "t1_mean": 0
+    },
+    {
+      "code": "002196",
+      "score": 100,
+      "action": "✅ 跟买",
+      "level": "强烈推荐",
+      "reasons": [
+        "游资合力(3家)",
+        "顶级游资买入4782万",
+        "一线游资买入8309万"
+      ],
+      "total_net": 16763.7057,
+      "top_youzi": [
+        "国泰海通证券股份有限公司南京太平南路证券"
+      ],
+      "top_youzi_net": 0.0,
+      "tier1_net": 1.0,
+      "is_heli": true,
+      "is_dushi": false,
+      "has_quant": false,
+      "elastic_grade": "未知",
+      "t1_mean": 0
+    },
+    {
+      "code": "002407",
+      "score": 100,
+      "action": "✅ 跟买",
+      "level": "强烈推荐",
+      "reasons": [
+        "游资合力(3家)",
+        "顶级游资买入44941万"
+      ],
+      "total_net": 77131.87649999998,
+      "top_youzi": [
+        "国泰海通证券股份有限公司湛江万豪世家证券",
+        "国泰海通证券股份有限公司北京知春路证券营",
+        "国泰海通证券股份有限公司上海松江区中山东"
+      ],
+      "top_youzi_net": 4.0,
+      "tier1_net": 0.0,
+      "is_heli": true,
+      "is_dushi": false,
+      "has_quant": false,
+      "elastic_grade": "未知",
+      "t1_mean": 0
+    },
+    {
+      "code": "603007",
+      "score": 98,
+      "action": "✅ 跟买",
+      "level": "强烈推荐",
+      "reasons": [
+        "游资合力(2家)",
+        "游资接盘(买5607万/总净-2433万)",
+        "一线游资买入4300万"
+      ],
+      "total_net": -2433.159999999996,
+      "top_youzi": [
+        "国泰海通证券股份有限公司总部"
+      ],
+      "top_youzi_net": 1.0,
+      "tier1_net": 0.0,
+      "is_heli": true,
+      "is_dushi": false,
+      "has_quant": false,
+      "elastic_grade": "未知",
+      "t1_mean": 0
+    },
+    {
+      "code": "920580",
+      "score": 93,
+      "action": "✅ 跟买",
+      "level": "强烈推荐",
+      "reasons": [
+        "游资合力(3家)",
+        "顶级游资买入492万",
+        "一线游资买入1063万"
+      ],
+      "total_net": -2442.3393000000005,
+      "top_youzi": [
+        "东方财富证券股份有限公司拉萨团结路第一证",
+        "东方财富证券股份有限公司拉萨金融城南环路"
+      ],
+      "top_youzi_net": 0.0,
+      "tier1_net": 0.0,
+      "is_heli": true,
+      "is_dushi": false,
+      "has_quant": false,
+      "elastic_grade": "未知",
+      "t1_mean": 0
+    },
+    {
+      "code": "920012",
+      "score": 93,
+      "action": "✅ 跟买",
+      "level": "强烈推荐",
+      "reasons": [
+        "游资合力(4家)",
+        "游资接盘(买1470万/总净-1378万)"
+      ],
+      "total_net": -1377.7191,
+      "top_youzi": [
+        "广发证券股份有限公司广州天河北路营业部",
+        "中信建投证券股份有限公司厦门分公司",
+        "东方财富证券股份有限公司拉萨团结路第一证"
+      ],
+      "top_youzi_net": 0.0,
+      "tier1_net": 0.0,
+      "is_heli": true,
+      "is_dushi": false,
+      "has_quant": false,
+      "elastic_grade": "未知",
+      "t1_mean": 0
+    },
+    {
+      "code": "301538",
+      "score": 90,
+      "action": "✅ 跟买",
+      "level": "强烈推荐",
+      "reasons": [
+        "顶级游资买入3795万"
+      ],
+      "total_net": 9753.011999999999,
+      "top_youzi": [
+        "东方财富证券股份有限公司拉萨金融城南环路"
+      ],
+      "top_youzi_net": 0.0,
+      "tier1_net": 0.0,
+      "is_heli": false,
+      "is_dushi": false,
+      "has_quant": false,
+      "elastic_grade": "未知",
+      "t1_mean": 0
+    },
+    {
+      "code": "300632",
+      "score": 90,
+      "action": "✅ 跟买",
+      "level": "强烈推荐",
+      "reasons": [
+        "顶级游资买入3963万"
+      ],
+      "total_net": 10705.138400000002,
+      "top_youzi": [
+        "中信建投证券股份有限公司长沙金星中路证券"
+      ],
+      "top_youzi_net": 0.0,
+      "tier1_net": 0.0,
+      "is_heli": false,
+      "is_dushi": false,
+      "has_quant": false,
+      "elastic_grade": "未知",
+      "t1_mean": 0
+    },
+    {
+      "code": "920011",
+      "score": 83,
+      "action": "✅ 跟买",
+      "level": "强烈推荐",
+      "reasons": [
+        "游资合力(2家)",
+        "顶级游资买入499万"
+      ],
+      "total_net": -312.15329999999994,
+      "top_youzi": [
+        "中国银河证券股份有限公司成都科华北路证券",
+        "东方财富证券股份有限公司拉萨金融城南环路"
+      ],
+      "top_youzi_net": 0.0,
+      "tier1_net": 0.0,
+      "is_heli": true,
+      "is_dushi": false,
+      "has_quant": false,
+      "elastic_grade": "未知",
+      "t1_mean": 0
+    },
+    {
+      "code": "920100",
+      "score": 83,
+      "action": "✅ 跟买",
+      "level": "强烈推荐",
+      "reasons": [
+        "游资合力(3家)",
+        "游资接盘(买1833万/总净-3047万)"
+      ],
+      "total_net": -3046.9183999999996,
+      "top_youzi": [
+        "平安证券股份有限公司浙江分公司",
+        "中信建投证券股份有限公司广州珠江新城证券",
+        "东方财富证券股份有限公司拉萨东环路第二证"
+      ],
+      "top_youzi_net": 0.0,
+      "tier1_net": 0.0,
+      "is_heli": true,
+      "is_dushi": false,
+      "has_quant": false,
+      "elastic_grade": "未知",
+      "t1_mean": 0
+    },
+    {
+      "code": "603344",
+      "score": 83,
+      "action": "✅ 跟买",
+      "level": "强烈推荐",
+      "reasons": [
+        "游资合力(2家)",
+        "游资接盘(买2385万/总净-976万)"
+      ],
+      "total_net": -976.3250000000016,
+      "top_youzi": [
+        "中国国际金融股份有限公司上海分公司",
+        "广发证券股份有限公司佛山禅城石湾证券营业"
+      ],
+      "top_youzi_net": 0.0,
+      "tier1_net": 0.0,
+      "is_heli": true,
+      "is_dushi": false,
+      "has_quant": false,
+      "elastic_grade": "未知",
+      "t1_mean": 0
+    },
+    {
+      "code": "603082",
+      "score": 83,
+      "action": "✅ 跟买",
+      "level": "强烈推荐",
+      "reasons": [
+        "游资合力(2家)",
+        "游资接盘(买1862万/总净-1058万)"
+      ],
+      "total_net": -1057.8100000000004,
+      "top_youzi": [
+        "华泰证券股份有限公司辽宁分公司",
+        "东方财富证券股份有限公司拉萨金融城南环路"
+      ],
+      "top_youzi_net": 0.0,
+      "tier1_net": 0.0,
+      "is_heli": true,
+      "is_dushi": false,
+      "has_quant": false,
+      "elastic_grade": "未知",
+      "t1_mean": 0
+    },
+    {
+      "code": "920177",
+      "score": 80,
+      "action": "✅ 跟买",
+      "level": "强烈推荐",
+      "reasons": [
+        "一线游资买入1062万"
+      ],
+      "total_net": 3140.9269,
+      "top_youzi": [],
+      "top_youzi_net": 0.0,
+      "tier1_net": 0.0,
+      "is_heli": false,
+      "is_dushi": false,
+      "has_quant": false,
+      "elastic_grade": "未知",
+      "t1_mean": 0
+    },
+    {
+      "code": "002165",
+      "score": 65,
+      "action": "✅ 关注",
+      "level": "可关注",
+      "reasons": [
+        "游资接盘(买1661万/总净-20342万)"
+      ],
+      "total_net": -20342.016,
+      "top_youzi": [
+        "东方财富证券股份有限公司拉萨团结路第一证"
+      ],
+      "top_youzi_net": 0.0,
+      "tier1_net": 0.0,
+      "is_heli": false,
+      "is_dushi": false,
+      "has_quant": false,
+      "elastic_grade": "未知",
+      "t1_mean": 0
+    },
+    {
+      "code": "002809",
+      "score": 65,
+      "action": "✅ 关注",
+      "level": "可关注",
+      "reasons": [
+        "游资接盘(买562万/总净-4399万)"
+      ],
+      "total_net": -4399.2390000000005,
+      "top_youzi": [
+        "招商证券股份有限公司深圳益田路免税商务大"
+      ],
+      "top_youzi_net": 0.0,
+      "tier1_net": 0.0,
+      "is_heli": false,
+      "is_dushi": false,
+      "has_quant": false,
+      "elastic_grade": "未知",
+      "t1_mean": 0
+    },
+    {
+      "code": "002902",
+      "score": 65,
+      "action": "✅ 关注",
+      "level": "可关注",
+      "reasons": [
+        "游资接盘(买6144万/总净-6548万)"
+      ],
+      "total_net": -6547.838499999998,
+      "top_youzi": [
+        "国泰海通证券股份有限公司上海自贸试验区第"
+      ],
+      "top_youzi_net": 1.0,
+      "tier1_net": 0.0,
+      "is_heli": false,
+      "is_dushi": false,
+      "has_quant": false,
+      "elastic_grade": "未知",
+      "t1_mean": 0
+    },
+    {
+      "code": "002940",
+      "score": 65,
+      "action": "✅ 关注",
+      "level": "可关注",
+      "reasons": [],
+      "total_net": 16172.271499999997,
+      "top_youzi": [],
+      "top_youzi_net": 0.0,
+      "tier1_net": 0.0,
+      "is_heli": false,
+      "is_dushi": false,
+      "has_quant": false,
+      "elastic_grade": "未知",
+      "t1_mean": 0
+    }
+  ],
+  "strong_buy_list": [
+    {
+      "code": "600130",
+      "name": "波导股份",
+      "chg": 27.77,
+      "score": 100,
+      "action": "✅ 跟买",
+      "reasons": [
+        "游资合力(4家)",
+        "顶级游资买入9524万",
+        "一线游资买入2001万"
+      ],
+      "top_youzi": [
+        "国泰海通证券股份有限公司上海松江区中山东",
+        "中信证券股份有限公司东阳吴宁西路证券营业",
+        "国泰海通证券股份有限公司总部"
+      ]
+    },
+    {
+      "code": "601996",
+      "name": "丰林集团",
+      "chg": 11.13,
+      "score": 100,
+      "action": "✅ 跟买",
+      "reasons": [
+        "游资合力(3家)",
+        "顶级游资买入2111万",
+        "一线游资买入1527万"
+      ],
+      "top_youzi": [
+        "国泰海通证券股份有限公司总部",
+        "中国国际金融股份有限公司上海分公司"
+      ]
+    },
+    {
+      "code": "600386",
+      "name": "北巴传媒",
+      "chg": 11.12,
+      "score": 100,
+      "action": "✅ 跟买",
+      "reasons": [
+        "游资合力(2家)",
+        "顶级游资买入577万",
+        "一线游资买入3111万"
+      ],
+      "top_youzi": [
+        "中信证券股份有限公司上海分公司"
+      ]
+    },
+    {
+      "code": "603363",
+      "name": "傲农生物",
+      "chg": 11.08,
+      "score": 100,
+      "action": "✅ 跟买",
+      "reasons": [
+        "游资合力(3家)",
+        "顶级游资买入2168万",
+        "一线游资买入2045万"
+      ],
+      "top_youzi": [
+        "兴业证券股份有限公司泉州丰泽街证券营业部",
+        "国泰海通证券股份有限公司总部"
+      ]
+    },
+    {
+      "code": "601678",
+      "name": "滨化股份",
+      "chg": 11.06,
+      "score": 100,
+      "action": "✅ 跟买",
+      "reasons": [
+        "游资合力(4家)",
+        "顶级游资买入1773万",
+        "一线游资买入8408万"
+      ],
+      "top_youzi": [
+        "国泰海通证券股份有限公司广州东风中路证券"
+      ]
+    },
+    {
+      "code": "002181",
+      "name": "粤传媒",
+      "chg": 10.88,
+      "score": 100,
+      "action": "✅ 跟买",
+      "reasons": [
+        "游资合力(3家)",
+        "顶级游资买入15750万"
+      ],
+      "top_youzi": [
+        "国泰海通证券股份有限公司上海松江区中山东",
+        "平安证券股份有限公司浙江分公司",
+        "平安证券股份有限公司杭州曙光路证券营业部"
+      ]
+    },
+    {
+      "code": "002196",
+      "name": "方正电机",
+      "chg": 10.88,
+      "score": 100,
+      "action": "✅ 跟买",
+      "reasons": [
+        "游资合力(3家)",
+        "顶级游资买入4782万",
+        "一线游资买入8309万"
+      ],
+      "top_youzi": [
+        "国泰海通证券股份有限公司南京太平南路证券"
+      ]
+    },
+    {
+      "code": "002407",
+      "name": "多氟多",
+      "chg": 10.88,
+      "score": 100,
+      "action": "✅ 跟买",
+      "reasons": [
+        "游资合力(3家)",
+        "顶级游资买入44941万"
+      ],
+      "top_youzi": [
+        "国泰海通证券股份有限公司湛江万豪世家证券",
+        "国泰海通证券股份有限公司北京知春路证券营",
+        "国泰海通证券股份有限公司上海松江区中山东"
+      ]
+    },
+    {
+      "code": "603007",
+      "name": "顺景科技",
+      "chg": 37.29,
+      "score": 98,
+      "action": "✅ 跟买",
+      "reasons": [
+        "游资合力(2家)",
+        "游资接盘(买5607万/总净-2433万)",
+        "一线游资买入4300万"
+      ],
+      "top_youzi": [
+        "国泰海通证券股份有限公司总部"
+      ]
+    },
+    {
+      "code": "920580",
+      "name": "科创新材",
+      "chg": 37.31,
+      "score": 93,
+      "action": "✅ 跟买",
+      "reasons": [
+        "游资合力(3家)",
+        "顶级游资买入492万",
+        "一线游资买入1063万"
+      ],
+      "top_youzi": [
+        "东方财富证券股份有限公司拉萨团结路第一证",
+        "东方财富证券股份有限公司拉萨金融城南环路"
+      ]
+    },
+    {
+      "code": "920012",
+      "name": "创达新材",
+      "chg": 35.31,
+      "score": 93,
+      "action": "✅ 跟买",
+      "reasons": [
+        "游资合力(4家)",
+        "游资接盘(买1470万/总净-1378万)"
+      ],
+      "top_youzi": [
+        "广发证券股份有限公司广州天河北路营业部",
+        "中信建投证券股份有限公司厦门分公司",
+        "东方财富证券股份有限公司拉萨团结路第一证"
+      ]
+    },
+    {
+      "code": "301538",
+      "name": "骏鼎达",
+      "chg": 35.35,
+      "score": 90,
+      "action": "✅ 跟买",
+      "reasons": [
+        "顶级游资买入3795万"
+      ],
+      "top_youzi": [
+        "东方财富证券股份有限公司拉萨金融城南环路"
+      ]
+    },
+    {
+      "code": "300632",
+      "name": "光莆股份",
+      "chg": 30.78,
+      "score": 90,
+      "action": "✅ 跟买",
+      "reasons": [
+        "顶级游资买入3963万"
+      ],
+      "top_youzi": [
+        "中信建投证券股份有限公司长沙金星中路证券"
+      ]
+    },
+    {
+      "code": "920011",
+      "name": "晨光电机",
+      "chg": 44.36,
+      "score": 83,
+      "action": "✅ 跟买",
+      "reasons": [
+        "游资合力(2家)",
+        "顶级游资买入499万"
+      ],
+      "top_youzi": [
+        "中国银河证券股份有限公司成都科华北路证券",
+        "东方财富证券股份有限公司拉萨金融城南环路"
+      ]
+    },
+    {
+      "code": "920100",
+      "name": "三协电机",
+      "chg": 31.53,
+      "score": 83,
+      "action": "✅ 跟买",
+      "reasons": [
+        "游资合力(3家)",
+        "游资接盘(买1833万/总净-3047万)"
+      ],
+      "top_youzi": [
+        "平安证券股份有限公司浙江分公司",
+        "中信建投证券股份有限公司广州珠江新城证券",
+        "东方财富证券股份有限公司拉萨东环路第二证"
+      ]
+    },
+    {
+      "code": "603344",
+      "name": "星德胜",
+      "chg": 27.13,
+      "score": 83,
+      "action": "✅ 跟买",
+      "reasons": [
+        "游资合力(2家)",
+        "游资接盘(买2385万/总净-976万)"
+      ],
+      "top_youzi": [
+        "中国国际金融股份有限公司上海分公司",
+        "广发证券股份有限公司佛山禅城石湾证券营业"
+      ]
+    },
+    {
+      "code": "603082",
+      "name": "北自科技",
+      "chg": 23.56,
+      "score": 83,
+      "action": "✅ 跟买",
+      "reasons": [
+        "游资合力(2家)",
+        "游资接盘(买1862万/总净-1058万)"
+      ],
+      "top_youzi": [
+        "华泰证券股份有限公司辽宁分公司",
+        "东方财富证券股份有限公司拉萨金融城南环路"
+      ]
+    },
+    {
+      "code": "920177",
+      "name": "恒道科技",
+      "chg": 37.71,
+      "score": 80,
+      "action": "✅ 跟买",
+      "reasons": [
+        "一线游资买入1062万"
+      ],
+      "top_youzi": []
+    }
+  ]
+}

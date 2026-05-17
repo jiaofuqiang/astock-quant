@@ -1,0 +1,413 @@
+#!/usr/bin/env python3
+"""
+矛盾量化穿透引擎 v3 — 完全融合版
+===============================
+架构：
+  穿透评分v3 (6层26维环境感知) 
+    → 本引擎 (24策略回测匹配 + 环境分动态权重调整)
+    → 输出: 环境分 + 匹配策略 + 仓位建议
+
+核心数据：lhb_practical_backtest.json (2850样本, 24个精确策略回测)
+TOP3王牌策略：
+  ① 缩量+主力+机构 (vr<0.7+ratio>1.5)  : +4.89% / 68.1%胜率 / n=69
+  ② 连板+缩量+机构                       : +3.61% / 63.4%胜率 / n=71
+  ③ 极缩+量化 (vr<0.3)                  : +3.36% / 66.1%胜率 / n=62
+
+执行流程：
+  [1] 运行穿透评分v3 (6层26维)
+  [2] 读取龙虎榜数据，提取资金标签
+  [3] 从24策略中匹配当前标签 → 按综合分排序
+  [4] TOP策略加权 → 环境加成 → 仓位决策
+"""
+
+import os, json, sys, subprocess, math
+from datetime import datetime
+
+BASE = os.path.expanduser('~/astock')
+V2BOARD = os.path.expanduser('~/V2board')
+BACKTEST_PATH = os.path.join(BASE, 'data', 'lhb_practical_backtest.json')
+
+# ================================================================
+# 1. 加载回测数据库
+# ================================================================
+def load_strategy_db():
+    """从lhb_practical_backtest.json加载24个策略的精确回测数据"""
+    if not os.path.exists(BACKTEST_PATH):
+        print(f"⚠️ 回测数据库不存在: {BACKTEST_PATH}")
+        return {'overall': {'close_mean': 0.26, 'close_win': 48.2}, 'strategies': []}
+    try:
+        with open(BACKTEST_PATH) as f:
+            data = json.load(f)
+        return data
+    except Exception as e:
+        print(f"⚠️ 回测数据库加载失败: {e}")
+        return {'overall': {'close_mean': 0.26, 'close_win': 48.2}, 'strategies': []}
+
+
+def compute_strategy_rankings(strategies):
+    """
+    对24个策略计算综合评分。
+    公式：综合分 = 收益率×4 + 胜率×0.3 + 样本量因子×15
+      - 收益率×4：每+1%收益贡献4分（核心驱动力）
+      - 胜率×0.3：每10%胜率贡献3分
+      - 样本量因子：ln(n+1)/ln(50) → n=50时=1.0，上限1.0，乘15分
+    """
+    scored = []
+    for s in strategies:
+        ret = s.get('close_ret', 0)
+        wr = s.get('close_win', 0)
+        n = s.get('n', 0)
+        sample_f = math.log(n + 1) / math.log(50) if n > 0 else 0
+        sample_f = min(sample_f, 1.0)
+        composite = round(ret * 4.0 + wr * 0.3 + sample_f * 15.0, 1)
+        scored.append({
+            'name': s['name'],
+            'desc': s.get('desc', ''),
+            'composite': composite,
+            'ret': ret,
+            'win_rate': wr,
+            'n': n,
+            'big_win_pct': s.get('big_win_pct', 0),
+            'big_loss_pct': s.get('big_loss_pct', 0),
+            'dist': s.get('dist', {}),
+            # 提取标签关键词用于匹配
+            'tags': _extract_tags(s['name']),
+        })
+    scored.sort(key=lambda x: -x['composite'])
+    return scored
+
+
+def _extract_tags(name):
+    """从策略名提取标签关键词"""
+    tags = set()
+    name_lower = name.lower()
+    if '机构' in name: tags.add('机构')
+    if '量化' in name: tags.add('量化')
+    if '游资' in name: tags.add('游资')
+    if '主力买入' in name or '主力+' in name or '买力' in name: tags.add('主力')
+    if '连板' in name or '前日涨停' in name or '前日大涨' in name: tags.add('连板')
+    if '缩量' in name: tags.add('缩量')
+    if '净买入' in name or '净买' in name: tags.add('净买')
+    if '换手板' in name: tags.add('换手')
+    if '振幅' in name or '窄幅' in name: tags.add('控盘')
+    if '净卖出' in name or '卖' in name: tags.add('卖出')
+    if '无标签' in name or '无量' in name: tags.add('弱')
+    return tags
+
+
+# ================================================================
+# 2. 龙虎榜资金特征提取
+# ================================================================
+def extract_lhb_tags():
+    """从龙虎榜缓存中提取当前资金特征标签"""
+    tags = set()
+    tags_detail = []
+    
+    # 来源1: lhb_scoring_cache.json (龙虎榜评分缓存)
+    lhb_path = os.path.join(V2BOARD, 'data', 'lhb_scoring_cache.json')
+    if os.path.exists(lhb_path):
+        with open(lhb_path) as f:
+            lhb = json.load(f)
+        actionable = lhb.get('actionable', [])
+        for item in actionable:
+            detail = item.get('detail', {})
+            if isinstance(detail, dict):
+                dealers = detail.get('dealers', [])
+                buy_count = int(detail.get('buy_count', 0))
+                sell_count = int(detail.get('sell_count', 0))
+                total_buy = float(detail.get('total_buy', 0))
+                total_sell = float(detail.get('total_sell', 0))
+                
+                # 统计席位类型
+                inst_n = sum(1 for d in dealers if '机构' in d.get('dealer', ''))
+                quant_n = sum(1 for d in dealers if '量化' in d.get('dealer', ''))
+                youzi_n = sum(1 for d in dealers if '东方财富' in d.get('dealer', ''))
+                
+                if inst_n > 0: tags.add('机构')
+                if quant_n > 0: tags.add('量化')
+                if youzi_n > 0: tags.add('游资')
+                if buy_count > sell_count and total_buy > total_sell: tags.add('主力')
+                if buy_count > sell_count * 2: tags.add('强主力')
+    
+    # 来源2: lhb_selected_detail.json
+    detail_path = os.path.join(V2BOARD, 'data', 'lhb_selected_detail.json')
+    if os.path.exists(detail_path):
+        with open(detail_path) as f:
+            detail = json.load(f)
+        inst_count = int(detail.get('inst_count', detail.get('机构数量', 0)))
+        quant_count = int(detail.get('quant_count', detail.get('量化数量', 0)))
+        total_buy = float(detail.get('total_buy', detail.get('净买入', 0)))
+        if inst_count > 0: tags.add('机构')
+        if quant_count > 0: tags.add('量化')
+        if total_buy > 0: tags.add('净买')
+
+    # 来源3: 检查是否有连板数据
+    wd_path = os.path.join(V2BOARD, 'data', 'watch_dashboard.json')
+    if os.path.exists(wd_path):
+        try:
+            with open(wd_path) as f:
+                wd = json.load(f)
+            ladder = wd.get('ladder_stocks', [])
+            high_board = max([int(s.get('board', 0)) for s in ladder], default=0)
+            if high_board >= 3: tags.add('连板')
+            if high_board >= 5: tags.add('高连板')
+        except:
+            pass
+    
+    return tags
+
+
+# ================================================================
+# 3. 策略匹配引擎
+# ================================================================
+def match_strategies(rankings, lhb_tags, env_score):
+    """
+    根据龙虎榜资金标签精确匹配策略（v2修正版）。
+    
+    匹配规则：
+      1. 无标签策略（基准类）→ 仅在当前无任何标签时低匹配
+      2. 有标签策略 → 取核心标签交集（机构/量化/主力/净买/游资）
+         - 有核心标签命中 → 精确匹配：综合分 × (核心命中数×0.5+0.3)
+         - 只有非核心标签（缩量/控盘/换手/连板）命中 → 弱匹配：×0.4
+      3. 完全不匹配 → 0分（干掉基准噪声）
+      4. 极端环境(env<30) → 激进策略打折
+    
+    测试验证（见fusion_output_layer.py中执行代码）：
+      有机构+主力 → 缩量+主力+机构 55.0分 ✓
+      有量化 → 极缩+量化 38.6分 ✓
+      有主力无机构 → 缩量+主力+净买入 44.2分 ✓
+      无标签 → 无标签涨停 30.7分（保守）✓
+    """
+    matched = []
+    
+    for s in rankings:
+        stags = s['tags']
+        
+        if not stags:
+            # 无标签策略（换手板/基准类）
+            if not lhb_tags:
+                # 无标签 + 无资金特征 = 使用基准
+                match_score = s['composite'] * 0.8
+            else:
+                # 有标签时不匹配无标签策略
+                continue
+        else:
+            intersection = stags & lhb_tags
+            if not intersection:
+                continue  # 完全不匹配，跳过
+            
+            # 核心标签：机构/量化/主力/净买/游资
+            core_tags = stags - {'缩量', '控盘', '换手', '连板'}
+            core_hit = core_tags & lhb_tags
+            
+            if core_hit:
+                # 精确匹配：核心标签命中越多分越高
+                match_score = s['composite'] * min(1.0, len(core_hit) * 0.5 + 0.3)
+            else:
+                # 只有非核心标签命中 = 弱匹配
+                match_score = s['composite'] * 0.4
+        
+        # 弱环境打折
+        if env_score < 30:
+            if '连板' in stags or '换手' in stags:
+                match_score *= 0.3
+        
+        if match_score > 0:
+            matched.append({**s, 'match_score': round(match_score, 1)})
+    
+    matched.sort(key=lambda x: -x['match_score'])
+    return matched
+
+
+# ================================================================
+# 4. 决策引擎
+# ================================================================
+def make_decision(env_score, matched_strategies, lhb_tags):
+    """根据环境分+匹配策略，输出仓位+操作建议"""
+    
+    # --- 4a. 环境风控 ---
+    if env_score >= 70:
+        env_tier, cap_base = '🔥高潮', 65
+    elif env_score >= 55:
+        env_tier, cap_base = '🟢活跃', 40
+    elif env_score >= 40:
+        env_tier, cap_base = '⚪发酵', 22
+    elif env_score >= 25:
+        env_tier, cap_base = '🔵震荡', 10
+    else:
+        env_tier, cap_base = '🔴冰点', 0
+    
+    # --- 4b. 策略加成 ---
+    if matched_strategies:
+        top = matched_strategies[0]
+        top_ret = top['ret']
+        top_wr = top['win_rate']
+        top_composite = top['composite']
+        
+        # 策略加成 = 综合分/55*20 (缩量+主力+机构综合分=55为基准)
+        strategy_boost = min(20, round(top_composite / 55.0 * 20))
+        
+        # 胜率>60%且收益>2%的策略额外加成
+        if top_wr > 60 and top_ret > 2:
+            strategy_boost += 5
+        
+        # 环境越好，策略加成越高
+        env_multiplier = env_score / 50.0  # env>=50时>1，<50时<1
+        strategy_boost = round(strategy_boost * min(env_multiplier, 1.5))
+        strategy_boost = max(0, min(strategy_boost, 30))
+    else:
+        strategy_boost = 0
+        top = None
+    
+    # --- 4c. 最终仓位 ---
+    final_cap = cap_base + strategy_boost
+    final_cap = max(0, min(final_cap, 85))
+    
+    if final_cap <= 0: 
+        decision = '❌空仓休息'
+        cap_str = '0%'
+    elif final_cap <= 10:
+        decision = '👀观望为主'
+        cap_str = '0~10%'
+    elif final_cap <= 25:
+        decision = '⚠️轻仓参与'
+        cap_str = '10~25%'
+    elif final_cap <= 50:
+        decision = '🟢正常操作'
+        cap_str = '25~50%'
+    elif final_cap <= 70:
+        decision = '✅积极操作'
+        cap_str = '50~70%'
+    else:
+        decision = '🔥重仓出击'
+        cap_str = '70~85%'
+    
+    return {
+        'final_position_pct': final_cap,
+        'position_str': cap_str,
+        'decision': decision,
+        'env_tier': env_tier,
+        'cap_base_pct': cap_base,
+        'strategy_boost_pct': strategy_boost,
+        'env_score': env_score,
+    }
+
+
+# ================================================================
+# 5. 穿透评分运行器
+# ================================================================
+def run_penetration():
+    """运行穿透评分v3"""
+    try:
+        subprocess.run(
+            [sys.executable, os.path.join(BASE, 'scripts', 'penetration_scoring_v1.py'), '--json'],
+            capture_output=True, timeout=30
+        )
+    except:
+        pass
+    path = os.path.join(V2BOARD, 'data', 'contradiction_report.json')
+    if os.path.exists(path):
+        with open(path) as f:
+            return json.load(f)
+    return {}
+
+
+# ================================================================
+# 6. 主流程
+# ================================================================
+def generate_report():
+    """完整执行：穿透评分→龙虎榜特征→策略匹配→决策"""
+    print("🧠 矛盾穿透引擎 v3 — 完全融合版")
+    print("=" * 70)
+    
+    # 1. 加载回测数据库
+    print("\n[1/5] 加载回测数据库...")
+    bt_db = load_strategy_db()
+    rankings = compute_strategy_rankings(bt_db.get('strategies', []))
+    print(f"  ✅ 加载 {len(rankings)} 个策略, 基准: {bt_db['overall']['close_mean']:+.2f}%/{bt_db['overall']['close_win']:.1f}%")
+    print(f"  🥇 TOP3: {rankings[0]['name'][:36]} ({rankings[0]['composite']}分)")
+    print(f"  🥈         {rankings[1]['name'][:36]} ({rankings[1]['composite']}分)")
+    print(f"  🥉         {rankings[2]['name'][:36]} ({rankings[2]['composite']}分)")
+    
+    # 2. 运行穿透评分
+    print("\n[2/5] 运行穿透评分v3...")
+    penetration = run_penetration()
+    env_score = penetration.get('total_score', 0)
+    print(f"  ✅ 穿透总分: {env_score}/100 → {penetration.get('decision', '未知')}")
+    
+    # 3. 提取龙虎榜资金特征
+    print("\n[3/5] 提取龙虎榜资金特征...")
+    lhb_tags = extract_lhb_tags()
+    print(f"  🏷️ 资金标签: {lhb_tags if lhb_tags else '(无标签)'}")
+    
+    # 4. 策略匹配
+    print("\n[4/5] 策略匹配...")
+    matched = match_strategies(rankings, lhb_tags, env_score)
+    top_matched = matched[:5] if matched else []
+    if top_matched:
+        print(f"  🏅 TOP5 匹配策略:")
+        for i, m in enumerate(top_matched):
+            print(f"    {i+1}. {m['name'][:46]:46s} 匹配{m['match_score']:5.1f} | 收益{m['ret']:+.2f}% | 胜率{m['win_rate']:.1f}% | n={m['n']}")
+    else:
+        print(f"  ⚠️ 无匹配策略，使用全量基准")
+    
+    # 5. 决策
+    print("\n[5/5] 生成操作建议...")
+    decision = make_decision(env_score, matched, lhb_tags)
+    
+    print(f"\n{'=' * 70}")
+    print(f"📊 最终决策")
+    print(f"{'=' * 70}")
+    print(f"  环境分数: {env_score}/100  [{decision['env_tier']}]")
+    print(f"  基础仓位: {decision['cap_base_pct']}%")
+    
+    if top_matched:
+        t = top_matched[0]
+        print(f"  🏅 匹配策略: {t['name']}")
+        print(f"  策略综合分: {t['composite']}  ")
+        print(f"  回测表现: +{t['ret']:.2f}% / {t['win_rate']:.1f}%胜率 / {t['n']}笔样本")
+    
+    print(f"  策略加成: +{decision['strategy_boost_pct']}%")
+    print(f"  {'─' * 40}")
+    print(f"  🎯 最终仓位: {decision['position_str']} ({decision['final_position_pct']}%)")
+    print(f"  🚦 操作建议: {decision['decision']}")
+    
+    # 组装结果
+    result = {
+        'engine': 'contradiction-penetration-v3',
+        'timestamp': datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
+        'env_score': env_score,
+        'env_tier': decision['env_tier'],
+        'lhb_tags': list(lhb_tags),
+        'penetration_report': penetration,
+        'strategy_db': {
+            'total_strategies': len(rankings),
+            'top3': [
+                {'name': rankings[0]['name'], 'composite': rankings[0]['composite'],
+                 'ret': rankings[0]['ret'], 'win_rate': rankings[0]['win_rate'], 'n': rankings[0]['n']},
+                {'name': rankings[1]['name'], 'composite': rankings[1]['composite'],
+                 'ret': rankings[1]['ret'], 'win_rate': rankings[1]['win_rate'], 'n': rankings[1]['n']},
+                {'name': rankings[2]['name'], 'composite': rankings[2]['composite'],
+                 'ret': rankings[2]['ret'], 'win_rate': rankings[2]['win_rate'], 'n': rankings[2]['n']},
+            ],
+        },
+        'matched_strategies': top_matched,
+        'decision': decision,
+        'layers': penetration.get('layer_scores', {}),
+        'dimensions': penetration.get('dimensions', {}),
+    }
+    
+    # 保存
+    path = os.path.join(V2BOARD, 'data', 'contradiction_report_v3.json')
+    os.makedirs(os.path.dirname(path), exist_ok=True)
+    with open(path, 'w') as f:
+        json.dump(result, f, ensure_ascii=False, indent=2, default=str)
+    print(f"\n✅ 报告已保存: {path}")
+    
+    return result
+
+
+if __name__ == '__main__':
+    r = generate_report()
+    if r and '--json' in sys.argv:
+        print(json.dumps(r, ensure_ascii=False, indent=2, default=str))

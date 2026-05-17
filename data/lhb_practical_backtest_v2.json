@@ -1,0 +1,107 @@
+{
+  "version": "严格时间线回测 v1.0 (替换旧版)",
+  "time": "2026-05-17 16:45",
+  "total_samples": 1541,
+  "trade_rule": "T-1龙虎榜(type=01)→T开盘买→T+1收盘卖",
+  "sample": "纯主板(6/000/001/002/003,排除300创业板)",
+  "data_quality": {
+    "grade": "A级(样本≥100)",
+    "kline_coverage_pct": 73.3,
+    "bias_note": "主板only, 震荡期占67%样本"
+  },
+  "overall": {
+    "close_mean": 0.04,
+    "close_win": 45.4,
+    "open_mean": 0.1,
+    "open_win": 44.1
+  },
+  "strategies": [
+    {
+      "name": "🛂沪股通买入",
+      "n": 47,
+      "close_ret": 1.18,
+      "close_win": 59.6,
+      "open_ret": 1.86,
+      "open_win": 61.7,
+      "big_win_pct": 29.8,
+      "big_loss_pct": 17.0,
+      "desc": "龙虎榜type=01有沪股通资金的票"
+    },
+    {
+      "name": "📊type=01全量(严格时间线)",
+      "n": 1541,
+      "close_ret": 0.04,
+      "close_win": 45.4,
+      "open_ret": 0.1,
+      "open_win": 44.1,
+      "big_win_pct": 23.0,
+      "big_loss_pct": 25.2
+    },
+    {
+      "name": "无特殊资金标签",
+      "n": 1374,
+      "close_ret": 0.03,
+      "close_win": 45.1,
+      "open_ret": 0.09,
+      "open_win": 43.8,
+      "big_win_pct": 23.1,
+      "big_loss_pct": 25.8,
+      "desc": "龙虎榜type=01无特殊资金标签的票"
+    },
+    {
+      "name": "😰亏钱席位买入",
+      "n": 33,
+      "close_ret": 0.79,
+      "close_win": 48.5,
+      "open_ret": -0.84,
+      "open_win": 36.4,
+      "big_win_pct": 30.3,
+      "big_loss_pct": 24.2
+    },
+    {
+      "name": "😎赚钱席位买入",
+      "n": 70,
+      "close_ret": -0.38,
+      "close_win": 42.9,
+      "open_ret": 0.61,
+      "open_win": 42.9,
+      "big_win_pct": 18.6,
+      "big_loss_pct": 18.6
+    },
+    {
+      "name": "🏛️机构买入",
+      "n": 46,
+      "close_ret": -0.32,
+      "close_win": 39.1,
+      "open_ret": -1.02,
+      "open_win": 41.3,
+      "big_win_pct": 17.4,
+      "big_loss_pct": 21.7,
+      "desc": "龙虎榜type=01有机构资金的票"
+    },
+    {
+      "name": "标签组合:机构,深股通",
+      "n": 32,
+      "close_ret": -0.22,
+      "close_win": 50.0,
+      "open_ret": -0.17,
+      "open_win": 40.6,
+      "big_win_pct": 15.6,
+      "big_loss_pct": 25.0,
+      "desc": "龙虎榜type=01有机构,深股通资金的票"
+    },
+    {
+      "name": "🔵深股通买入",
+      "n": 34,
+      "close_ret": -0.26,
+      "close_win": 41.2,
+      "open_ret": -0.79,
+      "open_win": 38.2,
+      "big_win_pct": 26.5,
+      "big_loss_pct": 20.6,
+      "desc": "龙虎榜type=01有深股通资金的票"
+    }
+  ],
+  "generated_by": "generate_v2_strategies.py",
+  "generated_at": "2026-05-17 16:51:54"
+}

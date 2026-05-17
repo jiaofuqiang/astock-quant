@@ -1,0 +1,79 @@
+{
+  "version": "v1.0",
+  "timestamp": "2026-05-17 09:36:18",
+  "macro": {
+    "score": 39.6,
+    "seg": "30_40",
+    "total_cap": 15,
+    "tag": "🔴 极轻仓"
+  },
+  "summary": {
+    "total_stocks": 0,
+    "actionable": 0,
+    "heavy_count": 0,
+    "light_count": 0,
+    "total_exposure": 0,
+    "max_single": 0,
+    "max_cap": 15,
+    "scaled": false
+  },
+  "stocks": [],
+  "stop_table": {
+    "S": "-3%",
+    "A": "-3%",
+    "B": "-2.5%",
+    "C": "-2%"
+  },
+  "tier_table": {
+    "S": {
+      "pos": 25,
+      "wr": 100.0,
+      "count": 3
+    },
+    "A": {
+      "pos": 12,
+      "wr": 58.9,
+      "count": 56
+    },
+    "B": {
+      "pos": 6,
+      "wr": 59.1,
+      "count": 132
+    },
+    "C": {
+      "pos": 4,
+      "wr": 50.0,
+      "count": 10
+    }
+  },
+  "macro_table": {
+    "80_100": {
+      "pos": 80,
+      "tag": "🟢 重仓"
+    },
+    "70_80": {
+      "pos": 60,
+      "tag": "🔵 中仓"
+    },
+    "60_70": {
+      "pos": 40,
+      "tag": "🟡 轻仓"
+    },
+    "50_60": {
+      "pos": 20,
+      "tag": "🟠 极轻仓"
+    },
+    "40_50": {
+      "pos": 20,
+      "tag": "🟠 极轻仓"
+    },
+    "30_40": {
+      "pos": 15,
+      "tag": "🔴 极轻仓"
+    },
+    "0_30": {
+      "pos": 10,
+      "tag": "🔴 空仓"
+    }
+  }
+}

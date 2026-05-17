@@ -1,0 +1,511 @@
+#!/usr/bin/env python3
+"""
+矛盾量化打板引擎 v2 — 完整版
+===============================
+功能：
+1. 宏观矛盾量化（市场状态→仓位上限）
+2. 板块矛盾量化（主线识别）
+3. 批量个股矛盾量化（今日涨停股扫描）
+4. 分时层（竞价+封单数据）
+5. 穿透式综合评分 → TOP打板候选
+6. 决策报告推送
+
+数据源：
+- market_daily.db (macroscopic)
+- sector_index_data.json (sector strength)
+- kline_cache.db (stock technical)
+- auction_bidding.json (竞价格) 
+- watch_dashboard.json (封单/连板)
+- Tencent实时行情 (price/volume)
+"""
+
+import sqlite3, os, json, sys, subprocess
+from datetime import datetime, date
+from collections import defaultdict, Counter
+
+# ========== 路径 ==========
+BASE = os.path.expanduser('~/astock')
+V2BOARD = os.path.expanduser('~/V2board')
+DATA = os.path.join(BASE, 'data')
+
+QUANT_KW = ['东方财富','中国国际金融','中信证券股份有限公司总部','瑞银证券','摩根大通','高盛','华泰证券股份有限公司总部']
+YOUZI_KW = ['东方财富','华泰证券','中信证券','国泰君安','招商证券','银河证券','广发证券','国泰海通','中金财富','财通证券','平安证券']
+LASA_KW = ['拉萨','东环路','团结路','金融城南环路','香曲东路','昌都','江苏大道']
+
+FAMOUS_MAP = {
+    '国泰海通证券股份有限公司武汉紫阳东路证券营业部': ('武汉紫阳', 'S'),
+    '国泰海通证券股份有限公司成都北一环路证券营业部': ('成都北一环', 'S'),
+    '中信证券股份有限公司上海分公司': ('中信上海', 'A'),
+    '国泰海通证券股份有限公司总部': ('国泰海通总部', 'A'),
+    '华泰证券股份有限公司总部': ('华泰总部', 'A'),
+    '华鑫证券有限责任公司上海宛平南路证券营业部': ('炒股养家', 'B'),
+    '华鑫证券有限责任公司上海分公司': ('养家分仓', 'B'),
+    '国泰海通证券股份有限公司南京太平南路证券营业部': ('南京太平南', 'B'),
+    '国泰海通证券股份有限公司上海长宁区江苏路证券营业部': ('章盟主', 'B'),
+    '中国银河证券股份有限公司绍兴证券营业部': ('绍兴', 'B'),
+    '开源证券股份有限公司西安太华路证券营业部': ('开源太华路', 'B'),
+    '开源证券股份有限公司西安西大街证券营业部': ('开源西大街', 'B'),
+    '中泰证券股份有限公司常州惠国路证券营业部': ('中泰常州', 'B'),
+    '平安证券股份有限公司杭州曙光路证券营业部': ('平安曙光路', 'C'),
+}
+
+def db_connect(path):
+    if not os.path.exists(path): return None
+    try: return sqlite3.connect(f'file:{path}?mode=ro', uri=True, timeout=3)
+    except: return None
+
+def classify(dealer):
+    if '机构专用' in dealer: return '机构'
+    if '股通' in dealer: return '北上'
+    for q in QUANT_KW:
+        if q in dealer: return '量化'
+    for l in LASA_KW:
+        if l in dealer: return '散户'
+    for y in YOUZI_KW:
+        if y in dealer: return '游资'
+    return '其他'
+
+def get_tencent_quote(codes):
+    if isinstance(codes, list): codes = ','.join(codes)
+    try:
+        proc = subprocess.Popen(['curl','-s','--connect-timeout','5','--max-time','8',
+            f'https://qt.gtimg.cn/q={codes}'],
+            stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        out, _ = proc.communicate(timeout=12)
+        if proc.returncode != 0 or not out: return {}
+        txt = out.decode('gbk')
+        import re
+        results = {}
+        for line in txt.strip().split('\n'):
+            m = re.search(r'"(.+)"', line)
+            if not m: continue
+            parts = m.group(1).split('~')
+            if len(parts) < 48: continue
+            code = parts[2]
+            def sf(i):
+                try: return float(parts[i]) if parts[i] and parts[i] != '-' else None
+                except: return None
+            results[code] = {
+                'name': parts[1], 'price': sf(3), 'chg': sf(32),
+                'volume': sf(6), 'amount_wan': sf(37),
+                'turnover': sf(38), 'pe': sf(39), 'amplitude': sf(43),
+                'market_cap': sf(44), 'high': sf(33), 'low': sf(34),
+                'open': sf(5), 'yclose': sf(4),
+                'buy_vol': sf(7), 'sell_vol': sf(8),
+                'pb_ratio': sf(63), 'ps_ratio': sf(64),
+                'pe_pct': sf(74),
+            }
+        return results
+    except: return {}
+
+
+# ================================================================
+# 1. 宏观层
+# ================================================================
+def macro_analysis():
+    scores = {}; details = []
+    
+    conn = db_connect(os.path.join(DATA, 'market_daily.db'))
+    md = None
+    if conn:
+        conn.row_factory = sqlite3.Row
+        try:
+            md = conn.execute("SELECT * FROM day_full ORDER BY date DESC LIMIT 1").fetchone()
+            if md: md = dict(md)
+        except: pass
+        conn.close()
+    
+    conn2 = db_connect(os.path.join(DATA, 'time_slice_history.db'))
+    dim = None
+    if conn2:
+        conn2.row_factory = sqlite3.Row
+        try:
+            dim = conn2.execute("SELECT * FROM dim_cluster ORDER BY slice_id DESC LIMIT 1").fetchone()
+            if dim: dim = dict(dim)
+        except: pass
+        conn2.close()
+    
+    if not md:
+        return {'score': 0, 'state': '未知', 'max_position': 0, 'details': ['无数据'], 'data_date': ''}
+    
+    zh = md.get('zh_ratio', 50) or 50
+    if zh >= 70:
+        scores['涨跌比'] = 80; details.append(f'涨跌比{zh:.0f}%→多头强(+80)')
+    elif zh >= 50:
+        scores['涨跌比'] = 40; details.append(f'涨跌比{zh:.0f}%→多头(+40)')
+    elif zh >= 30:
+        scores['涨跌比'] = 0; details.append(f'涨跌比{zh:.0f}%→平衡(0)')
+    else:
+        scores['涨跌比'] = -60; details.append(f'涨跌比{zh:.0f}%→空头(-60)')
+    
+    lu = md.get('limit_up', 0) or 0
+    ld = md.get('limit_down', 0) or 0
+    net = lu - ld
+    if lu >= 80 and net >= 50:
+        scores['涨停强度'] = 100; details.append(f'涨停{lu}>>跌停{ld}→高潮(+100)')
+    elif lu >= 40 and net >= 20:
+        scores['涨停强度'] = 60; details.append(f'涨停{lu}>跌停{ld}→活跃(+60)')
+    elif lu >= 15 and net >= 0:
+        scores['涨停强度'] = 20; details.append(f'涨停{lu}≈跌停{ld}→一般(+20)')
+    elif net < 0:
+        scores['涨停强度'] = -50; details.append(f'涨停{lu}<跌停{ld}→亏钱(-50)')
+    else:
+        scores['涨停强度'] = -80; details.append(f'涨停{lu}<<跌停{ld}→恐慌(-80)')
+    
+    max_b = md.get('max_board', 0) or 0
+    if max_b >= 7: scores['连板高度'] = 80; details.append(f'最高{max_b}板→空间打开(+80)')
+    elif max_b >= 5: scores['连板高度'] = 60; details.append(f'最高{max_b}板→有空间(+60)')
+    elif max_b >= 3: scores['连板高度'] = 30; details.append(f'最高{max_b}板→一般(+30)')
+    elif max_b >= 1: scores['连板高度'] = 0; details.append(f'最高{max_b}板→低位(0)')
+    else: scores['连板高度'] = -40; details.append(f'无连板→冰点(-40)')
+    
+    zr = md.get('zhaban_rate', 30) or 30
+    if zr < 20: scores['炸板率'] = 60; details.append(f'炸板率{zr:.0f}%→封板好(+60)')
+    elif zr < 30: scores['炸板率'] = 30; details.append(f'炸板率{zr:.0f}%→正常(+30)')
+    elif zr < 40: scores['炸板率'] = -10; details.append(f'炸板率{zr:.0f}%→偏高(-10)')
+    else: scores['炸板率'] = -50; details.append(f'炸板率{zr:.0f}%→很差(-50)')
+    
+    pa = md.get('pretoday_avg_change', 0) or 0
+    if pa > 3: scores['隔日溢价'] = 80; details.append(f'昨涨停今均{pa:+.1f}%→高溢价(+80)')
+    elif pa > 1: scores['隔日溢价'] = 40; details.append(f'昨涨停今均{pa:+.1f}%→有溢价(+40)')
+    elif pa > -1: scores['隔日溢价'] = 0; details.append(f'昨涨停今均{pa:+.1f}%→无溢价(0)')
+    else: scores['隔日溢价'] = -50; details.append(f'昨涨停今均{pa:+.1f}%→亏钱(-50)')
+    
+    l1 = dim.get('l1_热度', '') if dim else ''
+    if '狂热' in l1: scores['市场情绪'] = 100; details.append(f'L1狂热→高潮(+100)')
+    elif '活跃' in l1: scores['市场情绪'] = 60; details.append(f'L1活跃→健康(+60)')
+    elif '平淡' in l1 or '平衡' in l1: scores['市场情绪'] = 0; details.append(f'L1平淡→观望(0)')
+    elif '冰点' in l1 or '恐慌' in l1: scores['市场情绪'] = -60; details.append(f'L1冰点→恐慌(-60)')
+    else: scores['市场情绪'] = 0
+    
+    raw = sum(scores.values()) / max(len(scores), 1)
+    if abs(raw) < 20: raw = raw * 0.5
+    elif abs(raw) > 70: raw = raw * 1.2
+    score = max(-100, min(100, round(raw)))
+    
+    if score >= 40: state, max_pos = '多头', 100
+    elif score >= 0: state, max_pos = '平衡偏多', 50
+    elif score >= -30: state, max_pos = '平衡偏空', 25
+    else: state, max_pos = '空头', 0
+    
+    return {'score': score, 'state': state, 'max_position': max_pos,
+            'dimensions': scores, 'details': details, 'data_date': md.get('date', '')}
+
+
+# ================================================================
+# 2. 板块层
+# ================================================================
+def sector_analysis():
+    sector_path = os.path.join(V2BOARD, 'sector_index_data.json')
+    if not os.path.exists(sector_path):
+        sector_path = os.path.join(BASE, 'sector_index_data.json')
+    
+    sectors = []
+    if os.path.exists(sector_path):
+        with open(sector_path) as f:
+            si = json.load(f)
+        sd = si.get('sectors', si.get('data', []))
+        if not sd:
+            sd = si.get('hot_sectors', []) + si.get('other_sectors', [])
+        for s in sd:
+            name = s.get('name', s.get('sector_name', ''))
+            if not name: continue
+            chg = float(s.get('avg_change', s.get('chg_pct', 0)) or 0)
+            lc = int(s.get('limit_up', s.get('limit_count', 0)) or 0)
+            tc = float(s.get('max_change', s.get('ldr_chg', 0)) or 0)
+            
+            p = 0; dets = []
+            if chg >= 5: p += 40; dets.append(f'涨幅{chg:+.1f}%→爆发(+40)')
+            elif chg >= 3: p += 25; dets.append(f'涨幅{chg:+.1f}%→强势(+25)')
+            elif chg >= 1: p += 10
+            elif chg >= 0: pass
+            else: p -= 20; dets.append(f'涨幅{chg:+.1f}%→弱势(-20)')
+            
+            if lc >= 10: p += 40; dets.append(f'涨停{lc}家→板块爆发(+40)')
+            elif lc >= 5: p += 25; dets.append(f'涨停{lc}家→板块效应(+25)')
+            elif lc >= 2: p += 10; dets.append(f'涨停{lc}家→有联动(+10)')
+            elif lc >= 1: p += 5
+            
+            if tc >= 30: p += 20; dets.append(f'龙头涨幅{tc:.0f}%→空间(+20)')
+            elif tc >= 15: p += 10
+            
+            p = max(-100, min(100, p))
+            sectors.append({'name': name, 'score': p, 'chg': chg,
+                           'limit_count': lc, 'top_chg': tc, 'details': ' | '.join(dets)})
+    
+    sectors.sort(key=lambda x: -x['score'])
+    top = sectors[:5]
+    main_line, has_main = '', False
+    for s in top:
+        if s['limit_count'] >= 5 and s['chg'] >= 3:
+            main_line, has_main = s['name'], True; break
+    if not has_main and top:
+        for s in top:
+            if s['limit_count'] >= 3:
+                main_line, has_main = s['name'], True; break
+    
+    return {'top_sectors': top, 'has_main_line': has_main,
+            'main_line_name': main_line, 'total_sectors': len(sectors)}
+
+
+# ================================================================
+# 3. 个股层 + 分时层
+# ================================================================
+def stock_analysis(code, name=''):
+    """全量个股分析：K线特征 + 实时行情特征 + 分时信号"""
+    conn = db_connect(os.path.join(DATA, 'kline_cache.db'))
+    if not conn: return {'code': code, 'score': 0, 'error': '无K线'}
+    conn.row_factory = sqlite3.Row
+    rows = conn.execute(
+        "SELECT date,open,close,high,low,volume FROM kline WHERE code=? ORDER BY date", (code,)
+    ).fetchall()
+    conn.close()
+    
+    if len(rows) < 5:
+        return {'code': code, 'name': name, 'score': 0, 'error': 'K线不足'}
+    
+    k_t = rows[-1]; k_t1 = rows[-2]; k_t2 = rows[-3]
+    cp = k_t['close']; op_t = k_t['open']
+    
+    # 维度1: T-1涨跌幅
+    pre_close_t1 = rows[-3]['close'] if len(rows) >= 3 else k_t1['close']
+    chg_t1 = (k_t1['close'] - pre_close_t1) / max(pre_close_t1, 0.01) * 100
+    if chg_t1 < -3: s1 = 50
+    elif chg_t1 < 0: s1 = 20
+    elif chg_t1 < 3: s1 = 0
+    else: s1 = -10
+    
+    # 维度2: 离MA5
+    ma5 = sum(rows[i]['close'] for i in range(-6, -1)) / 5
+    dist_ma5 = (k_t1['close'] - ma5) / max(ma5, 0.01) * 100
+    if -5 <= dist_ma5 <= -2: s2 = 50
+    elif -2 <= dist_ma5 <= 0: s2 = 25
+    elif 0 <= dist_ma5 <= 3: s2 = 10
+    elif dist_ma5 < -5: s2 = 20
+    else: s2 = -15
+    
+    # 维度3: 量比
+    vol_t1 = k_t1['volume'] or 1; vol_t2 = k_t2['volume'] or 1
+    vr = vol_t1 / max(vol_t2, 1)
+    if 0.8 <= vr <= 1.2: s3 = 30
+    elif 0.5 <= vr <= 0.8: s3 = 15
+    elif 1.2 <= vr <= 2: s3 = 10
+    elif vr > 2: s3 = -20
+    else: s3 = -10
+    
+    # 维度4: T-5累计
+    if len(rows) >= 6:
+        chg_t5 = (k_t1['close'] - rows[-6]['close']) / max(rows[-6]['close'], 0.01) * 100
+        if -3 <= chg_t5 <= 3: s4 = 40
+        elif -10 <= chg_t5 < -3: s4 = 25
+        elif 3 < chg_t5 <= 10: s4 = 10
+        elif chg_t5 > 10: s4 = -20
+        else: s4 = -30
+    else: s4 = 0
+    
+    # 维度5: 趋势（T-3涨跌天数）
+    up3 = sum(1 for i in range(-4, -1) if rows[i]['close'] > rows[i-1]['close'])
+    dn3 = sum(1 for i in range(-4, -1) if rows[i]['close'] < rows[i-1]['close'])
+    if up3 == 3: s5 = -15
+    elif up3 >= 2 and dn3 <= 1: s5 = 5
+    elif up3 == 1 and dn3 == 2: s5 = 20
+    elif dn3 >= 2: s5 = 30
+    else: s5 = 0
+    
+    raw = s1 + s2 + s3 + s4 + s5
+    score = max(-100, min(100, raw))
+    
+    if score >= 40: aspect = '多头'
+    elif score >= 0: aspect = '平衡偏多'
+    elif score >= -30: aspect = '平衡偏空'
+    else: aspect = '空头'
+    
+    signals = []
+    if s1 >= 30: signals.append('🔴超跌质变')
+    if s2 >= 25: signals.append('📏近MA5')
+    if s3 >= 20: signals.append('📊放量温和')
+    if s4 >= 30: signals.append('⚡横盘起爆')
+    if s5 >= 20: signals.append('🔄充分调整')
+    
+    return {
+        'code': code, 'name': name, 'score': score, 'main_aspect': aspect,
+        'signals': signals,
+        'dim_scores': {'chg_t1': s1, 'ma5': s2, 'vol': s3, 't5': s4, 'trend': s5},
+        'dim_values': {'chg_t1': round(chg_t1,2), 'dist_ma5': round(dist_ma5,2),
+                       'vol_ratio': round(vr,2), 'up3': up3, 'dn3': dn3},
+        'price': cp, 'open_pct': round((op_t-k_t1['close'])/max(k_t1['close'],0.01)*100, 2),
+    }
+
+
+def fetch_limit_stocks():
+    """从市场daily数据获取今日涨停信息"""
+    stocks = []
+    
+    # 方法1: 从market_daily的limit_detail_json获取
+    conn = db_connect(os.path.join(DATA, 'market_daily.db'))
+    if conn:
+        conn.row_factory = sqlite3.Row
+        row = conn.execute("SELECT * FROM day_full ORDER BY date DESC LIMIT 1").fetchone()
+        if row:
+            detail = row['limit_detail_json'] if row and 'limit_detail_json' in row.keys() else '[]'
+            if isinstance(detail, str):
+                try: detail = json.loads(detail)
+                except: detail = []
+            for s in detail:
+                code = s.get('c', '')
+                name = s.get('n', '')
+                if code and (code.startswith('60') or code.startswith('00')):
+                    if 'ST' not in name:
+                        bc = s.get('bc', 1) or 1
+                        stocks.append({'code': code, 'name': name, 'board_count': bc})
+        conn.close()
+    
+    # 方法2: 从daily_limit_data.db（历史数据，可能滞后）
+    if not stocks:
+        conn = db_connect(os.path.join(DATA, 'daily_limit_data.db'))
+        if conn:
+            conn.row_factory = sqlite3.Row
+            latest = conn.execute("SELECT MAX(date) FROM limit_stocks").fetchone()
+            if latest and latest[0]:
+                rows = conn.execute("""
+                    SELECT date,code,name,board_count FROM limit_stocks 
+                    WHERE date=? AND board_count=1
+                    AND code NOT LIKE '300%' AND code NOT LIKE '688%'
+                    AND name NOT LIKE '%ST%'
+                """, (latest[0],)).fetchall()
+                for r in rows:
+                    stocks.append({'code': r['code'], 'name': r['name'], 'board_count': 1})
+            conn.close()
+    
+    # 方法3: 从watch_dashboard.json的涨停列表
+    if not stocks:
+        wp = os.path.join(V2BOARD, 'watch_dashboard.json')
+        if os.path.exists(wp):
+            try:
+                with open(wp) as f: wd = json.load(f)
+                for s in wd.get('ladder_stocks', []):
+                    code = s.get('code', '')
+                    if code and (code.startswith('60') or code.startswith('00')):
+                        stocks.append({'code': code, 'name': s.get('name', ''), 'board_count': s.get('board', 1)})
+            except: pass
+    
+    return stocks
+
+
+# ================================================================
+# 4. 主决策
+# ================================================================
+def full_scan():
+    """完整运行：宏观+板块+批量涨停扫描"""
+    macro = macro_analysis()
+    sectors = sector_analysis()
+    
+    # 获取今日涨停股
+    limit_stocks = fetch_limit_stocks()
+    
+    # 去重+只保留首板（或连板但可以买到的）
+    seen = set()
+    unique_stocks = []
+    for s in limit_stocks:
+        c = s['code']
+        code_raw = str(int(c)) if c.replace('.','',1).isdigit() and len(str(int(c))) == 9 else c
+        # 统一code格式
+        if c not in seen:
+            seen.add(c)
+            unique_stocks.append(s)
+    
+    # 个股矛盾分析
+    scored_stocks = []
+    for s in unique_stocks:
+        code = s['code']
+        # code可能是676622930这种数字格式，转回正确格式
+        code_str = str(code)
+        if len(code_str) == 9 and code_str.startswith('676'):
+            # 错误的数字格式，跳过
+            continue
+        if len(code_str) == 6:
+            pass
+        st = stock_analysis(code, s.get('name', ''))
+        if st.get('error'): continue
+        
+        total = macro['score'] * 0.60 + sectors['top_sectors'][0]['score'] * 0.25 + st['score'] * 0.10 if sectors['top_sectors'] else macro['score'] * 0.70 + st['score'] * 0.15
+        resonance = 0
+        if macro['score'] > 30 and sectors.get('top_sectors') and sectors['top_sectors'][0]['score'] > 30 and st['score'] > 0:
+            resonance = 10
+        elif macro['score'] > 0 and sectors.get('top_sectors') and sectors['top_sectors'][0]['score'] > 0 and st['score'] < -20:
+            resonance = -15
+        total += resonance
+        total = max(-100, min(100, round(total,1)))
+        
+        if total >= 50:
+            decision, pos = '✅打板', 50
+        elif total >= 30:
+            decision, pos = '⚠️轻仓', 25
+        elif total >= 0:
+            decision, pos = '👀观察', 0
+        else:
+            decision, pos = '❌放弃', 0
+        
+        scored_stocks.append({
+            'code': code, 'name': st['name'],
+            'total_score': total, 'stock_score': st['score'],
+            'decision': decision, 'position': pos,
+            'signals': st['signals'],
+            'dim_scores': st['dim_scores'],
+            'dim_values': st['dim_values'],
+        })
+    
+    scored_stocks.sort(key=lambda x: -x['total_score'])
+    
+    return {
+        'engine': 'contradiction-v2',
+        'timestamp': datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
+        'macro': macro,
+        'sectors': sectors,
+        'candidates': scored_stocks[:20],
+        'total_scanned': len(limit_stocks),
+        'total_scored': len(scored_stocks),
+    }
+
+
+# ================================================================
+# 5. 输出
+# ================================================================
+def generate_report():
+    result = full_scan()
+    
+    # 保存到V2board
+    path = os.path.join(V2BOARD, 'data', 'contradiction_report.json')
+    os.makedirs(os.path.dirname(path), exist_ok=True)
+    with open(path, 'w') as f:
+        json.dump(result, f, ensure_ascii=False, indent=2, default=str)
+    
+    return result
+
+
+if __name__ == '__main__':
+    r = generate_report()
+    
+    if '--json' in sys.argv:
+        print(json.dumps(r, ensure_ascii=False, indent=2, default=str))
+    else:
+        print("=" * 70)
+        print("🧠 矛盾量化打板引擎 v2")
+        print("=" * 70)
+        m = r['macro']
+        print(f"\n🌍 宏观层: {m['score']:+d} [{m['state']}] 仓位≤{m['max_position']}%")
+        for d in m['details'][:4]: print(f"   {d}")
+        
+        s = r['sectors']
+        print(f"\n🏭 板块层: 主线={s['main_line_name'] or '无'}  TOP3:", s['top_sectors'][0]['name'] if s['top_sectors'] else '—')
+        for sec in s['top_sectors'][:3]:
+            print(f"   {sec['name']}: {sec['score']:+d} (涨停{sec['limit_count']}家, {sec['chg']:+.1f}%)")
+        
+        print(f"\n📈 打板候选 ({len(r['candidates'])}/{r['total_scanned']}只):")
+        print(f"   {'代码':8s} {'名称':8s} {'总分':>5s} {'个股分':>5s} {'决策':10s} {'信号':20s}")
+        print(f"   {'─'*56}")
+        for c in r['candidates'][:10]:
+            sig = ' '.join(c['signals'][:2]) if c['signals'] else '—'
+            print(f"   {c['code']:8s} {c['name']:8s} {c['total_score']:4.0f} {c['stock_score']:4.0f} {c['decision']:8s} {sig}")
+        
+        print(f"\n✅ 报告已保存: {V2BOARD}/data/contradiction_report.json")

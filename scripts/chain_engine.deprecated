@@ -1,0 +1,410 @@
+#!/usr/bin/env python3
+"""
+🏭 四级产业链知识图谱 V1
+======================
+核心功能：
+1. 全量主板股票→产业链节点归类（基于stock_profiles.db的1,792概念）
+2. 四级拆解：主赛道→一级→二级→三级
+3. 传导系数矩阵（初始化）
+4. 每日自动更新
+
+运行：python3 scripts/chain_engine.py
+"""
+import os, sys, sqlite3, json, subprocess, time
+from datetime import datetime
+from collections import defaultdict
+
+PROJECT_DIR = "/home/ubuntu/astock"
+DATA_DIR = f"{PROJECT_DIR}/data"
+PROFILE_DB = f"{DATA_DIR}/stock_profiles.db"
+FACTOR_DB = f"{DATA_DIR}/factor_v6.db"
+CHAIN_DB = f"{DATA_DIR}/chain_engine.db"
+os.chdir(PROJECT_DIR)
+
+def log(msg):
+    ts = datetime.now().strftime('%H:%M:%S')
+    print(f'[{ts}] {msg}')
+
+# ===========================================================
+# 四级产业链知识图谱
+# ===========================================================
+
+# 主赛道 → 一级 → 二级 → 三级的完整拆解
+# 每级标注：可投资主板标的（空表示待发现）
+
+CHAIN_KNOWLEDGE_GRAPH = {
+    "AI与数字经济": {
+        "level": "S级主赛道",
+        "chains": {
+            "AI算力": {
+                "level": "一级",
+                "chains": {
+                    "AI芯片": {
+                        "level": "二级",
+                        "keywords": ["AI芯片", "AI算力", "算力芯片", "GPU", "NPU", "AI加速", "智能芯片", "算力基础"],
+                        "stocks": {}  # 自动归类填充
+                    },
+                    "光模块与光通信": {
+                        "level": "二级", 
+                        "keywords": ["光模块", "光通信", "光器件", "光芯片", "光缆", "光纤", "光传输", "光互联"],
+                        "stocks": {}
+                    },
+                    "服务器与交换机": {
+                        "level": "二级",
+                        "keywords": ["服务器", "交换机", "数据中心", "IDC", "算力租赁", "算力概念"],
+                        "stocks": {}
+                    },
+                    "液冷与散热": {
+                        "level": "三级",
+                        "keywords": ["液冷", "散热", "温控", "冷却"],
+                        "stocks": {}
+                    },
+                }
+            },
+            "半导体": {
+                "level": "一级",
+                "chains": {
+                    "芯片设计": {
+                        "level": "二级",
+                        "keywords": ["芯片设计", "IC设计", "EDA", "IP", "SOC", "MCU", "DSP", "FPGA"],
+                        "stocks": {}
+                    },
+                    "晶圆制造": {
+                        "level": "二级",
+                        "keywords": ["晶圆", "制造", "代工", "foundry", "制程"],
+                        "stocks": {}
+                    },
+                    "封装测试": {
+                        "level": "二级",
+                        "keywords": ["封测", "封装", "测试", "先进封装", "Chiplet", "SIP"],
+                        "stocks": {}
+                    },
+                    "半导体设备": {
+                        "level": "二级",
+                        "keywords": ["半导体设备", "光刻机", "刻蚀", "沉积", "检测", "薄膜", "清洗"],
+                        "stocks": {}
+                    },
+                    "半导体材料": {
+                        "level": "二级",
+                        "keywords": ["半导体材料", "硅片", "光刻胶", "靶材", "特种气体", "化学品"],
+                        "stocks": {}
+                    },
+                    "存储芯片": {
+                        "level": "二级",
+                        "keywords": ["存储", "存储芯片", "HBM", "DRAM", "NAND", "NOR Flash", "内存", "闪存"],
+                        "stocks": {}
+                    },
+                }
+            },
+        }
+    },
+    "新能源与汽车": {
+        "level": "A级主赛道",
+        "chains": {
+            "锂电池": {
+                "level": "一级",
+                "chains": {
+                    "电池材料": {
+                        "level": "二级",
+                        "keywords": ["锂", "钴", "镍", "正极", "负极", "电解液", "隔膜", "锂电材料"],
+                        "stocks": {}
+                    },
+                    "电池制造": {
+                        "level": "二级",
+                        "keywords": ["电池", "动力电池", "储能电池", "固态电池", "钠离子", "磷酸铁锂"],
+                        "stocks": {}
+                    },
+                }
+            },
+            "智能汽车": {
+                "level": "一级",
+                "chains": {
+                    "智能驾驶": {
+                        "level": "二级",
+                        "keywords": ["智能驾驶", "自动驾驶", "无人驾驶", "ADAS", "激光雷达", "毫米波", "域控"],
+                        "stocks": {}
+                    },
+                    "汽车电子": {
+                        "level": "二级",
+                        "keywords": ["汽车电子", "车联网", "车载", "Tier1", "智能座舱", "车规"],
+                        "stocks": {}
+                    },
+                }
+            },
+        }
+    },
+    "高端制造": {
+        "level": "A级主赛道",
+        "chains": {
+            "机器人": {
+                "level": "一级",
+                "chains": {
+                    "人形机器人": {
+                        "level": "二级",
+                        "keywords": ["人形机器人", "机器人", "减速器", "伺服", "电机", "执行器", "灵巧手"],
+                        "stocks": {}
+                    },
+                    "工业机器人": {
+                        "level": "二级",
+                        "keywords": ["工业机器人", "自动化", "产线", "机器视觉", "数控"],
+                        "stocks": {}
+                    },
+                }
+            },
+            "低空经济": {
+                "level": "一级",
+                "chains": {
+                    "eVTOL": {
+                        "level": "二级",
+                        "keywords": ["eVTOL", "飞行汽车", "低空", "无人机", "空天", "航空装备"],
+                        "stocks": {}
+                    },
+                }
+            },
+            "军工": {
+                "level": "一级",
+                "chains": {
+                    "军工电子": {
+                        "level": "二级",
+                        "keywords": ["军工", "国防", "航天", "航空", "雷达", "军事", "电子对抗"],
+                        "stocks": {}
+                    },
+                }
+            },
+        }
+    },
+    "消费电子": {
+        "level": "A级主赛道",
+        "chains": {
+            "AI终端": {
+                "level": "一级",
+                "chains": {
+                    "AI手机PC": {
+                        "level": "二级",
+                        "keywords": ["AI手机", "AI PC", "边缘AI", "消费电子", "手机", "PC", "穿戴", "VR", "AR"],
+                        "stocks": {}
+                    },
+                }
+            },
+        }
+    },
+    "传统周期": {
+        "level": "B级主赛道",
+        "chains": {
+            "化工": {"level": "一级", "chains": {"基础化工": {"level": "二级", "keywords": ["化工", "化学", "塑料", "橡胶", "化纤", "农药", "化肥"], "stocks": {}}}},
+            "有色": {"level": "一级", "chains": {"有色金属": {"level": "二级", "keywords": ["有色", "稀土", "黄金", "铜", "铝", "锌", "锂", "钴"], "stocks": {}}}},
+        }
+    },
+}
+
+
+class ChainEngine:
+    """产业链知识图谱引擎"""
+    
+    def __init__(self):
+        self.concept_data = {}  # code -> [concept_names]
+        self._load_concepts()
+    
+    def _load_concepts(self):
+        """加载概念数据"""
+        try:
+            r = subprocess.run(
+                ['sqlite3', '-noheader', '-separator', '|', PROFILE_DB,
+                 'SELECT code, concept_name FROM concepts ORDER BY code'],
+                capture_output=True, timeout=30, text=True
+            )
+            if r.returncode != 0: return
+            
+            for line in r.stdout.strip().split('\n'):
+                if '|' not in line: continue
+                parts = line.split('|')
+                code, cname = parts[0], parts[1]
+                if code not in self.concept_data:
+                    self.concept_data[code] = []
+                self.concept_data[code].append(cname)
+        except Exception as e:
+            log(f"⚠️ 概念加载失败: {e}")
+    
+    def classify_stock(self, code):
+        """对单只股票做四级产业链归类"""
+        concepts = self.concept_data.get(code, [])
+        if not concepts:
+            return {"level1": "其他", "path": [], "tags": [], "concept_count": 0}
+        
+        cl_text = " ".join(concepts).lower()
+        matches = []
+        
+        # 遍历知识图谱
+        for main_track, track_data in CHAIN_KNOWLEDGE_GRAPH.items():
+            for l1_name, l1_data in track_data.get("chains", {}).items():
+                for l2_name, l2_data in l1_data.get("chains", {}).items():
+                    keywords = l2_data.get("keywords", [])
+                    for kw in keywords:
+                        if kw.lower() in cl_text:
+                            matches.append((main_track, l1_name, l2_name, kw))
+        
+        # 取匹配最多的路径
+        if matches:
+            path_count = defaultdict(int)
+            for m in matches:
+                path_count[(m[0], m[1], m[2])] += 1
+            best_path = max(path_count, key=path_count.get)
+            
+            return {
+                "level1": best_path[0],
+                "level2": best_path[1],
+                "level3": best_path[2],
+                "path": [best_path[0], best_path[1], best_path[2]],
+                "tags": [m[3] for m in matches[:5]],
+                "concept_count": len(concepts),
+                "match_score": path_count[best_path],
+            }
+        
+        return {"level1": "其他", "path": [], "tags": [], "concept_count": len(concepts), "match_score": 0}
+    
+    def classify_batch(self, codes):
+        """批量归类"""
+        return {c: self.classify_stock(c) for c in codes}
+
+
+def build_chain_database(chain_engine):
+    """构建产业链数据库"""
+    log("🏗️ 构建产业链数据库...")
+    
+    # 获取所有主板股票
+    r = subprocess.run(
+        ['sqlite3', '-noheader', '-separator', '|', FACTOR_DB,
+         'SELECT DISTINCT code FROM factors ORDER BY code'],
+        capture_output=True, timeout=30, text=True
+    )
+    codes = [c.strip() for c in r.stdout.strip().split('\n') if c.strip()]
+    
+    if not codes:
+        # fallback: 从kline_cache获取
+        r = subprocess.run(
+            ['sqlite3', '-noheader', '-separator', '|', 
+             f'{DATA_DIR}/kline_cache.db',
+             'SELECT DISTINCT code FROM kline WHERE (code LIKE \'6%\' AND code NOT LIKE \'688%\') OR code LIKE \'0%\' ORDER BY code'],
+            capture_output=True, timeout=30, text=True
+        )
+        codes = [c.strip() for c in r.stdout.strip().split('\n') if c.strip()]
+    
+    log(f"📊 待归类: {len(codes)} 只")
+    
+    # 批量归类
+    results = chain_engine.classify_batch(codes)
+    
+    # 统计
+    level1_counts = defaultdict(int)
+    level2_counts = defaultdict(int)
+    
+    stock_chain_data = []
+    for code, result in results.items():
+        l1 = result.get("level1", "其他")
+        l2 = result.get("level2", "")
+        l3 = result.get("level3", "")
+        path = "|".join(result.get("path", []))
+        tags = ",".join(result.get("tags", []))
+        
+        level1_counts[l1] += 1
+        if l2: level2_counts[l2] += 1
+        
+        stock_chain_data.append((code, l1, l2, l3, path, tags, result.get("match_score", 0)))
+    
+    log(f"📊 一级产业分布:")
+    for l1, cnt in sorted(level1_counts.items(), key=lambda x: -x[1])[:15]:
+        log(f"  {l1}: {cnt}只")
+    
+    # 写入数据库
+    conn = sqlite3.connect(CHAIN_DB)
+    conn.execute("""
+        CREATE TABLE IF NOT EXISTS stock_chain (
+            code TEXT PRIMARY KEY,
+            level1 TEXT,
+            level2 TEXT,
+            level3 TEXT,
+            chain_path TEXT,
+            chain_tags TEXT,
+            match_score INTEGER
+        )
+    """)
+    conn.execute("DELETE FROM stock_chain")
+    
+    conn.executemany(
+        "INSERT INTO stock_chain VALUES (?,?,?,?,?,?,?)",
+        stock_chain_data
+    )
+    conn.commit()
+    
+    # 创建产业链汇总表
+    conn.execute("""
+        CREATE TABLE IF NOT EXISTS chain_summary AS
+        SELECT level1, level2, COUNT(*) as stock_count,
+               GROUP_CONCAT(code, ',') as stock_codes
+        FROM stock_chain
+        WHERE level1 != '其他'
+        GROUP BY level1, level2
+        ORDER BY stock_count DESC
+    """)
+    conn.commit()
+    conn.close()
+    
+    log(f"✅ 产业链数据库构建完成: {len(stock_chain_data)} 只股票")
+    
+    return results
+
+
+def generate_chain_report():
+    """生成产业链报告"""
+    conn = sqlite3.connect(CHAIN_DB)
+    
+    # 按一级分类
+    log("\n📋 一级产业链分布:")
+    log("=" * 50)
+    rows = conn.execute("""
+        SELECT level1, COUNT(*) as cnt
+        FROM stock_chain
+        WHERE level1 != '其他'
+        GROUP BY level1
+        ORDER BY cnt DESC
+    """).fetchall()
+    
+    for level1, cnt in rows:
+        log(f"  {level1}: {cnt}只")
+    
+    # 按二级分类
+    log("\n📋 二级产业链分布 (Top20):")
+    log("=" * 50)
+    rows = conn.execute("""
+        SELECT level1, level2, COUNT(*) as cnt
+        FROM stock_chain
+        WHERE level2 != '' AND level2 IS NOT NULL
+        GROUP BY level1, level2
+        ORDER BY cnt DESC
+        LIMIT 20
+    """).fetchall()
+    
+    for l1, l2, cnt in rows:
+        log(f"  {l1} > {l2}: {cnt}只")
+    
+    conn.close()
+
+
+def main():
+    log("🏭 四级产业链引擎 V1")
+    
+    # 初始化引擎
+    engine = ChainEngine()
+    log(f"✅ 概念数据: {len(engine.concept_data)} 只股票")
+    
+    # 构建数据库
+    build_chain_database(engine)
+    
+    # 生成报告
+    generate_chain_report()
+    
+    log("\n✅ 产业链引擎完成")
+
+
+if __name__ == "__main__":
+    main()

@@ -1,0 +1,24 @@
+{
+  "type": "upgrade_report",
+  "date": "2026-05-13",
+  "generate_time": "15:11",
+  "consecutive_fails": 1,
+  "today_pnl": 0,
+  "total_profit_rate": 0,
+  "items": [
+    {
+      "type": "板块预测偏差",
+      "auto": true,
+      "severity": "medium",
+      "desc": "板块预测命中率0/1",
+      "suggestion": "自动增加消息面板块权重，降低右侧板块权重"
+    },
+    {
+      "type": "most_profitable",
+      "auto": false,
+      "severity": "info",
+      "desc": "最赚钱交易模式提醒",
+      "suggestion": "龙≥5板+竞价开≥3%跟风(+7.6%/暴利70%) 是所有策略中最优的，明天优先执行此模式"
+    }
+  ]
+}

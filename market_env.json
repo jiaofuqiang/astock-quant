@@ -1,0 +1,55 @@
+{
+  "timestamp": "2026-05-15T15:59:55.224569",
+  "score": -6,
+  "grade": "🔴 弱",
+  "bidding": null,
+  "changes": {
+    "000001": {
+      "name": "上证指数",
+      "change_pct": -1.02,
+      "price": 4135.39
+    },
+    "399001": {
+      "name": "深证成指",
+      "change_pct": -1.17,
+      "price": 15561.37
+    },
+    "399006": {
+      "name": "创业板指",
+      "change_pct": -0.56,
+      "price": 3929.06
+    },
+    "000688": {
+      "name": "科创50",
+      "change_pct": -1.67,
+      "price": 1696.26
+    },
+    "000300": {
+      "name": "沪深300",
+      "change_pct": -1.12,
+      "price": 4859.59
+    },
+    "composite": -1.04,
+    "env": "⛈ 弱势",
+    "env_score": -3
+  },
+  "width": {
+    "amplitude": 1.86,
+    "vol_ratio": 1.0,
+    "amount_yi": 15192.4003,
+    "buy_ratio": -1.07,
+    "sell_ratio": 0,
+    "big_money_ratio": -12.07
+  },
+  "capital": {
+    "status": "数据不可用",
+    "main_net_yi": 0,
+    "super_large_yi": 0,
+    "large_yi": 0,
+    "medium_yi": 0,
+    "small_yi": 0,
+    "capital_score": 0,
+    "capital_env": "未知"
+  },
+  "momentum": null
+}

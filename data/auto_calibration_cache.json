@@ -1,0 +1,52 @@
+{
+  "generated_at": "2026-05-17T14:07:09.512348",
+  "total_trades_analyzed": 15948,
+  "threshold_adjustments": {
+    "甲等": {
+      "old": 55,
+      "new": 55,
+      "adjust": 0
+    },
+    "乙等": {
+      "old": 50,
+      "new": 55,
+      "adjust": 5
+    },
+    "丙等": {
+      "old": 30,
+      "new": 35,
+      "adjust": 5
+    },
+    "丁等": {
+      "old": 0,
+      "new": 0,
+      "adjust": 0
+    }
+  },
+  "grade_deviations": [
+    {
+      "grade": "甲等",
+      "actual_ret": 2.96,
+      "expected_ret": 2.21,
+      "ret_diff": 0.75,
+      "actual_wr": 64.1,
+      "expected_wr": 63.4
+    },
+    {
+      "grade": "乙等",
+      "actual_ret": 3.77,
+      "expected_ret": 0.51,
+      "ret_diff": 3.26,
+      "actual_wr": 66.7,
+      "expected_wr": 52.1
+    },
+    {
+      "grade": "丙等",
+      "actual_ret": 1.97,
+      "expected_ret": -0.7,
+      "ret_diff": 2.67,
+      "actual_wr": 56.8,
+      "expected_wr": 43.3
+    }
+  ]
+}

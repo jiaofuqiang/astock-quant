@@ -1,0 +1,173 @@
+{
+  "engine": "penetration-scoring-v4",
+  "timestamp": "2026-05-17 16:52:23",
+  "total_score": 44.9,
+  "decision": "⚠️轻仓参与",
+  "position": "15~30%",
+  "layer_weights": {
+    "🌐全球层": 0.2,
+    "📈大盘层": 0.25,
+    "💰资金层": 0.2,
+    "📡板块层": 0.15,
+    "🔍个股层": 0.1,
+    "⚡时序层": 0.1
+  },
+  "layer_scores": {
+    "🌐全球层": 60.0,
+    "📈大盘层": 37.2,
+    "💰资金层": 48.5,
+    "📡板块层": 30.5,
+    "🔍个股层": 44.7,
+    "⚡时序层": 48.3
+  },
+  "dimensions": {
+    "🌐全球层": {
+      "全球方向": 85,
+      "WTI原油↘": 70,
+      "美股指数(合成)": 50,
+      "贵金属↘(合成)": 50,
+      "亚太综合(科技锚回退)": 45
+    },
+    "📈大盘层": {
+      "A股指数(合成)": 50,
+      "昨涨停持续性": 50,
+      "环境量价综合": 45,
+      "涨停链条(合成)": 38,
+      "市场情绪(恐慌↘)": 30,
+      "涨跌比": 10
+    },
+    "💰资金层": {
+      "大单流向": 80,
+      "北上资金": 50.0,
+      "游资活跃度": 50.0,
+      "V7因子评分": 40,
+      "龙虎榜(合成)": 36,
+      "散户↘": 35
+    },
+    "📡板块层": {
+      "美股映射": 35,
+      "板块强度(合成)": 32,
+      "微观信号": 30,
+      "主线健康度": 25
+    },
+    "🔍个股层": {
+      "候选质量": 90,
+      "策略匹配": 54,
+      "跟风热度": 25,
+      "龙头梯队": 20,
+      "龙虎榜质量": 20
+    },
+    "⚡时序层": {
+      "竞价(合成)": 50,
+      "分时卖出信号↘": 50,
+      "分时买入信号": 45
+    }
+  },
+  "total_dimensions": 29,
+  "worst_signals": [
+    {
+      "layer": "📈大盘层",
+      "dim": "涨跌比",
+      "score": 10
+    },
+    {
+      "layer": "🔍个股层",
+      "dim": "龙头梯队",
+      "score": 20
+    },
+    {
+      "layer": "🔍个股层",
+      "dim": "龙虎榜质量",
+      "score": 20
+    }
+  ],
+  "best_signals": [
+    {
+      "layer": "💰资金层",
+      "dim": "大单流向",
+      "score": 80
+    },
+    {
+      "layer": "🌐全球层",
+      "dim": "全球方向",
+      "score": 85
+    },
+    {
+      "layer": "🔍个股层",
+      "dim": "候选质量",
+      "score": 90
+    }
+  ],
+  "strategy_from_backtest": {
+    "top_strategy": "🛂沪股通买入",
+    "win_rate": 59.6,
+    "expected_ret": 1.18,
+    "sample_n": 47,
+    "total_matched": 6,
+    "strategy_tags": []
+  },
+  "strategy_rankings": [
+    {
+      "name": "🛂沪股通买入",
+      "desc": "龙虎榜type=01有沪股通资金的票",
+      "composite": 37.4,
+      "ret": 1.18,
+      "win_rate": 59.6,
+      "n": 47,
+      "cover": 0.0,
+      "big_win_pct": 29.8,
+      "big_loss_pct": 17.0
+    },
+    {
+      "name": "😰亏钱席位买入",
+      "desc": "",
+      "composite": 31.2,
+      "ret": 0.79,
+      "win_rate": 48.5,
+      "n": 33,
+      "cover": 0.0,
+      "big_win_pct": 30.3,
+      "big_loss_pct": 24.2
+    },
+    {
+      "name": "📊type=01全量(严格时间线)",
+      "desc": "",
+      "composite": 28.8,
+      "ret": 0.04,
+      "win_rate": 45.4,
+      "n": 1541,
+      "cover": 0.0,
+      "big_win_pct": 23.0,
+      "big_loss_pct": 25.2
+    },
+    {
+      "name": "无特殊资金标签",
+      "desc": "龙虎榜type=01无特殊资金标签的票",
+      "composite": 28.6,
+      "ret": 0.03,
+      "win_rate": 45.1,
+      "n": 1374,
+      "cover": 0.0,
+      "big_win_pct": 23.1,
+      "big_loss_pct": 25.8
+    },
+    {
+      "name": "标签组合:机构,深股通",
+      "desc": "龙虎榜type=01有机构,深股通资金的票",
+      "composite": 27.5,
+      "ret": -0.22,
+      "win_rate": 50.0,
+      "n": 32,
+      "cover": 0.0,
+      "big_win_pct": 15.6,
+      "big_loss_pct": 25.0
+    }
+  ],
+  "data_quality": {
+    "bundle_has_market_index": false,
+    "bundle_has_market_daily": true,
+    "bundle_has_sector": false,
+    "bundle_has_lhb": false,
+    "bundle_has_us_map": false
+  }
+}

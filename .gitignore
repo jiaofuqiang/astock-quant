@@ -1,0 +1,30 @@
+# Python
+*.pyc
+__pycache__/
+*.pyo
+venv_qlib/
+.env
+
+# 数据库
+data/*.db
+data/*.db-shm
+data/*.db-wal
+data/qlib/
+
+# 敏感信息
+*.token
+credentials*
+
+# 日志 & 输出
+logs/
+output/
+*.log
+
+# 缓存
+.cache/
+*.cache
+data/cache/
+
+# 系统
+.DS_Store
+Thumbs.db

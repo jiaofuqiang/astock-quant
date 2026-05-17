@@ -1,0 +1,70 @@
+{
+  "stage_distribution": {
+    "冰点向下": 1,
+    "冰点止跌": 3,
+    "震荡向下": 135,
+    "震荡向上": 89,
+    "发酵向上": 135,
+    "高潮向上": 54,
+    "高潮滞胀": 64,
+    "恐高向下": 80
+  },
+  "stage_avg_data": {
+    "冰点向下": {
+      "days": 1,
+      "avg_limit": 18.0,
+      "avg_amount": 465712.0,
+      "avg_main_net": 26594.8,
+      "avg_chg": -5.74
+    },
+    "冰点止跌": {
+      "days": 3,
+      "avg_limit": 15.0,
+      "avg_amount": 510754.0,
+      "avg_main_net": -146262.8,
+      "avg_chg": 0.99
+    },
+    "震荡向下": {
+      "days": 135,
+      "avg_limit": 35.0,
+      "avg_amount": 734368.0,
+      "avg_main_net": -123158.5,
+      "avg_chg": -0.95
+    },
+    "震荡向上": {
+      "days": 89,
+      "avg_limit": 35.0,
+      "avg_amount": 649693.0,
+      "avg_main_net": -29656.8,
+      "avg_chg": 0.77
+    },
+    "发酵向上": {
+      "days": 135,
+      "avg_limit": 57.0,
+      "avg_amount": 939284.0,
+      "avg_main_net": 31439.8,
+      "avg_chg": 0.75
+    },
+    "高潮向上": {
+      "days": 54,
+      "avg_limit": 137.0,
+      "avg_amount": 1039765.0,
+      "avg_main_net": 198143.4,
+      "avg_chg": 1.62
+    },
+    "高潮滞胀": {
+      "days": 64,
+      "avg_limit": 85.0,
+      "avg_amount": 1010266.0,
+      "avg_main_net": 168042.8,
+      "avg_chg": -0.64
+    },
+    "恐高向下": {
+      "days": 80,
+      "avg_limit": 62.0,
+      "avg_amount": 1050006.0,
+      "avg_main_net": -45928.8,
+      "avg_chg": -0.73
+    }
+  }
+}

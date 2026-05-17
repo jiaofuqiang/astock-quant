@@ -1,0 +1,67 @@
+{
+  "type": "trade_plan",
+  "date": "2026-05-13",
+  "generate_time": "08:00",
+  "market_prediction": {
+    "scenario": "震荡",
+    "probability": 45,
+    "condition": "方向不明，多空平衡"
+  },
+  "sector_pools": {
+    "pool_1": {
+      "sectors": [
+        "创新药"
+      ],
+      "stocks_count": 1
+    },
+    "pool_2": {
+      "sectors": [
+        "医疗器械"
+      ],
+      "stocks_count": 1
+    },
+    "pool_n": {
+      "sectors": [
+        "存储芯片",
+        "半导体"
+      ],
+      "stocks_count": 2
+    }
+  },
+  "plans": {
+    "plan_1": {
+      "name": "打首板",
+      "target_sectors": [
+        "创新药"
+      ],
+      "target_stocks": [],
+      "trigger_rule": "板块有≥3只涨停 OR 板块涨幅>3%",
+      "buy_condition": "开≥3% + 龙≥3板",
+      "expected_return": "+6.9% ~ +7.6%",
+      "confidence": "high"
+    },
+    "plan_2": {
+      "name": "打2板/3板",
+      "target_sectors": [
+        "医疗器械"
+      ],
+      "target_stocks": [],
+      "trigger_rule": "板块有≥2只涨停 OR 板块涨幅>2%",
+      "buy_condition": "开≥5% + 龙≥3板 优先",
+      "expected_return": "+7.0%",
+      "confidence": "medium"
+    },
+    "plan_3": {
+      "name": "低位潜伏",
+      "target_sectors": [
+        "存储芯片",
+        "半导体"
+      ],
+      "target_stocks": [],
+      "trigger_rule": "板块有≥1只涨停 OR 龙头开>5%",
+      "buy_condition": "缩量<0.7 + 竞价涨幅<2%",
+      "expected_return": "+3.5%",
+      "confidence": "low"
+    }
+  }
+}

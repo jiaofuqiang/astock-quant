@@ -1,0 +1,409 @@
+{
+  "dimension_results": {
+    "self_strength": [
+      {
+        "condition": "上涨比例>0.75",
+        "total": 989,
+        "continue_pct": 50.1,
+        "reverse_pct": 39.4,
+        "neutral_pct": 10.5,
+        "next_avg": 0
+      },
+      {
+        "condition": "上涨比例>0.60",
+        "total": 1355,
+        "continue_pct": 48.8,
+        "reverse_pct": 41.0,
+        "neutral_pct": 10.2,
+        "next_avg": 0
+      },
+      {
+        "condition": "上涨比例<0.25",
+        "total": 1048,
+        "continue_pct": 53.1,
+        "reverse_pct": 36.5,
+        "neutral_pct": 10.4,
+        "next_avg": 0
+      },
+      {
+        "condition": "涨幅中位数>1%",
+        "total": 945,
+        "continue_pct": 51.1,
+        "reverse_pct": 39.3,
+        "neutral_pct": 9.6,
+        "next_avg": 0
+      },
+      {
+        "condition": "涨幅中位数>2%",
+        "total": 537,
+        "continue_pct": 52.7,
+        "reverse_pct": 37.8,
+        "neutral_pct": 9.5,
+        "next_avg": 0
+      },
+      {
+        "condition": "涨幅中位数<-1%",
+        "total": 911,
+        "continue_pct": 53.1,
+        "reverse_pct": 37.0,
+        "neutral_pct": 9.9,
+        "next_avg": 0
+      },
+      {
+        "condition": "龙头涨幅>5%",
+        "total": 673,
+        "continue_pct": 53.5,
+        "reverse_pct": 38.0,
+        "neutral_pct": 8.5,
+        "next_avg": 0
+      },
+      {
+        "condition": "龙头涨幅>7%",
+        "total": 411,
+        "continue_pct": 58.2,
+        "reverse_pct": 36.0,
+        "neutral_pct": 5.8,
+        "next_avg": 0
+      },
+      {
+        "condition": "龙头涨幅>9.5%(涨停)",
+        "total": 291,
+        "continue_pct": 59.5,
+        "reverse_pct": 34.7,
+        "neutral_pct": 5.8,
+        "next_avg": 0
+      }
+    ],
+    "trend_position": [
+      {
+        "condition": "刚启动(streak=1)",
+        "total": 786,
+        "continue_pct": 46.6,
+        "reverse_pct": 42.6,
+        "next_avg": 0.01
+      },
+      {
+        "condition": "连涨2天",
+        "total": 311,
+        "continue_pct": 55.6,
+        "reverse_pct": 36.0,
+        "next_avg": 0.49
+      },
+      {
+        "condition": "连涨3天",
+        "total": 151,
+        "continue_pct": 43.7,
+        "reverse_pct": 43.7,
+        "next_avg": 0.05
+      },
+      {
+        "condition": "连涨4天+",
+        "total": 107,
+        "continue_pct": 52.3,
+        "reverse_pct": 40.2,
+        "next_avg": 0.49
+      },
+      {
+        "condition": "在MA5上方>2%",
+        "total": 839,
+        "continue_pct": 52.6,
+        "reverse_pct": 37.5,
+        "next_avg": 0.39
+      },
+      {
+        "condition": "在MA5下方>2%",
+        "total": 787,
+        "continue_pct": 53.7,
+        "reverse_pct": 36.7,
+        "next_avg": 0.18
+      },
+      {
+        "condition": "在MA5附近±1%",
+        "total": 763,
+        "continue_pct": 46.7,
+        "reverse_pct": 43.0,
+        "next_avg": -0.1
+      },
+      {
+        "condition": "在MA20上方>10%",
+        "total": 322,
+        "continue_pct": 54.3,
+        "reverse_pct": 35.7,
+        "next_avg": 0.4
+      },
+      {
+        "condition": "在MA20下方>10%",
+        "total": 84,
+        "continue_pct": 63.1,
+        "reverse_pct": 32.1,
+        "next_avg": 0.58
+      },
+      {
+        "condition": "刚反弹(前2天跌+今涨)",
+        "total": 786,
+        "continue_pct": 46.6,
+        "reverse_pct": 42.6,
+        "next_avg": 0.01
+      },
+      {
+        "condition": "高潮(streak>=3+涨>1%)",
+        "total": 179,
+        "continue_pct": 50.8,
+        "reverse_pct": 40.8,
+        "next_avg": 0.51
+      }
+    ],
+    "volume_status": [
+      {
+        "condition": "板块放量>1.5x",
+        "total": 3008,
+        "continue_pct": 51.0,
+        "reverse_pct": 38.9,
+        "next_avg": 0.16
+      },
+      {
+        "condition": "板块放量>2.0x",
+        "total": 3005,
+        "continue_pct": 51.0,
+        "reverse_pct": 38.9,
+        "next_avg": 0.15
+      },
+      {
+        "condition": "放量上涨(涨>1%+放量>1.5)",
+        "total": 928,
+        "continue_pct": 51.0,
+        "reverse_pct": 39.4,
+        "next_avg": 0.3
+      }
+    ],
+    "internal_structure": [
+      {
+        "condition": "高度分化(std>3%)",
+        "total": 474,
+        "continue_pct": 53.0,
+        "reverse_pct": 39.2,
+        "next_avg": 0.45
+      },
+      {
+        "condition": "高度收敛(std<1.5%)",
+        "total": 1572,
+        "continue_pct": 51.1,
+        "reverse_pct": 38.2,
+        "next_avg": 0.09
+      },
+      {
+        "condition": "龙头断层(龙头>5%且跟风<0)",
+        "total": 128,
+        "continue_pct": 56.2,
+        "reverse_pct": 34.4,
+        "next_avg": 0.46
+      },
+      {
+        "condition": "龙头带跟风(龙头>5%且涨>50%)",
+        "total": 578,
+        "continue_pct": 52.8,
+        "reverse_pct": 38.9,
+        "next_avg": 0.44
+      },
+      {
+        "condition": "全面上涨(>80%票涨)",
+        "total": 936,
+        "continue_pct": 49.4,
+        "reverse_pct": 39.7,
+        "next_avg": 0.28
+      },
+      {
+        "condition": "龙头涨停+板块涨>60%",
+        "total": 241,
+        "continue_pct": 61.0,
+        "reverse_pct": 33.2,
+        "next_avg": 0.85
+      }
+    ]
+  },
+  "best_combos": [
+    {
+      "cond1": "收敛(std<2.5%)",
+      "cond2": "涨停>跌停",
+      "count": 28,
+      "continue_pct": 82.14285714285714,
+      "next_avg_chg": 1.9642857142857146
+    },
+    {
+      "cond1": "收敛(std<2.5%)",
+      "cond2": "龙头涨停+跟风>50%",
+      "count": 29,
+      "continue_pct": 79.3103448275862,
+      "next_avg_chg": 1.8786206896551725
+    },
+    {
+      "cond1": "刚启动",
+      "cond2": "涨停≥2只",
+      "count": 23,
+      "continue_pct": 78.26086956521739,
+      "next_avg_chg": 2.264347826086957
+    },
+    {
+      "cond1": "涨停≥2只",
+      "cond2": "无跌停",
+      "count": 48,
+      "continue_pct": 72.91666666666666,
+      "next_avg_chg": 2.181458333333334
+    },
+    {
+      "cond1": "连涨<=3天",
+      "cond2": "涨停≥2只",
+      "count": 40,
+      "continue_pct": 72.5,
+      "next_avg_chg": 1.9535000000000005
+    },
+    {
+      "cond1": "涨停≥2只",
+      "cond2": "无跌停+涨>60%",
+      "count": 47,
+      "continue_pct": 72.3404255319149,
+      "next_avg_chg": 2.0812765957446815
+    },
+    {
+      "cond1": "涨停≥2只",
+      "cond2": "",
+      "count": 49,
+      "continue_pct": 71.42857142857143,
+      "next_avg_chg": 2.078367346938776
+    },
+    {
+      "cond1": "涨停≥2只",
+      "cond2": "涨停>跌停",
+      "count": 49,
+      "continue_pct": 71.42857142857143,
+      "next_avg_chg": 2.078367346938776
+    },
+    {
+      "cond1": "上涨比例>75%",
+      "cond2": "涨停≥2只",
+      "count": 45,
+      "continue_pct": 71.11111111111111,
+      "next_avg_chg": 1.8926666666666676
+    },
+    {
+      "cond1": "在MA5上方",
+      "cond2": "涨停≥2只",
+      "count": 45,
+      "continue_pct": 71.11111111111111,
+      "next_avg_chg": 2.0824444444444454
+    },
+    {
+      "cond1": "全面上涨>80%",
+      "cond2": "涨停≥2只",
+      "count": 45,
+      "continue_pct": 71.11111111111111,
+      "next_avg_chg": 1.8926666666666676
+    },
+    {
+      "cond1": "龙头涨停+跟风>50%",
+      "cond2": "涨停≥2只",
+      "count": 48,
+      "continue_pct": 70.83333333333334,
+      "next_avg_chg": 1.9781250000000006
+    },
+    {
+      "cond1": "涨幅中位数>1.5%",
+      "cond2": "涨停≥2只",
+      "count": 47,
+      "continue_pct": 70.2127659574468,
+      "next_avg_chg": 2.0029787234042558
+    },
+    {
+      "cond1": "在MA20上方",
+      "cond2": "涨停≥2只",
+      "count": 42,
+      "continue_pct": 69.04761904761905,
+      "next_avg_chg": 1.5919047619047622
+    },
+    {
+      "cond1": "刚启动",
+      "cond2": "涨停>跌停",
+      "count": 114,
+      "continue_pct": 64.91228070175438,
+      "next_avg_chg": 1.0046491228070176
+    },
+    {
+      "cond1": "全面上涨>80%",
+      "cond2": "涨停>跌停",
+      "count": 194,
+      "continue_pct": 63.4020618556701,
+      "next_avg_chg": 1.0339175257731958
+    },
+    {
+      "cond1": "上涨比例>75%",
+      "cond2": "涨停>跌停",
+      "count": 199,
+      "continue_pct": 63.31658291457286,
+      "next_avg_chg": 1.0158291457286432
+    },
+    {
+      "cond1": "刚启动",
+      "cond2": "龙头涨停+跟风>50%",
+      "count": 121,
+      "continue_pct": 62.8099173553719,
+      "next_avg_chg": 0.8691735537190083
+    },
+    {
+      "cond1": "龙头涨停+跟风>50%",
+      "cond2": "全面上涨>80%",
+      "count": 202,
+      "continue_pct": 61.88118811881188,
+      "next_avg_chg": 0.9492574257425742
+    },
+    {
+      "cond1": "上涨比例>75%",
+      "cond2": "龙头涨停+跟风>50%",
+      "count": 208,
+      "continue_pct": 61.53846153846154,
+      "next_avg_chg": 0.9166346153846153
+    }
+  ],
+  "scores_distribution": [
+    {
+      "label": "❌ 低延续",
+      "lo": 0,
+      "hi": 30,
+      "count": 36,
+      "continue_pct": 52.8,
+      "next_avg_chg": 0.38
+    },
+    {
+      "label": "⚠️ 弱延续",
+      "lo": 30,
+      "hi": 50,
+      "count": 1765,
+      "continue_pct": 52.7,
+      "next_avg_chg": 0.15
+    },
+    {
+      "label": "✅ 中延续",
+      "lo": 50,
+      "hi": 70,
+      "count": 436,
+      "continue_pct": 45.0,
+      "next_avg_chg": 0.02
+    },
+    {
+      "label": "🔥 强延续",
+      "lo": 70,
+      "hi": 85,
+      "count": 533,
+      "continue_pct": 50.8,
+      "next_avg_chg": 0.25
+    },
+    {
+      "label": "💎 极强延续",
+      "lo": 85,
+      "hi": 101,
+      "count": 253,
+      "continue_pct": 51.4,
+      "next_avg_chg": 0.4
+    }
+  ],
+  "timestamp": "2026-05-09T21:37:14.147189"
+}

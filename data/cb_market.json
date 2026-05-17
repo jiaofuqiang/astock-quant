@@ -1,0 +1,108 @@
+{
+  "timestamp": "2026-05-17 09:36:18",
+  "market_period": "afterhours",
+  "is_open": false,
+  "bonds": [
+    {
+      "code": "123222",
+      "code_full": "sz123222",
+      "name": "博俊转债",
+      "price": 161.92,
+      "change_pct": -1.95,
+      "premium_rate": -27.52,
+      "premium_rate_str": "-27.52%",
+      "underlying_stock": "博俊科技(300926)"
+    },
+    {
+      "code": "123223",
+      "code_full": "sz123223",
+      "name": "九典转02",
+      "price": 136.74,
+      "change_pct": -0.51,
+      "premium_rate": 0.17,
+      "premium_rate_str": "+0.17%",
+      "underlying_stock": "九典制药(300705)"
+    },
+    {
+      "code": "127089",
+      "code_full": "sz127089",
+      "name": "晶澳转债",
+      "price": 124.7,
+      "change_pct": -0.81,
+      "premium_rate": -1.75,
+      "premium_rate_str": "-1.75%",
+      "underlying_stock": "晶澳科技(002459)"
+    },
+    {
+      "code": "127084",
+      "code_full": "sz127084",
+      "name": "柳工转2",
+      "price": 135.81,
+      "change_pct": -0.68,
+      "premium_rate": -29.42,
+      "premium_rate_str": "-29.42%",
+      "underlying_stock": "柳工(000528)"
+    },
+    {
+      "code": "127095",
+      "code_full": "sz127095",
+      "name": "广泰转债",
+      "price": 147.33,
+      "change_pct": 0.3,
+      "premium_rate": 3.86,
+      "premium_rate_str": "+3.86%",
+      "underlying_stock": "威海广泰(002111)"
+    },
+    {
+      "code": "113066",
+      "code_full": "sh113066",
+      "name": "平煤转债",
+      "price": 143.15,
+      "change_pct": -0.04,
+      "premium_rate": 3.37,
+      "premium_rate_str": "+3.37%",
+      "underlying_stock": "平煤股份(601666)"
+    },
+    {
+      "code": "111000",
+      "code_full": "sh111000",
+      "name": "兴业转债",
+      "price": 242.1,
+      "change_pct": -7.13,
+      "premium_rate": 80.45,
+      "premium_rate_str": "+80.45%",
+      "underlying_stock": "兴业银行(601166)"
+    },
+    {
+      "code": "113065",
+      "code_full": "sh113065",
+      "name": "中金转债",
+      "price": 122.21,
+      "change_pct": 0.0,
+      "premium_rate": 0.0,
+      "premium_rate_str": "0.00%",
+      "underlying_stock": "中金岭南(000060)"
+    },
+    {
+      "code": "113064",
+      "code_full": "sh113064",
+      "name": "常银转债",
+      "price": 142.67,
+      "change_pct": 0.0,
+      "premium_rate": 0.0,
+      "premium_rate_str": "0.00%",
+      "underlying_stock": "常熟银行(601128)"
+    },
+    {
+      "code": "113068",
+      "code_full": "sh113068",
+      "name": "福立转债",
+      "price": 249.88,
+      "change_pct": 0.0,
+      "premium_rate": 0.0,
+      "premium_rate_str": "0.00%",
+      "underlying_stock": "福立旺(688678)"
+    }
+  ],
+  "count": 10
+}

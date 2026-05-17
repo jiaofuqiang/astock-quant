@@ -1,0 +1,1092 @@
+#!/usr/bin/env python3
+"""
+🔥 实战决策引擎 v1.0
+=====================
+终极目标：把2年+30,000次回测浓缩成每天可执行的操作单
+
+数据源：
+  1. 腾讯实时行情 (qt.gtimg.cn) — 盘中实时
+  2. kline_cache.db — 涨停前趋势、MA20乖离、量比
+  3. sector_indexes.db — 板块强弱排名
+  4. holder_cache.db — 牛散持股
+  5. trade_sim.db — 当前持仓
+
+输出：
+  微信推送格式的操作单：
+  - 买入候选（按优先级排序）
+  - 卖出信号（按紧急程度排序）
+  - 持有建议
+  - 大盘环境+仓位建议
+"""
+
+import os, sys, json, subprocess, re, time
+from datetime import datetime, date
+from collections import defaultdict
+
+BASE = os.path.expanduser('~/astock')
+DATA_DIR = os.path.join(BASE, 'data')
+SCRIPTS = os.path.join(BASE, 'scripts')
+V2BOARD = os.path.expanduser('~/V2board')
+sys.path.insert(0, SCRIPTS)
+
+def classify_market(total_limit, max_board, idx_chg_5d):
+    """7行情宏观分类"""
+    if total_limit < 10: return '冰点'
+    if total_limit < 20 and idx_chg_5d < -2: return '深度退潮'
+    if total_limit < 25: return '退潮'
+    if total_limit >= 50 and max_board >= 4: return '主升浪'
+    if total_limit >= 40 and max_board >= 4: return '发酵期'
+    if total_limit >= 40: return '活跃期'
+    if total_limit >= 25: return '震荡期'
+    return '弱势震荡'
+
+MARKET_ORDER = ['冰点', '深度退潮', '退潮', '震荡期', '活跃期', '发酵期', '主升浪']
+YOUZI_TYPES = ('34', '37', '38', '39', '40')
+
+def load_market_micro_signals():
+    """加载龙虎榜游资趋势数据（最近10天）"""
+    try:
+        # 使用子查询避免交易方向重复计算
+        r = subprocess.run(['sqlite3', '-json', os.path.join(DATA_DIR, 'lhb_cache.db')],
+            input="""
+                SELECT date,
+                  ROUND(SUM(CASE WHEN direction='buy' THEN net ELSE 0 END)/10000, 0) as buy_wan,
+                  ROUND(SUM(CASE WHEN direction='sell' THEN net ELSE 0 END)/10000, 0) as sell_wan,
+                  ROUND((SUM(CASE WHEN direction='buy' THEN net ELSE 0 END) - SUM(CASE WHEN direction='sell' THEN net ELSE 0 END))/10000, 0) as net_wan,
+                  COUNT(DISTINCT code) as stocks
+                FROM (
+                  SELECT l.date, l.code, d.direction, d.net
+                  FROM lhb_list l
+                  JOIN lhb_detail d ON l.date=d.date AND l.code=d.code
+                  WHERE l.type IN ('34','37','38','39','40')
+                  AND l.date >= date('now', '-10 days')
+                )
+                GROUP BY date ORDER BY date
+            """.strip(),
+            capture_output=True, text=True, timeout=10
+        )
+        raw = json.loads(r.stdout) if r.stdout.strip() else []
+    except Exception as e:
+        print(f"  微观数据加载异常: {e}")
+        return []
+    
+    result = []
+    for item in raw:
+        result.append({
+            'date': item['date'],
+            'youzi_net': item['net_wan'] * 10000,  # 转回元
+            'youzi_ratio': 50,  # 不再使用买入比，用净额方向代替
+            'buy_sell_ratio': 1,
+        })
+    return result
+
+def calc_youzi_trend(micro_data):
+    """计算游资3日趋势（数据从早到晚排列）"""
+    if len(micro_data) < 3: return '数据不足'
+    nets = [d['youzi_net'] for d in micro_data[-3:]]
+    # nets[0]=最旧, nets[2]=最新
+    if nets[2] > nets[1] > nets[0]:
+        return '持续上升'
+    elif nets[2] < nets[1] < nets[0]:
+        return '持续下降'
+    elif nets[2] > nets[0]:
+        return '震荡偏强'
+    else:
+        return '震荡偏弱'
+
+def get_market_advice(macro_cls, youzi_trend, youzi_ratio, total_limit, max_board, micro_data):
+    """宏观+微观融合决策"""
+    advice_lines = []
+    signal_lines = []
+    
+    # 宏观策略
+    if macro_cls == '冰点':
+        advice_lines.append('⛔ 空仓 — 涨停<10只，无操作空间')
+        signal_lines.append('⚪ 冰点: 不做')
+        max_position = 0
+    elif macro_cls == '深度退潮':
+        advice_lines.append('⚠️ 深度退潮 — 只做总龙头(回测+5.76%胜87%)')
+        signal_lines.append('🟡 抱团: 只做龙头')
+        max_position = '0~10%'
+    elif macro_cls == '退潮':
+        advice_lines.append('🌫️ 退潮 — 隔夜溢价(极缩优先)')
+        signal_lines.append('🟡 观望: 隔夜溢价')
+        max_position = '10~20%'
+    elif macro_cls == '震荡期':
+        advice_lines.append('⚖️ 震荡期(30%时间) — 只做隔夜溢价(+4.18%胜76%)')
+        signal_lines.append('🟢 稳做: 隔夜溢价')
+        max_position = '20~40%'
+    elif macro_cls == '活跃期':
+        advice_lines.append('☀️ 活跃期 — 隔夜溢价为主(+4.03%胜84%)')
+        signal_lines.append('🟢 积极: 隔夜溢价')
+        max_position = '40~60%'
+    elif macro_cls == '发酵期':
+        advice_lines.append('⚡ 发酵期(21%时间) — 双策略并行(隔夜+4.61% 龙头+3.67%)')
+        signal_lines.append('🟣 加仓: 隔夜+龙头')
+        max_position = '50~70%'
+    elif macro_cls == '主升浪':
+        advice_lines.append('🌊 主升浪(27%时间) — 全仓隔夜溢价(+4.79%胜83%)')
+        signal_lines.append('🔴 满仓: 隔夜溢价')
+        max_position = '70~100%'
+    
+    # 微观预警（基于游资净额趋势）
+    if micro_data and len(micro_data) >= 3:
+        recent_nets = [m['youzi_net']/10000 for m in micro_data[-3:]]
+        # 净额方向
+        if youzi_trend == '持续上升':
+            advice_lines.append(f'🟢 游资连续加仓({recent_nets[0]:.0f}→{recent_nets[2]:.0f}万) — 资金在进场')
+        elif youzi_trend == '持续下降':
+            advice_lines.append(f'🔴 游资连续减仓({recent_nets[0]:.0f}→{recent_nets[2]:.0f}万) — 资金在撤退')
+        
+        # 顶部预警：之前上升现在转下降
+        if youzi_trend in ('持续下降', '震荡偏弱'):
+            prev_trend = calc_youzi_trend(micro_data[:-1]) if len(micro_data) >= 4 else ''
+            if prev_trend in ('持续上升', '震荡偏强'):
+                advice_lines.append('🔴⚠️ 顶部预警！游资从买入转卖出，3天内行情可能见顶')
+                signal_lines.append('🔴 减仓: 游资撤退')
+        
+        # 底部信号：之前下降现在转上升
+        if youzi_trend in ('持续上升', '震荡偏强'):
+            prev_trend = calc_youzi_trend(micro_data[:-1]) if len(micro_data) >= 4 else ''
+            if prev_trend in ('持续下降', '震荡偏弱'):
+                advice_lines.append('🟢🚀 底部信号！游资开始进场，3天内行情可能回暖')
+                signal_lines.append('🟢 加仓: 游资进场')
+    
+    # 净额极值预警
+    if micro_data:
+        last_net = micro_data[-1]['youzi_net'] / 10000
+        if last_net > 200:
+            advice_lines.append(f'🟡 游资大额买入{last_net:.0f}万 — 市场过热')
+            signal_lines.append('🟡 过热')
+        elif last_net < -200:
+            advice_lines.append(f'🔴 游资大额卖出{last_net:.0f}万 — 恐慌抛售')
+            signal_lines.append('🔴 恐慌')
+    
+    return advice_lines, signal_lines, max_position
+
+def get_lhb_data_simple():
+    """获取最近5天龙虎榜数据用于显示"""
+    try:
+        r = subprocess.run(['sqlite3', '-json', os.path.join(DATA_DIR, 'lhb_cache.db')],
+            input="""
+                SELECT l.date, COUNT(DISTINCT l.code) as stocks,
+                  ROUND(SUM(CASE WHEN d.direction='buy' THEN d.net ELSE 0 END)/10000, 0) as total_buy_wan,
+                  ROUND(SUM(CASE WHEN d.direction='sell' THEN d.net ELSE 0 END)/10000, 0) as total_sell_wan
+                FROM lhb_list l
+                JOIN lhb_detail d ON l.date=d.date AND l.code=d.code
+                WHERE l.date >= date('now', '-7 days')
+                GROUP BY l.date ORDER BY l.date
+            """.strip(),
+            capture_output=True, text=True, timeout=8
+        )
+        return json.loads(r.stdout) if r.stdout.strip() else []
+    except:
+        return []
+
+def get_sector_boom_data():
+    """获取今日板块爆发数据"""
+    try:
+        r = subprocess.run(['sqlite3', '-json', os.path.join(DATA_DIR, 'sector_indexes.db')],
+            input="SELECT date, sector, boom_count FROM sector_daily_index WHERE date=(SELECT MAX(date) FROM sector_daily_index) AND boom_count>=3 ORDER BY boom_count DESC LIMIT 5",
+            capture_output=True, text=True, timeout=5
+        )
+        return json.loads(r.stdout) if r.stdout.strip() else []
+    except:
+        return []
+
+def get_limit_strength_today():
+    """获取今日涨停数+最高板（从kline_cache推算）"""
+    try:
+        r = subprocess.run(['sqlite3', '-json', os.path.join(DATA_DIR, 'daily_limit_data.db')],
+            input="SELECT date, total_limit, max_board FROM limit_strength WHERE date=(SELECT MAX(date) FROM limit_strength)",
+            capture_output=True, text=True, timeout=5
+        )
+        data = json.loads(r.stdout) if r.stdout.strip() else []
+        if data: return data[0]
+    except:
+        pass
+    return None
+
+try:
+    from cloud_trading import CloudTrader
+except ImportError:
+    CloudTrader = None
+
+# 导入最高板扫描引擎
+try:
+    from highest_board_hunter import scan_highest_board, format_report
+except ImportError:
+    scan_highest_board = None
+    format_report = None
+
+
+# ============================================================
+# 腾讯行情
+# ============================================================
+
+def mkt(code):
+    return f"sh{code}" if code[0] in ('6', '5', '9') else f"sz{code}"
+
+
+def fetch_quotes(codes, batch_size=50):
+    """批量获取腾讯实时行情"""
+    quotes = {}
+    for i in range(0, len(codes), batch_size):
+        batch = codes[i:i+batch_size]
+        codes_str = ','.join(mkt(c) for c in batch)
+        try:
+            r = subprocess.run(
+                ['curl', '-s', '--connect-timeout', '5', '--max-time', '10',
+                 f'https://qt.gtimg.cn/q={codes_str}'],
+                capture_output=True, timeout=12
+            )
+            raw_text = r.stdout.decode('gbk', errors='replace')
+            for line in raw_text.strip().split('\n'):
+                line = line.strip()
+                if not line or '=' not in line: continue
+                raw = line.split('=', 1)[1].strip().strip('"').strip(';').strip('"')
+                fields = raw.split('~')
+                if len(fields) < 50: continue
+                code = fields[2].strip()
+                if not code: continue
+                try:
+                    cur = float(fields[3]) if fields[3] else 0
+                    prev = float(fields[4]) if fields[4] else 0
+                    open_p = float(fields[5]) if fields[5] else 0
+                    high = float(fields[33]) if fields[33] else 0
+                    low = float(fields[34]) if fields[34] else 0
+                    chg = float(fields[32]) if fields[32] else 0
+                    vol_r = float(fields[49]) if len(fields) > 49 and fields[49] else 0
+                    name = fields[1].strip()
+                    
+                    # 上影线比例
+                    body_high = max(cur, open_p)
+                    upper_shadow = (high - body_high) / (prev or 1) * 100 if body_high > 0 else 0
+                    amplitude = (high - low) / (low or 1) * 100 if low > 0 else 0
+                    
+                    quotes[code] = {
+                        'name': name, 'price': cur, 'prev_close': prev,
+                        'open': open_p, 'high': high, 'low': low,
+                        'change_pct': chg, 'vol_ratio': vol_r,
+                        'upper_shadow_pct': round(upper_shadow, 2),
+                        'amplitude': round(amplitude, 2),
+                        'is_limit_up': chg >= 9.5 and cur >= prev * 1.09,
+                        'is_yizi': open_p >= prev * 1.095 and amplitude < 1,
+                    }
+                except:
+                    continue
+        except:
+            continue
+        time.sleep(0.2)
+    return quotes
+
+
+# ============================================================
+# 买入信号引擎（融合所有回测结论）
+# ============================================================
+
+def load_all_board_codes():
+    """加载全量主板股票"""
+    try:
+        with open(os.path.join(DATA_DIR, 'all_main_board.txt')) as f:
+            return [l.strip() for l in f if l.strip() and not l.startswith('#')]
+    except:
+        return []
+
+
+def get_kline_data(code, days=30):
+    """从kline_cache获取近期K线"""
+    try:
+        r = subprocess.run(['sqlite3', '-json', os.path.join(DATA_DIR, 'kline_cache.db'),
+            f"SELECT date, open, close, high, low, volume FROM kline WHERE code='{code}' ORDER BY date DESC LIMIT {days}"
+        ], capture_output=True, text=True, timeout=5)
+        return json.loads(r.stdout) if r.stdout.strip() else []
+    except:
+        return []
+
+
+def compute_limit_chg(records):
+    """计算涨停相关特征"""
+    if not records:
+        return {}
+    
+    # 是否有一字板
+    is_yizi = False
+    amplitude = 0
+    vol_of_last = 0
+    board_count = 0
+    
+    if len(records) >= 1:
+        r = records[0]
+        prev_close = records[1]['close'] if len(records) >= 2 else r['open']
+        chg = round((r['close'] - prev_close) / prev_close * 100, 2) if prev_close > 0 else 0
+        open_change = round((r['open'] - prev_close) / prev_close * 100, 2) if prev_close > 0 else 0
+        is_yizi = open_change >= 9.5
+        amplitude = round((r['high'] - r['low']) / (r['low'] or 1) * 100, 2)
+        vol_of_last = r['volume']
+        
+        # 连板数
+        for i in range(1, min(10, len(records))):
+            prev = records[i]['close']
+            prev_prev = records[i+1]['close'] if i+1 < len(records) else records[i]['open']
+            c = round((prev - prev_prev) / prev_prev * 100, 2) if prev_prev > 0 else 0
+            if c >= 9.8:
+                board_count += 1
+            else:
+                break
+    
+    # 前5日均量
+    pre_5_vol = sum(r['volume'] for r in records[1:6]) / max(len(records[1:6]), 1)
+    vol_ratio = round(vol_of_last / pre_5_vol, 2) if pre_5_vol > 0 else 0
+    
+    # MA20乖离
+    ma20 = sum(r['close'] for r in records[:20]) / 20 if len(records) >= 20 else 0
+    current_close = records[0]['close'] if records else 0
+    ma20_dev = round((current_close - ma20) / ma20 * 100, 2) if ma20 > 0 else 0
+    
+    # 前5日趋势
+    pre_5_close_5 = records[5]['close'] if len(records) >= 6 else records[-1]['close']
+    pre_close_yest = records[1]['close'] if len(records) >= 2 else current_close
+    pre_5_trend = round((pre_close_yest - pre_5_close_5) / pre_5_close_5 * 100, 2) if pre_5_close_5 > 0 else 0
+    
+    return {
+        'is_yizi': is_yizi,
+        'amplitude': amplitude,
+        'board_count': board_count + 1,  # 当日也算
+        'vol_ratio': vol_ratio,
+        'ma20_dev': ma20_dev,
+        'pre_5_trend': pre_5_trend,
+        'pre_5_avg_vol': pre_5_vol,
+    }
+
+
+def score_buy_signal(code, name, kline_ctx, quote, sector_info=None):
+    """
+    综合评分买入信号（基于全部回测结论）
+    返回：{'score': 0-100, 'signals': [...], 'expected': '...', 'confidence': 'HIGH/MID/LOW'}
+    """
+    score = 0
+    signals = []
+    reasons = []
+    expected_t1 = 0
+    
+    chg = quote.get('change_pct', 0)
+    vol_ratio = quote.get('vol_ratio', 0)
+    amplitude = quote.get('amplitude', 0)
+    is_limit = quote.get('is_limit_up', False)
+    is_yizi_realtime = quote.get('is_yizi', False)
+    upper_shadow = quote.get('upper_shadow_pct', 100)
+    
+    # ===== 信号1：板块爆发（同板块≥3涨停） =====
+    # 回测：T+3最高+9.96%，T+1竞价+1.65%/胜64%
+    if sector_info and sector_info.get('boom_count', 0) >= 3:
+        score += 25
+        signals.append('🔥板块爆发')
+        reasons.append(f'板块{sector_info["boom_count"]}涨停')
+        expected_t1 = max(expected_t1, 1.65)
+    
+    # ===== 信号2：隔夜溢价（缩量<0.7） =====
+    # 回测：+5.62%/胜84.7%（仅缩量，不含极硬板条件）
+    if vol_ratio > 0 and vol_ratio < 0.7 and is_limit:
+        score += 30
+        signals.append('💎隔夜溢价')
+        reasons.append(f'量比{vol_ratio:.2f}')
+        expected_t1 = max(expected_t1, 5.62)
+    
+    # ===== 信号3：一字板（竞价顶一字+振幅<0.5%） =====
+    # 回测：T+1开+5.62%/胜82%
+    if is_limit and is_yizi_realtime:
+        score += 25
+        signals.append('🧱一字板')
+        reasons.append('竞价顶一字')
+        expected_t1 = max(expected_t1, 5.62)
+    
+    # ===== 信号4：首板缩量（量比<0.5+首板） =====
+    # 回测：T+1开+4.28%/胜77%
+    if vol_ratio > 0 and vol_ratio < 0.5 and is_limit and kline_ctx.get('board_count', 0) <= 1:
+        score += 20
+        signals.append('📉首板缩量')
+        reasons.append(f'量比{vol_ratio:.2f}')
+        expected_t1 = max(expected_t1, 4.28)
+    
+    # ===== 信号5：3板/4板龙头 =====
+    # 回测：3板T+1+4.10%/胜72%，4板T+1+4.19%/胜71%
+    bc = kline_ctx.get('board_count', 0)
+    if bc >= 3 and bc <= 4 and is_limit:
+        score += 25
+        signals.append(f'🏆{bc}板龙头')
+        reasons.append(f'连板{bc}')
+        expected_t1 = max(expected_t1, 4.10)
+    
+    # ===== 信号6：10板+大妖（跟风效应强） =====
+    if bc >= 10 and is_limit:
+        score += 20
+        signals.append('🐉大妖')
+        reasons.append(f'{bc}板妖股')
+        expected_t1 = max(expected_t1, 4.77)
+    
+    # ===== 信号7：高开5~9.5%（开盘强势） =====
+    # 回测：T+1开+3.44%/胜69%
+    open_change = quote.get('open', 0) - quote.get('prev_close', 0)
+    open_pct = open_change / quote.get('prev_close', 1) * 100 if quote.get('prev_close', 0) > 0 else 0
+    if 5 <= open_pct < 9.5 and is_limit:
+        score += 10
+        signals.append('🚀高开')
+        expected_t1 = max(expected_t1, 3.44)
+    
+    # ===== 信号8：午后封板（亏<3%仅6%，低风险） =====
+    # 回测：T+1开+3.01%/胜70%，亏仅6%
+    if amplitude < 5 and upper_shadow < 0.5 and is_limit:
+        score += 10
+        signals.append('🛡️低风险')
+        expected_t1 = max(expected_t1, 3.01)
+    
+    # ===== 信号9：趋势向上（前5日涨+3%~+10%） =====
+    pre_5 = kline_ctx.get('pre_5_trend', 0)
+    if pre_5 > 3 and pre_5 < 10:
+        score += 5
+        signals.append('📈趋势向上')
+    
+    # ===== 信号10：MA20不乖离（乖离<20%更安全） =====
+    ma20_dev = kline_ctx.get('ma20_dev', 0)
+    if ma20_dev < 20:
+        score += 5
+    
+    # ===== ⛔ 反向过滤（卖出信号转买入禁止） =====
+    # 天量>10 → 不买
+    if vol_ratio >= 10:
+        score -= 50
+        signals.append('❌超级天量')
+        reasons.append(f'量比{vol_ratio:.2f}>10')
+        expected_t1 = 0.27
+    
+    # 一字开+分歧>5%（伪一字）→ 不买
+    if is_yizi_realtime and amplitude >= 5:
+        score -= 30
+        signals.append('❌伪一字')
+        reasons.append(f'振幅{amplitude:.1f}%')
+        expected_t1 = 0.77
+    
+    # 高位板(4+)+放量>3 → 不买
+    if bc >= 4 and vol_ratio >= 3:
+        score -= 25
+        signals.append('❌高位放量')
+        reasons.append(f'{bc}板+放量')
+    
+    # 天量>5+MA20乖离>15% → 不买
+    if vol_ratio >= 5 and ma20_dev >= 15:
+        score -= 20
+    
+    # 4板以上+大分歧>8% → 不买
+    if bc >= 4 and amplitude >= 8:
+        score -= 15
+        signals.append('❌高位分歧')
+    
+    score = max(0, min(100, score))
+    
+    # 置信度确定
+    if score >= 70:
+        confidence = '🔥高'
+    elif score >= 50:
+        confidence = '✅中'
+    else:
+        confidence = '⚪低'
+    
+    return {
+        'score': score,
+        'signals': signals,
+        'reasons': ', '.join(reasons),
+        'expected_t1': round(expected_t1, 2),
+        'confidence': confidence,
+    }
+
+
+# ============================================================
+# 卖出信号引擎（基于13个必卖信号）
+# ============================================================
+
+def score_sell_signal(code, name, quote, kline_ctx, position=None):
+    """
+    评分卖出信号
+    返回：{'sell_score': 0-100, 'signals': [...], 'action': 'SELL_NOW/SELL_AT_OPEN/HOLD'}
+    """
+    sell_score = 0
+    signals = []
+    reasons = []
+    action = 'HOLD'
+    
+    chg = quote.get('change_pct', 0)
+    vol_ratio = quote.get('vol_ratio', 0)
+    amplitude = quote.get('amplitude', 0)
+    is_yizi = quote.get('is_yizi', False)
+    ma20_dev = kline_ctx.get('ma20_dev', 0)
+    bc = kline_ctx.get('board_count', 0)
+    
+    # 如果是T+1竞价阶段（09:15~09:25）
+    hour = datetime.now().hour
+    minute = datetime.now().minute
+    is_auction = (hour == 9 and minute <= 25) or (hour == 9 and minute < 30)
+    
+    # ===== 信号1：T+1竞价深低开<-3% =====
+    if chg <= -3:
+        sell_score += 100
+        signals.append('🔴深低开')
+        reasons.append(f'-{abs(chg):.1f}%竞价低开')
+        action = 'SELL_NOW'
+    
+    # ===== 信号2：T+1竞价低开-3~0% =====
+    if -3 < chg <= 0:
+        sell_score += 60
+        signals.append('🟡低开')
+        reasons.append(f'-{abs(chg):.1f}%低开')
+        action = 'SELL_AT_OPEN'
+    
+    # ===== 信号3：超级天量>10 =====
+    if vol_ratio >= 10:
+        sell_score += 80
+        signals.append('🔴天量>10')
+        reasons.append(f'量比{vol_ratio:.2f}')
+        action = 'SELL_AT_OPEN' if not is_auction else 'SELL_NOW'
+    
+    # ===== 信号4：天量>5 + MA20乖离>15%（见顶组合） =====
+    if vol_ratio >= 5 and ma20_dev >= 15:
+        sell_score += 60
+        signals.append('🔴天量高位')
+        reasons.append(f'量比{vol_ratio}乖离{ma20_dev:.0f}%')
+        action = 'SELL_AT_OPEN'
+    
+    # ===== 信号5：一字开+分歧>5%（伪一字） =====
+    if is_yizi and amplitude >= 5:
+        sell_score += 50
+        signals.append('🟡伪一字')
+        reasons.append(f'一字开振幅{amplitude:.1f}%')
+        action = 'SELL_AT_OPEN'
+    
+    # ===== 信号6：高位板(4+)+放量>3 =====
+    if bc >= 4 and vol_ratio >= 3:
+        sell_score += 45
+        signals.append('🟡高位放量')
+        reasons.append(f'{bc}板+量比{vol_ratio:.1f}')
+        action = 'SELL_AT_OPEN'
+    
+    # ===== 信号7：天量5~10 =====
+    if 5 <= vol_ratio < 10:
+        sell_score += 40
+        signals.append('🟡天量5~10')
+        reasons.append(f'量比{vol_ratio:.1f}')
+        action = 'SELL_AT_OPEN'
+    
+    # ===== 信号8：4板+大分歧>8% =====
+    if bc >= 4 and amplitude >= 8:
+        sell_score += 35
+        signals.append('🟡高位分歧')
+        reasons.append(f'{bc}板振幅{amplitude:.1f}%')
+        action = 'SELL_AT_OPEN'
+    
+    # ===== 信号9：巨量3~5+乖离>20% =====
+    if 3 <= vol_ratio < 5 and ma20_dev >= 20:
+        sell_score += 30
+        action = 'SELL_AT_OPEN'
+    
+    # ===== 🟢 持有信号（降低卖分） =====
+    # 3板/4板一字
+    if bc in (3, 4) and is_yizi and vol_ratio < 1.5:
+        sell_score -= 40
+        signals.append('🟢3/4板龙头')
+        action = 'HOLD'
+    
+    # 首板缩量<0.5
+    if bc <= 1 and vol_ratio < 0.5:
+        sell_score -= 30
+        signals.append('🟢缩量首板')
+        action = 'HOLD'
+    
+    # 午后封板
+    if amplitude < 3 and vol_ratio < 1:
+        sell_score -= 20
+    
+    # MA20乖离低
+    if ma20_dev < 10 and bc <= 2:
+        sell_score -= 15
+    
+    sell_score = max(-30, min(100, sell_score))
+    
+    return {
+        'sell_score': sell_score,
+        'signals': signals,
+        'reasons': ', '.join(reasons),
+        'action': action,
+    }
+
+
+# ============================================================
+# 板块扫描（替代硬编码SECTORS）
+# ============================================================
+
+def scan_sectors_from_db():
+    """从sector_indexes.db读取板块实时信息（支持非交易日回退到最近数据）"""
+    try:
+        today_str = date.today().isoformat()
+        
+        # 先试今天，没数据就往前回溯最近交易日
+        r = subprocess.run(['sqlite3', '-json', os.path.join(DATA_DIR, 'sector_indexes.db'),
+            f"SELECT sector_name, limit_up_count, avg_change FROM sector_daily_index WHERE date='{today_str}' ORDER BY limit_up_count DESC"
+        ], capture_output=True, text=True, timeout=5)
+        sectors = json.loads(r.stdout) if r.stdout.strip() else []
+        
+        if not sectors:
+            # 回溯最近交易日
+            dates_result = subprocess.run(['sqlite3', '-noheader', '-separator', '|', os.path.join(DATA_DIR, 'sector_indexes.db')],
+                capture_output=True, text=True, timeout=5,
+                input=f"SELECT date FROM (SELECT DISTINCT date FROM sector_daily_index ORDER BY date DESC LIMIT 5)")
+            dates = [l.strip() for l in dates_result.stdout.strip().split('\n') if l.strip()]
+            last_date = dates[0] if dates else ''
+            if last_date:
+                r = subprocess.run(['sqlite3', '-json', os.path.join(DATA_DIR, 'sector_indexes.db'),
+                    f"SELECT sector_name, limit_up_count, avg_change FROM sector_daily_index WHERE date='{last_date}' ORDER BY limit_up_count DESC"
+                ], capture_output=True, text=True, timeout=5)
+                sectors = json.loads(r.stdout) if r.stdout.strip() else []
+        else:
+            last_date = today_str
+        
+        # 板块涨停股（也回溯）
+        limit_by_sector = defaultdict(list)
+        for lookup_date in [today_str, last_date if last_date else '']:
+            if not lookup_date:
+                continue
+            r2 = subprocess.run(['sqlite3', '-json', os.path.join(DATA_DIR, 'sector_indexes.db'),
+                f"SELECT ss.sector_name, ss.code, ss.name, ss.stock_chg FROM sector_stock_daily ss WHERE ss.date='{lookup_date}' AND ss.stock_chg >= 9.5"
+            ], capture_output=True, text=True, timeout=5)
+            limit_stocks_in_sectors = json.loads(r2.stdout) if r2.stdout.strip() else []
+            if limit_stocks_in_sectors:
+                for ls in limit_stocks_in_sectors:
+                    # ls 是字典: {'sector_name':'xx', 'code':'xx', 'name':'xx', 'stock_chg':x.xx}
+                    limit_by_sector[ls['sector_name']].append({
+                        'code': ls['code'], 'name': ls['name'], 'chg': ls['change_pct']
+                    })
+                break
+        
+        result = {}
+        for s in sectors:
+            # s 是字典: {'sector_name':'xx', 'limit_up_count':N, 'avg_change':x.xx}
+            sn = s['sector_name']
+            result[sn] = {
+                'boom_count': s.get('limit_up_count') or 0,
+                'avg_chg': s.get('avg_change') or 0,
+                'limit_stocks': limit_by_sector.get(sn, []),
+            }
+        
+        return result
+    except Exception as e:
+        print(f"  ⚠️ 板块扫描异常: {e}")
+        return {}
+
+
+# ============================================================
+# 主引擎：生成完整决策报告
+# ============================================================
+
+def generate_decision_report():
+    """生成完整决策报告"""
+    now = datetime.now()
+    today_str = now.strftime('%Y-%m-%d')
+    lines = []
+    
+    lines.append(f"🔥 实战决策引擎 v1.0")
+    lines.append(f"{'='*55}")
+    lines.append(f"📅 {today_str} {now.strftime('%H:%M')}")
+    lines.append(f"")
+    
+    # ---- 容错：09:08腾讯行情尚未开盘，无实时数据 ----
+    # 09:15集合竞价开始有数据，09:30连续竞价才有真实成交价
+    # 如果当前在09:30前，直接输出盘前计划模式（基于昨日K线+消息面）
+    hour = datetime.now().hour
+    minute = datetime.now().minute
+    if hour < 9 or (hour == 9 and minute < 15):
+        print(f"  ⏰ 当前{hour:02d}:{minute:02d}，腾讯行情未开盘，切换盘前模式")
+        lines.append(f"  ⏰ 当前{hour:02d}:{minute:02d} — 盘前模式（基于昨日数据）")
+        lines.append(f"  腾讯行情09:15起有数据，09:30正式开盘")
+        lines.append(f"")
+    elif hour == 9 and minute < 30:
+        # 09:15~09:25集合竞价阶段，数据可用但价格不稳定
+        print(f"  ⏰ 集合竞价阶段（{hour:02d}:{minute:02d}），数据以竞价为参考")
+    else:
+        print(f"  腾讯行情数据正常（{hour:02d}:{minute:02d}）")
+    
+    # ---- 1. 扫描全量 ----
+    print(f"[1/4] 加载股票列表...")
+    all_codes = load_all_board_codes()
+    print(f"  全量主板: {len(all_codes)}只")
+    
+    # 先扫候选（7大板块核心股~80只），两步扫描法
+    candidate_codes = []
+    try:
+        r = subprocess.run(['sqlite3', '-json', os.path.join(DATA_DIR, 'chain_engine.db'),
+            "SELECT code FROM stock_chain_v2 WHERE level1 IN ('AI与数字经济','新能源与汽车','高端制造')"
+        ], capture_output=True, text=True, timeout=5)
+        candidate_codes = [x[0] for x in json.loads(r.stdout) if x[0]] if r.stdout.strip() else []
+    except:
+        candidate_codes = all_codes[:80]
+    
+    print(f"[2/4] 两步扫描法（候选{len(candidate_codes)}只→全量）...")
+    quotes_step1 = fetch_quotes(candidate_codes[:80])
+    limit_steps1 = {c: q for c, q in quotes_step1.items() if q.get('is_limit_up')}
+    
+    if limit_steps1:
+        print(f"  候选池发现{len(limit_steps1)}只涨停 → 执行全量扫描")
+        quotes = fetch_quotes(all_codes)
+    else:
+        print(f"  候选池无涨停 -> 扫描全量确认")
+        quotes = fetch_quotes(all_codes)
+    
+    limit_stocks = {c: q for c, q in quotes.items() if q.get('is_limit_up')}
+    print(f"  涨停股: {len(limit_stocks)}只")
+    
+    # ---- 3. 板块信息 ----
+    print(f"[3/4] 分析板块+K线...")
+    sectors = scan_sectors_from_db()
+    
+    # 获取每个涨停股的K线数据（只对有分析的）
+    kline_cache = {}
+    for code in limit_stocks:
+        kline_cache[code] = compute_limit_chg(get_kline_data(code, 30))
+    
+    # ---- 4. 生成决策 ----
+    print(f"[4/4] 生成决策...")
+    
+    # 买入候选（原隔夜溢价逻辑）
+    buy_candidates = []
+    for code, q in limit_stocks.items():
+        sector_name = ''
+        boom_count = 0
+        for sn, si in sectors.items():
+            for ls in si.get('limit_stocks', []):
+                if ls['code'] == code:
+                    sector_name = sn
+                    boom_count = si['boom_count']
+                    break
+        
+        sector_info = {'boom_count': boom_count, 'sector_name': sector_name}
+        kc = kline_cache.get(code, {})
+        result = score_buy_signal(code, q['name'], kc, q, sector_info)
+        
+        if result['confidence'] in ('🔥高', '✅中'):
+            buy_candidates.append({
+                'code': code, 'name': q['name'],
+                'price': q['price'], 'change_pct': q['change_pct'],
+                'sector': sector_name,
+                'score': result['score'],
+                'signals': result['signals'],
+                'expected_t1': result['expected_t1'],
+                'confidence': result['confidence'],
+                'reason': result['reasons'],
+            })
+    
+    # 排序
+    buy_candidates.sort(key=lambda x: (-x['score'], -x['expected_t1']))
+    
+    # ===== 最高板扫描（独立模块） =====
+    highest_board_signals = []
+    if scan_highest_board:
+        try:
+            hb_signals = scan_highest_board(quotes)
+            if hb_signals:
+                highest_board_signals = [s for s in hb_signals if s['confidence'] in ('🔥HIGH', '✅MID')]
+        except Exception as e:
+            print(f"  ⚠️ 最高板扫描异常: {e}")
+    
+    # 持仓卖出信号
+    sell_signals = []
+    positions = []
+    if CloudTrader:
+        try:
+            trader = CloudTrader(initial_capital=100000)
+            positions = trader.get_positions()
+        except:
+            pass
+    
+    for pos in positions:
+        code = pos['code']
+        q = quotes.get(code)
+        if not q:
+            continue
+        kc = kline_cache.get(code, {})
+        result = score_sell_signal(code, pos['name'], q, kc, pos)
+        
+        if result['sell_score'] >= 30 or result['action'] != 'HOLD':
+            sell_signals.append({
+                'code': code, 'name': pos['name'],
+                'buy_price': pos.get('buy_price', 0),
+                'current_price': q['price'],
+                'change_pct': q['change_pct'],
+                'profit_pct': round((q['price'] - pos.get('buy_price', q['price'])) / (pos.get('buy_price', q['price']) or 1) * 100, 2) if pos.get('buy_price', 0) > 0 else 0,
+                'sell_score': result['sell_score'],
+                'action': result['action'],
+                'reason': result['reasons'],
+                'signals': result['signals'],
+            })
+    
+    sell_signals.sort(key=lambda x: -x['sell_score'])
+    
+    # 持有建议
+    hold_signals = []
+    for pos in positions:
+        code = pos['code']
+        q = quotes.get(code)
+        if not q:
+            hold_signals.append({'code': code, 'name': pos['name'], 'action': '❗无实时数据'})
+            continue
+        kc = kline_cache.get(code, {})
+        result = score_sell_signal(code, pos['name'], q, kc, pos)
+        if result['action'] == 'HOLD':
+            hold_signals.append({
+                'code': code, 'name': pos['name'],
+                'current_price': q['price'],
+                'change_pct': q.get('change_pct', 0),
+                'signals': result['signals'],
+            })
+    
+    # ===== 格式化成报告 =====
+    lines.append(f"📋 今日操作单")
+    lines.append(f"{'─'*55}")
+    
+    # 大盘环境（从现有文件读取）
+    lines.append(f"\n🌍 大盘环境:")
+    lines.append(f"  涨停股: {len(limit_stocks)}只")
+    boom_sectors = [(sn, si) for sn, si in sectors.items() if si['boom_count'] >= 3]
+    lines.append(f"  板块爆发: {len(boom_sectors)}个")
+    for sn, si in boom_sectors[:5]:
+        top3 = [ls['name'] for ls in si['limit_stocks'][:3]]
+        lines.append(f"    🔥 {sn}({si['boom_count']}涨停): {', '.join(top3)}")
+    
+    lines.append(f"\n{'─'*55}")
+    lines.append(f"🚀【买入候选 TOP 10】")
+    lines.append(f"{'─'*55}")
+    
+    if buy_candidates:
+        for i, b in enumerate(buy_candidates[:10], 1):
+            sig_str = ' '.join(b['signals'][:3])
+            lines.append(f"  {i}. {b['name']}  {b['change_pct']:+.1f}% | 评分{b['score']} | {sig_str}")
+            if b['sector']:
+                lines.append(f"     {b['sector']} | 预期T+1+{b['expected_t1']}% | {b['reason']}")
+    else:
+        lines.append(f"  当前无符合条件的买入信号")
+    
+    # ===== 最高板信号输出 =====
+    if highest_board_signals:
+        lines.append(f"\\n{'─'*55}")
+        lines.append(f"🏆【最高板信号 TOP 5】")
+        lines.append(f"{'─'*55}")
+        for i, h in enumerate(highest_board_signals[:5], 1):
+            crown = ' 👑' if h['is_unique'] and i == 1 else ''
+            lines.append(f"  {i}. {h['name']}({h['code']}) {h['board']}板{crown}")
+            lines.append(f"     {h['confidence']}评分{h['score']} | 预期T+1+{h['expected_t1']}% | {h['sector']}({h['sector_boom']}涨停)")
+            if h['expected_t1'] >= 3.5:
+                lines.append(f"     💎强信号")
+    
+    lines.append(f"\\n{'─'*55}")
+    lines.append(f"🔴【卖出信号 TOP 5】")
+    lines.append(f"{'─'*55}")
+    
+    if sell_signals:
+        for i, s in enumerate(sell_signals[:5], 1):
+            action_icon = {'SELL_NOW': '🔥必卖', 'SELL_AT_OPEN': '🟡建议卖', 'HOLD': '🟢持有'}.get(s['action'], '❓')
+            sig_str = ' '.join(s['signals'][:2])
+            lines.append(f"  {i}. {s['name']}  {s['profit_pct']:+.1f}%盈亏 | {action_icon} | {sig_str}")
+            lines.append(f"     {s['reason']}")
+    else:
+        lines.append(f"  持仓无卖出信号")
+    
+    lines.append(f"\n{'─'*55}")
+    lines.append(f"🟢【持有建议】")
+    lines.append(f"{'─'*55}")
+    
+    if hold_signals:
+        for s in hold_signals:
+            sig_str = ' '.join(s.get('signals', [])[:2]) if s.get('signals') else ''
+            lines.append(f"  {s['name']}  {s.get('change_pct', 0):+.1f}% | {sig_str}")
+    else:
+        lines.append(f"  当前空仓或无持有信号")
+    
+    # 仓位建议 → 7行情+微观信号融合版（优先读取市场画像报告）
+    lines.append(f"\n{'─'*55}")
+    lines.append(f"📊 行情诊断(v4.0融合版)")
+    lines.append(f"{'─'*55}")
+    
+    # 尝试读取市场画像报告
+    market_profile = None
+    try:
+        mp_path = os.path.join(V2BOARD, 'market_profile.json')
+        if os.path.exists(mp_path):
+            with open(mp_path) as f:
+                market_profile = json.load(f)
+    except:
+        pass
+    
+    ls_today = None
+    micro_data = None
+    lhb_data = None
+    
+    if market_profile and market_profile.get('market_type'):
+        mp = market_profile
+        macro_cls = mp['market_type']
+        total_limit_today = mp.get('close_limit_total', 0)
+        youzi_trend = mp.get('youzi_trend', '')
+        # 获取今日实时涨停数（优先）
+        if mp.get('intraday', {}).get('total_limit', 0) > 0:
+            total_limit_today = mp['intraday']['total_limit']
+        elif mp.get('lhb_recent'):
+            pass  # 保留
+        max_position = mp.get('max_position', '20~40%')
+        models = mp.get('recommended_models', [])
+        
+        lines.append(f"  宏观: {macro_cls}  |  涨停{total_limit_today}只")
+        if youzi_trend:
+            lines.append(f"  微观: 游资{youzi_trend}")
+        
+        # 模型推荐
+        if models:
+            top_model = models[0]
+            lines.append(f"  🎯 主策略: {top_model['name']} ({top_model['stat']})")
+            if len(models) > 1:
+                sub = ', '.join([m['name'] for m in models[1:3]])
+                lines.append(f"  辅策略: {sub}")
+        lines.append(f"  仓位: {max_position}")
+        
+        # 盘中热度
+        intra = mp.get('intraday', {})
+        if intra and intra.get('zhaban_rate', 0) > 0:
+            lines.append(f"  炸板率: {intra['zhaban_rate']}% | 封单{intra.get('seal_change', 0):+.1f}%")
+        
+        # 尾盘
+        closing = mp.get('closing', {})
+        if closing and closing.get('direction'):
+            lines.append(f"  尾盘: {closing['direction']}")
+        
+        # 龙虎榜
+        if mp.get('lhb_recent'):
+            lines.append("")
+            lines.append(f"📡 龙虎榜(近{len(mp['lhb_recent'])}天):")
+            for ld in mp['lhb_recent'][-3:]:
+                lines.append(f"  {ld['date'][5:]}: 净额{ld['net_wan']:+.0f}万")
+    else:
+        # 没有市场画像报告时的旧备选
+        # 获取行情数据
+        ls_today = get_limit_strength_today()
+        micro_data = load_market_micro_signals()
+        lhb_data = get_lhb_data_simple()
+    
+    # 计算宏观行情（含大盘5日趋势）
+    total_limit_today = ls_today.get('total_limit', 0) if ls_today else 0
+    max_board_today = ls_today.get('max_board', 0) if ls_today else 0
+    
+    # 获取大盘5日涨跌幅
+    idx_chg_5d = 0
+    try:
+        r_idx = subprocess.run(['sqlite3', os.path.join(DATA_DIR, 'kline_cache.db')],
+            input="""
+                SELECT a.close, b.close 
+                FROM (SELECT close FROM kline WHERE code='000001' AND date=(SELECT MAX(date) FROM kline WHERE code='000001')) a,
+                     (SELECT close FROM kline WHERE code='000001' AND date=(SELECT date FROM kline WHERE code='000001' ORDER BY date DESC LIMIT 1 OFFSET 5)) b
+            """.strip(),
+            capture_output=True, text=True, timeout=5
+        )
+        parts = r_idx.stdout.strip().split('|')
+        if len(parts) == 2:
+            c_now, c_5d = float(parts[0]), float(parts[1])
+            idx_chg_5d = round((c_now - c_5d) / c_5d * 100, 2) if c_5d > 0 else 0
+    except:
+        pass
+    
+    macro_cls = classify_market(total_limit_today, max_board_today, idx_chg_5d)
+    
+    # 计算微观信号
+    youzi_trend = calc_youzi_trend(micro_data) if micro_data else ''
+    youzi_ratio = micro_data[-1]['youzi_ratio'] if micro_data else 50
+    advices, signals, max_position = get_market_advice(macro_cls, youzi_trend, youzi_ratio, total_limit_today, max_board_today, micro_data)
+    
+    lines.append(f"  宏观: {macro_cls}  |  涨停{total_limit_today}只  |  最高板{max_board_today}")
+    if youzi_trend and micro_data:
+        lines.append(f"  微观: 游资{youzi_trend}  |  净额{micro_data[-1]['youzi_net']/10000:.0f}万")
+    for a in advices:
+        lines.append(f"  {a}")
+    
+    # 仓位
+    lines.append(f"  仓位: {max_position}" if max_position else "")
+    
+    # 顶部/底部信号预警
+    for s in signals:
+        lines.append(f"  {s}")
+    
+    # 龙虎榜数据
+    if lhb_data:
+        lines.append("")
+        lines.append(f"📡 龙虎榜(近{len(lhb_data)}天):")
+        for ld in lhb_data[-5:]:
+            net = ld['total_buy_wan'] - ld['total_sell_wan']
+            lines.append(f"  {ld['date'][5:]}: 买卖差{net:+.0f}万 | {ld['stocks']}只")
+    
+    lines.append(f"\n{'─'*55}")
+    lines.append(f"⚡ 卖出铁律（回测验证）:")
+    lines.append(f"  T+1竞价<-3% → 必卖 | 天量>10 → 必卖")
+    lines.append(f"  3板/4板一字+缩量 → 持有 | 天量+乖离>15% → 卖")
+    
+    lines.append(f"\n{'='*55}")
+    
+    # 原始数据保存
+    report_path = os.path.join(V2BOARD, 'decision_report.txt')
+    os.makedirs(os.path.dirname(report_path), exist_ok=True)
+    with open(report_path, 'w', encoding='utf-8') as f:
+        f.write('\n'.join(lines))
+    
+    # 写入聚合器数据（供作战面板读取）
+    try:
+        with open(os.path.join(V2BOARD, 'decision_report.json'), 'w', encoding='utf-8') as f:
+            json.dump({
+                'timestamp': now.isoformat(),
+                'buy_candidates': buy_candidates[:10],
+                'sell_signals': sell_signals[:5],
+                'hold_signals': hold_signals,
+                'highest_board_signals': highest_board_signals[:6],
+                'env_key': macro_cls,
+                'total_limit': len(limit_stocks),
+                'boom_sectors': len(boom_sectors),
+                'buy_count': len(buy_candidates),
+                'sell_count': len(sell_signals),
+                'hold_count': len(hold_signals),
+                'hb_count': len(highest_board_signals),
+            }, f, ensure_ascii=False, indent=2)
+    except:
+        pass
+    
+    return '\n'.join(lines)
+
+
+def run_verify_after_engine(report):
+    """引擎运行后，记录推荐+触发验证"""
+    try:
+        sys.path.insert(0, os.path.join(BASE, 'scripts'))
+        from strategy_verify import log_recommendations
+        v2b = os.path.expanduser('~/V2board')
+        report_path = os.path.join(v2b, 'decision_report.json')
+        if os.path.exists(report_path):
+            with open(report_path) as f:
+                data = json.load(f)
+            count = log_recommendations(data)
+            if count > 0:
+                print(f"  📝 已记录{count}条推荐")
+    except Exception as e:
+        print(f"  ⚠️ 验证记录异常: {e}")
+
+
+def main():
+    report = generate_decision_report()
+    print(f"\n{'='*55}")
+    print(report)
+    
+    # 运行验证记录
+    run_verify_after_engine({})
+
+
+if __name__ == '__main__':
+    main()

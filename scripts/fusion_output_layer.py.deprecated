@@ -1,0 +1,318 @@
+#!/usr/bin/env python3
+"""
+融合输出层 v2 — 穿透评分→策略匹配→S级交易→仓位分配（三刀流完整版）
+=====================================================================
+架构：
+  矛盾引擎v3 (环境感知+24策略匹配) 
+    → 本层 (S级标的筛选 + T+1铁血卖出 + 仓位执行)
+    → 输出: 可直接下单的S级买入候选
+
+三刀流纪律：
+  ✅ 只做S级标的（TOP匹配策略的标的）
+  ✅ 环境<40分时强制空仓/≤10%仓位
+  ✅ T+1强制清仓，-5%无条件止损
+  ✅ 每天只做1~2笔
+
+数据源：
+  - contradiction_report_v3.json (矛盾引擎输出)
+  - lhb_practical_backtest.json (策略回测)
+  - 腾讯实时行情 (盘中扫描)
+
+启动：
+  python3 fusion_output_layer.py
+  python3 fusion_output_layer.py --scan  (附带盘中实时扫描)
+"""
+
+import os, json, sys, subprocess, re, math
+from datetime import datetime
+
+BASE = os.path.expanduser('~/astock')
+V2BOARD = os.path.expanduser('~/V2board')
+DATA = os.path.join(V2BOARD, 'data')
+
+# ================================================================
+# 1. 运行矛盾引擎
+# ================================================================
+def run_contradiction():
+    """运行矛盾引擎v3并加载结果"""
+    try:
+        r = subprocess.run(
+            [sys.executable, os.path.join(BASE, 'scripts', 'contradiction_engine_v3.py')],
+            capture_output=True, text=True, timeout=45
+        )
+        print(r.stdout)
+    except Exception as e:
+        print(f"❌ 矛盾引擎异常: {e}")
+    
+    path = os.path.join(DATA, 'contradiction_report_v3.json')
+    if os.path.exists(path):
+        with open(path) as f:
+            return json.load(f)
+    return None
+
+
+# ================================================================
+# 2. 腾讯实时行情
+# ================================================================
+def fetch_tencent(codes):
+    """抓取腾讯实时行情"""
+    if not codes: return {}
+    codes_str = ','.join(codes)
+    try:
+        proc = subprocess.run(
+            ['curl', '-s', '--connect-timeout', '5', '--max-time', '10',
+             f'https://qt.gtimg.cn/q={codes_str}'],
+            capture_output=True, timeout=15
+        )
+        txt = proc.stdout.decode('gbk')
+    except:
+        return {}
+    
+    results = {}
+    for line in txt.strip().split('\n'):
+        m = re.search(r'"(.+)"', line)
+        if not m: continue
+        parts = m.group(1).split('~')
+        if len(parts) < 48: continue
+        
+        code = parts[2]
+        def sf(i):
+            try: return float(parts[i]) if parts[i] and parts[i] != '-' else None
+            except: return None
+        results[code] = {
+            'name': parts[1], 'price': sf(3), 'chg': sf(32),
+            'volume_ratio': sf(39), 'turnover': sf(38),
+            'amount_wan': sf(37), 'amplitude': sf(43),
+            'buy_vol': sf(7), 'sell_vol': sf(8),
+        }
+    return results
+
+
+# ================================================================
+# 3. S级标的筛选
+# ================================================================
+def scan_s_level_stocks(contradiction_result):
+    """
+    从矛盾引擎输出中筛选S级标的。
+    
+    S级定义（三刀流）：
+      - 匹配策略综合分 ≥ 40
+      - 策略胜率 ≥ 60%
+      - 环境分 ≥ 40（低于40不交易）
+      - 预期收益 ≥ +2%
+    """
+    env_score = (contradiction_result or {}).get('env_score', 0)
+    decision = (contradiction_result or {}).get('decision', {})
+    matched = (contradiction_result or {}).get('matched_strategies', [])
+    lhb_tags = (contradiction_result or {}).get('lhb_tags', [])
+    
+    if env_score < 40:
+        return [], f"❌ 环境分{env_score}<40，三刀流强制空仓"
+    
+    s_level = []
+    for m in matched[:8]:  # 取TOP8
+        if m['composite'] >= 40 and m['win_rate'] >= 60 and m['ret'] >= 2:
+            s_level.append({
+                'name': m['name'],
+                'composite': m['composite'],
+                'ret': m['ret'],
+                'win_rate': m['win_rate'],
+                'n': m['n'],
+                'big_win_pct': m.get('big_win_pct', 0),
+                'big_loss_pct': m.get('big_loss_pct', 0),
+                'match_score': m.get('match_score', 0),
+                'tags': list(m.get('tags', [])),
+            })
+    
+    if not s_level:
+        return [], "⚠️ 无S级策略可执行"
+    
+    s_level.sort(key=lambda x: -x['composite'])
+    return s_level, f"✅ 发现 {len(s_level)} 个S级策略"
+
+
+# ================================================================
+# 4. 实时个股信号生成
+# ================================================================
+def generate_realtime_signals(s_level_strategies, lhb_tags):
+    """
+    根据S级策略条件，从龙虎榜数据中筛选可买入的个股。
+    
+    匹配逻辑：
+      - 策略需要"机构"标签 → 选龙虎榜有机构买入的票
+      - 策略需要"量化"标签 → 选龙虎榜有量化席位的票
+      - 策略需要"主力"标签 → 选买方>卖方1.5倍的票
+      - 策略需要"缩量"标签 → 选量比<0.7的票
+    """
+    if not s_level_strategies:
+        return []
+    
+    # 加载龙虎榜缓存
+    lhb_cache = {}
+    lhb_path = os.path.join(DATA, 'lhb_scoring_cache.json')
+    if os.path.exists(lhb_path):
+        with open(lhb_path) as f:
+            lhb_cache = json.load(f)
+    
+    all_candidates = lhb_cache.get('actionable', [])
+    signals = []
+    
+    for strategy in s_level_strategies[:3]:  # 只处理TOP3 S级策略
+        needed_tags = set(strategy.get('tags', []))
+        matched_stocks = []
+        
+        for item in all_candidates:
+            code = item.get('code', '')
+            name = item.get('name', '')
+            detail = item.get('detail', {})
+            if not isinstance(detail, dict):
+                detail = {}
+            
+            # 提取个股特征
+            inst_n = 0
+            quant_n = 0
+            dealers = detail.get('dealers', [])
+            if isinstance(dealers, list):
+                for d in dealers:
+                    d_name = d.get('dealer', '')
+                    if '机构' in d_name: inst_n += 1
+                    if '量化' in d_name or ('中信' in d_name and '总部' in d_name): quant_n += 1
+            
+            buy_count = int(detail.get('buy_count', 0))
+            sell_count = int(detail.get('sell_count', 0))
+            
+            # 检查个股是否匹配策略条件
+            matches = True
+            if '机构' in needed_tags and inst_n == 0:
+                matches = False
+            if '量化' in needed_tags and quant_n == 0:
+                matches = False
+            if '主力' in needed_tags and buy_count <= sell_count:
+                matches = False
+                
+            if matches:
+                # 计算该股的预期收益（用策略回测数据）
+                expected_ret = strategy['ret']
+                expected_win = strategy['win_rate']
+                
+                score = strategy['match_score']
+                tier = 'S' if score >= 50 else 'A' if score >= 35 else 'B'
+                
+                matched_stocks.append({
+                    'code': code,
+                    'name': name,
+                    'tier': tier,
+                    'score': round(score, 1),
+                    'strategy': strategy['name'],
+                    'expected_ret': expected_ret,
+                    'expected_win': expected_win,
+                    'buy_count': buy_count,
+                    'sell_count': sell_count,
+                    'inst_count': inst_n,
+                    'quant_count': quant_n,
+                })
+        
+        if matched_stocks:
+            signals.append({
+                'strategy': strategy['name'],
+                'strategy_ret': strategy['ret'],
+                'strategy_win': strategy['win_rate'],
+                'strategy_n': strategy['n'],
+                'composite': strategy['composite'],
+                'stocks': matched_stocks[:5],
+            })
+    
+    return signals
+
+
+# ================================================================
+# 5. Bundle写入
+# ================================================================
+def write_to_bundle(fusion_result):
+    """写入bundle供作战面板读取"""
+    path = os.path.join(DATA, 'fusion_report.json')
+    with open(path, 'w') as f:
+        json.dump(fusion_result, f, ensure_ascii=False, indent=2, default=str)
+    print(f"\n✅ 融合报告已写入: {path}")
+    return path
+
+
+# ================================================================
+# 6. Main
+# ================================================================
+def main():
+    print("=" * 70)
+    print("🔗 融合输出层 v2 — 三刀流完整版")
+    print("   穿透评分→24策略匹配→S级筛选→仓位分配")
+    print("=" * 70)
+    
+    # Step 1: 运行矛盾引擎
+    print("\n[1/4] 运行矛盾穿透引擎v3...")
+    contradiction = run_contradiction()
+    if not contradiction or not contradiction.get('env_score', 0):
+        print("❌ 矛盾引擎无结果")
+        return
+    
+    env_score = contradiction['env_score']
+    env_tier = contradiction.get('decision', {}).get('env_tier', '未知')
+    matched = contradiction.get('matched_strategies', [])
+    lhb_tags = contradiction.get('lhb_tags', [])
+    
+    # Step 2: S级筛选
+    print(f"\n[2/4] 三刀流S级筛选...")
+    print(f"   环境: {env_score}/100 [{env_tier}]")
+    
+    s_level, msg = scan_s_level_stocks(contradiction)
+    print(f"   {msg}")
+    
+    if s_level:
+        for i, s in enumerate(s_level):
+            print(f"   ⭐{i+1}. {s['name'][:46]:46s} {s['composite']:5.1f}分 {s['ret']:+.2f}%/{s['win_rate']:.1f}% 样本{s['n']}")
+    
+    # Step 3: 实时个股信号
+    print(f"\n[3/4] 龙虎榜个股匹配...")
+    realtime_signals = generate_realtime_signals(s_level, lhb_tags)
+    total_stocks = sum(len(sig['stocks']) for sig in realtime_signals)
+    if realtime_signals:
+        print(f"   ✅ 生成 {len(realtime_signals)} 个策略信号, {total_stocks} 只候选个股")
+        for sig in realtime_signals:
+            stocks_str = ', '.join([f"{s['name']}({s['code']}, {s['tier']})" for s in sig['stocks'][:3]])
+            print(f"   📌 {sig['strategy'][:40]:40s} → {stocks_str}")
+    else:
+        print(f"   ⚠️ 无匹配个股信号")
+    
+    # Step 4: 打包输出
+    print(f"\n[4/4] 打包输出...")
+    
+    position = contradiction.get('decision', {}).get('position_str', '0%')
+    decision_text = contradiction.get('decision', {}).get('decision', '未知')
+    
+    fusion_result = {
+        'engine': 'fusion-v2',
+        'timestamp': datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
+        'env_score': env_score,
+        'env_tier': env_tier,
+        'market_summary': f"{env_score}/100 {decision_text} 仓位{position}",
+        'decision': {
+            'final_position': position,
+            'decision': decision_text,
+            'strategy_boost': contradiction.get('decision', {}).get('strategy_boost_pct', 0),
+            'cap_base': contradiction.get('decision', {}).get('cap_base_pct', 0),
+        },
+        's_strategies': s_level,
+        'realtime_signals': realtime_signals,
+        'strategy_db_top3': contradiction.get('strategy_db', {}).get('top3', []),
+    }
+    
+    write_to_bundle(fusion_result)
+    
+    print(f"\n{'=' * 70}")
+    print(f"🏆 融合完成!")
+    print(f"   环境: {env_score}/100 [{env_tier}]")
+    print(f"   决策: {decision_text} | 仓位: {position}")
+    print(f"   S级策略: {len(s_level)} 个")
+    print(f"   个股信号: {total_stocks} 只")
+
+
+if __name__ == '__main__':
+    main()

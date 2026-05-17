@@ -1,0 +1,433 @@
+{
+  "date": "2026-05-15",
+  "stocks": [
+    {
+      "code": "002407",
+      "name": "多氟多",
+      "net_buy_wan": 73174,
+      "total_buy_wan": 93469,
+      "pattern": "北上买入",
+      "top_buyers": [
+        {
+          "dealer": "深股通专用",
+          "net": 38096
+        },
+        {
+          "dealer": "国泰海通证券股份有限公司",
+          "net": 20823
+        },
+        {
+          "dealer": "国泰海通证券股份有限公司",
+          "net": 15192
+        }
+      ]
+    },
+    {
+      "code": "688143",
+      "name": "长盈通",
+      "net_buy_wan": 51022,
+      "total_buy_wan": 96049,
+      "pattern": "机构主导买入",
+      "top_buyers": [
+        {
+          "dealer": "机构专用",
+          "net": 45047
+        },
+        {
+          "dealer": "沪股通专用",
+          "net": 14875
+        },
+        {
+          "dealer": "高盛（中国）证券有限责任",
+          "net": 14375
+        }
+      ]
+    },
+    {
+      "code": "688820",
+      "name": "盛合晶微",
+      "net_buy_wan": 46564,
+      "total_buy_wan": 120016,
+      "pattern": "游资主导买入",
+      "top_buyers": [
+        {
+          "dealer": "高盛（中国）证券有限责任",
+          "net": 31841
+        },
+        {
+          "dealer": "国泰海通证券股份有限公司",
+          "net": 31450
+        },
+        {
+          "dealer": "国泰海通证券股份有限公司",
+          "net": 20074
+        }
+      ]
+    },
+    {
+      "code": "002940",
+      "name": "昂利康",
+      "net_buy_wan": 45526,
+      "total_buy_wan": 58221,
+      "pattern": "机构主导买入",
+      "top_buyers": [
+        {
+          "dealer": "机构专用",
+          "net": 6071
+        },
+        {
+          "dealer": "深股通专用",
+          "net": 5112
+        },
+        {
+          "dealer": "深股通专用",
+          "net": 5112
+        }
+      ]
+    },
+    {
+      "code": "002031",
+      "name": "巨轮智能",
+      "net_buy_wan": 43396,
+      "total_buy_wan": 70108,
+      "pattern": "北上买入",
+      "top_buyers": [
+        {
+          "dealer": "浙商证券股份有限公司乐清",
+          "net": 14229
+        },
+        {
+          "dealer": "深股通专用",
+          "net": 11178
+        },
+        {
+          "dealer": "深股通专用",
+          "net": 11178
+        }
+      ]
+    },
+    {
+      "code": "300276",
+      "name": "三丰智能",
+      "net_buy_wan": 34141,
+      "total_buy_wan": 39217,
+      "pattern": "游资主导买入",
+      "top_buyers": [
+        {
+          "dealer": "国泰海通证券股份有限公司",
+          "net": 13880
+        },
+        {
+          "dealer": "国泰海通证券股份有限公司",
+          "net": 8073
+        },
+        {
+          "dealer": "开源证券股份有限公司西安",
+          "net": 7008
+        }
+      ]
+    },
+    {
+      "code": "301538",
+      "name": "骏鼎达",
+      "net_buy_wan": 32746,
+      "total_buy_wan": 54108,
+      "pattern": "北上买入",
+      "top_buyers": [
+        {
+          "dealer": "东方财富证券股份有限公司",
+          "net": 3795
+        },
+        {
+          "dealer": "国信证券股份有限公司深圳",
+          "net": 3020
+        },
+        {
+          "dealer": "深股通专用",
+          "net": 2753
+        }
+      ]
+    },
+    {
+      "code": "002181",
+      "name": "粤传媒",
+      "net_buy_wan": 30299,
+      "total_buy_wan": 42793,
+      "pattern": "北上买入",
+      "top_buyers": [
+        {
+          "dealer": "国泰海通证券股份有限公司",
+          "net": 10172
+        },
+        {
+          "dealer": "深股通专用",
+          "net": 9624
+        },
+        {
+          "dealer": "深股通专用",
+          "net": 9624
+        }
+      ]
+    },
+    {
+      "code": "002380",
+      "name": "科远智慧",
+      "net_buy_wan": 20386,
+      "total_buy_wan": 35732,
+      "pattern": "北上买入",
+      "top_buyers": [
+        {
+          "dealer": "深股通专用",
+          "net": 5389
+        },
+        {
+          "dealer": "深股通专用",
+          "net": 5389
+        },
+        {
+          "dealer": "机构专用",
+          "net": 3328
+        }
+      ]
+    },
+    {
+      "code": "001393",
+      "name": "维通利",
+      "net_buy_wan": 18300,
+      "total_buy_wan": 31308,
+      "pattern": "游资主导买入",
+      "top_buyers": [
+        {
+          "dealer": "东方财富证券股份有限公司",
+          "net": 3964
+        },
+        {
+          "dealer": "东方财富证券股份有限公司",
+          "net": 3964
+        },
+        {
+          "dealer": "东方财富证券股份有限公司",
+          "net": 3145
+        }
+      ]
+    },
+    {
+      "code": "002196",
+      "name": "方正电机",
+      "net_buy_wan": 16126,
+      "total_buy_wan": 26103,
+      "pattern": "机构主导买入",
+      "top_buyers": [
+        {
+          "dealer": "机构专用",
+          "net": 4835
+        },
+        {
+          "dealer": "机构专用",
+          "net": 4835
+        },
+        {
+          "dealer": "国泰海通证券股份有限公司",
+          "net": 4782
+        }
+      ]
+    },
+    {
+      "code": "300632",
+      "name": "光莆股份",
+      "net_buy_wan": 14865,
+      "total_buy_wan": 36935,
+      "pattern": "机构主导买入",
+      "top_buyers": [
+        {
+          "dealer": "机构专用",
+          "net": 5979
+        },
+        {
+          "dealer": "机构专用",
+          "net": 5979
+        },
+        {
+          "dealer": "中信建投证券股份有限公司",
+          "net": 3963
+        }
+      ]
+    },
+    {
+      "code": "603115",
+      "name": "海星股份",
+      "net_buy_wan": 12716,
+      "total_buy_wan": 43589,
+      "pattern": "机构主导买入",
+      "top_buyers": [
+        {
+          "dealer": "机构专用",
+          "net": 12204
+        },
+        {
+          "dealer": "国泰海通证券股份有限公司",
+          "net": 10098
+        },
+        {
+          "dealer": "机构专用",
+          "net": 8476
+        }
+      ]
+    },
+    {
+      "code": "301696",
+      "name": "三瑞智能",
+      "net_buy_wan": 10853,
+      "total_buy_wan": 24661,
+      "pattern": "游资主导买入",
+      "top_buyers": [
+        {
+          "dealer": "开源证券股份有限公司西安",
+          "net": 8098
+        },
+        {
+          "dealer": "国投证券股份有限公司深圳",
+          "net": 6629
+        },
+        {
+          "dealer": "国泰海通证券股份有限公司",
+          "net": 4794
+        }
+      ]
+    },
+    {
+      "code": "002081",
+      "name": "金螳螂",
+      "net_buy_wan": 10696,
+      "total_buy_wan": 33229,
+      "pattern": "游资主导买入",
+      "top_buyers": [
+        {
+          "dealer": "国信证券股份有限公司浙江",
+          "net": 2409
+        },
+        {
+          "dealer": "国信证券股份有限公司浙江",
+          "net": 2409
+        },
+        {
+          "dealer": "东方财富证券股份有限公司",
+          "net": 1615
+        }
+      ]
+    },
+    {
+      "code": "600130",
+      "name": "波导股份",
+      "net_buy_wan": 8417,
+      "total_buy_wan": 14323,
+      "pattern": "游资主导买入",
+      "top_buyers": [
+        {
+          "dealer": "国泰海通证券股份有限公司",
+          "net": 3699
+        },
+        {
+          "dealer": "中信证券股份有限公司东阳",
+          "net": 3563
+        },
+        {
+          "dealer": "中泰证券股份有限公司常州",
+          "net": 2798
+        }
+      ]
+    },
+    {
+      "code": "688697",
+      "name": "纽威数控",
+      "net_buy_wan": 7831,
+      "total_buy_wan": 15750,
+      "pattern": "机构主导买入",
+      "top_buyers": [
+        {
+          "dealer": "机构专用",
+          "net": 4835
+        },
+        {
+          "dealer": "华泰证券股份有限公司总部",
+          "net": 3953
+        },
+        {
+          "dealer": "开源证券股份有限公司西安",
+          "net": 3064
+        }
+      ]
+    },
+    {
+      "code": "003018",
+      "name": "金富科技",
+      "net_buy_wan": 7365,
+      "total_buy_wan": 18067,
+      "pattern": "游资主导买入",
+      "top_buyers": [
+        {
+          "dealer": "国泰海通证券股份有限公司",
+          "net": 6207
+        },
+        {
+          "dealer": "甬兴证券有限公司天津解放",
+          "net": 4944
+        },
+        {
+          "dealer": "东吴证券股份有限公司苏州",
+          "net": 2614
+        }
+      ]
+    },
+    {
+      "code": "300721",
+      "name": "怡达股份",
+      "net_buy_wan": 6047,
+      "total_buy_wan": 13614,
+      "pattern": "机构主导买入",
+      "top_buyers": [
+        {
+          "dealer": "机构专用",
+          "net": 3791
+        },
+        {
+          "dealer": "平安证券股份有限公司杭州",
+          "net": 2917
+        },
+        {
+          "dealer": "东吴证券股份有限公司苏州",
+          "net": 2210
+        }
+      ]
+    },
+    {
+      "code": "603363",
+      "name": "傲农生物",
+      "net_buy_wan": 6001,
+      "total_buy_wan": 9148,
+      "pattern": "北上买入",
+      "top_buyers": [
+        {
+          "dealer": "沪股通专用",
+          "net": 3962
+        },
+        {
+          "dealer": "华鑫证券有限责任公司上海",
+          "net": 2045
+        },
+        {
+          "dealer": "兴业证券股份有限公司泉州",
+          "net": 1457
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "total": 77,
+    "jigou": 10,
+    "beishang": 9,
+    "youzi": 25,
+    "tao": 17,
+    "duidao": 6
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "best_scheme": {
+    "weight_name": "极简",
+    "mult_name": "无乘子",
+    "threshold": 80
+  },
+  "score_tiers": {
+    "S": 80,
+    "A": 65,
+    "B": 50,
+    "C": 30
+  },
+  "position_sizes": {
+    "S": 30,
+    "A": 20,
+    "B": 10,
+    "C": 5
+  },
+  "sell_rules": {
+    "t1_open_gt_7": "竞价卖一半",
+    "t1_open_3_7": "等冲高卖",
+    "t1_open_0_3": "等盘中冲高",
+    "t1_open_neg_3_0": "扛到盘尾止损",
+    "t1_open_lt_neg_3": "开盘止损"
+  }
+}

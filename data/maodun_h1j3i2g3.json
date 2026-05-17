@@ -1,0 +1,138 @@
+{
+  "meta": {
+    "script": "矛盾论未覆盖维度回测 v1.0 — H1/J3/I2/G3",
+    "generated_at": "2026-05-17T13:44:23.143880",
+    "date_range": "2024-01-01 ~ 2026-05-15",
+    "total_trading_days": 569,
+    "total_limit_stocks": 34079,
+    "elapsed_seconds": 60.2
+  },
+  "dimensions": {
+    "H1": {
+      "dimension": "H1",
+      "name": "一字板 vs 自然涨停",
+      "description": "一字板=开盘价≈前收盘且涨停, 自然涨停=非一字涨停",
+      "yizi_board": {
+        "samples": 8682,
+        "t1_avg_ret": 1.53,
+        "t1_win_rate": 56.1,
+        "open_premium_avg": 1.78
+      },
+      "natural_board": {
+        "samples": 25338,
+        "t1_avg_ret": 2.23,
+        "t1_win_rate": 60.5,
+        "open_premium_avg": 2.81
+      },
+      "comparison": {
+        "t1_ret_diff": -0.7,
+        "premium_diff": -1.03,
+        "better_t1": "自然涨停"
+      }
+    },
+    "J3": {
+      "dimension": "J3",
+      "name": "游资/机构/量化三方合力",
+      "description": "按龙虎榜买入方资金类型组合, 统计T+1收益和胜率",
+      "groups": [
+        {
+          "group": "三家合力(机构+游资+量化)",
+          "samples": 342,
+          "t1_avg_ret": 1.82,
+          "t1_win_rate": 57.9
+        },
+        {
+          "group": "机构+游资",
+          "samples": 257,
+          "t1_avg_ret": 1.83,
+          "t1_win_rate": 59.9
+        },
+        {
+          "group": "机构+量化",
+          "samples": 59,
+          "t1_avg_ret": 2.81,
+          "t1_win_rate": 72.9
+        },
+        {
+          "group": "游资+量化",
+          "samples": 129,
+          "t1_avg_ret": 1.04,
+          "t1_win_rate": 55.0
+        },
+        {
+          "group": "仅机构",
+          "samples": 15,
+          "t1_avg_ret": 3.14,
+          "t1_win_rate": 66.7
+        },
+        {
+          "group": "仅游资",
+          "samples": 79,
+          "t1_avg_ret": 2.67,
+          "t1_win_rate": 64.6
+        },
+        {
+          "group": "仅量化",
+          "samples": 3,
+          "t1_avg_ret": -2.96,
+          "t1_win_rate": 33.3
+        }
+      ],
+      "best_return_group": "仅机构",
+      "best_return_value": 3.14,
+      "best_winrate_group": "机构+量化",
+      "best_winrate_value": 72.9
+    },
+    "I2": {
+      "dimension": "I2",
+      "name": "内部因素vs外部因素对转化的驱动力",
+      "description": "环境急升+放量=外部驱动(消息面), 环境急升+缩量=内部驱动(技术面)",
+      "external_driven": {
+        "samples": 6658,
+        "t1_avg_ret": 1.59,
+        "t1_win_rate": 56.2,
+        "t3_avg_ret": 1.9,
+        "t5_avg_ret": 1.98
+      },
+      "internal_driven": {
+        "samples": 1485,
+        "t1_avg_ret": 4.71,
+        "t1_win_rate": 73.7,
+        "t3_avg_ret": 5.74,
+        "t5_avg_ret": 5.67
+      },
+      "comparison": {
+        "t1_diff": -3.12,
+        "t3_diff": -3.84,
+        "t5_diff": -3.69
+      }
+    },
+    "G3": {
+      "dimension": "G3",
+      "name": "跌破首板的后续表现 (炸板回封补充)",
+      "description": "炸板=摸涨停未封住, 封板=收盘封住, 回封板=盘中打开后重新封住",
+      "zhaban": {
+        "samples": 22734,
+        "t1_avg_ret": -1.27,
+        "t1_win_rate": 37.7,
+        "open_premium_avg": -1.17
+      },
+      "fengban_once": {
+        "samples": 5752,
+        "t1_avg_ret": 3.76,
+        "t1_win_rate": 67.2,
+        "open_premium_avg": 5.03
+      },
+      "huifeng_ban": {
+        "samples": 19600,
+        "t1_avg_ret": 1.8,
+        "t1_win_rate": 58.5,
+        "open_premium_avg": 2.19
+      },
+      "comparison": {
+        "zhaban_vs_fengban_diff": -5.03,
+        "huifeng_vs_fengban_diff": -1.96
+      }
+    }
+  }
+}

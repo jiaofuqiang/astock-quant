@@ -1,0 +1,280 @@
+#!/usr/bin/env python3
+"""
+龙虎榜打板仓位管理穿透引擎 v1.0
+多层·多维·穷举·穿透·动态仓位管理
+
+架构:
+  层1 宏观环境 → 总仓位上限 (基于contradiction_score全量30,977条回测)
+  层2 龙虎榜质量 → 单票基础仓位 (基于tier S/A/B/C的191条回测)
+  层3 个股特征 → 仓位微调 (量比/竞价/板数/连板)
+  层4 动态止损 → 止损规则 (按tier级别)
+  层5 组合风控 → 最终仓位修正 (板块集中度/总暴露)
+
+输入: dashboard_bundle.json (实时数据)
+输出: lhb_position 字段注入bundle + 打印摘要
+"""
+import json, os, sys
+from datetime import datetime
+from collections import defaultdict
+
+V2BOARD = os.path.expanduser('~/V2board')
+DATA = os.path.expanduser('~/astock/data')
+
+# ========================
+# 层1: 宏观环境 → 总仓位上限
+# 基于 contradiction_backtest 全量30,977条/685天回测
+# ========================
+MACRO_POSITION_TABLE = {
+    '80_100': {'pos': 80, 'tag': '🟢 重仓', 'wr': 72.3, 'avg_chg': 3.06, 'bl': 3.7},
+    '70_80':  {'pos': 60, 'tag': '🔵 中仓', 'wr': 66.2, 'avg_chg': 2.05, 'bl': 6.4},
+    '60_70':  {'pos': 40, 'tag': '🟡 轻仓', 'wr': 60.6, 'avg_chg': 2.12, 'bl': 8.9},
+    '50_60':  {'pos': 20, 'tag': '🟠 极轻仓', 'wr': 55.3, 'avg_chg': 1.53, 'bl': 10.1},
+    '40_50':  {'pos': 20, 'tag': '🟠 极轻仓', 'wr': 59.8, 'avg_chg': 2.21, 'bl': 11.7},
+    '30_40':  {'pos': 15, 'tag': '🔴 极轻仓', 'wr': 56.9, 'avg_chg': 1.92, 'bl': 18.0},
+    '0_30':   {'pos': 10, 'tag': '🔴 空仓', 'wr': 56.2, 'avg_chg': 1.76, 'bl': 19.6},
+}
+
+# ========================
+# 层2: 龙虎榜质量 → 单票基础仓位
+# 基于 lhb_selected_detail 191条回测
+# ========================
+TIER_BASE_POSITION = {
+    'S': {'pos': 25, 'wr': 100.0, 'avg_chg': 7.0, 'bl': 0.0, 'count': 3},
+    'A': {'pos': 12, 'wr': 58.9, 'avg_chg': 2.2, 'bl': 16.1, 'count': 56},
+    'B': {'pos': 6,  'wr': 59.1, 'avg_chg': 2.04, 'bl': 20.5, 'count': 132},
+    'C': {'pos': 4,  'wr': 50.0, 'avg_chg': 1.0, 'bl': 25.0, 'count': 10},
+}
+
+# ========================
+# 层3: 个股特征 → 仓位微调(百分比)
+# ========================
+def calc_vr_adjust(vol_ratio):
+    """量比微调"""
+    if vol_ratio is None:
+        return 0
+    if vol_ratio < 0.7:
+        return -3  # 缩量板,谨慎
+    elif vol_ratio < 1.3:
+        return 0   # 平量,中性
+    elif vol_ratio < 3:
+        return -2  # 放量,略谨慎
+    else:
+        return -3  # 巨量,警惕出货
+
+def calc_open_adjust(t_open):
+    """竞价开盘微调"""
+    if t_open is None:
+        return 0
+    if t_open >= 7:
+        return -5  # 超高开,易被砸
+    elif t_open >= 3:
+        return 0   # 适度高开
+    elif t_open >= 1:
+        return -2  # 微高开
+    elif t_open >= -2:
+        return -3  # 平开偏弱
+    else:
+        return -5  # 低开弱
+
+def calc_board_adjust(board):
+    """板数微调"""
+    if board is None:
+        return 0
+    if board >= 3:
+        return 3   # 高板龙头加分
+    elif board == 2:
+        return 1   # 二板
+    else:
+        return 0   # 首板
+
+def calc_consecutive_adjust(consecutive):
+    """已连板天数微调"""
+    if consecutive is None:
+        return 0
+    if consecutive >= 4:
+        return 2
+    elif consecutive >= 3:
+        return 1
+    elif consecutive == 2:
+        return 0
+    else:
+        return -1
+
+# ========================
+# 层4: 止损规则
+# ========================
+STOP_LOSS_TABLE = {
+    'S': '-3%',
+    'A': '-3%',
+    'B': '-2.5%',
+    'C': '-2%',
+}
+
+# ========================
+# 加载数据
+# ========================
+def load_bundle():
+    path = os.path.join(V2BOARD, 'dashboard_bundle.json')
+    with open(path) as f:
+        return json.load(f)
+
+def compute(bundle):
+    """核心仓位计算"""
+    # ---------- 层1: 宏观 ----------
+    cr = bundle.get('contradiction_report', {})
+    total_score = cr.get('total_score', 50)
+    
+    if total_score >= 80:
+        seg = '80_100'
+    elif total_score >= 70:
+        seg = '70_80'
+    elif total_score >= 60:
+        seg = '60_70'
+    elif total_score >= 50:
+        seg = '50_60'
+    elif total_score >= 40:
+        seg = '40_50'
+    elif total_score >= 30:
+        seg = '30_40'
+    else:
+        seg = '0_30'
+    
+    macro = MACRO_POSITION_TABLE.get(seg, {'pos': 20, 'tag': '🟠 极轻仓'})
+    macro_cap = macro['pos']  # 总仓位上限%
+    
+    # ---------- 层2+3+4: 遍历龙虎榜标的 ----------
+    lhb = bundle.get('lhb_scoring', {})
+    ranked = lhb.get('ranked', [])
+    
+    total_planned = 0
+    stocks = []
+    
+    for item in ranked:
+        code = item['code']
+        name = item['name']
+        tier = item.get('tier', 'B')
+        score = item.get('score', 50)
+        vr = item.get('t_vol_r') or 1.0
+        t_open = item.get('t_open') or 0
+        board = item.get('board', 1)
+        consecutive = item.get('consecutive_limit', 1)
+        action_tag = item.get('action', '')
+        is_yziban = item.get('is_yziban', False)
+        buy_feas = item.get('buy_feasibility', '')
+        
+        # 基础仓位
+        tier_info = TIER_BASE_POSITION.get(tier, {'pos': 4})
+        base = tier_info['pos']
+        
+        # 微调
+        vr_adj = calc_vr_adjust(vr)
+        open_adj = calc_open_adjust(t_open)
+        board_adj = calc_board_adjust(board)
+        cons_adj = calc_consecutive_adjust(consecutive)
+        
+        # 不买信号
+        if '不可' in action_tag or '放弃' in action_tag:
+            final = 0
+            reason = '放弃(引擎标记)'
+        elif is_yziban:
+            final = 0
+            reason = '一字板买不到'
+        elif '不可' in buy_feas:
+            final = round(max(0, base + base * (vr_adj + open_adj + board_adj + cons_adj) / 100), 0)
+            reason = f'竞价不可买({buy_feas})'
+        else:
+            final = round(max(0, base + base * (vr_adj + open_adj + board_adj + cons_adj) / 100), 0)
+            reason = '正常仓位'
+        
+        # 单票上限
+        final = min(final, 25)
+        
+        # 如果一字涨停放弃了，但仍然计入
+        stop = STOP_LOSS_TABLE.get(tier, '-2%')
+        
+        stocks.append({
+            'code': code, 'name': name, 'tier': tier,
+            'score': score, 'base_pos': base,
+            'adjust': {'vr': f'{vr_adj:+d}%', 'open': f'{open_adj:+d}%', 'board': f'{board_adj:+d}%'},
+            'final_pos': final, 'stop': stop,
+            'reason': reason,
+        })
+        total_planned += final
+    
+    # ---------- 层5: 组合风控 ----------
+    # 如果总计划超过宏观上限,按比例缩小
+    if total_planned > macro_cap and total_planned > 0:
+        scale = macro_cap / total_planned
+        for s in stocks:
+            if s['final_pos'] > 0:
+                s['final_pos'] = round(s['final_pos'] * scale, 1)
+        total_planned = macro_cap
+        scaled = True
+    else:
+        scaled = False
+    
+    # 板块集中度限制: 单一概念不超过总仓位50%
+    concept_groups = defaultdict(float)
+    for s in stocks:
+        concept_groups['all'] += s['final_pos']  # 暂用全量
+    
+    max_single = max(s['final_pos'] for s in stocks) if stocks else 0
+    actionable = [s for s in stocks if s['final_pos'] > 0]
+    heavy = [s for s in actionable if s['final_pos'] >= 10]
+    light = [s for s in actionable if 0 < s['final_pos'] < 10]
+    
+    # ---------- 构建输出 ----------
+    result = {
+        'version': 'v1.0',
+        'timestamp': datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
+        'macro': {
+            'score': total_score,
+            'seg': seg,
+            'total_cap': macro_cap,
+            'tag': macro['tag'],
+        },
+        'summary': {
+            'total_stocks': len(stocks),
+            'actionable': len(actionable),
+            'heavy_count': len(heavy),
+            'light_count': len(light),
+            'total_exposure': round(total_planned, 1),
+            'max_single': max_single,
+            'max_cap': macro_cap,
+            'scaled': scaled,
+        },
+        'stocks': stocks,
+        'stop_table': STOP_LOSS_TABLE,
+        'tier_table': {k: {'pos': v['pos'], 'wr': v['wr'], 'count': v['count']} for k, v in TIER_BASE_POSITION.items()},
+        'macro_table': {k: {'pos': v['pos'], 'tag': v['tag']} for k, v in MACRO_POSITION_TABLE.items()},
+    }
+    
+    return result
+
+def main():
+    bundle = load_bundle()
+    result = compute(bundle)
+    
+    print(f"🏁 龙虎榜仓位引擎 {result['version']}")
+    print(f"  ⌚ {result['timestamp']}")
+    print(f"  📈 宏观评分: {result['macro']['score']}/100 → {result['macro']['tag']} (上限{result['macro']['total_cap']}%)")
+    print(f"  📋 可操作: {result['summary']['actionable']}/{result['summary']['total_stocks']}只, "
+          f"重仓{result['summary']['heavy_count']}只, 轻仓{result['summary']['light_count']}只")
+    print(f"  💰 总暴露: {result['summary']['total_exposure']}% (上限{result['summary']['max_cap']}%)")
+    if result['summary']['scaled']:
+        print(f"  ⚠️ 已按比例缩减")
+    
+    for s in result['stocks']:
+        if s['final_pos'] > 0:
+            print(f"    {s['name']}({s['code']}) {s['tier']} 评分{s['score']} → {s['final_pos']}% 止损{s['stop']}")
+        else:
+            print(f"    {s['name']}({s['code']}) {s['tier']} ❌ {s['reason']}")
+    
+    # 保存到data目录
+    out_path = os.path.join(V2BOARD, 'data', 'lhb_position.json')
+    with open(out_path, 'w') as f:
+        json.dump(result, f, ensure_ascii=False, indent=2)
+    print(f"\n✅ 保存至 {out_path}")
+
+if __name__ == '__main__':
+    main()

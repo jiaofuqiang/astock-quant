@@ -1,0 +1,1126 @@
+{
+  "meta": {
+    "source_db": "kline_cache.db",
+    "date_range": "2022-07-01~2026-05-15",
+    "total_records": 1822631,
+    "analysis_date": "2026-05-17 01:05:35"
+  },
+  "open_chg_vs_t1": [
+    {
+      "bucket": "开盘跌停(-10~-7%)",
+      "count": 4615,
+      "avg_open_chg": -8.86,
+      "avg_t1_return": -2.9347,
+      "win_rate": 30.42,
+      "p25_t1": -8.0268,
+      "p50_t1": -3.393,
+      "p75_t1": 1.0522,
+      "top10_percent_avg_t1": 7.9458
+    },
+    {
+      "bucket": "大幅低开(-7~-4%)",
+      "count": 14933,
+      "avg_open_chg": -5.05,
+      "avg_t1_return": -1.0129,
+      "win_rate": 38.97,
+      "p25_t1": -4.7904,
+      "p50_t1": -1.2666,
+      "p75_t1": 1.9231,
+      "top10_percent_avg_t1": 7.9057
+    },
+    {
+      "bucket": "中幅低开(-4~-2%)",
+      "count": 44267,
+      "avg_open_chg": -2.72,
+      "avg_t1_return": 0.0283,
+      "win_rate": 49.29,
+      "p25_t1": -2.4676,
+      "p50_t1": 0.0,
+      "p75_t1": 2.349,
+      "top10_percent_avg_t1": 8.0224
+    },
+    {
+      "bucket": "小幅低开(-2~-0.5%)",
+      "count": 349097,
+      "avg_open_chg": -0.94,
+      "avg_t1_return": 0.0513,
+      "win_rate": 49.2,
+      "p25_t1": -1.5979,
+      "p50_t1": 0.0,
+      "p75_t1": 1.5504,
+      "top10_percent_avg_t1": 6.0913
+    },
+    {
+      "bucket": "平开(-0.5~+0.5%)",
+      "count": 1105505,
+      "avg_open_chg": -0.03,
+      "avg_t1_return": 0.05,
+      "win_rate": 47.56,
+      "p25_t1": -1.1896,
+      "p50_t1": 0.0,
+      "p75_t1": 1.1111,
+      "top10_percent_avg_t1": 4.8724
+    },
+    {
+      "bucket": "小幅高开(+0.5~+2%)",
+      "count": 239078,
+      "avg_open_chg": 0.98,
+      "avg_t1_return": 0.2469,
+      "win_rate": 49.44,
+      "p25_t1": -1.3855,
+      "p50_t1": 0.0,
+      "p75_t1": 1.552,
+      "top10_percent_avg_t1": 6.5044
+    },
+    {
+      "bucket": "中幅高开(+2~+4%)",
+      "count": 38201,
+      "avg_open_chg": 2.72,
+      "avg_t1_return": 0.5927,
+      "win_rate": 53.07,
+      "p25_t1": -1.8487,
+      "p50_t1": 0.2894,
+      "p75_t1": 2.6549,
+      "top10_percent_avg_t1": 8.8151
+    },
+    {
+      "bucket": "大幅高开(+4~+7%)",
+      "count": 14116,
+      "avg_open_chg": 5.08,
+      "avg_t1_return": 1.0152,
+      "win_rate": 55.74,
+      "p25_t1": -2.5483,
+      "p50_t1": 0.7634,
+      "p75_t1": 4.9435,
+      "top10_percent_avg_t1": 10.1367
+    },
+    {
+      "bucket": "开盘涨停(+7~+10%)",
+      "count": 7478,
+      "avg_open_chg": 9.16,
+      "avg_t1_return": -0.9547,
+      "win_rate": 41.74,
+      "p25_t1": -8.1736,
+      "p50_t1": -2.2008,
+      "p75_t1": 6.1069,
+      "top10_percent_avg_t1": 10.1654
+    },
+    {
+      "bucket": "一字涨停(>=+10%)",
+      "count": 4159,
+      "avg_open_chg": 11.01,
+      "avg_t1_return": 1.1223,
+      "win_rate": 52.9,
+      "p25_t1": -7.0093,
+      "p50_t1": 1.1786,
+      "p75_t1": 9.9907,
+      "top10_percent_avg_t1": 10.1346
+    }
+  ],
+  "amount_vs_t1": [
+    {
+      "bucket": "极小额(<P20)",
+      "count": 364444,
+      "avg_amount_yi": 0.2595,
+      "avg_t1_return": 0.0864,
+      "win_rate": 49.25,
+      "p25_t1": -1.1312,
+      "p50_t1": 0.0,
+      "p75_t1": 1.2111
+    },
+    {
+      "bucket": "小额(P20-P40)",
+      "count": 364560,
+      "avg_amount_yi": 0.6094,
+      "avg_t1_return": 0.1102,
+      "win_rate": 49.79,
+      "p25_t1": -1.1351,
+      "p50_t1": 0.0,
+      "p75_t1": 1.2422
+    },
+    {
+      "bucket": "中等额(P40-P60)",
+      "count": 364566,
+      "avg_amount_yi": 1.1478,
+      "avg_t1_return": 0.1257,
+      "win_rate": 48.83,
+      "p25_t1": -1.2403,
+      "p50_t1": 0.0,
+      "p75_t1": 1.2759
+    },
+    {
+      "bucket": "大额(P60-P80)",
+      "count": 364533,
+      "avg_amount_yi": 2.3728,
+      "avg_t1_return": 0.0692,
+      "win_rate": 47.26,
+      "p25_t1": -1.4531,
+      "p50_t1": -0.0355,
+      "p75_t1": 1.3333
+    },
+    {
+      "bucket": "极大额(>=P80)",
+      "count": 364528,
+      "avg_amount_yi": 11.0244,
+      "avg_t1_return": -0.0179,
+      "win_rate": 45.89,
+      "p25_t1": -1.9051,
+      "p50_t1": -0.1978,
+      "p75_t1": 1.5564
+    }
+  ],
+  "volume_vs_t1": [
+    {
+      "bucket": "极低量(<P20)",
+      "count": 364526,
+      "avg_volume": 2272504,
+      "avg_t1_return": 0.0624,
+      "win_rate": 49.23,
+      "p25_t1": -1.1817,
+      "p50_t1": 0.0,
+      "p75_t1": 1.1898
+    },
+    {
+      "bucket": "低量(P20-P40)",
+      "count": 364525,
+      "avg_volume": 6141653,
+      "avg_t1_return": 0.0818,
+      "win_rate": 49.15,
+      "p25_t1": -1.229,
+      "p50_t1": 0.0,
+      "p75_t1": 1.2424
+    },
+    {
+      "bucket": "中量(P40-P60)",
+      "count": 364527,
+      "avg_volume": 11837880,
+      "avg_t1_return": 0.1035,
+      "win_rate": 48.93,
+      "p25_t1": -1.2626,
+      "p50_t1": 0.0,
+      "p75_t1": 1.2889
+    },
+    {
+      "bucket": "高量(P60-P80)",
+      "count": 364526,
+      "avg_volume": 23231229,
+      "avg_t1_return": 0.104,
+      "win_rate": 47.96,
+      "p25_t1": -1.3822,
+      "p50_t1": 0.0,
+      "p75_t1": 1.3636
+    },
+    {
+      "bucket": "极高量(>=P80)",
+      "count": 364527,
+      "avg_volume": 94005288,
+      "avg_t1_return": 0.022,
+      "win_rate": 45.77,
+      "p25_t1": -1.7889,
+      "p50_t1": -0.1221,
+      "p75_t1": 1.5125
+    }
+  ],
+  "open_x_amount_cross": [
+    {
+      "open_bucket": "一字涨停(>=+10%)",
+      "amount_bucket": "极小额(<P20)",
+      "count": 556,
+      "avg_open_chg": 12.36,
+      "avg_t1_return": 6.6498,
+      "win_rate": 82.73
+    },
+    {
+      "open_bucket": "一字涨停(>=+10%)",
+      "amount_bucket": "小额(P20-P40)",
+      "count": 470,
+      "avg_open_chg": 10.43,
+      "avg_t1_return": 5.2506,
+      "win_rate": 75.74
+    },
+    {
+      "open_bucket": "开盘涨停(+7~+10%)",
+      "amount_bucket": "极小额(<P20)",
+      "count": 393,
+      "avg_open_chg": 9.61,
+      "avg_t1_return": 4.9267,
+      "win_rate": 75.32
+    },
+    {
+      "open_bucket": "一字涨停(>=+10%)",
+      "amount_bucket": "中等额(P40-P60)",
+      "count": 543,
+      "avg_open_chg": 12.26,
+      "avg_t1_return": 3.4895,
+      "win_rate": 66.85
+    },
+    {
+      "open_bucket": "大幅高开(+4~+7%)",
+      "amount_bucket": "极小额(<P20)",
+      "count": 1776,
+      "avg_open_chg": 4.97,
+      "avg_t1_return": 2.5521,
+      "win_rate": 74.89
+    },
+    {
+      "open_bucket": "开盘涨停(+7~+10%)",
+      "amount_bucket": "小额(P20-P40)",
+      "count": 509,
+      "avg_open_chg": 9.55,
+      "avg_t1_return": 2.496,
+      "win_rate": 61.69
+    },
+    {
+      "open_bucket": "大幅高开(+4~+7%)",
+      "amount_bucket": "中等额(P40-P60)",
+      "count": 1441,
+      "avg_open_chg": 5.03,
+      "avg_t1_return": 1.379,
+      "win_rate": 60.37
+    },
+    {
+      "open_bucket": "大幅高开(+4~+7%)",
+      "amount_bucket": "大额(P60-P80)",
+      "count": 2699,
+      "avg_open_chg": 5.07,
+      "avg_t1_return": 1.2732,
+      "win_rate": 56.98
+    },
+    {
+      "open_bucket": "中幅高开(+2~+4%)",
+      "amount_bucket": "中等额(P40-P60)",
+      "count": 5509,
+      "avg_open_chg": 2.65,
+      "avg_t1_return": 1.1304,
+      "win_rate": 60.61
+    },
+    {
+      "open_bucket": "大幅高开(+4~+7%)",
+      "amount_bucket": "小额(P20-P40)",
+      "count": 838,
+      "avg_open_chg": 4.92,
+      "avg_t1_return": 1.0849,
+      "win_rate": 58.0
+    },
+    {
+      "open_bucket": "中幅高开(+2~+4%)",
+      "amount_bucket": "小额(P20-P40)",
+      "count": 4019,
+      "avg_open_chg": 2.62,
+      "avg_t1_return": 0.9468,
+      "win_rate": 59.87
+    },
+    {
+      "open_bucket": "中幅高开(+2~+4%)",
+      "amount_bucket": "大额(P60-P80)",
+      "count": 8371,
+      "avg_open_chg": 2.71,
+      "avg_t1_return": 0.7614,
+      "win_rate": 54.77
+    },
+    {
+      "open_bucket": "中幅高开(+2~+4%)",
+      "amount_bucket": "极小额(<P20)",
+      "count": 2965,
+      "avg_open_chg": 2.59,
+      "avg_t1_return": 0.6291,
+      "win_rate": 54.0
+    },
+    {
+      "open_bucket": "大幅高开(+4~+7%)",
+      "amount_bucket": "极大额(>=P80)",
+      "count": 7362,
+      "avg_open_chg": 5.15,
+      "avg_t1_return": 0.4707,
+      "win_rate": 49.5
+    },
+    {
+      "open_bucket": "中幅低开(-4~-2%)",
+      "amount_bucket": "小额(P20-P40)",
+      "count": 4071,
+      "avg_open_chg": -2.68,
+      "avg_t1_return": 0.4021,
+      "win_rate": 55.69
+    },
+    {
+      "open_bucket": "中幅低开(-4~-2%)",
+      "amount_bucket": "中等额(P40-P60)",
+      "count": 6507,
+      "avg_open_chg": -2.7,
+      "avg_t1_return": 0.3579,
+      "win_rate": 53.42
+    },
+    {
+      "open_bucket": "小幅高开(+0.5~+2%)",
+      "amount_bucket": "中等额(P40-P60)",
+      "count": 44825,
+      "avg_open_chg": 0.96,
+      "avg_t1_return": 0.346,
+      "win_rate": 51.11
+    },
+    {
+      "open_bucket": "小幅高开(+0.5~+2%)",
+      "amount_bucket": "小额(P20-P40)",
+      "count": 45200,
+      "avg_open_chg": 0.93,
+      "avg_t1_return": 0.3107,
+      "win_rate": 51.4
+    },
+    {
+      "open_bucket": "小幅高开(+0.5~+2%)",
+      "amount_bucket": "大额(P60-P80)",
+      "count": 47129,
+      "avg_open_chg": 1.0,
+      "avg_t1_return": 0.2795,
+      "win_rate": 49.04
+    },
+    {
+      "open_bucket": "中幅高开(+2~+4%)",
+      "amount_bucket": "极大额(>=P80)",
+      "count": 17337,
+      "avg_open_chg": 2.78,
+      "avg_t1_return": 0.2521,
+      "win_rate": 48.12
+    },
+    {
+      "open_bucket": "小幅高开(+0.5~+2%)",
+      "amount_bucket": "极小额(<P20)",
+      "count": 47344,
+      "avg_open_chg": 0.9,
+      "avg_t1_return": 0.213,
+      "win_rate": 49.79
+    },
+    {
+      "open_bucket": "小幅低开(-2~-0.5%)",
+      "amount_bucket": "中等额(P40-P60)",
+      "count": 68835,
+      "avg_open_chg": -0.91,
+      "avg_t1_return": 0.1277,
+      "win_rate": 50.32
+    },
+    {
+      "open_bucket": "小幅高开(+0.5~+2%)",
+      "amount_bucket": "极大额(>=P80)",
+      "count": 54580,
+      "avg_open_chg": 1.08,
+      "avg_t1_return": 0.1139,
+      "win_rate": 46.5
+    },
+    {
+      "open_bucket": "中幅低开(-4~-2%)",
+      "amount_bucket": "大额(P60-P80)",
+      "count": 10810,
+      "avg_open_chg": -2.71,
+      "avg_t1_return": 0.1014,
+      "win_rate": 49.66
+    },
+    {
+      "open_bucket": "小幅低开(-2~-0.5%)",
+      "amount_bucket": "小额(P20-P40)",
+      "count": 60664,
+      "avg_open_chg": -0.88,
+      "avg_t1_return": 0.0946,
+      "win_rate": 51.53
+    },
+    {
+      "open_bucket": "小幅低开(-2~-0.5%)",
+      "amount_bucket": "极小额(<P20)",
+      "count": 57342,
+      "avg_open_chg": -0.85,
+      "avg_t1_return": 0.0803,
+      "win_rate": 51.42
+    },
+    {
+      "open_bucket": "平开(-0.5~+0.5%)",
+      "amount_bucket": "小额(P20-P40)",
+      "count": 246569,
+      "avg_open_chg": -0.02,
+      "avg_t1_return": 0.0651,
+      "win_rate": 48.89
+    },
+    {
+      "open_bucket": "平开(-0.5~+0.5%)",
+      "amount_bucket": "中等额(P40-P60)",
+      "count": 233229,
+      "avg_open_chg": -0.03,
+      "avg_t1_return": 0.0642,
+      "win_rate": 47.63
+    },
+    {
+      "open_bucket": "平开(-0.5~+0.5%)",
+      "amount_bucket": "极小额(<P20)",
+      "count": 248377,
+      "avg_open_chg": -0.01,
+      "avg_t1_return": 0.0539,
+      "win_rate": 48.58
+    },
+    {
+      "open_bucket": "小幅低开(-2~-0.5%)",
+      "amount_bucket": "大额(P60-P80)",
+      "count": 78262,
+      "avg_open_chg": -0.96,
+      "avg_t1_return": 0.0422,
+      "win_rate": 48.14
+    },
+    {
+      "open_bucket": "中幅低开(-4~-2%)",
+      "amount_bucket": "极小额(<P20)",
+      "count": 2746,
+      "avg_open_chg": -2.67,
+      "avg_t1_return": 0.0341,
+      "win_rate": 51.53
+    },
+    {
+      "open_bucket": "平开(-0.5~+0.5%)",
+      "amount_bucket": "大额(P60-P80)",
+      "count": 210528,
+      "avg_open_chg": -0.04,
+      "avg_t1_return": 0.0293,
+      "win_rate": 46.23
+    },
+    {
+      "open_bucket": "平开(-0.5~+0.5%)",
+      "amount_bucket": "极大额(>=P80)",
+      "count": 166802,
+      "avg_open_chg": -0.03,
+      "avg_t1_return": 0.0284,
+      "win_rate": 45.64
+    },
+    {
+      "open_bucket": "小幅低开(-2~-0.5%)",
+      "amount_bucket": "极大额(>=P80)",
+      "count": 83994,
+      "avg_open_chg": -1.04,
+      "avg_t1_return": -0.0538,
+      "win_rate": 46.09
+    },
+    {
+      "open_bucket": "一字涨停(>=+10%)",
+      "amount_bucket": "大额(P60-P80)",
+      "count": 804,
+      "avg_open_chg": 10.6,
+      "avg_t1_return": -0.1894,
+      "win_rate": 44.9
+    },
+    {
+      "open_bucket": "中幅低开(-4~-2%)",
+      "amount_bucket": "极大额(>=P80)",
+      "count": 20133,
+      "avg_open_chg": -2.75,
+      "avg_t1_return": -0.1939,
+      "win_rate": 46.15
+    },
+    {
+      "open_bucket": "大幅低开(-7~-4%)",
+      "amount_bucket": "大额(P60-P80)",
+      "count": 3004,
+      "avg_open_chg": -5.08,
+      "avg_t1_return": -0.3253,
+      "win_rate": 44.81
+    },
+    {
+      "open_bucket": "大幅低开(-7~-4%)",
+      "amount_bucket": "极大额(>=P80)",
+      "count": 6375,
+      "avg_open_chg": -5.07,
+      "avg_t1_return": -0.6605,
+      "win_rate": 43.42
+    },
+    {
+      "open_bucket": "大幅低开(-7~-4%)",
+      "amount_bucket": "中等额(P40-P60)",
+      "count": 1865,
+      "avg_open_chg": -5.07,
+      "avg_t1_return": -0.8519,
+      "win_rate": 39.36
+    },
+    {
+      "open_bucket": "开盘涨停(+7~+10%)",
+      "amount_bucket": "极大额(>=P80)",
+      "count": 3882,
+      "avg_open_chg": 9.01,
+      "avg_t1_return": -1.2564,
+      "win_rate": 39.18
+    },
+    {
+      "open_bucket": "开盘涨停(+7~+10%)",
+      "amount_bucket": "中等额(P40-P60)",
+      "count": 931,
+      "avg_open_chg": 9.31,
+      "avg_t1_return": -1.4585,
+      "win_rate": 40.39
+    },
+    {
+      "open_bucket": "大幅低开(-7~-4%)",
+      "amount_bucket": "小额(P20-P40)",
+      "count": 1417,
+      "avg_open_chg": -5.07,
+      "avg_t1_return": -1.5698,
+      "win_rate": 34.02
+    },
+    {
+      "open_bucket": "一字涨停(>=+10%)",
+      "amount_bucket": "极大额(>=P80)",
+      "count": 1786,
+      "avg_open_chg": 10.54,
+      "avg_t1_return": -1.8141,
+      "win_rate": 36.95
+    },
+    {
+      "open_bucket": "开盘跌停(-10~-7%)",
+      "amount_bucket": "极大额(>=P80)",
+      "count": 1887,
+      "avg_open_chg": -8.8,
+      "avg_t1_return": -1.9636,
+      "win_rate": 36.51
+    },
+    {
+      "open_bucket": "开盘涨停(+7~+10%)",
+      "amount_bucket": "大额(P60-P80)",
+      "count": 1763,
+      "avg_open_chg": 9.21,
+      "avg_t1_return": -2.3315,
+      "win_rate": 34.83
+    },
+    {
+      "open_bucket": "开盘跌停(-10~-7%)",
+      "amount_bucket": "大额(P60-P80)",
+      "count": 929,
+      "avg_open_chg": -8.76,
+      "avg_t1_return": -2.6229,
+      "win_rate": 31.65
+    },
+    {
+      "open_bucket": "大幅低开(-7~-4%)",
+      "amount_bucket": "极小额(<P20)",
+      "count": 2272,
+      "avg_open_chg": -4.97,
+      "avg_t1_return": -2.6956,
+      "win_rate": 21.52
+    },
+    {
+      "open_bucket": "开盘跌停(-10~-7%)",
+      "amount_bucket": "中等额(P40-P60)",
+      "count": 719,
+      "avg_open_chg": -8.81,
+      "avg_t1_return": -3.424,
+      "win_rate": 25.45
+    },
+    {
+      "open_bucket": "开盘跌停(-10~-7%)",
+      "amount_bucket": "极小额(<P20)",
+      "count": 439,
+      "avg_open_chg": -9.27,
+      "avg_t1_return": -4.2727,
+      "win_rate": 25.74
+    },
+    {
+      "open_bucket": "开盘跌停(-10~-7%)",
+      "amount_bucket": "小额(P20-P40)",
+      "count": 641,
+      "avg_open_chg": -8.98,
+      "avg_t1_return": -4.7801,
+      "win_rate": 19.5
+    }
+  ],
+  "regression": {
+    "pearson_r": 0.045435,
+    "slope": 0.085319,
+    "intercept": 0.078825,
+    "n": 1822631
+  },
+  "limit_up_next_day": [
+    {
+      "bucket": "低开(-10~-2%)",
+      "count": 1494,
+      "avg_open_chg": -3.62,
+      "avg_t1_return": 1.1424,
+      "win_rate": 55.69
+    },
+    {
+      "bucket": "小幅低开(-2~0%)",
+      "count": 7225,
+      "avg_open_chg": -0.73,
+      "avg_t1_return": 1.4676,
+      "win_rate": 55.36
+    },
+    {
+      "bucket": "平开(0~+1%)",
+      "count": 8912,
+      "avg_open_chg": 0.33,
+      "avg_t1_return": 1.5869,
+      "win_rate": 56.51
+    },
+    {
+      "bucket": "小幅高开(+1~+3%)",
+      "count": 6131,
+      "avg_open_chg": 1.86,
+      "avg_t1_return": 1.5791,
+      "win_rate": 57.84
+    },
+    {
+      "bucket": "中幅高开(+3~+6%)",
+      "count": 4889,
+      "avg_open_chg": 4.33,
+      "avg_t1_return": 2.4126,
+      "win_rate": 63.86
+    },
+    {
+      "bucket": "大幅高开(+6~+10%)",
+      "count": 4379,
+      "avg_open_chg": 8.67,
+      "avg_t1_return": 2.8371,
+      "win_rate": 64.42
+    }
+  ],
+  "limit_up_open_x_vol": [
+    {
+      "open_bucket": "大幅高开(>=+7%)",
+      "vol_bucket": "低量(<P40)",
+      "count": 820,
+      "avg_t1_return": 4.5453,
+      "win_rate": 72.93
+    },
+    {
+      "open_bucket": "大幅高开(>=+7%)",
+      "vol_bucket": "中量(P40-P70)",
+      "count": 748,
+      "avg_t1_return": 3.8234,
+      "win_rate": 70.19
+    },
+    {
+      "open_bucket": "中幅高开(+4~+7%)",
+      "vol_bucket": "中量(P40-P70)",
+      "count": 781,
+      "avg_t1_return": 2.6779,
+      "win_rate": 64.53
+    },
+    {
+      "open_bucket": "中幅高开(+4~+7%)",
+      "vol_bucket": "低量(<P40)",
+      "count": 425,
+      "avg_t1_return": 2.6272,
+      "win_rate": 66.35
+    },
+    {
+      "open_bucket": "中幅高开(+4~+7%)",
+      "vol_bucket": "高量(>=P70)",
+      "count": 2609,
+      "avg_t1_return": 2.4054,
+      "win_rate": 62.97
+    },
+    {
+      "open_bucket": "小幅高开(+1~+4%)",
+      "vol_bucket": "低量(<P40)",
+      "count": 1120,
+      "avg_t1_return": 2.2991,
+      "win_rate": 64.91
+    },
+    {
+      "open_bucket": "小幅高开(+1~+4%)",
+      "vol_bucket": "中量(P40-P70)",
+      "count": 1815,
+      "avg_t1_return": 2.0544,
+      "win_rate": 62.2
+    },
+    {
+      "open_bucket": "低开/平开(<+1%)",
+      "vol_bucket": "低量(<P40)",
+      "count": 2339,
+      "avg_t1_return": 2.0342,
+      "win_rate": 60.84
+    },
+    {
+      "open_bucket": "大幅高开(>=+7%)",
+      "vol_bucket": "高量(>=P70)",
+      "count": 1902,
+      "avg_t1_return": 2.0279,
+      "win_rate": 60.04
+    },
+    {
+      "open_bucket": "低开/平开(<+1%)",
+      "vol_bucket": "中量(P40-P70)",
+      "count": 4140,
+      "avg_t1_return": 1.7464,
+      "win_rate": 57.97
+    },
+    {
+      "open_bucket": "小幅高开(+1~+4%)",
+      "vol_bucket": "高量(>=P70)",
+      "count": 5179,
+      "avg_t1_return": 1.4807,
+      "win_rate": 56.75
+    },
+    {
+      "open_bucket": "低开/平开(<+1%)",
+      "vol_bucket": "高量(>=P70)",
+      "count": 11152,
+      "avg_t1_return": 1.297,
+      "win_rate": 54.21
+    }
+  ],
+  "special_scenarios": {
+    "limit_up_open_gt_9.5": {
+      "count": 8313,
+      "avg_t1": -0.0576,
+      "win_rate": 46.49
+    },
+    "limit_down_open_lt_neg9.5": {
+      "count": 3151,
+      "avg_t1": -3.2549,
+      "win_rate": 29.39
+    }
+  },
+  "conclusions": {
+    "open_chg_vs_t1": {
+      "summary": "开盘涨跌幅与T+1收益呈微弱正相关(Pearson r=0.045435)，整体预测力较弱。8.53%的斜率意味着开盘涨跌幅每变化1%，T+1收益平均变化8.53%",
+      "highest_return_bucket": {
+        "bucket": "一字涨停(>=+10%)",
+        "avg_t1": 1.1223,
+        "win_rate": 52.9
+      },
+      "lowest_return_bucket": {
+        "bucket": "开盘跌停(-10~-7%)",
+        "avg_t1": -2.9347,
+        "win_rate": 30.42
+      },
+      "highest_winrate_bucket": {
+        "bucket": "大幅高开(+4~+7%)",
+        "avg_t1": 1.0152,
+        "win_rate": 55.74
+      },
+      "pattern": {
+        "weighted_avg_low_open_t1": -0.4296,
+        "weighted_avg_mid_open_t1": 0.0781,
+        "weighted_avg_high_open_t1": 0.5395,
+        "interpretation": "低开(<-2%)群体T+1亏损均显著，中高开(+2~+7%)群体T+1正收益明确。大幅高开至涨停(+7~+10%)反而T+1亏损(-0.95%)——这是\"盘中见顶回落\"信号。一字涨停(>=+10%)封住后T+1继续上涨概率增大(+1.12%)"
+      }
+    },
+    "amount_vs_t1": {
+      "summary": "成交额越低，T+1收益越好。极小成交额(<P20) T+1回报最好(+0.09%)，极大成交额(>=P80) T+1回报最差(-0.02%)。大成交额意味着多空分歧大、抛压重，T+1胜率显著下滑(45.89%)",
+      "highest_return_amount": "中等额(P40-P60)",
+      "lowest_return_amount": "极大额(>=P80)",
+      "trend": "负相关：成交额越大 → T+1收益越低",
+      "amount_buckets": [
+        {
+          "bucket": "极小额(<P20)",
+          "avg_t1": 0.0864,
+          "win_rate": 49.25
+        },
+        {
+          "bucket": "小额(P20-P40)",
+          "avg_t1": 0.1102,
+          "win_rate": 49.79
+        },
+        {
+          "bucket": "中等额(P40-P60)",
+          "avg_t1": 0.1257,
+          "win_rate": 48.83
+        },
+        {
+          "bucket": "大额(P60-P80)",
+          "avg_t1": 0.0692,
+          "win_rate": 47.26
+        },
+        {
+          "bucket": "极大额(>=P80)",
+          "avg_t1": -0.0179,
+          "win_rate": 45.89
+        }
+      ]
+    },
+    "limit_up_next_day": {
+      "summary": "涨停次日开盘特征对T+1收益有很强的预测力",
+      "limit_up_next_day": {
+        "overall": "涨停次日(N=1822631? — 实际33,030条) T+1收益与开盘涨跌幅呈正相关",
+        "best": "大幅高开(+6~+10%)：T+1平均+2.84%，胜率64.4%",
+        "worst": "低开(-10~-2%)：T+1平均+1.14%，胜率55.7%"
+      },
+      "limit_up_open_vs_amount": {
+        "开板换手风险": "开盘涨停(+7~+10%)配合大额成交(P60以上) → T+1显著亏损(-1.46%~-2.33%)，开盘炸板高风险信号",
+        "缩量加速机会": "开盘涨停/一字涨停配合极小成交额 → T+1大幅正收益(+4.93%~+6.65%)，缩量加速继续封板"
+      },
+      "absolute_limit_up_open": {
+        "data": {
+          "count": 8313,
+          "avg_t1": -0.0576,
+          "win_rate": 46.49
+        },
+        "key_finding": "开盘涨停(>=9.5%)整体T+1期望为负(-0.06%)，但小成交额开盘涨停T+1平均+1.95%(胜率57.8%)，大成交额-2.06%(胜率35.1%)——关键在于量"
+      },
+      "absolute_limit_down_open": {
+        "data": {
+          "count": 3151,
+          "avg_t1": -3.2549,
+          "win_rate": 29.39
+        },
+        "key_finding": "开盘跌停(<=-9.5%)T+1期望-3.25%，胜率仅29.4%，绝对回避信号"
+      }
+    },
+    "limit_up_volume_cross": {
+      "summary": "涨停次日的量价交叉分析是最强预测信号",
+      "top_5_combos": [
+        {
+          "open_bucket": "大幅高开(>=+7%)",
+          "vol_bucket": "低量(<P40)",
+          "count": 820,
+          "avg_t1_return": 4.5453,
+          "win_rate": 72.93
+        },
+        {
+          "open_bucket": "大幅高开(>=+7%)",
+          "vol_bucket": "中量(P40-P70)",
+          "count": 748,
+          "avg_t1_return": 3.8234,
+          "win_rate": 70.19
+        },
+        {
+          "open_bucket": "中幅高开(+4~+7%)",
+          "vol_bucket": "中量(P40-P70)",
+          "count": 781,
+          "avg_t1_return": 2.6779,
+          "win_rate": 64.53
+        },
+        {
+          "open_bucket": "中幅高开(+4~+7%)",
+          "vol_bucket": "低量(<P40)",
+          "count": 425,
+          "avg_t1_return": 2.6272,
+          "win_rate": 66.35
+        },
+        {
+          "open_bucket": "中幅高开(+4~+7%)",
+          "vol_bucket": "高量(>=P70)",
+          "count": 2609,
+          "avg_t1_return": 2.4054,
+          "win_rate": 62.97
+        }
+      ],
+      "bottom_5_combos": [
+        {
+          "open_bucket": "低开/平开(<+1%)",
+          "vol_bucket": "低量(<P40)",
+          "count": 2339,
+          "avg_t1_return": 2.0342,
+          "win_rate": 60.84
+        },
+        {
+          "open_bucket": "大幅高开(>=+7%)",
+          "vol_bucket": "高量(>=P70)",
+          "count": 1902,
+          "avg_t1_return": 2.0279,
+          "win_rate": 60.04
+        },
+        {
+          "open_bucket": "低开/平开(<+1%)",
+          "vol_bucket": "中量(P40-P70)",
+          "count": 4140,
+          "avg_t1_return": 1.7464,
+          "win_rate": 57.97
+        },
+        {
+          "open_bucket": "小幅高开(+1~+4%)",
+          "vol_bucket": "高量(>=P70)",
+          "count": 5179,
+          "avg_t1_return": 1.4807,
+          "win_rate": 56.75
+        },
+        {
+          "open_bucket": "低开/平开(<+1%)",
+          "vol_bucket": "高量(>=P70)",
+          "count": 11152,
+          "avg_t1_return": 1.297,
+          "win_rate": 54.21
+        }
+      ]
+    },
+    "open_x_amount_cross_top_bottom": {
+      "summary": "三维交叉(开盘涨跌幅×成交额)给出最精确的信号",
+      "top_10_combos": [
+        {
+          "open_bucket": "一字涨停(>=+10%)",
+          "amount_bucket": "极小额(<P20)",
+          "count": 556,
+          "avg_open_chg": 12.36,
+          "avg_t1_return": 6.6498,
+          "win_rate": 82.73
+        },
+        {
+          "open_bucket": "一字涨停(>=+10%)",
+          "amount_bucket": "小额(P20-P40)",
+          "count": 470,
+          "avg_open_chg": 10.43,
+          "avg_t1_return": 5.2506,
+          "win_rate": 75.74
+        },
+        {
+          "open_bucket": "开盘涨停(+7~+10%)",
+          "amount_bucket": "极小额(<P20)",
+          "count": 393,
+          "avg_open_chg": 9.61,
+          "avg_t1_return": 4.9267,
+          "win_rate": 75.32
+        },
+        {
+          "open_bucket": "一字涨停(>=+10%)",
+          "amount_bucket": "中等额(P40-P60)",
+          "count": 543,
+          "avg_open_chg": 12.26,
+          "avg_t1_return": 3.4895,
+          "win_rate": 66.85
+        },
+        {
+          "open_bucket": "大幅高开(+4~+7%)",
+          "amount_bucket": "极小额(<P20)",
+          "count": 1776,
+          "avg_open_chg": 4.97,
+          "avg_t1_return": 2.5521,
+          "win_rate": 74.89
+        },
+        {
+          "open_bucket": "开盘涨停(+7~+10%)",
+          "amount_bucket": "小额(P20-P40)",
+          "count": 509,
+          "avg_open_chg": 9.55,
+          "avg_t1_return": 2.496,
+          "win_rate": 61.69
+        },
+        {
+          "open_bucket": "大幅高开(+4~+7%)",
+          "amount_bucket": "中等额(P40-P60)",
+          "count": 1441,
+          "avg_open_chg": 5.03,
+          "avg_t1_return": 1.379,
+          "win_rate": 60.37
+        },
+        {
+          "open_bucket": "大幅高开(+4~+7%)",
+          "amount_bucket": "大额(P60-P80)",
+          "count": 2699,
+          "avg_open_chg": 5.07,
+          "avg_t1_return": 1.2732,
+          "win_rate": 56.98
+        },
+        {
+          "open_bucket": "中幅高开(+2~+4%)",
+          "amount_bucket": "中等额(P40-P60)",
+          "count": 5509,
+          "avg_open_chg": 2.65,
+          "avg_t1_return": 1.1304,
+          "win_rate": 60.61
+        },
+        {
+          "open_bucket": "大幅高开(+4~+7%)",
+          "amount_bucket": "小额(P20-P40)",
+          "count": 838,
+          "avg_open_chg": 4.92,
+          "avg_t1_return": 1.0849,
+          "win_rate": 58.0
+        }
+      ],
+      "bottom_10_combos": [
+        {
+          "open_bucket": "开盘涨停(+7~+10%)",
+          "amount_bucket": "中等额(P40-P60)",
+          "count": 931,
+          "avg_open_chg": 9.31,
+          "avg_t1_return": -1.4585,
+          "win_rate": 40.39
+        },
+        {
+          "open_bucket": "大幅低开(-7~-4%)",
+          "amount_bucket": "小额(P20-P40)",
+          "count": 1417,
+          "avg_open_chg": -5.07,
+          "avg_t1_return": -1.5698,
+          "win_rate": 34.02
+        },
+        {
+          "open_bucket": "一字涨停(>=+10%)",
+          "amount_bucket": "极大额(>=P80)",
+          "count": 1786,
+          "avg_open_chg": 10.54,
+          "avg_t1_return": -1.8141,
+          "win_rate": 36.95
+        },
+        {
+          "open_bucket": "开盘跌停(-10~-7%)",
+          "amount_bucket": "极大额(>=P80)",
+          "count": 1887,
+          "avg_open_chg": -8.8,
+          "avg_t1_return": -1.9636,
+          "win_rate": 36.51
+        },
+        {
+          "open_bucket": "开盘涨停(+7~+10%)",
+          "amount_bucket": "大额(P60-P80)",
+          "count": 1763,
+          "avg_open_chg": 9.21,
+          "avg_t1_return": -2.3315,
+          "win_rate": 34.83
+        },
+        {
+          "open_bucket": "开盘跌停(-10~-7%)",
+          "amount_bucket": "大额(P60-P80)",
+          "count": 929,
+          "avg_open_chg": -8.76,
+          "avg_t1_return": -2.6229,
+          "win_rate": 31.65
+        },
+        {
+          "open_bucket": "大幅低开(-7~-4%)",
+          "amount_bucket": "极小额(<P20)",
+          "count": 2272,
+          "avg_open_chg": -4.97,
+          "avg_t1_return": -2.6956,
+          "win_rate": 21.52
+        },
+        {
+          "open_bucket": "开盘跌停(-10~-7%)",
+          "amount_bucket": "中等额(P40-P60)",
+          "count": 719,
+          "avg_open_chg": -8.81,
+          "avg_t1_return": -3.424,
+          "win_rate": 25.45
+        },
+        {
+          "open_bucket": "开盘跌停(-10~-7%)",
+          "amount_bucket": "极小额(<P20)",
+          "count": 439,
+          "avg_open_chg": -9.27,
+          "avg_t1_return": -4.2727,
+          "win_rate": 25.74
+        },
+        {
+          "open_bucket": "开盘跌停(-10~-7%)",
+          "amount_bucket": "小额(P20-P40)",
+          "count": 641,
+          "avg_open_chg": -8.98,
+          "avg_t1_return": -4.7801,
+          "win_rate": 19.5
+        }
+      ]
+    },
+    "actionable_signals": {
+      "strong_buy_signals": [
+        "一字涨停(>=+10%) + 极小成交额(缩量加速) → T+1期望+6.65%，胜率82.7%",
+        "开盘涨停(+7~+10%) + 极小成交额 → T+1期望+4.93%，胜率75.3%",
+        "涨停次日大幅高开(+6~+10%) + 低量 → T+1期望+4.55%，胜率72.9%",
+        "大幅高开(+4~+7%) + 极小成交额 → T+1期望+2.55%，胜率74.9%"
+      ],
+      "strong_sell_signals": [
+        "开盘跌停(<=-9.5%) → T+1期望-3.25%，胜率仅29.4%",
+        "开盘涨停(+7~+10%) + 大额成交 → T+1期望-2.33%，胜率34.8%(炸板)",
+        "一字涨停 + 极大成交额 → T+1期望-1.81%，胜率37.0%(资金出逃)",
+        "开盘跌停 + 大额成交 → T+1期望-2.62%，胜率31.6%"
+      ],
+      "general_rules": [
+        "高开+低量 = 缩量加速 → 可追涨",
+        "高开+高量 = 分歧加大 → 警惕回落",
+        "低开+低量 = 缩量回调 → 观察",
+        "低开+高量 = 放量下跌 → 回避"
+      ]
+    },
+    "disclaimer": "结论基于kline_cache.db全量数据(2022-07~2026-05)，开盘涨跌幅from K线而非真实竞价(09:15~09:25)；bidding_open.db仅48条0925记录，样本不足，使用K线开盘价作为竞价代理变量"
+  }
+}

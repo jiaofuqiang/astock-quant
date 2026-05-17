@@ -1,0 +1,30 @@
+{
+  "engine": "lhb-v7-penetration",
+  "date": "2026-05-17",
+  "env_score": 50,
+  "env_tier": "🔵发酵",
+  "total_cap_pct": 60.0,
+  "total_signals": 0,
+  "actionable": [],
+  "ranked": [],
+  "top_sectors": [],
+  "version": "v7.1",
+  "buckets": {
+    "ice": {
+      "score_range": "<35",
+      "desc": "冰点期-0.68%/44.6%"
+    },
+    "shake": {
+      "score_range": "35-49",
+      "desc": "震荡期+0.91%/50.7%"
+    },
+    "ferment": {
+      "score_range": "50-69",
+      "desc": "发酵期+0.19%/48.7%"
+    },
+    "high": {
+      "score_range": "≥70",
+      "desc": "高潮期-0.10%/51.9%.small sample"
+    }
+  }
+}

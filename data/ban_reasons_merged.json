@@ -1,0 +1,481 @@
+{
+  "date": "2026-05-11",
+  "timestamp": "2026-05-11T15:31:39.451166",
+  "total": 47,
+  "both_match": 0,
+  "only_own": 0,
+  "only_jiuyuan": 47,
+  "stocks": [
+    {
+      "code": "000036",
+      "name": "华联控股",
+      "status": "❌ 仅有韭研",
+      "own_concept": "",
+      "jiuyuan_tags": "盐湖提锂+收购修订+房地产开发+物业经营",
+      "jiuyuan_section": "公告",
+      "jiuyuan_theme": "",
+      "concept_match": "🔵 韭研有人工标签、自有引擎未覆盖"
+    },
+    {
+      "code": "000547",
+      "name": "航天发展",
+      "status": "❌ 仅有韭研",
+      "own_concept": "",
+      "jiuyuan_tags": "商业航天+军工+低空经济",
+      "jiuyuan_section": "商业航天",
+      "jiuyuan_theme": "天舟十号将于近日择机发射",
+      "concept_match": "🔵 韭研有人工标签、自有引擎未覆盖"
+    },
+    {
+      "code": "000710",
+      "name": "贝瑞基因",
+      "status": "❌ 仅有韭研",
+      "own_concept": "",
+      "jiuyuan_tags": "AI医疗+基因编辑+DeepSeek",
+      "jiuyuan_section": "AI应用",
+      "jiuyuan_theme": "腾讯混元Hy3preview Token调用量已超上一代10倍",
+      "concept_match": "🔵 韭研有人工标签、自有引擎未覆盖"
+    },
+    {
+      "code": "000863",
+      "name": "三湘印象",
+      "status": "❌ 仅有韭研",
+      "own_concept": "",
+      "jiuyuan_tags": "股权转让+房地产+文旅消费+谷子经济",
+      "jiuyuan_section": "公告",
+      "jiuyuan_theme": "",
+      "concept_match": "🔵 韭研有人工标签、自有引擎未覆盖"
+    },
+    {
+      "code": "002009",
+      "name": "天奇股份",
+      "status": "❌ 仅有韭研",
+      "own_concept": "",
+      "jiuyuan_tags": "机器人+银河通用+优必选+锂电池回收",
+      "jiuyuan_section": "机器人",
+      "jiuyuan_theme": "Optimus机器人或将于7月下旬或8月在弗里蒙特投产",
+      "concept_match": "🔵 韭研有人工标签、自有引擎未覆盖"
+    },
+    {
+      "code": "002030",
+      "name": "达安基因",
+      "status": "❌ 仅有韭研",
+      "own_concept": "",
+      "jiuyuan_tags": "汉坦病毒检测+AI医疗+基因测序",
+      "jiuyuan_section": "医疗医药",
+      "jiuyuan_theme": "荷兰邮轮暴发汉坦病毒疫情",
+      "concept_match": "🔵 韭研有人工标签、自有引擎未覆盖"
+    },
+    {
+      "code": "002031",
+      "name": "巨轮智能",
+      "status": "❌ 仅有韭研",
+      "own_concept": "",
+      "jiuyuan_tags": "人形机器人（减速器）+行星滚柱丝杠+轻量化+轮胎",
+      "jiuyuan_section": "机器人",
+      "jiuyuan_theme": "Optimus机器人或将于7月下旬或8月在弗里蒙特投产",
+      "concept_match": "🔵 韭研有人工标签、自有引擎未覆盖"
+    },
+    {
+      "code": "002091",
+      "name": "江苏国泰",
+      "status": "❌ 仅有韭研",
+      "own_concept": "",
+      "jiuyuan_tags": "锂电池+电解液+固态电池",
+      "jiuyuan_section": "电池产业链",
+      "jiuyuan_theme": "碳酸锂期货主力合约创3年来新高，一度突破20万元/吨",
+      "concept_match": "🔵 韭研有人工标签、自有引擎未覆盖"
+    },
+    {
+      "code": "002132",
+      "name": "恒星科技",
+      "status": "❌ 仅有韭研",
+      "own_concept": "",
+      "jiuyuan_tags": "机器人腱绳+业绩预增+有机硅+光伏耗材金刚线",
+      "jiuyuan_section": "机器人",
+      "jiuyuan_theme": "Optimus机器人或将于7月下旬或8月在弗里蒙特投产",
+      "concept_match": "🔵 韭研有人工标签、自有引擎未覆盖"
+    },
+    {
+      "code": "002222",
+      "name": "福晶科技",
+      "status": "❌ 仅有韭研",
+      "own_concept": "",
+      "jiuyuan_tags": "光通信+法拉第旋光片+光刻光源",
+      "jiuyuan_section": "光通信",
+      "jiuyuan_theme": "英伟达CEO黄仁勋：下一代AI基础设施将需要大量的光学连接",
+      "concept_match": "🔵 韭研有人工标签、自有引擎未覆盖"
+    },
+    {
+      "code": "002281",
+      "name": "光迅科技",
+      "status": "❌ 仅有韭研",
+      "own_concept": "",
+      "jiuyuan_tags": "光模块+激光通信+液冷",
+      "jiuyuan_section": "光通信",
+      "jiuyuan_theme": "英伟达CEO黄仁勋：下一代AI基础设施将需要大量的光学连接",
+      "concept_match": "🔵 韭研有人工标签、自有引擎未覆盖"
+    },
+    {
+      "code": "002491",
+      "name": "通鼎互联",
+      "status": "❌ 仅有韭研",
+      "own_concept": "",
+      "jiuyuan_tags": "光纤(康宁)+数据中心+机器人",
+      "jiuyuan_section": "光通信",
+      "jiuyuan_theme": "英伟达CEO黄仁勋：下一代AI基础设施将需要大量的光学连接",
+      "concept_match": "🔵 韭研有人工标签、自有引擎未覆盖"
+    },
+    {
+      "code": "002536",
+      "name": "飞龙股份",
+      "status": "❌ 仅有韭研",
+      "own_concept": "",
+      "jiuyuan_tags": "人形机器人+服务器液冷+IDC液冷+资产注入预期",
+      "jiuyuan_section": "机器人",
+      "jiuyuan_theme": "Optimus机器人或将于7月下旬或8月在弗里蒙特投产",
+      "concept_match": "🔵 韭研有人工标签、自有引擎未覆盖"
+    },
+    {
+      "code": "002552",
+      "name": "宝鼎科技",
+      "status": "❌ 仅有韭研",
+      "own_concept": "",
+      "jiuyuan_tags": "HVLP铜箔+业绩预增",
+      "jiuyuan_section": "PCB",
+      "jiuyuan_theme": "PCB需求激增，基板厂商订购CCL交货周期已从两周延长至最长六周",
+      "concept_match": "🔵 韭研有人工标签、自有引擎未覆盖"
+    },
+    {
+      "code": "002580",
+      "name": "圣阳股份",
+      "status": "❌ 仅有韭研",
+      "own_concept": "",
+      "jiuyuan_tags": "固态电池+液冷+数据中心电源",
+      "jiuyuan_section": "电池产业链",
+      "jiuyuan_theme": "碳酸锂期货主力合约创3年来新高，一度突破20万元/吨",
+      "concept_match": "🔵 韭研有人工标签、自有引擎未覆盖"
+    },
+    {
+      "code": "002624",
+      "name": "完美世界",
+      "status": "❌ 仅有韭研",
+      "own_concept": "",
+      "jiuyuan_tags": "异环+AI游戏+DOTA2",
+      "jiuyuan_section": "AI应用",
+      "jiuyuan_theme": "腾讯混元Hy3preview Token调用量已超上一代10倍",
+      "concept_match": "🔵 韭研有人工标签、自有引擎未覆盖"
+    },
+    {
+      "code": "002866",
+      "name": "传艺科技",
+      "status": "❌ 仅有韭研",
+      "own_concept": "",
+      "jiuyuan_tags": "钠离子电池+固态电池+FPC",
+      "jiuyuan_section": "电池产业链",
+      "jiuyuan_theme": "碳酸锂期货主力合约创3年来新高，一度突破20万元/吨",
+      "concept_match": "🔵 韭研有人工标签、自有引擎未覆盖"
+    },
+    {
+      "code": "002902",
+      "name": "铭普光磁",
+      "status": "❌ 仅有韭研",
+      "own_concept": "",
+      "jiuyuan_tags": "光模块+AI算力+合作英诺赛科+英伟达",
+      "jiuyuan_section": "光通信",
+      "jiuyuan_theme": "英伟达CEO黄仁勋：下一代AI基础设施将需要大量的光学连接",
+      "concept_match": "🔵 韭研有人工标签、自有引擎未覆盖"
+    },
+    {
+      "code": "002929",
+      "name": "润建股份",
+      "status": "❌ 仅有韭研",
+      "own_concept": "",
+      "jiuyuan_tags": "Token工厂+算力+机器人+AI智能体",
+      "jiuyuan_section": "算力",
+      "jiuyuan_theme": "高盛：企业级智能体将推动全球Token消耗量在五年内增长24倍",
+      "concept_match": "🔵 韭研有人工标签、自有引擎未覆盖"
+    },
+    {
+      "code": "002965",
+      "name": "祥鑫科技",
+      "status": "❌ 仅有韭研",
+      "own_concept": "",
+      "jiuyuan_tags": "人形机器人（灵巧手）+液冷服务器",
+      "jiuyuan_section": "机器人",
+      "jiuyuan_theme": "Optimus机器人或将于7月下旬或8月在弗里蒙特投产",
+      "concept_match": "🔵 韭研有人工标签、自有引擎未覆盖"
+    },
+    {
+      "code": "002979",
+      "name": "雷赛智能",
+      "status": "❌ 仅有韭研",
+      "own_concept": "",
+      "jiuyuan_tags": "人形机器人+灵巧手+智元机器人",
+      "jiuyuan_section": "机器人",
+      "jiuyuan_theme": "Optimus机器人或将于7月下旬或8月在弗里蒙特投产",
+      "concept_match": "🔵 韭研有人工标签、自有引擎未覆盖"
+    },
+    {
+      "code": "300258",
+      "name": "精锻科技",
+      "status": "❌ 仅有韭研",
+      "own_concept": "",
+      "jiuyuan_tags": "人形机器人+差速器锥齿轮+汽车零配件",
+      "jiuyuan_section": "机器人",
+      "jiuyuan_theme": "Optimus机器人或将于7月下旬或8月在弗里蒙特投产",
+      "concept_match": "🔵 韭研有人工标签、自有引擎未覆盖"
+    },
+    {
+      "code": "300488",
+      "name": "恒锋工具",
+      "status": "❌ 仅有韭研",
+      "own_concept": "",
+      "jiuyuan_tags": "机器人+燃气轮机（拉刀）+减速器+机床刀具",
+      "jiuyuan_section": "机器人",
+      "jiuyuan_theme": "Optimus机器人或将于7月下旬或8月在弗里蒙特投产",
+      "concept_match": "🔵 韭研有人工标签、自有引擎未覆盖"
+    },
+    {
+      "code": "600078",
+      "name": "澄星股份",
+      "status": "❌ 仅有韭研",
+      "own_concept": "",
+      "jiuyuan_tags": "磷化工+固态电池+高纯电子级磷酸",
+      "jiuyuan_section": "电池产业链",
+      "jiuyuan_theme": "碳酸锂期货主力合约创3年来新高，一度突破20万元/吨",
+      "concept_match": "🔵 韭研有人工标签、自有引擎未覆盖"
+    },
+    {
+      "code": "600130",
+      "name": "波导股份",
+      "status": "❌ 仅有韭研",
+      "own_concept": "",
+      "jiuyuan_tags": "卫星通信+摘帽+资产注入预期",
+      "jiuyuan_section": "商业航天",
+      "jiuyuan_theme": "天舟十号将于近日择机发射",
+      "concept_match": "🔵 韭研有人工标签、自有引擎未覆盖"
+    },
+    {
+      "code": "600343",
+      "name": "航天动力",
+      "status": "❌ 仅有韭研",
+      "own_concept": "",
+      "jiuyuan_tags": "液体火箭发动机+航天六院",
+      "jiuyuan_section": "商业航天",
+      "jiuyuan_theme": "天舟十号将于近日择机发射",
+      "concept_match": "🔵 韭研有人工标签、自有引擎未覆盖"
+    },
+    {
+      "code": "600391",
+      "name": "航发科技",
+      "status": "❌ 仅有韭研",
+      "own_concept": "",
+      "jiuyuan_tags": "航空发动机+燃气轮机+大飞机",
+      "jiuyuan_section": "商业航天",
+      "jiuyuan_theme": "天舟十号将于近日择机发射",
+      "concept_match": "🔵 韭研有人工标签、自有引擎未覆盖"
+    },
+    {
+      "code": "600480",
+      "name": "凌云股份",
+      "status": "❌ 仅有韭研",
+      "own_concept": "",
+      "jiuyuan_tags": "人形机器人+液冷+特斯拉+飞行汽车",
+      "jiuyuan_section": "机器人",
+      "jiuyuan_theme": "Optimus机器人或将于7月下旬或8月在弗里蒙特投产",
+      "concept_match": "🔵 韭研有人工标签、自有引擎未覆盖"
+    },
+    {
+      "code": "600498",
+      "name": "烽火通信",
+      "status": "❌ 仅有韭研",
+      "own_concept": "",
+      "jiuyuan_tags": "光纤+光模块+6G+华为昇腾+AI服务器",
+      "jiuyuan_section": "光通信",
+      "jiuyuan_theme": "英伟达CEO黄仁勋：下一代AI基础设施将需要大量的光学连接",
+      "concept_match": "🔵 韭研有人工标签、自有引擎未覆盖"
+    },
+    {
+      "code": "600536",
+      "name": "中国软件",
+      "status": "❌ 仅有韭研",
+      "own_concept": "",
+      "jiuyuan_tags": "国产软件+信创+合作华为",
+      "jiuyuan_section": "AI应用",
+      "jiuyuan_theme": "腾讯混元Hy3preview Token调用量已超上一代10倍",
+      "concept_match": "🔵 韭研有人工标签、自有引擎未覆盖"
+    },
+    {
+      "code": "600589",
+      "name": "大位科技",
+      "status": "❌ 仅有韭研",
+      "own_concept": "",
+      "jiuyuan_tags": "算力租赁+字节算力+数据中心",
+      "jiuyuan_section": "算力",
+      "jiuyuan_theme": "高盛：企业级智能体将推动全球Token消耗量在五年内增长24倍",
+      "concept_match": "🔵 韭研有人工标签、自有引擎未覆盖"
+    },
+    {
+      "code": "600783",
+      "name": "鲁信创投",
+      "status": "❌ 仅有韭研",
+      "own_concept": "",
+      "jiuyuan_tags": "参股蓝箭航天+创投",
+      "jiuyuan_section": "商业航天",
+      "jiuyuan_theme": "天舟十号将于近日择机发射",
+      "concept_match": "🔵 韭研有人工标签、自有引擎未覆盖"
+    },
+    {
+      "code": "600855",
+      "name": "航天长峰",
+      "status": "❌ 仅有韭研",
+      "own_concept": "",
+      "jiuyuan_tags": "商业航天+脑机接口+军工电子+低空经济",
+      "jiuyuan_section": "商业航天",
+      "jiuyuan_theme": "天舟十号将于近日择机发射",
+      "concept_match": "🔵 韭研有人工标签、自有引擎未覆盖"
+    },
+    {
+      "code": "600992",
+      "name": "贵绳股份",
+      "status": "❌ 仅有韭研",
+      "own_concept": "",
+      "jiuyuan_tags": "商业航天+军工+习酒猜想",
+      "jiuyuan_section": "商业航天",
+      "jiuyuan_theme": "天舟十号将于近日择机发射",
+      "concept_match": "🔵 韭研有人工标签、自有引擎未覆盖"
+    },
+    {
+      "code": "601991",
+      "name": "大唐发电",
+      "status": "❌ 仅有韭研",
+      "own_concept": "",
+      "jiuyuan_tags": "算电协同+大唐集团+蒙电入苏",
+      "jiuyuan_section": "算力",
+      "jiuyuan_theme": "高盛：企业级智能体将推动全球Token消耗量在五年内增长24倍",
+      "concept_match": "🔵 韭研有人工标签、自有引擎未覆盖"
+    },
+    {
+      "code": "603028",
+      "name": "赛福天",
+      "status": "❌ 仅有韭研",
+      "own_concept": "",
+      "jiuyuan_tags": "人形机器人+供货智元机器人灵巧手(未证实)+商业航天",
+      "jiuyuan_section": "机器人",
+      "jiuyuan_theme": "Optimus机器人或将于7月下旬或8月在弗里蒙特投产",
+      "concept_match": "🔵 韭研有人工标签、自有引擎未覆盖"
+    },
+    {
+      "code": "603045",
+      "name": "福达合金",
+      "status": "❌ 仅有韭研",
+      "own_concept": "",
+      "jiuyuan_tags": "扭亏为盈+数据中心电接触材料+机器人+金属回收",
+      "jiuyuan_section": "公告",
+      "jiuyuan_theme": "",
+      "concept_match": "🔵 韭研有人工标签、自有引擎未覆盖"
+    },
+    {
+      "code": "603278",
+      "name": "大业股份",
+      "status": "❌ 仅有韭研",
+      "own_concept": "",
+      "jiuyuan_tags": "人形机器人（灵巧手/腱绳）+商业航天+光伏+轮胎",
+      "jiuyuan_section": "机器人",
+      "jiuyuan_theme": "Optimus机器人或将于7月下旬或8月在弗里蒙特投产",
+      "concept_match": "🔵 韭研有人工标签、自有引擎未覆盖"
+    },
+    {
+      "code": "603459",
+      "name": "红板科技",
+      "status": "❌ 仅有韭研",
+      "own_concept": "",
+      "jiuyuan_tags": "PCB+光模块+HDI主板+次新股",
+      "jiuyuan_section": "PCB",
+      "jiuyuan_theme": "PCB需求激增，基板厂商订购CCL交货周期已从两周延长至最长六周",
+      "concept_match": "🔵 韭研有人工标签、自有引擎未覆盖"
+    },
+    {
+      "code": "603618",
+      "name": "杭电股份",
+      "status": "❌ 仅有韭研",
+      "own_concept": "",
+      "jiuyuan_tags": "光纤光缆+一季报增长",
+      "jiuyuan_section": "光通信",
+      "jiuyuan_theme": "英伟达CEO黄仁勋：下一代AI基础设施将需要大量的光学连接",
+      "concept_match": "🔵 韭研有人工标签、自有引擎未覆盖"
+    },
+    {
+      "code": "603636",
+      "name": "南威软件",
+      "status": "❌ 仅有韭研",
+      "own_concept": "",
+      "jiuyuan_tags": "Token工厂+电子证照+蚂蚁参股",
+      "jiuyuan_section": "算力",
+      "jiuyuan_theme": "高盛：企业级智能体将推动全球Token消耗量在五年内增长24倍",
+      "concept_match": "🔵 韭研有人工标签、自有引擎未覆盖"
+    },
+    {
+      "code": "603667",
+      "name": "五洲新春",
+      "status": "❌ 仅有韭研",
+      "own_concept": "",
+      "jiuyuan_tags": "通过新剑供货T（传）+丝杠+机器人零部件+机器人轴承",
+      "jiuyuan_section": "机器人",
+      "jiuyuan_theme": "Optimus机器人或将于7月下旬或8月在弗里蒙特投产",
+      "concept_match": "🔵 韭研有人工标签、自有引擎未覆盖"
+    },
+    {
+      "code": "603738",
+      "name": "泰晶科技",
+      "status": "❌ 仅有韭研",
+      "own_concept": "",
+      "jiuyuan_tags": "晶振+光模块+商业航天",
+      "jiuyuan_section": "光通信",
+      "jiuyuan_theme": "英伟达CEO黄仁勋：下一代AI基础设施将需要大量的光学连接",
+      "concept_match": "🔵 韭研有人工标签、自有引擎未覆盖"
+    },
+    {
+      "code": "603758",
+      "name": "秦安股份",
+      "status": "❌ 仅有韭研",
+      "own_concept": "",
+      "jiuyuan_tags": "机器人传感器+AR膜+汽车零部件",
+      "jiuyuan_section": "机器人",
+      "jiuyuan_theme": "Optimus机器人或将于7月下旬或8月在弗里蒙特投产",
+      "concept_match": "🔵 韭研有人工标签、自有引擎未覆盖"
+    },
+    {
+      "code": "603937",
+      "name": "丽岛新材",
+      "status": "❌ 仅有韭研",
+      "own_concept": "",
+      "jiuyuan_tags": "电池铝箔+一季报扭亏",
+      "jiuyuan_section": "电池产业链",
+      "jiuyuan_theme": "碳酸锂期货主力合约创3年来新高，一度突破20万元/吨",
+      "concept_match": "🔵 韭研有人工标签、自有引擎未覆盖"
+    },
+    {
+      "code": "605006",
+      "name": "山东玻纤",
+      "status": "❌ 仅有韭研",
+      "own_concept": "",
+      "jiuyuan_tags": "玻纤纱+电子级玻纤布上游",
+      "jiuyuan_section": "PCB",
+      "jiuyuan_theme": "PCB需求激增，基板厂商订购CCL交货周期已从两周延长至最长六周",
+      "concept_match": "🔵 韭研有人工标签、自有引擎未覆盖"
+    },
+    {
+      "code": "605289",
+      "name": "罗曼股份",
+      "status": "❌ 仅有韭研",
+      "own_concept": "",
+      "jiuyuan_tags": "AI算力+一季报增长+液冷",
+      "jiuyuan_section": "算力",
+      "jiuyuan_theme": "高盛：企业级智能体将推动全球Token消耗量在五年内增长24倍",
+      "concept_match": "🔵 韭研有人工标签、自有引擎未覆盖"
+    }
+  ],
+  "report": "📡 **涨停原因双源融合 | 2026-05-11**\n============================================================\n📊 共47只涨停 | 双方匹配0 | 仅有自有引擎0 | 仅有韭研47\n\n**📂 今日涨停板块全景**\n\n**机器人 (13只)**\n  💡 Optimus机器人或将于7月下旬或8月在弗里蒙特投产\n  天奇股份(002009) → 机器人+银河通用+优必选+锂电池回收\n  巨轮智能(002031) → 人形机器人（减速器）+行星滚柱丝杠+轻量化+轮胎\n  恒星科技(002132) → 机器人腱绳+业绩预增+有机硅+光伏耗材金刚线\n  飞龙股份(002536) → 人形机器人+服务器液冷+IDC液冷+资产注入预期\n  祥鑫科技(002965) → 人形机器人（灵巧手）+液冷服务器\n  雷赛智能(002979) → 人形机器人+灵巧手+智元机器人\n  精锻科技(300258) → 人形机器人+差速器锥齿轮+汽车零配件\n  恒锋工具(300488) → 机器人+燃气轮机（拉刀）+减速器+机床刀具\n  ...还有5只\n\n**商业航天 (7只)**\n  💡 天舟十号将于近日择机发射\n  航天发展(000547) → 商业航天+军工+低空经济\n  波导股份(600130) → 卫星通信+摘帽+资产注入预期\n  航天动力(600343) → 液体火箭发动机+航天六院\n  航发科技(600391) → 航空发动机+燃气轮机+大飞机\n  鲁信创投(600783) → 参股蓝箭航天+创投\n  航天长峰(600855) → 商业航天+脑机接口+军工电子+低空经济\n  贵绳股份(600992) → 商业航天+军工+习酒猜想\n\n**光通信 (7只)**\n  💡 英伟达CEO黄仁勋：下一代AI基础设施将需要大量的光学连接\n  福晶科技(002222) → 光通信+法拉第旋光片+光刻光源\n  光迅科技(002281) → 光模块+激光通信+液冷\n  通鼎互联(002491) → 光纤(康宁)+数据中心+机器人\n  铭普光磁(002902) → 光模块+AI算力+合作英诺赛科+英伟达\n  烽火通信(600498) → 光纤+光模块+6G+华为昇腾+AI服务器\n  杭电股份(603618) → 光纤光缆+一季报增长\n  泰晶科技(603738) → 晶振+光模块+商业航天\n\n**电池产业链 (5只)**\n  💡 碳酸锂期货主力合约创3年来新高，一度突破20万元/吨\n  江苏国泰(002091) → 锂电池+电解液+固态电池\n  圣阳股份(002580) → 固态电池+液冷+数据中心电源\n  传艺科技(002866) → 钠离子电池+固态电池+FPC\n  澄星股份(600078) → 磷化工+固态电池+高纯电子级磷酸\n  丽岛新材(603937) → 电池铝箔+一季报扭亏\n\n**算力 (5只)**\n  💡 高盛：企业级智能体将推动全球Token消耗量在五年内增长24倍\n  润建股份(002929) → Token工厂+算力+机器人+AI智能体\n  大位科技(600589) → 算力租赁+字节算力+数据中心\n  大唐发电(601991) → 算电协同+大唐集团+蒙电入苏\n  南威软件(603636) → Token工厂+电子证照+蚂蚁参股\n  罗曼股份(605289) → AI算力+一季报增长+液冷\n\n**公告 (3只)**\n  华联控股(000036) → 盐湖提锂+收购修订+房地产开发+物业经营\n  三湘印象(000863) → 股权转让+房地产+文旅消费+谷子经济\n  福达合金(603045) → 扭亏为盈+数据中心电接触材料+机器人+金属回收\n\n**AI应用 (3只)**\n  💡 腾讯混元Hy3preview Token调用量已超上一代10倍\n  贝瑞基因(000710) → AI医疗+基因编辑+DeepSeek\n  完美世界(002624) → 异环+AI游戏+DOTA2\n  中国软件(600536) → 国产软件+信创+合作华为\n\n**PCB (3只)**\n  💡 PCB需求激增，基板厂商订购CCL交货周期已从两周延长至最长六周\n  宝鼎科技(002552) → HVLP铜箔+业绩预增\n  红板科技(603459) → PCB+光模块+HDI主板+次新股\n  山东玻纤(605006) → 玻纤纱+电子级玻纤布上游\n\n**⚠️ 自有引擎遗漏 47只**（韭研有但我们没覆盖到）\n  华联控股(000036) 盐湖提锂+收购修订+房地产开发+物业经营\n  航天发展(000547) 商业航天+军工+低空经济\n  贝瑞基因(000710) AI医疗+基因编辑+DeepSeek\n  三湘印象(000863) 股权转让+房地产+文旅消费+谷子经济\n  天奇股份(002009) 机器人+银河通用+优必选+锂电池回收\n  达安基因(002030) 汉坦病毒检测+AI医疗+基因测序\n  巨轮智能(002031) 人形机器人（减速器）+行星滚柱丝杠+轻量化+轮胎\n  江苏国泰(002091) 锂电池+电解液+固态电池\n  恒星科技(002132) 机器人腱绳+业绩预增+有机硅+光伏耗材金刚线\n  福晶科技(002222) 光通信+法拉第旋光片+光刻光源\n  ...还有37只\n"
+}

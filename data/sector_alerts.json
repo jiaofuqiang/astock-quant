@@ -1,0 +1,41 @@
+{
+  "generated_at": "2026-05-17T09:21:39.151068",
+  "alert_count": 5,
+  "alerts": [
+    {
+      "type": "退潮预警",
+      "sector": "数据中心",
+      "severity": "high",
+      "detail": "涨停密度环比下降100%（1→0）",
+      "timestamp": "2026-05-17T09:21:39.145418"
+    },
+    {
+      "type": "退潮预警",
+      "sector": "光模块与光通信",
+      "severity": "high",
+      "detail": "涨停密度环比下降100%（3→0）",
+      "timestamp": "2026-05-17T09:21:39.146068"
+    },
+    {
+      "type": "退潮预警",
+      "sector": "智能驾驶",
+      "severity": "high",
+      "detail": "涨停密度环比下降100%（1→0）",
+      "timestamp": "2026-05-17T09:21:39.146654"
+    },
+    {
+      "type": "退潮预警",
+      "sector": "券商",
+      "severity": "high",
+      "detail": "涨停密度环比下降100%（1→0）",
+      "timestamp": "2026-05-17T09:21:39.147926"
+    },
+    {
+      "type": "退潮预警",
+      "sector": "半导体",
+      "severity": "high",
+      "detail": "涨停密度环比下降75%（4→1）",
+      "timestamp": "2026-05-17T09:21:39.148570"
+    }
+  ]
+}

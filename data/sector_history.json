@@ -1,0 +1,106 @@
+[
+  {
+    "date": "2026-05-02",
+    "timestamp": "2026-05-02T19:23:05.798069",
+    "sectors": {
+      "光模块": {
+        "avg_change": 2.17,
+        "up_count": 3,
+        "down_count": 2,
+        "total_amount_wan": 5321022.0,
+        "count": 5
+      },
+      "半导体": {
+        "avg_change": 6.71,
+        "up_count": 5,
+        "down_count": 0,
+        "total_amount_wan": 3441203.0,
+        "count": 5
+      },
+      "AI算力": {
+        "avg_change": 0.39,
+        "up_count": 3,
+        "down_count": 2,
+        "total_amount_wan": 6536216.0,
+        "count": 5
+      },
+      "新能源汽车": {
+        "avg_change": 1.26,
+        "up_count": 3,
+        "down_count": 2,
+        "total_amount_wan": 3385914.0,
+        "count": 5
+      },
+      "光伏": {
+        "avg_change": 2.04,
+        "up_count": 3,
+        "down_count": 2,
+        "total_amount_wan": 1490713.0,
+        "count": 5
+      },
+      "机器人": {
+        "avg_change": 3.91,
+        "up_count": 5,
+        "down_count": 0,
+        "total_amount_wan": 1664579.0,
+        "count": 5
+      },
+      "信创": {
+        "avg_change": 3.82,
+        "up_count": 5,
+        "down_count": 0,
+        "total_amount_wan": 1778513.0,
+        "count": 5
+      },
+      "消费电子": {
+        "avg_change": -0.7,
+        "up_count": 1,
+        "down_count": 3,
+        "total_amount_wan": 1486426.0,
+        "count": 5
+      },
+      "创新药": {
+        "avg_change": -1.02,
+        "up_count": 0,
+        "down_count": 4,
+        "total_amount_wan": 1356029.0,
+        "count": 5
+      },
+      "军工": {
+        "avg_change": 0.45,
+        "up_count": 3,
+        "down_count": 1,
+        "total_amount_wan": 386728.0,
+        "count": 5
+      },
+      "白酒": {
+        "avg_change": -1.02,
+        "up_count": 1,
+        "down_count": 4,
+        "total_amount_wan": 1238672.0,
+        "count": 5
+      },
+      "银行": {
+        "avg_change": -0.22,
+        "up_count": 1,
+        "down_count": 4,
+        "total_amount_wan": 1353244.0,
+        "count": 5
+      },
+      "证券": {
+        "avg_change": -0.12,
+        "up_count": 1,
+        "down_count": 2,
+        "total_amount_wan": 1667237.0,
+        "count": 5
+      },
+      "地产": {
+        "avg_change": -0.55,
+        "up_count": 2,
+        "down_count": 2,
+        "total_amount_wan": 246830.0,
+        "count": 5
+      }
+    }
+  }
+]

@@ -1,0 +1,217 @@
+{
+  "meta": {
+    "version": "v2.1 30秒规则修正",
+    "start_date": "2024-01-01",
+    "end_date": "2026-05-15",
+    "generated_at": "2026-05-17T17:14:24.730386"
+  },
+  "results": {
+    "dim5": [
+      {
+        "vol_range": "放量1.0-1.5",
+        "samples": 7540,
+        "avg_open_ret_30s": -0.26,
+        "open_win_rate_30s": 44.1,
+        "avg_close_ret_ref": 0.11,
+        "close_win_rate_ref": 47.8
+      },
+      {
+        "vol_range": "暴量>1.5",
+        "samples": 18265,
+        "avg_open_ret_30s": -0.59,
+        "open_win_rate_30s": 39.5,
+        "avg_close_ret_ref": -0.61,
+        "close_win_rate_ref": 42.3
+      },
+      {
+        "vol_range": "极端缩量<0.3",
+        "samples": 1400,
+        "avg_open_ret_30s": 1.03,
+        "open_win_rate_30s": 56.0,
+        "avg_close_ret_ref": 1.13,
+        "close_win_rate_ref": 56.8
+      },
+      {
+        "vol_range": "正常量0.7-1.0",
+        "samples": 3740,
+        "avg_open_ret_30s": -0.44,
+        "open_win_rate_30s": 44.8,
+        "avg_close_ret_ref": -0.13,
+        "close_win_rate_ref": 47.0
+      },
+      {
+        "vol_range": "缩量0.5-0.7",
+        "samples": 1660,
+        "avg_open_ret_30s": -0.97,
+        "open_win_rate_30s": 43.0,
+        "avg_close_ret_ref": -0.83,
+        "close_win_rate_ref": 44.6
+      },
+      {
+        "vol_range": "高度缩量0.3-0.5",
+        "samples": 1211,
+        "avg_open_ret_30s": -0.62,
+        "open_win_rate_30s": 45.2,
+        "avg_close_ret_ref": -0.15,
+        "close_win_rate_ref": 49.4
+      }
+    ],
+    "dim6": [
+      {
+        "board_level": "首板",
+        "samples": 25482,
+        "avg_open_ret_30s": -0.35,
+        "open_win_rate_30s": 41.3,
+        "avg_close_ret_ref": -0.21,
+        "close_win_rate_ref": 44.8
+      },
+      {
+        "board_level": "2板",
+        "samples": 4914,
+        "avg_open_ret_30s": -0.76,
+        "open_win_rate_30s": 42.2,
+        "avg_close_ret_ref": -0.58,
+        "close_win_rate_ref": 44.5
+      },
+      {
+        "board_level": "3板",
+        "samples": 1703,
+        "avg_open_ret_30s": -0.34,
+        "open_win_rate_30s": 48.9,
+        "avg_close_ret_ref": -0.49,
+        "close_win_rate_ref": 47.3
+      },
+      {
+        "board_level": "4板+",
+        "samples": 1717,
+        "avg_open_ret_30s": -1.15,
+        "open_win_rate_30s": 49.3,
+        "avg_close_ret_ref": -1.01,
+        "close_win_rate_ref": 46.7
+      }
+    ],
+    "dim7": [
+      {
+        "name": "🛂沪股通买入",
+        "samples": 47,
+        "close_ret": 1.18,
+        "close_win": 59.6,
+        "open_ret": 1.86,
+        "open_win": 61.7,
+        "close_vs_open_diff": -0.68,
+        "30s_rule_suggestion": "开盘卖"
+      },
+      {
+        "name": "📊type=01全量(严格时间线)",
+        "samples": 1541,
+        "close_ret": 0.04,
+        "close_win": 45.4,
+        "open_ret": 0.1,
+        "open_win": 44.1,
+        "close_vs_open_diff": -0.06,
+        "30s_rule_suggestion": "开盘卖"
+      },
+      {
+        "name": "无特殊资金标签",
+        "samples": 1374,
+        "close_ret": 0.03,
+        "close_win": 45.1,
+        "open_ret": 0.09,
+        "open_win": 43.8,
+        "close_vs_open_diff": -0.06,
+        "30s_rule_suggestion": "开盘卖"
+      },
+      {
+        "name": "😰亏钱席位买入",
+        "samples": 33,
+        "close_ret": 0.79,
+        "close_win": 48.5,
+        "open_ret": -0.84,
+        "open_win": 36.4,
+        "close_vs_open_diff": 1.63,
+        "30s_rule_suggestion": "可持有"
+      },
+      {
+        "name": "😎赚钱席位买入",
+        "samples": 70,
+        "close_ret": -0.38,
+        "close_win": 42.9,
+        "open_ret": 0.61,
+        "open_win": 42.9,
+        "close_vs_open_diff": -0.99,
+        "30s_rule_suggestion": "开盘卖"
+      },
+      {
+        "name": "🏛️机构买入",
+        "samples": 46,
+        "close_ret": -0.32,
+        "close_win": 39.1,
+        "open_ret": -1.02,
+        "open_win": 41.3,
+        "close_vs_open_diff": 0.7,
+        "30s_rule_suggestion": "可持有"
+      },
+      {
+        "name": "标签组合:机构,深股通",
+        "samples": 32,
+        "close_ret": -0.22,
+        "close_win": 50.0,
+        "open_ret": -0.17,
+        "open_win": 40.6,
+        "close_vs_open_diff": -0.05,
+        "30s_rule_suggestion": "开盘卖"
+      },
+      {
+        "name": "🔵深股通买入",
+        "samples": 34,
+        "close_ret": -0.26,
+        "close_win": 41.2,
+        "open_ret": -0.79,
+        "open_win": 38.2,
+        "close_vs_open_diff": 0.53,
+        "30s_rule_suggestion": "可持有"
+      }
+    ],
+    "dim8": [
+      {
+        "env": "冰点",
+        "samples": 6828,
+        "avg_open_ret_30s": -0.72,
+        "open_win_rate_30s": 39.3
+      },
+      {
+        "env": "震荡",
+        "samples": 17989,
+        "avg_open_ret_30s": -0.48,
+        "open_win_rate_30s": 41.7
+      },
+      {
+        "env": "活跃",
+        "samples": 6599,
+        "avg_open_ret_30s": -0.77,
+        "open_win_rate_30s": 40.6
+      },
+      {
+        "env": "高潮",
+        "samples": 2400,
+        "avg_open_ret_30s": 1.42,
+        "open_win_rate_30s": 58.3
+      }
+    ],
+    "correction_notes": {
+      "version": "v2.1 30秒规则修正",
+      "buy_rule": "T-1涨停检测 → T日开盘价(open)买",
+      "sell_rule": "T+1开盘卖(open_ret为主数据, close_ret仅为参考)",
+      "env_source": "market_daily.db.day_full (2800+只全量, 非K线子集)",
+      "stock_filter": "纯主板(6/000/001/002/003, 排除300创业板)",
+      "kline_quality": "3229只股票",
+      "changes": [
+        "1. 涨停检测用T-2→T-1日close, 非T日close→open",
+        "2. 买入价=T-1涨停价(yclose*1.10), 非T日open*1.10",
+        "3. 卖出主用T+1开盘价(30秒规则), 收盘仅参考",
+        "4. 环境数据从market_daily.db读取(2800+只)",
+        "5. 新股不足5天数据跳过, 减少噪声"
+      ]
+    }
+  }
+}

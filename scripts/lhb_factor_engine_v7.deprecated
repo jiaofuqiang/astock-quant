@@ -1,0 +1,477 @@
+#!/usr/bin/env python3
+"""
+龙虎榜V7评分引擎 — 7大类×20+因子 + 板块主线强化
+替代当前的 lhb_scoring_engine.py (仅5维度)
+
+因子体系:
+1. 量价(15分): 量比、振幅、封板时间、封单质量
+2. 资金(20分): 机构净额、游资净额、买方集中度、净额方向
+3. 情绪(15分): 所属板块热度、连板梯队、炸板风险
+4. 动量(10分): 前5日涨幅、离MA5距离、换手率趋势
+5. 盘口(10分): 竞价开幅(若有)、T日开涨幅、封单额比
+6. 营业部(15分): 打板型/趋势型/量化型/机构型识别
+7. 环境(15分): 宏观评分(从K线计算)+ 板块强化倍率
+"""
+
+import sqlite3, json, sys, os, re
+from datetime import datetime, date, timedelta
+from collections import defaultdict
+
+BASE = os.path.expanduser('~/astock')
+DB = f'{BASE}/data'
+KLINE = f'{DB}/kline_cache.db'
+LHB = f'{DB}/lhb_cache.db'
+MARKET = f'{DB}/market_daily.db'
+V2BOARD = '/home/ubuntu/V2board'
+
+# ========== 营业部分类系统 ==========
+
+# 知名游资营业部模式匹配
+KNOWN_YOUZI = [
+    '中信证券.*杭州', '华泰证券.*总部', '国泰海通.*总部', '国泰君安.*总部',
+    '中金财富.*', '中国银河.*杭州', '招商证券.*深圳', '华鑫证券.*上海',
+    '申万宏源.*上海', '中泰证券.*', '海通证券.*', '东兴证券.*',
+    '光大证券.*', '东方财富.*拉萨', '华泰证券.*', '财通证券.*杭州',
+    '平安证券.*', '国金证券.*', '长城证券.*', '兴业证券.*',
+    '山西证券.*', '中信建投.*', '中原证券.*',
+]
+
+# 量化席位模式
+KNOWN_QLIANG = [
+    '.*量化.*', '.*jiaoyisuo.*', '.*高频.*', '.*程序化.*',
+    '东方财富.*东方', '中信证券.*杭州',
+]
+
+KNOWN_TREND = [
+    '机构专用', '国泰海通.*', '国泰君安.*', '中信证券.*',
+]
+
+def classify_dealer(name, sblx=''):
+    """营业部分类：返回youzi/jigou/quant/trend/other"""
+    name = name or ''
+    if '机构专用' in name:
+        return 'jigou'
+    if '量化' in name or sblx in ('lh', 'qt'):
+        return 'quant'
+    # 知名游资
+    for p in KNOWN_YOUZI:
+        if re.search(p, name):
+            return 'youzi'
+    # 趋势型
+    for p in KNOWN_TREND:
+        if re.search(p, name):
+            return 'trend'
+    return 'other'
+
+# ========== DB工具 ==========
+
+def db(path):
+    c = sqlite3.connect(path, timeout=10)
+    c.row_factory = sqlite3.Row
+    return c
+
+# ========== 宏观环境分计算 ==========
+
+def compute_env_score(kdata):
+    """从全量K线计算当日宏观评分(0-100)"""
+    if not kdata or len(kdata) < 50:
+        return 50, {}
+    
+    up = sum(1 for r in kdata if r['chg'] and r['chg'] > 0)
+    down = sum(1 for r in kdata if r['chg'] and r['chg'] <= 0)
+    total = up + down
+    zh = up/total*100 if total > 0 else 50
+    
+    limit_up = sum(1 for r in kdata if r['chg'] and r['chg'] >= 9.9)
+    limit_down = sum(1 for r in kdata if r['chg'] and r['chg'] <= -9.9)
+    big_up = sum(1 for r in kdata if r['chg'] and r['chg'] > 5)
+    big_down = sum(1 for r in kdata if r['chg'] and r['chg'] < -5)
+    avg_chg = sum((r['chg'] or 0) for r in kdata) / total if total > 0 else 0
+    
+    # 5个维度评分
+    s1 = 20 if zh > 60 else (15 if zh > 45 else (10 if zh > 30 else (5 if zh > 20 else 0)))
+    
+    lur = limit_up/total*100 if total > 0 else 0
+    s2 = 25 if lur > 5 else (20 if lur > 3 else (15 if lur > 1.5 else (8 if lur > 0.5 else 0)))
+    
+    er = big_up/big_down if big_down > 0 else (10 if big_up > 0 else 1)
+    s3 = 25 if er > 3 else (20 if er > 1.5 else (15 if er > 0.8 else (8 if er > 0.3 else 0)))
+    
+    s4 = 15 if avg_chg > 0.5 else (10 if avg_chg > 0 else (5 if avg_chg > -0.3 else 0))
+    
+    zhaban_rate = limit_down/total*100 if total > 0 else 0
+    s5 = 15 if zhaban_rate < 3 else (10 if zhaban_rate < 6 else (5 if zhaban_rate < 10 else 0))
+    
+    return s1+s2+s3+s4+s5, {'zh': round(zh,1), 'limit_up': limit_up, 'limit_down': limit_down,
+                             'big_up': big_up, 'big_down': big_down, 'avg_chg': round(avg_chg,2)}
+
+def get_kline_day(conn, date):
+    rows = conn.execute('SELECT code, open, close, high, low, volume FROM kline WHERE date=?', (date,)).fetchall()
+    if not rows or len(rows) < 50:
+        return None
+    result = []
+    for r in rows:
+        if r['open'] and r['open'] > 0 and r['close'] and r['close'] > 0:
+            chg = (r['close']-r['open'])/r['open']*100
+            result.append({'code': r['code'], 'chg': chg, 'close': r['close'], 'open': r['open'],
+                          'high': r['high'], 'low': r['low'], 'volume': r['volume'] or 0})
+    return result
+
+# ========== 板块识别 ==========
+
+def get_top_sectors(conn_m, date):
+    """从market_daily获取当日TOP板块"""
+    try:
+        row = conn_m.execute('SELECT top_sectors, concept_top, sector_main_top FROM day_full WHERE date=?', (date,)).fetchone()
+        if not row:
+            return [], []
+        top = json.loads(row['top_sectors']) if row['top_sectors'] and row['top_sectors'] != '[]' else []
+        concepts = json.loads(row['concept_top']) if row['concept_top'] and row['concept_top'] != '[]' else []
+        return top[:10], concepts[:10]
+    except:
+        return [], []
+
+# ========== 主评分函数 ==========
+
+def score_lhb_stock(code, name, date_str, conn, conn_k, conn_m, env_score):
+    """对一只龙虎榜个股计算7维评分"""
+    
+    # --- 从lhb_detail获取资金数据 ---
+    detail_rows = conn.execute('''
+        SELECT direction, dealer, buy_amt, sell_amt
+        FROM lhb_detail WHERE date=? AND code=?
+    ''', (date_str, code)).fetchall()
+    
+    if not detail_rows:
+        return None
+    
+    # 从lhb_detail_tdx获取更多信息
+    detail_tdx = conn.execute('''
+        SELECT direction, dealer, buy_amt, sell_amt, sblx
+        FROM lhb_detail_tdx WHERE date=? AND code=?
+    ''', (date_str, code)).fetchall()
+    
+    total_buy = sum(r['buy_amt'] or 0 for r in detail_rows if r['direction'] == 'buy')
+    total_sell = sum(r['sell_amt'] or 0 for r in detail_rows if r['direction'] == 'sell')
+    net = total_buy - total_sell
+    
+    # 营业部分类分析
+    dealers = []
+    for r in detail_tdx:
+        cls = classify_dealer(r['dealer'], r['sblx'] or '')
+        dealers.append({'name': r['dealer'], 'type': cls, 'sblx': r['sblx'],
+                       'buy': r['buy_amt'] or 0, 'sell': r['sell_amt'] or 0,
+                       'direction': r['direction']})
+    # fallback: 用lhb_detail
+    if not dealers:
+        for r in detail_rows:
+            cls = classify_dealer(r['dealer'])
+            dealers.append({'name': r['dealer'], 'type': cls, 'sblx': '',
+                           'buy': r['buy_amt'] or 0, 'sell': r['sell_amt'] or 0,
+                           'direction': r['direction']})
+    
+    # 买方营业部
+    buy_dealers = [d for d in dealers if d['direction'] == 'buy']
+    sell_dealers = [d for d in dealers if d['direction'] == 'sell']
+    
+    # --- 从K线获取动量数据 ---
+    klines = conn_k.execute('''
+        SELECT date, open, close, volume FROM kline
+        WHERE code=? AND date <= ? ORDER BY date DESC LIMIT 10
+    ''', (code, date_str)).fetchall()
+    
+    # T日K线
+    t_kline = conn_k.execute('''
+        SELECT open, close, high, low, volume FROM kline
+        WHERE code=? AND date=?
+    ''', (code, date_str)).fetchone()
+    
+    # 前5日K线
+    prev_klines = conn_k.execute('''
+        SELECT date, open, close, volume FROM kline
+        WHERE code=? AND date < ? ORDER BY date DESC LIMIT 6
+    ''', (code, date_str)).fetchall()
+    
+    prev_5 = prev_klines[:5]
+    
+    # --- 1. 量价因子 (15分) ---
+    vol_score = 0
+    if t_kline and len(prev_5) >= 3:
+        # 量比 = 今日量 / 前5日均量
+        t_vol = t_kline['volume'] or 0
+        avg_vol = sum((k['volume'] or 0) for k in prev_5) / len(prev_5)
+        vol_ratio = t_vol / avg_vol if avg_vol > 0 else 1
+        
+        if vol_ratio < 0.5:
+            vol_score = 15  # 极致缩量=锁仓
+        elif vol_ratio < 0.8:
+            vol_score = 12
+        elif vol_ratio < 1.2:
+            vol_score = 8
+        elif vol_ratio < 2:
+            vol_score = 5
+        else:
+            vol_score = 0  # 巨量分歧
+    
+    # --- 2. 资金因子 (20分) ---
+    fund_score = 0
+    
+    # 机构参与度
+    jigou_buy = sum(d['buy'] for d in buy_dealers if d['type'] == 'jigou')
+    jigou_sell = sum(d['sell'] for d in sell_dealers if d['type'] == 'jigou')
+    jigou_net = jigou_buy - jigou_sell
+    
+    # 游资参与度
+    youzi_buy = sum(d['buy'] for d in buy_dealers if d['type'] in ('youzi', 'quant'))
+    youzi_sell = sum(d['sell'] for d in sell_dealers if d['type'] in ('youzi', 'quant'))
+    youzi_net = youzi_buy - youzi_sell
+    
+    if jigou_net > 100:
+        fund_score += 10  # 机构净买入>100万
+    elif jigou_net > 0:
+        fund_score += 5
+    elif jigou_net < -100:
+        fund_score -= 5   # 机构净卖出
+    
+    if youzi_net > 200:
+        fund_score += 6
+    elif youzi_net > 0:
+        fund_score += 3
+    
+    # 净额整体方向
+    if net > 500:
+        fund_score += 4
+    elif net > 100:
+        fund_score += 2
+    elif net < -500:
+        fund_score -= 4
+    
+    fund_score = max(-5, min(20, fund_score))
+    
+    # --- 3. 情绪因子 (15分) ---
+    mood_score = 0
+    
+    # 买方集中度：top1占比
+    if buy_dealers:
+        top1_buy = max(d['buy'] for d in buy_dealers)
+        total_buy_amt = sum(d['buy'] for d in buy_dealers)
+        top1_ratio = top1_buy / total_buy_amt if total_buy_amt > 0 else 0
+        
+        if 0.2 < top1_ratio < 0.5:
+            mood_score += 5  # 集中但不极端=好
+        elif top1_ratio > 0.8:
+            mood_score -= 3  # 一个人包场=风险
+    
+    # 净额稳定性(buy多于sell)
+    if total_buy > total_sell * 1.5:
+        mood_score += 5
+    elif total_buy < total_sell * 0.5:
+        mood_score -= 5
+    
+    mood_score = max(-5, min(15, mood_score))
+    
+    # --- 4. 动量因子 (10分) ---
+    momentum_score = 0
+    if prev_5:
+        # 前5日涨跌幅
+        if prev_5[0]['close'] and prev_5[-1]['close'] and prev_5[-1]['close'] > 0:
+            p5_chg = (prev_5[0]['close'] - prev_5[-1]['close']) / prev_5[-1]['close'] * 100
+            
+            if -10 < p5_chg < -3:
+                momentum_score = 10  # 超跌反弹
+            elif -3 < p5_chg < 3:
+                momentum_score = 7   # 横盘蓄势
+            elif 3 < p5_chg < 10:
+                momentum_score = 5   # 温和上涨
+            elif p5_chg < -15:
+                momentum_score = 0   # 跌太狠
+            else:
+                momentum_score = 2
+    
+    # --- 5. 盘口因子 (10分) ---
+    dish_score = 0
+    if t_kline and prev_5:
+        # 开盘涨幅
+        yclose = prev_5[0]['close'] if prev_5 else None
+        if yclose and yclose > 0 and t_kline['open'] > 0:
+            t_open_pct = (t_kline['open'] - yclose) / yclose * 100
+            
+            if 0 < t_open_pct < 7:
+                dish_score = 8  # 温和高开
+            elif t_open_pct < 0:
+                dish_score = 3  # 低开
+            elif t_open_pct > 9:
+                dish_score = 0  # 接近涨停开盘
+            else:
+                dish_score = 5
+    
+    # --- 6. 营业部因子 (15分) ---
+    dealer_score = 5  # 基础分
+    dealer_types = set(d['type'] for d in dealers)
+    
+    # 多种类型营业部参与=合力
+    unique_types = {d['type'] for d in buy_dealers}
+    if 'jigou' in unique_types and 'youzi' in unique_types:
+        dealer_score += 8  # 机构+游资=最强合力
+    elif 'jigou' in unique_types:
+        dealer_score += 5
+    elif 'youzi' in unique_types:
+        dealer_score += 4
+    
+    # 量化参与加分
+    if 'quant' in unique_types:
+        dealer_score += 3
+    
+    dealer_score = min(15, dealer_score)
+    
+    # --- 7. 环境因子 (15分) ---
+    env_factor = env_score / 100 * 15  # 宏观分映射到0-15
+    
+    # ========== 板块主线强化 ==========
+    top_sectors, _ = get_top_sectors(conn_m, date_str)
+    sector_boost = 1.0
+    for s in top_sectors[:10]:
+        sname = s.get('name', '') if isinstance(s, dict) else str(s)
+        if sname and sname.lower() in name.lower()[:4]:
+            if s in top_sectors[:3]:
+                sector_boost = 1.2
+            else:
+                sector_boost = 1.05
+            break
+    
+    # ========== 合并总分 ==========
+    raw_score = vol_score + fund_score + mood_score + momentum_score + dish_score + dealer_score + env_factor
+    final_score = raw_score * sector_boost
+    
+    # ========== 等级判定 ==========
+    if final_score >= 65:
+        tier = 'S'
+        pos_pct = 20
+    elif final_score >= 45:
+        tier = 'A'
+        pos_pct = 12
+    elif final_score >= 30:
+        tier = 'B'
+        pos_pct = 6
+    else:
+        tier = 'C'
+        pos_pct = 0
+    
+    return {
+        'code': code, 'name': name,
+        'total_score': round(final_score, 1),
+        'tier': tier,
+        'pos_pct': pos_pct,
+        'sector_boost': round(sector_boost, 2),
+        'details': {
+            'vol_score': vol_score,
+            'fund_score': fund_score,
+            'mood_score': mood_score,
+            'momentum_score': momentum_score,
+            'dish_score': dish_score,
+            'dealer_score': dealer_score,
+            'env_score': round(env_factor, 1),
+        },
+        'raw': {
+            'net_wan': round(net, 1),
+            'jigou_net_wan': round(jigou_net, 1),
+            'youzi_net_wan': round(youzi_net, 1),
+            'dealer_types': list(dealer_types),
+            'buy_dealer_count': len(buy_dealers),
+        }
+    }
+
+def main():
+    target_date = None
+    output_json = False
+    
+    for a in sys.argv[1:]:
+        if a.startswith('--date='):
+            target_date = a.split('=', 1)[1]
+        elif a == '--json':
+            output_json = True
+        elif a.startswith('--date'):
+            i = sys.argv.index(a)
+            if i+1 < len(sys.argv):
+                target_date = sys.argv[i+1]
+    
+    if not target_date:
+        target_date = str(date.today())
+    
+    print(f"📊 龙虎榜V7因子引擎", file=sys.stderr)
+    print(f"   日期: {target_date}", file=sys.stderr)
+    print(file=sys.stderr)
+    
+    conn = db(LHB)
+    conn_k = db(KLINE)
+    conn_m = db(MARKET)
+    
+    # 1. 计算宏观环境
+    kdata = get_kline_day(conn_k, target_date)
+    env_score, env_detail = compute_env_score(kdata) if kdata else (50, {})
+    print(f"🌍 宏观评分: {env_score}/100", file=sys.stderr)
+    
+    # 2. 获取当日龙虎榜股票
+    list_rows = conn.execute('''
+        SELECT DISTINCT code, name FROM lhb_list WHERE date=?
+    ''', (target_date,)).fetchall()
+    
+    print(f"📋 龙虎榜个股: {len(list_rows)}只", file=sys.stderr)
+    
+    # 3. 逐个评分
+    results = []
+    for row in list_rows:
+        code = row['code']
+        name = row['name']
+        
+        # 过滤
+        if code.startswith('300') or code.startswith('688') or code.startswith('920') or code.startswith('8'):
+            continue
+        if 'ST' in name.upper() or name.startswith('*') or '退' in name:
+            continue
+        
+        score = score_lhb_stock(code, name, target_date, conn, conn_k, conn_m, env_score)
+        if score:
+            results.append(score)
+    
+    # 4. 排序输出
+    results.sort(key=lambda x: x['total_score'], reverse=True)
+    
+    print(f"✅ 评分完成: {len(results)}只通过过滤", file=sys.stderr)
+    print(f"\n{'─'*80}", file=sys.stderr)
+    print(f"{'代码':10s} {'名称':12s} {'总分':>6s} {'等级':>4s} {'仓位':>4s} {'板块增':>6s}", end='', file=sys.stderr)
+    print(f" {'量价':>4s} {'资金':>4s} {'情绪':>4s} {'动量':>4s} {'盘口':>4s} {'营业部':>6s} {'环境':>4s}", file=sys.stderr)
+    print(f"{'─'*80}", file=sys.stderr)
+    
+    for r in results[:20]:
+        d = r['details']
+        print(f"{r['code']:10s} {r['name']:12s} {r['total_score']:>5.1f} {r['tier']:>4s} {r['pos_pct']:>3d}% {r['sector_boost']:>5.2f}", end='', file=sys.stderr)
+        print(f" {d['vol_score']:>4d} {d['fund_score']:>4d} {d['mood_score']:>4d} {d['momentum_score']:>4d} {d['dish_score']:>4d} {d['dealer_score']:>6d} {d['env_score']:>4.0f}", file=sys.stderr)
+    
+    print(file=sys.stderr)
+    
+    # 5. 输出
+    output = {
+        'engine': 'lhb-scoring-v7',
+        'date': target_date,
+        'env_score': env_score,
+        'total_signals': len(results),
+        'ranked': results[:15],
+        'actionable': [r for r in results if r['pos_pct'] >= 6][:10],
+    }
+    
+    if output_json:
+        print(json.dumps(output, ensure_ascii=False, indent=2))
+    else:
+        # 写文件
+        out_path = f'{V2BOARD}/data/lhb_factor_v7.json'
+        with open(out_path, 'w') as f:
+            json.dump(output, f, ensure_ascii=False)
+        print(f"✅ 已保存: {out_path}", file=sys.stderr)
+    
+    conn.close()
+    conn_k.close()
+    conn_m.close()
+
+if __name__ == '__main__':
+    main()

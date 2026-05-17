@@ -1,0 +1,24 @@
+{
+  "type": "upgrade_report",
+  "date": "2026-05-12",
+  "generate_time": "15:34",
+  "consecutive_fails": 1,
+  "today_pnl": -318473.35,
+  "total_profit_rate": 98.51,
+  "items": [
+    {
+      "type": "当日亏损",
+      "auto": false,
+      "severity": "medium",
+      "desc": "今日亏损-318473.35",
+      "suggestion": "检查买入信号是否有效，止损规则是否执行"
+    },
+    {
+      "type": "most_profitable",
+      "auto": false,
+      "severity": "info",
+      "desc": "最赚钱交易模式提醒",
+      "suggestion": "龙≥5板+竞价开≥3%跟风(+7.6%/暴利70%) 是所有策略中最优的，明天优先执行此模式"
+    }
+  ]
+}

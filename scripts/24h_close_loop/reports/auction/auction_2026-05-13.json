@@ -1,0 +1,214 @@
+{
+  "type": "auction_report",
+  "date": "2026-05-13",
+  "generate_time": "09:16",
+  "market_prediction_scenario": "震荡",
+  "plans_priority": [
+    {
+      "name": "plan_1",
+      "sectors": [
+        "创新药"
+      ],
+      "confidence": "high"
+    },
+    {
+      "name": "plan_2",
+      "sectors": [
+        "医疗器械"
+      ],
+      "confidence": "medium"
+    },
+    {
+      "name": "plan_3",
+      "sectors": [
+        "存储芯片",
+        "半导体"
+      ],
+      "confidence": "low"
+    }
+  ],
+  "buy_signals": [],
+  "stocks_monitored": 20,
+  "auction_data": [
+    {
+      "code": "002022",
+      "name": "科华生物",
+      "price": 6.09,
+      "yesterday_close": 6.04,
+      "auction_pct": 0.83,
+      "volume_ratio": -4.31,
+      "amount_wan": 0.0
+    },
+    {
+      "code": "603360",
+      "name": "百傲化学",
+      "price": 19.92,
+      "yesterday_close": 19.86,
+      "auction_pct": 0.3,
+      "volume_ratio": 81.56,
+      "amount_wan": 0.0
+    },
+    {
+      "code": "000818",
+      "name": "航锦科技",
+      "price": 17.51,
+      "yesterday_close": 17.46,
+      "auction_pct": 0.29,
+      "volume_ratio": -81.34,
+      "amount_wan": 0.0
+    },
+    {
+      "code": "000963",
+      "name": "华东医药",
+      "price": 33.61,
+      "yesterday_close": 33.56,
+      "auction_pct": 0.15,
+      "volume_ratio": 16.83,
+      "amount_wan": 0.0
+    },
+    {
+      "code": "600587",
+      "name": "新华医疗",
+      "price": 13.73,
+      "yesterday_close": 13.72,
+      "auction_pct": 0.07,
+      "volume_ratio": 17.0,
+      "amount_wan": 0.0
+    },
+    {
+      "code": "600079",
+      "name": "ST人福",
+      "price": 18.45,
+      "yesterday_close": 18.44,
+      "auction_pct": 0.05,
+      "volume_ratio": 15.82,
+      "amount_wan": 0.0
+    },
+    {
+      "code": "000650",
+      "name": "仁和药业",
+      "price": 5.69,
+      "yesterday_close": 5.69,
+      "auction_pct": 0.0,
+      "volume_ratio": 21.57,
+      "amount_wan": 0.0
+    },
+    {
+      "code": "603991",
+      "name": "至正股份",
+      "price": 126.0,
+      "yesterday_close": 126.0,
+      "auction_pct": 0.0,
+      "volume_ratio": 1034.75,
+      "amount_wan": 0.0
+    },
+    {
+      "code": "603061",
+      "name": "金海通",
+      "price": 313.45,
+      "yesterday_close": 313.49,
+      "auction_pct": -0.01,
+      "volume_ratio": 116.85,
+      "amount_wan": 0.0
+    },
+    {
+      "code": "000766",
+      "name": "通化金马",
+      "price": 23.1,
+      "yesterday_close": 23.15,
+      "auction_pct": -0.22,
+      "volume_ratio": 701.35,
+      "amount_wan": 0.0
+    },
+    {
+      "code": "000620",
+      "name": "盈新发展",
+      "price": 3.08,
+      "yesterday_close": 3.09,
+      "auction_pct": -0.32,
+      "volume_ratio": -15.2,
+      "amount_wan": 0.0
+    },
+    {
+      "code": "603501",
+      "name": "豪威集团",
+      "price": 102.91,
+      "yesterday_close": 103.31,
+      "auction_pct": -0.39,
+      "volume_ratio": 35.25,
+      "amount_wan": 0.0
+    },
+    {
+      "code": "000566",
+      "name": "海南海药",
+      "price": 4.87,
+      "yesterday_close": 4.89,
+      "auction_pct": -0.41,
+      "volume_ratio": -14.42,
+      "amount_wan": 0.0
+    },
+    {
+      "code": "002086",
+      "name": "东方海洋",
+      "price": 1.93,
+      "yesterday_close": 1.94,
+      "auction_pct": -0.52,
+      "volume_ratio": -26.65,
+      "amount_wan": 0.0
+    },
+    {
+      "code": "000813",
+      "name": "德展健康",
+      "price": 3.78,
+      "yesterday_close": 3.81,
+      "auction_pct": -0.79,
+      "volume_ratio": -22.16,
+      "amount_wan": 0.0
+    },
+    {
+      "code": "000670",
+      "name": "盈方微",
+      "price": 7.96,
+      "yesterday_close": 8.03,
+      "auction_pct": -0.87,
+      "volume_ratio": -83.01,
+      "amount_wan": 0.0
+    },
+    {
+      "code": "000034",
+      "name": "神州数码",
+      "price": 41.1,
+      "yesterday_close": 41.79,
+      "auction_pct": -1.65,
+      "volume_ratio": 55.11,
+      "amount_wan": 0.0
+    },
+    {
+      "code": "000021",
+      "name": "深科技",
+      "price": 31.7,
+      "yesterday_close": 32.31,
+      "auction_pct": -1.89,
+      "volume_ratio": 41.62,
+      "amount_wan": 0.0
+    },
+    {
+      "code": "688012",
+      "name": "中微公司",
+      "price": 381.0,
+      "yesterday_close": 388.45,
+      "auction_pct": -1.92,
+      "volume_ratio": 87.53,
+      "amount_wan": 0.0
+    },
+    {
+      "code": "000078",
+      "name": "ST海王",
+      "price": 2.34,
+      "yesterday_close": 2.46,
+      "auction_pct": -4.88,
+      "volume_ratio": -10.76,
+      "amount_wan": 0.0
+    }
+  ]
+}

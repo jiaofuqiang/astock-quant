@@ -1,0 +1,663 @@
+{
+  "date": "2026-05-11",
+  "total_modules": 15,
+  "total_stocks": 114,
+  "sections": [
+    {
+      "section": "公告",
+      "count": "7",
+      "theme": "",
+      "stocks_count": 7,
+      "stocks": [
+        {
+          "name": "福达合金",
+          "code": "sh603045",
+          "pct": "",
+          "price": "",
+          "limitTime": "",
+          "tags": "扭亏为盈+数据中心电接触材料+机器人+金属回收"
+        },
+        {
+          "name": "通鼎互联",
+          "code": "sz002491",
+          "pct": "",
+          "price": "",
+          "limitTime": "",
+          "tags": "公告扩产+光纤(康宁)+数据中心+机器人"
+        },
+        {
+          "name": "汉邦高科",
+          "code": "sz300449",
+          "pct": "",
+          "price": "",
+          "limitTime": "",
+          "tags": "签下GPU大单+数字水印+AI应用+人脸识别+军工"
+        },
+        {
+          "name": "黄河旋风",
+          "code": "sh600172",
+          "pct": "",
+          "price": "",
+          "limitTime": "",
+          "tags": "公告扩产+金刚石热沉片+半导体封装+资产注入预期"
+        },
+        {
+          "name": "沧州明珠",
+          "code": "sz002108",
+          "pct": "",
+          "price": "",
+          "limitTime": "",
+          "tags": "公告扩产+锂电隔膜+新能源汽车+地下管网"
+        },
+        {
+          "name": "普冉股份",
+          "code": "sh688766",
+          "pct": "",
+          "price": "",
+          "limitTime": "",
+          "tags": "收购获上交所受理+存储芯片+非易失性存储器芯片+衍生芯片"
+        },
+        {
+          "name": "金螳螂",
+          "code": "sz002081",
+          "pct": "",
+          "price": "",
+          "limitTime": "",
+          "tags": "中标2.32亿元订单+商业航天+半导体洁净室(苏州)+传闻签订大单"
+        }
+      ]
+    },
+    {
+      "section": "光通信",
+      "count": "10",
+      "theme": "英伟达CEO黄仁勋：下一代AI基础设施将需要大量的光学连接；英伟达与康宁达成长期合作",
+      "stocks_count": 10,
+      "stocks": [
+        {
+          "name": "泰晶科技",
+          "code": "sh603738",
+          "pct": "",
+          "price": "",
+          "limitTime": "",
+          "tags": "晶振+光模块+商业航天"
+        },
+        {
+          "name": "博杰股份",
+          "code": "sz002975",
+          "pct": "",
+          "price": "",
+          "limitTime": "",
+          "tags": "磷化铟+液冷+业绩增长+AI服务器测试（谷歌）"
+        },
+        {
+          "name": "光电股份",
+          "code": "sh600184",
+          "pct": "",
+          "price": "",
+          "limitTime": "",
+          "tags": "法拉第旋光片在研+光纤+光隔离器+军工+人形机器人"
+        },
+        {
+          "name": "天通股份",
+          "code": "sh600330",
+          "pct": "",
+          "price": "",
+          "limitTime": "",
+          "tags": "光模块上游/铌酸锂晶体+商业航天+逆变器上游软磁材料"
+        },
+        {
+          "name": "大唐电信",
+          "code": "sh600198",
+          "pct": "",
+          "price": "",
+          "limitTime": "",
+          "tags": "参股光芯片+卫星通信+卫星导航+云化大数据+安全芯片"
+        },
+        {
+          "name": "三旺通信",
+          "code": "sh688618",
+          "pct": "",
+          "price": "",
+          "limitTime": "",
+          "tags": "光纤+通信设备+工业互联网+电力交换机"
+        },
+        {
+          "name": "沃格光电",
+          "code": "sh603773",
+          "pct": "",
+          "price": "",
+          "limitTime": "",
+          "tags": "玻璃基板（CPO）+6G+太空光伏+先进封装"
+        },
+        {
+          "name": "远东股份",
+          "code": "sh600869",
+          "pct": "",
+          "price": "",
+          "limitTime": "",
+          "tags": "光纤+AI算力+定增+光纤+液冷+人形机器人（线缆）"
+        },
+        {
+          "name": "金瑞矿业",
+          "code": "sh600714",
+          "pct": "",
+          "price": "",
+          "limitTime": "",
+          "tags": "玻璃基板（碳酸锶）+天青石+一季报落地+钛酸锶（量子材料）+实控人变更"
+        },
+        {
+          "name": "中金岭南",
+          "code": "sz000060",
+          "pct": "",
+          "price": "",
+          "limitTime": "",
+          "tags": "砷化镓衬底+铟锭+锗+有色金属+锂电池关键材料"
+        }
+      ]
+    },
+    {
+      "section": "数据中心",
+      "count": "10",
+      "theme": "Lumentum第三财季营收同比+90%创新高；豆包或推出收费模式",
+      "stocks_count": 10,
+      "stocks": [
+        {
+          "name": "蒙娜丽莎",
+          "code": "sz002918",
+          "pct": "",
+          "price": "",
+          "limitTime": "",
+          "tags": "陶瓷基板+建筑陶瓷+首发经济+认购半导体基金"
+        },
+        {
+          "name": "海鸥股份",
+          "code": "sh603269",
+          "pct": "",
+          "price": "",
+          "limitTime": "",
+          "tags": "液冷+数据中心（冷却塔）+燃气轮机"
+        },
+        {
+          "name": "大元泵业",
+          "code": "sh603757",
+          "pct": "",
+          "price": "",
+          "limitTime": "",
+          "tags": "供货维谛技术+数据中心液冷屏蔽泵+华为+水泵/巴基斯坦"
+        },
+        {
+          "name": "冰轮环境",
+          "code": "sz000811",
+          "pct": "",
+          "price": "",
+          "limitTime": "",
+          "tags": "数据中心（液冷）+拟收购烟台铭祥+氦气螺杆压缩机+机器人"
+        },
+        {
+          "name": "中航光电",
+          "code": "sz002179",
+          "pct": "",
+          "price": "",
+          "limitTime": "",
+          "tags": "液冷+高管增持+军工+连接器"
+        },
+        {
+          "name": "星网锐捷",
+          "code": "sz002396",
+          "pct": "",
+          "price": "",
+          "limitTime": "",
+          "tags": "数据中心交换机+数字人民币+机器人"
+        },
+        {
+          "name": "科威尔",
+          "code": "sh688551",
+          "pct": "",
+          "price": "",
+          "limitTime": "",
+          "tags": "服务器电源测试设备+制氢电解槽+半导体+固态电池"
+        },
+        {
+          "name": "英威腾",
+          "code": "sz002334",
+          "pct": "",
+          "price": "",
+          "limitTime": "",
+          "tags": "数据中心（不间断电源）+液冷+机器人+逆变器"
+        },
+        {
+          "name": "禾望电气",
+          "code": "sh603063",
+          "pct": "",
+          "price": "",
+          "limitTime": "",
+          "tags": "数据中心（网传HVDC）+发布股权激励+SST+光伏逆变器"
+        },
+        {
+          "name": "康普顿",
+          "code": "sh603798",
+          "pct": "",
+          "price": "",
+          "limitTime": "",
+          "tags": "数据中心冷液+润滑油（石油化工）+氢能+军工"
+        }
+      ]
+    },
+    {
+      "section": "存储芯片",
+      "count": "8",
+      "theme": "全球存储龙头集体创新高",
+      "stocks_count": 8,
+      "stocks": [
+        {
+          "name": "同有科技",
+          "code": "sz300302",
+          "pct": "",
+          "price": "",
+          "limitTime": "",
+          "tags": "存储芯片+数据存储+重组预期"
+        },
+        {
+          "name": "长电科技",
+          "code": "sh600584",
+          "pct": "",
+          "price": "",
+          "limitTime": "",
+          "tags": "存储封测+先进封装+实控人变更"
+        },
+        {
+          "name": "深科达",
+          "code": "sh688328",
+          "pct": "",
+          "price": "",
+          "limitTime": "",
+          "tags": "存储测试设备+先进封装+业绩增长+第三代半导体"
+        },
+        {
+          "name": "兴福电子",
+          "code": "sh688545",
+          "pct": "",
+          "price": "",
+          "limitTime": "",
+          "tags": "SK海力士入股+湿电子化学龙头+台积电"
+        },
+        {
+          "name": "翔港科技",
+          "code": "sh603499",
+          "pct": "",
+          "price": "",
+          "limitTime": "",
+          "tags": "存储产品+烟草包装+塑料容器+化妆品"
+        },
+        {
+          "name": "长川科技",
+          "code": "sz300604",
+          "pct": "",
+          "price": "",
+          "limitTime": "",
+          "tags": "半导体封测设备+SpaceX自建半导体产业链（传）+超精密探针台"
+        },
+        {
+          "name": "澜起科技",
+          "code": "sh688008",
+          "pct": "",
+          "price": "",
+          "limitTime": "",
+          "tags": "内存接口芯片+CPU"
+        },
+        {
+          "name": "合肥城建",
+          "code": "sz002208",
+          "pct": "",
+          "price": "",
+          "limitTime": "",
+          "tags": "间接参股长鑫科技+房地产+蚂蚁金服+数据要素+合肥国资"
+        }
+      ]
+    },
+    {
+      "section": "地产",
+      "count": "8",
+      "theme": "自4月28日政治局会议定调稳定房地产以来，全国22省市密集发布楼市政策",
+      "stocks_count": 8,
+      "stocks": [
+        {
+          "name": "上实发展",
+          "code": "sh600748",
+          "pct": "",
+          "price": "",
+          "limitTime": "",
+          "tags": "房地产+养老+间接控股股东变更+间接持股上海微电子"
+        },
+        {
+          "name": "京投发展",
+          "code": "sh600683",
+          "pct": "",
+          "price": "",
+          "limitTime": "",
+          "tags": "地产+一季报减亏+拟剥离地产业务+TOD轨道物业"
+        },
+        {
+          "name": "利仁科技",
+          "code": "sz001259",
+          "pct": "",
+          "price": "",
+          "limitTime": "",
+          "tags": "小家电+一季报增长+露营经济+电商"
+        },
+        {
+          "name": "春兰股份",
+          "code": "sh600854",
+          "pct": "",
+          "price": "",
+          "limitTime": "",
+          "tags": "空调制冷+白色家电+火力发电"
+        },
+        {
+          "name": "悍高集团",
+          "code": "sz001221",
+          "pct": "",
+          "price": "",
+          "limitTime": "",
+          "tags": "高端家居五金+独角兽基地+出海+建筑材料+次新股"
+        },
+        {
+          "name": "得邦照明",
+          "code": "sh603303",
+          "pct": "",
+          "price": "",
+          "limitTime": "",
+          "tags": "LED照明+拟控股嘉利股份+新能源汽车"
+        },
+        {
+          "name": "尚品宅配",
+          "code": "sz300616",
+          "pct": "",
+          "price": "",
+          "limitTime": "",
+          "tags": "全屋定制+AI设计+直播电商"
+        },
+        {
+          "name": "誉帆科技",
+          "code": "sz001396",
+          "pct": "",
+          "price": "",
+          "limitTime": "",
+          "tags": "地下管网运维+一季报增长+排水管网检测+机器人"
+        }
+      ]
+    },
+    {
+      "section": "国产芯片",
+      "count": "8",
+      "theme": "英伟达、寒武纪等股价创历史新高，英特尔4月涨幅翻倍",
+      "stocks_count": 8,
+      "stocks": [
+        {
+          "name": "康欣新材",
+          "code": "sh600076",
+          "pct": "",
+          "price": "",
+          "limitTime": "",
+          "tags": "收购宇邦半导体+投资垣信卫星+拟转让林地资产+碳汇"
+        },
+        {
+          "name": "风华高科",
+          "code": "sz000636",
+          "pct": "",
+          "price": "",
+          "limitTime": "",
+          "tags": "MLCC+AI算力+汽车电子"
+        },
+        {
+          "name": "天普股份",
+          "code": "sh605255",
+          "pct": "",
+          "price": "",
+          "limitTime": "",
+          "tags": "中昊芯英（TPU）+汽车零部件+车用橡胶软管"
+        },
+        {
+          "name": "双星新材",
+          "code": "sz002585",
+          "pct": "",
+          "price": "",
+          "limitTime": "",
+          "tags": "MLCC离型膜+BOPET+光伏背板膜"
+        },
+        {
+          "name": "深圳华强",
+          "code": "sz000062",
+          "pct": "",
+          "price": "",
+          "limitTime": "",
+          "tags": "华为昇腾+存储芯片+华为海思代理+芯片分销+6G"
+        },
+        {
+          "name": "上海电气",
+          "code": "sh601727",
+          "pct": "",
+          "price": "",
+          "limitTime": "",
+          "tags": "上海微电子资产注入猜想+可控核聚变+储能醇+人形机器人"
+        },
+        {
+          "name": "有研新材",
+          "code": "sh600206",
+          "pct": "",
+          "price": "",
+          "limitTime": "",
+          "tags": "靶材+稀土磁性材料+业绩预增+固态电池（原材料）"
+        },
+        {
+          "name": "综艺股份",
+          "code": "sh600770",
+          "pct": "",
+          "price": "",
+          "limitTime": "",
+          "tags": "参股CPU+一季报业绩扭亏+半导体+集成电路"
+        }
+      ]
+    },
+    {
+      "section": "商业航天",
+      "count": "6",
+      "theme": "SpaceX与Anthropic签署算力协议；天舟十号将于近日择机发射",
+      "stocks_count": 6,
+      "stocks": [
+        {
+          "name": "钧达股份",
+          "code": "sz002865",
+          "pct": "",
+          "price": "",
+          "limitTime": "",
+          "tags": "SpaceX合作(未证实)+钙钛矿+控股复遥星河+预计送样海外"
+        },
+        {
+          "name": "瑞泰科技",
+          "code": "sz002066",
+          "pct": "",
+          "price": "",
+          "limitTime": "",
+          "tags": "商业航天+核电+重组预期（央企）+耐火材料"
+        },
+        {
+          "name": "祥龙电业",
+          "code": "sh600769",
+          "pct": "",
+          "price": "",
+          "limitTime": "",
+          "tags": "重组预期(商业航天)+长江存储同一实控人+武汉国资"
+        },
+        {
+          "name": "宇晶股份",
+          "code": "sz002943",
+          "pct": "",
+          "price": "",
+          "limitTime": "",
+          "tags": "卫星玻璃(切割设备)+碳化硅磨抛设备+业绩扭亏+稀土永磁"
+        },
+        {
+          "name": "亚玛顿",
+          "code": "sz002623",
+          "pct": "",
+          "price": "",
+          "limitTime": "",
+          "tags": "光伏玻璃+钙钛矿电池+特斯拉+太阳能天窗"
+        },
+        {
+          "name": "波导股份",
+          "code": "sh600130",
+          "pct": "",
+          "price": "",
+          "limitTime": "",
+          "tags": "卫星通信+摘帽+资产注入预期+参股华大北斗+通信设备"
+        }
+      ]
+    },
+    {
+      "section": "PCB",
+      "count": "5",
+      "theme": "年初至今电子布进入月度调价模式，今年已连续4次提价",
+      "stocks_count": 5,
+      "stocks": [
+        {
+          "name": "山东玻纤",
+          "code": "sh605006",
+          "pct": "",
+          "price": "",
+          "limitTime": "",
+          "tags": "玻纤纱（电子级玻纤布上游）+玻纤+山东国资"
+        },
+        {
+          "name": "红板科技",
+          "code": "sh603459",
+          "pct": "",
+          "price": "",
+          "limitTime": "",
+          "tags": "PCB+光模块+拟受让江西志浩股权+HDI主板+次新股"
+        },
+        {
+          "name": "卓郎智能",
+          "code": "sh600545",
+          "pct": "",
+          "price": "",
+          "limitTime": "",
+          "tags": "玻璃纤维纱线设备+一季报减亏+股份冻结+机器人+纺织设备"
+        },
+        {
+          "name": "宝鼎科技",
+          "code": "sz002552",
+          "pct": "",
+          "price": "",
+          "limitTime": "",
+          "tags": "HVLP铜箔+业绩预增+河西金矿+互联网金融"
+        },
+        {
+          "name": "方正科技",
+          "code": "sh600601",
+          "pct": "",
+          "price": "",
+          "limitTime": "",
+          "tags": "光模块PCB+业绩增长+AI服务器"
+        }
+      ]
+    },
+    {
+      "section": "算力租赁",
+      "count": "4",
+      "theme": "高盛：企业级智能体将推动全球Token消耗量五年增长24倍",
+      "stocks_count": 4,
+      "stocks": [
+        {
+          "name": "科新发展",
+          "code": "sh600234",
+          "pct": "",
+          "price": "",
+          "limitTime": "",
+          "tags": "算力租赁+拟定增+装修装饰+地产出租+抖音概念"
+        },
+        {
+          "name": "百邦科技",
+          "code": "sz300736",
+          "pct": "",
+          "price": "",
+          "limitTime": "",
+          "tags": "控制权变更(算力)+华为+苹果合作+手机售后服务"
+        },
+        {
+          "name": "农尚环境",
+          "code": "sz300536",
+          "pct": "",
+          "price": "",
+          "limitTime": "",
+          "tags": "算力+半导体+园林绿化施工"
+        },
+        {
+          "name": "数据港",
+          "code": "sh603881",
+          "pct": "",
+          "price": "",
+          "limitTime": "",
+          "tags": "算力租赁+合作阿里+数据中心+HVDC"
+        }
+      ]
+    },
+    {
+      "section": "电力",
+      "count": "3",
+      "theme": "我国首个大规模算电协同绿电供应项目——中卫云基地数据中心绿电直供50万千瓦光伏电站正式投运",
+      "stocks_count": 3,
+      "stocks": [
+        {
+          "name": "大唐发电",
+          "code": "sh601991",
+          "pct": "",
+          "price": "",
+          "limitTime": "",
+          "tags": "算电协同（隶属大唐集团）+成立合资子公司（蒙电入苏）+绿色电力"
+        },
+        {
+          "name": "桂冠电力",
+          "code": "sh600236",
+          "pct": "",
+          "price": "",
+          "limitTime": "",
+          "tags": "中国大唐合作+绿色电力+光伏"
+        },
+        {
+          "name": "甘肃能源",
+          "code": "sz000791",
+          "pct": "",
+          "price": "",
+          "limitTime": "",
+          "tags": "拟43.77亿建设东数西算二期+算电协同（庆阳集群）+风电+光伏"
+        }
+      ]
+    },
+    {
+      "section": "机器人",
+      "count": "2",
+      "theme": "Optimus机器人或将于7月下旬或8月在弗里蒙特投产",
+      "stocks_count": 2,
+      "stocks": [
+        {
+          "name": "富春染织",
+          "code": "sh605189",
+          "pct": "",
+          "price": "",
+          "limitTime": "",
+          "tags": "PEEK材料+人形机器人轻量化+一季度业绩增长+色纱"
+        },
+        {
+          "name": "胜通能源",
+          "code": "sz001331",
+          "pct": "",
+          "price": "",
+          "limitTime": "",
+          "tags": "要约收购(七腾机器人)+天然气+海外业务拓展"
+        }
+      ]
+    }
+  ]
+}

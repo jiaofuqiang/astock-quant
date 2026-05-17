@@ -1,0 +1,176 @@
+{
+  "meta": {
+    "start_date": "2024-01-01",
+    "end_date": "2026-05-15",
+    "total_trading_days": 570,
+    "total_stocks": 3196,
+    "generated_at": "2026-05-17T12:56:41.157365"
+  },
+  "results": {
+    "dim1": [
+      {
+        "env": "冰点",
+        "samples": 1720,
+        "avg_open_ret": 0.63,
+        "open_win_rate": 51.0,
+        "avg_close_ret": 0.66,
+        "close_win_rate": 50.6,
+        "profit_loss_ratio": 1.99
+      },
+      {
+        "env": "弱势",
+        "samples": 2074,
+        "avg_open_ret": 0.76,
+        "open_win_rate": 51.7,
+        "avg_close_ret": 0.65,
+        "close_win_rate": 49.4,
+        "profit_loss_ratio": 2.02
+      },
+      {
+        "env": "震荡",
+        "samples": 3101,
+        "avg_open_ret": 0.81,
+        "open_win_rate": 54.8,
+        "avg_close_ret": 0.45,
+        "close_win_rate": 49.0,
+        "profit_loss_ratio": 2.05
+      },
+      {
+        "env": "发酵",
+        "samples": 2879,
+        "avg_open_ret": 1.12,
+        "open_win_rate": 58.8,
+        "avg_close_ret": 0.68,
+        "close_win_rate": 50.7,
+        "profit_loss_ratio": 1.99
+      },
+      {
+        "env": "高潮",
+        "samples": 6070,
+        "avg_open_ret": 0.91,
+        "open_win_rate": 57.4,
+        "avg_close_ret": 1.33,
+        "close_win_rate": 57.6,
+        "profit_loss_ratio": 1.73
+      }
+    ],
+    "dim2": [
+      {
+        "consistency": "一致偏多",
+        "samples": 8015,
+        "avg_open_ret": 0.93,
+        "open_win_rate": 57.5,
+        "avg_close_ret": 1.16,
+        "close_win_rate": 56.1
+      },
+      {
+        "consistency": "方向分歧(权重拉)",
+        "samples": 1564,
+        "avg_open_ret": 0.91,
+        "open_win_rate": 55.5,
+        "avg_close_ret": 0.66,
+        "close_win_rate": 50.1
+      },
+      {
+        "consistency": "一致偏空",
+        "samples": 2694,
+        "avg_open_ret": 0.63,
+        "open_win_rate": 50.9,
+        "avg_close_ret": 0.58,
+        "close_win_rate": 49.6
+      },
+      {
+        "consistency": "方向分歧(权重砸)",
+        "samples": 21,
+        "avg_open_ret": 0.85,
+        "open_win_rate": 52.4,
+        "avg_close_ret": 1.37,
+        "close_win_rate": 57.1
+      },
+      {
+        "consistency": "偏多震荡",
+        "samples": 2040,
+        "avg_open_ret": 1.15,
+        "open_win_rate": 58.9,
+        "avg_close_ret": 0.62,
+        "close_win_rate": 49.7
+      },
+      {
+        "consistency": "偏空震荡",
+        "samples": 1510,
+        "avg_open_ret": 0.67,
+        "open_win_rate": 50.5,
+        "avg_close_ret": 0.45,
+        "close_win_rate": 48.4
+      }
+    ],
+    "dim3": [
+      {
+        "category": "a)外因强+内因强",
+        "samples": 101,
+        "avg_open_ret": 0.39,
+        "open_win_rate": 58.4,
+        "avg_close_ret": 0.23,
+        "close_win_rate": 50.5
+      },
+      {
+        "category": "b)外因弱+内因强(最矛盾)",
+        "samples": 2381,
+        "avg_open_ret": 0.3,
+        "open_win_rate": 52.4,
+        "avg_close_ret": 0.4,
+        "close_win_rate": 51.5
+      },
+      {
+        "category": "c)外因强+内因弱",
+        "samples": 2588,
+        "avg_open_ret": 0.52,
+        "open_win_rate": 54.5,
+        "avg_close_ret": 1.82,
+        "close_win_rate": 64.3
+      },
+      {
+        "category": "d)外因弱+内因弱",
+        "samples": 10774,
+        "avg_open_ret": 1.1,
+        "open_win_rate": 56.7,
+        "avg_close_ret": 0.76,
+        "close_win_rate": 50.4
+      }
+    ],
+    "dim4": [
+      {
+        "gap_type": "高开>3%(多方延续强化)",
+        "samples": 1,
+        "avg_open_ret": 0.72,
+        "open_win_rate": 100.0,
+        "avg_close_ret": 1.85,
+        "close_win_rate": 100.0
+      },
+      {
+        "gap_type": "高开0~3%(多方延续弱化)",
+        "samples": 3132,
+        "avg_open_ret": 1.85,
+        "open_win_rate": 65.3,
+        "avg_close_ret": 1.59,
+        "close_win_rate": 57.2
+      },
+      {
+        "gap_type": "低开0~-3%(空方反击)",
+        "samples": 10705,
+        "avg_open_ret": 1.37,
+        "open_win_rate": 58.8,
+        "avg_close_ret": 1.36,
+        "close_win_rate": 55.2
+      },
+      {
+        "gap_type": "低开>3%(矛盾转化)",
+        "samples": 2006,
+        "avg_open_ret": -3.25,
+        "open_win_rate": 24.4,
+        "avg_close_ret": -2.8,
+        "close_win_rate": 33.6
+      }
+    ]
+  }
+}

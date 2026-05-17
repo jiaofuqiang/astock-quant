@@ -1,0 +1,182 @@
+{
+  "workflow_id": "three_funds_combined_trading_v2",
+  "workflow_name": "三资金合力股短线交易系统",
+  "version": "2.0",
+  "update_time": "2026-05-06",
+  "description": "同时集成机构基本面、量化数据、游资情绪的A股短线交易系统，捕捉'机构打底+量化活跃+游资点火'的高胜率个股",
+  "author": "Hermes Agent",
+  "global_config": {
+    "timezone": "Asia/Shanghai",
+    "log_level": "INFO",
+    "auto_evolution": true,
+    "alert_enabled": true,
+    "data_priority": ["eastmoney", "tencent"],
+    "wechat_push_user_id": "o9cq802DY1Cmf90T-GFJZ4d1OHwo@im.wechat"
+  },
+  "system_prompt": "你是一个专业的A股三资金合力股交易系统，同时集成顶级机构的基本面分析能力、顶级量化的数据处理能力和顶级游资的情绪判断能力。你的唯一目标是帮助用户捕捉同时满足'机构打底+量化活跃+游资点火'的高胜率个股。严格按照本工作流定义的流程和量化标准执行，不得随意修改参数。所有输出必须使用结构化JSON格式。严格遵守风控硬约束。每日自动生成交易报告并推送到微信，异常情况立即报警。",
+
+  "scripts": {
+    "data_layer": "~/astock/scripts/tri_face_db.py",
+    "funds_data": "~/astock/scripts/three_funds_data.py",
+    "funds_engine": "~/astock/scripts/three_funds_engine.py",
+    "gravity": "~/astock/scripts/gravity.py",
+    "momentum": "~/astock/scripts/momentum.py",
+    "beta": "~/astock/scripts/beta.py",
+    "unified": "~/astock/scripts/tri_face.py",
+    "daily_flow": "~/astock/scripts/tri_face_full.py"
+  },
+
+  "cron_schedule": {
+    "盤前数据更新": "30 8 * * 1-5  -> cd ~/astock && python3 scripts/daily_full_update.py",
+    "三资金合力开盘扫描": "35 9 * * 1-5  -> cd ~/astock && python3 scripts/tri_face_full.py --3funds",
+    "三面量化早盘": "5 10 * * 1-5  -> cd ~/astock && python3 scripts/tri_face.py --full",
+    "三面量化尾盘确认": "0 14 * * 1-5  -> cd ~/astock && python3 scripts/tri_face.py --full",
+    "盤后复盘": "30 15 * * 1-5  -> cd ~/astock && python3 scripts/tri_face_full.py --full"
+  },
+
+  "agents": [
+    {
+      "agent_id": "institutional_agent",
+      "agent_name": "机构基本面研判Agent",
+      "role": "顶级机构基金经理",
+      "system_prompt": "你只从产业周期和基本面角度分析股票。量化评分标准：ROE>20%得10分，ROE>10%得7分；营收增速>50%得10分，>20%得7分；PE合理区间得10分。满分30分。输出JSON格式。",
+      "tools": ["three_funds_data.load_fundamentals", "three_funds_data.fetch_tencent_quote"]
+    },
+    {
+      "agent_id": "quantitative_agent",
+      "agent_name": "量化数据研判Agent",
+      "role": "顶级量化交易员",
+      "system_prompt": "你只从数据和市场微观结构角度分析股票。量化评分标准：换手率3%-15%得10分；量比>1.5加3分；5日涨幅>5%且20日涨幅>10%得10分；主买比偏多>10%得10分。满分30分。输出JSON格式。",
+      "tools": ["three_funds_data.fetch_tencent_quote", "three_funds_engine.calc_momentum_indicators"]
+    },
+    {
+      "agent_id": "hot_money_agent",
+      "agent_name": "游资情绪研判Agent",
+      "role": "顶级游资",
+      "system_prompt": "你只从市场情绪和题材角度分析股票。量化评分标准：涨停=10分，大涨7-9%=9分；5日涨幅>20%加4分；板块涨幅>5%得10分；情绪高潮期得10分。满分30分。输出JSON格式。",
+      "tools": ["three_funds_data.get_limit_up_list", "three_funds_engine.judge_emotion_cycle"]
+    }
+  ],
+
+  "steps": [
+    {
+      "step_id": "step_1",
+      "step_name": "盘前数据采集与情绪定位",
+      "time_range": "07:30-08:40",
+      "input": "无（自动）",
+      "output": "市场快照+情绪周期+涨停数据",
+      "scripts": ["run_prep_scan", "run_prep_emotion"],
+      "cron": "30 7,8 * * 1-5"
+    },
+    {
+      "step_id": "step_2",
+      "step_name": "三资金合力评分与交易计划",
+      "time_range": "08:40-09:15",
+      "input": "step_1的输出",
+      "output": "合力评分表+候选标的+买卖条件",
+      "scripts": ["run_prep_plan"],
+      "cron": "40 8 * * 1-5"
+    },
+    {
+      "step_id": "step_3",
+      "step_name": "集合竞价监控",
+      "time_range": "09:15-09:30",
+      "input": "step_2的候选标的",
+      "output": "竞价信号+成交确认",
+      "scripts": ["run_auction"],
+      "monitor": true
+    },
+    {
+      "step_id": "step_4",
+      "step_name": "早盘黄金窗口执行",
+      "time_range": "09:30-10:00",
+      "input": "step_2的交易计划",
+      "output": "买入/放弃确认",
+      "scripts": ["run_morning_golden"],
+      "monitor": true
+    },
+    {
+      "step_id": "step_5",
+      "step_name": "盘中持仓监控",
+      "time_range": "10:00-11:30, 13:00-14:30",
+      "input": "持仓数据",
+      "output": "止盈止损信号",
+      "constraints": "10:30后禁止打板，下午只做T",
+      "monitor": true
+    },
+    {
+      "step_id": "step_6",
+      "step_name": "尾盘清仓执行",
+      "time_range": "14:30-15:00",
+      "input": "持仓数据+实时合力评分",
+      "output": "清仓/保留确认",
+      "scripts": ["run_afternoon_close"]
+    },
+    {
+      "step_id": "step_7",
+      "step_name": "盘后复盘与策略迭代",
+      "time_range": "15:00-21:00",
+      "input": "全天数据",
+      "output": "交易日志+策略优化建议",
+      "scripts": ["run_review"],
+      "cron": "30 15 * * 1-5"
+    }
+  ],
+
+  "risk_control": {
+    "position": {
+      "单只上限": "总仓位30%",
+      "情绪冰点上限": "总仓位10%",
+      "情绪复苏上限": "总仓位50%",
+      "情绪高潮上限": "总仓位80%",
+      "情绪退潮上限": "总仓位0%"
+    },
+    "stop_loss": {
+      "买入后止损": "-8%强制止损",
+      "止盈条件": "+20%回落12%止盈",
+      "盘中熔断": "10分钟内大盘跌>1%，暂停所有买入",
+      "个股熔断": "个股1分钟波动>3%，暂停该标的"
+    },
+    "买入限制": [
+      "高开超过8%不追（炸板风险）",
+      "无量高开（竞价量<昨日5%）放弃",
+      "10:30后禁止打板",
+      "下午禁止半路追涨",
+      "标的池严格≤3只"
+    ]
+  },
+
+  "three_funds_scoring": {
+    "max_total": 90,
+    "thresholds": {
+      "强烈买入": 80,
+      "买入": 65,
+      "关注": 50,
+      "放弃": 0
+    },
+    "institutional": {
+      "权重": 30,
+      "sub_factors": {
+      "ROE质量": {"max": 10, "source": "fundamental_db"},
+      "营收增速": {"max": 10, "source": "fundamental_db"},
+      "估值合理性": {"max": 10, "source": "tencent_quote"}
+      }
+    },
+    "quantitative": {
+      "权重": 30,
+      "sub_factors": {
+      "换手活跃度": {"max": 10, "source": "tencent_quote"},
+      "趋势动量": {"max": 10, "source": "kline_db"},
+      "资金流信号": {"max": 10, "source": "tencent_quote"}
+      }
+    },
+    "hot_money": {
+      "权重": 30,
+      "sub_factors": {
+      "短线强度": {"max": 10, "source": "tencent_quote"},
+      "市场地位": {"max": 10, "source": "eastmoney_sector"},
+      "情绪周期": {"max": 10, "source": "eastmoney_stats"}
+      }
+    }
+  }
+}

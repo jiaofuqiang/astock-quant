@@ -1,0 +1,344 @@
+{
+  "updated_at": "2026-05-12 17:27:33",
+  "total_sectors": 13,
+  "alerts": {
+    "high": [
+      [
+        "数据中心",
+        {
+          "status": "⚠️ 强转弱预警",
+          "streak": 0,
+          "today_change": -0.16,
+          "today_limits": 0,
+          "yesterday_change": 2.42,
+          "yesterday_limits": 0,
+          "alert_level": 2,
+          "alert_reason": "昨强(连0天)→今转弱-0.2%，崩盘风险22.7%",
+          "signal": "watch"
+        }
+      ],
+      [
+        "光模块与光通信",
+        {
+          "status": "⚠️ 强转弱预警",
+          "streak": 0,
+          "today_change": 0.66,
+          "today_limits": 0,
+          "yesterday_change": 1.79,
+          "yesterday_limits": 0,
+          "alert_level": 2,
+          "alert_reason": "昨强(连0天)→今转弱+0.7%，崩盘风险25.8%",
+          "signal": "watch"
+        }
+      ],
+      [
+        "智能驾驶",
+        {
+          "status": "⚠️ 强转弱预警",
+          "streak": 0,
+          "today_change": -0.12,
+          "today_limits": 0,
+          "yesterday_change": 2.06,
+          "yesterday_limits": 0,
+          "alert_level": 2,
+          "alert_reason": "昨强(连0天)→今转弱-0.1%，崩盘风险16.5%",
+          "signal": "watch"
+        }
+      ],
+      [
+        "低空经济",
+        {
+          "status": "⚠️ 强转弱预警",
+          "streak": 0,
+          "today_change": 0.44,
+          "today_limits": 0,
+          "yesterday_change": 0.93,
+          "yesterday_limits": 0,
+          "alert_level": 2,
+          "alert_reason": "昨强(连0天)→今转弱+0.4%，崩盘风险16.7%",
+          "signal": "watch"
+        }
+      ],
+      [
+        "券商",
+        {
+          "status": "⚠️ 强转弱预警",
+          "streak": 0,
+          "today_change": -0.21,
+          "today_limits": 0,
+          "yesterday_change": 1.07,
+          "yesterday_limits": 0,
+          "alert_level": 2,
+          "alert_reason": "昨强(连0天)→今转弱-0.2%，崩盘风险8.8%",
+          "signal": "watch"
+        }
+      ]
+    ],
+    "medium": [
+      [
+        "半导体",
+        {
+          "status": "⚠️ 美股转弱风险",
+          "streak": 0,
+          "today_change": -0.35,
+          "today_limits": 0,
+          "yesterday_change": 0.58,
+          "yesterday_limits": 0,
+          "alert_level": 1,
+          "alert_reason": "今-0.3% | 注意:美股纳斯达克+1.7%→+0.1%走弱 | 注意:美股纳斯达克+0.8%→+0.2%走弱",
+          "signal": "none"
+        }
+      ],
+      [
+        "存储芯片",
+        {
+          "status": "⚠️ 美股转弱风险",
+          "streak": 5,
+          "today_change": 0.99,
+          "today_limits": 0,
+          "yesterday_change": 2.5,
+          "yesterday_limits": 0,
+          "alert_level": 1,
+          "alert_reason": "连续强势5天，注意转弱风险 | 注意:美股纳斯达克+1.7%→+0.1%走弱 | 注意:美股纳斯达克+0.8%→+0.2%走弱",
+          "signal": "caution"
+        }
+      ],
+      [
+        "AI芯片",
+        {
+          "status": "⚠️ 美股转弱风险",
+          "streak": 0,
+          "today_change": -0.46,
+          "today_limits": 0,
+          "yesterday_change": 0.19,
+          "yesterday_limits": 0,
+          "alert_level": 1,
+          "alert_reason": "今-0.5% | 注意:美股纳斯达克+1.7%→+0.1%走弱 | 注意:美股纳斯达克+0.8%→+0.2%走弱",
+          "signal": "none"
+        }
+      ],
+      [
+        "AI算力",
+        {
+          "status": "⚠️ 美股转弱风险",
+          "streak": 0,
+          "today_change": 0.26,
+          "today_limits": 0,
+          "yesterday_change": 0.22,
+          "yesterday_limits": 0,
+          "alert_level": 1,
+          "alert_reason": "今+0.3% | 注意:美股纳斯达克+1.7%→+0.1%走弱 | 注意:美股纳斯达克+0.8%→+0.2%走弱",
+          "signal": "none"
+        }
+      ],
+      [
+        "军工",
+        {
+          "status": "🔥 强势延续",
+          "streak": 3,
+          "today_change": 1.68,
+          "today_limits": 0,
+          "yesterday_change": 1.08,
+          "yesterday_limits": 0,
+          "alert_level": 1,
+          "alert_reason": "连续强势3天，注意转弱风险",
+          "signal": "caution"
+        }
+      ]
+    ],
+    "info": [
+      [
+        "机器人",
+        {
+          "status": "➖ 横盘整理",
+          "streak": 0,
+          "today_change": 0.8,
+          "today_limits": 0,
+          "yesterday_change": -0.15,
+          "yesterday_limits": 0,
+          "alert_level": 0,
+          "alert_reason": "今+0.8%",
+          "signal": "none"
+        }
+      ],
+      [
+        "新能源汽车",
+        {
+          "status": "➖ 横盘整理",
+          "streak": 0,
+          "today_change": 0.15,
+          "today_limits": 0,
+          "yesterday_change": 0.14,
+          "yesterday_limits": 0,
+          "alert_level": 0,
+          "alert_reason": "今+0.1%",
+          "signal": "none"
+        }
+      ],
+      [
+        "消费电子",
+        {
+          "status": "🔥 强势延续",
+          "streak": 2,
+          "today_change": 1.17,
+          "today_limits": 0,
+          "yesterday_change": 1.66,
+          "yesterday_limits": 0,
+          "alert_level": 0,
+          "alert_reason": "连强2天",
+          "signal": "continue"
+        }
+      ]
+    ]
+  },
+  "sectors": {
+    "数据中心": {
+      "status": "⚠️ 强转弱预警",
+      "streak": 0,
+      "today_change": -0.16,
+      "today_limits": 0,
+      "yesterday_change": 2.42,
+      "yesterday_limits": 0,
+      "alert_level": 2,
+      "alert_reason": "昨强(连0天)→今转弱-0.2%，崩盘风险22.7%",
+      "signal": "watch"
+    },
+    "光模块与光通信": {
+      "status": "⚠️ 强转弱预警",
+      "streak": 0,
+      "today_change": 0.66,
+      "today_limits": 0,
+      "yesterday_change": 1.79,
+      "yesterday_limits": 0,
+      "alert_level": 2,
+      "alert_reason": "昨强(连0天)→今转弱+0.7%，崩盘风险25.8%",
+      "signal": "watch"
+    },
+    "智能驾驶": {
+      "status": "⚠️ 强转弱预警",
+      "streak": 0,
+      "today_change": -0.12,
+      "today_limits": 0,
+      "yesterday_change": 2.06,
+      "yesterday_limits": 0,
+      "alert_level": 2,
+      "alert_reason": "昨强(连0天)→今转弱-0.1%，崩盘风险16.5%",
+      "signal": "watch"
+    },
+    "低空经济": {
+      "status": "⚠️ 强转弱预警",
+      "streak": 0,
+      "today_change": 0.44,
+      "today_limits": 0,
+      "yesterday_change": 0.93,
+      "yesterday_limits": 0,
+      "alert_level": 2,
+      "alert_reason": "昨强(连0天)→今转弱+0.4%，崩盘风险16.7%",
+      "signal": "watch"
+    },
+    "券商": {
+      "status": "⚠️ 强转弱预警",
+      "streak": 0,
+      "today_change": -0.21,
+      "today_limits": 0,
+      "yesterday_change": 1.07,
+      "yesterday_limits": 0,
+      "alert_level": 2,
+      "alert_reason": "昨强(连0天)→今转弱-0.2%，崩盘风险8.8%",
+      "signal": "watch"
+    },
+    "半导体": {
+      "status": "⚠️ 美股转弱风险",
+      "streak": 0,
+      "today_change": -0.35,
+      "today_limits": 0,
+      "yesterday_change": 0.58,
+      "yesterday_limits": 0,
+      "alert_level": 1,
+      "alert_reason": "今-0.3% | 注意:美股纳斯达克+1.7%→+0.1%走弱 | 注意:美股纳斯达克+0.8%→+0.2%走弱",
+      "signal": "none"
+    },
+    "存储芯片": {
+      "status": "⚠️ 美股转弱风险",
+      "streak": 5,
+      "today_change": 0.99,
+      "today_limits": 0,
+      "yesterday_change": 2.5,
+      "yesterday_limits": 0,
+      "alert_level": 1,
+      "alert_reason": "连续强势5天，注意转弱风险 | 注意:美股纳斯达克+1.7%→+0.1%走弱 | 注意:美股纳斯达克+0.8%→+0.2%走弱",
+      "signal": "caution"
+    },
+    "AI芯片": {
+      "status": "⚠️ 美股转弱风险",
+      "streak": 0,
+      "today_change": -0.46,
+      "today_limits": 0,
+      "yesterday_change": 0.19,
+      "yesterday_limits": 0,
+      "alert_level": 1,
+      "alert_reason": "今-0.5% | 注意:美股纳斯达克+1.7%→+0.1%走弱 | 注意:美股纳斯达克+0.8%→+0.2%走弱",
+      "signal": "none"
+    },
+    "AI算力": {
+      "status": "⚠️ 美股转弱风险",
+      "streak": 0,
+      "today_change": 0.26,
+      "today_limits": 0,
+      "yesterday_change": 0.22,
+      "yesterday_limits": 0,
+      "alert_level": 1,
+      "alert_reason": "今+0.3% | 注意:美股纳斯达克+1.7%→+0.1%走弱 | 注意:美股纳斯达克+0.8%→+0.2%走弱",
+      "signal": "none"
+    },
+    "军工": {
+      "status": "🔥 强势延续",
+      "streak": 3,
+      "today_change": 1.68,
+      "today_limits": 0,
+      "yesterday_change": 1.08,
+      "yesterday_limits": 0,
+      "alert_level": 1,
+      "alert_reason": "连续强势3天，注意转弱风险",
+      "signal": "caution"
+    },
+    "机器人": {
+      "status": "➖ 横盘整理",
+      "streak": 0,
+      "today_change": 0.8,
+      "today_limits": 0,
+      "yesterday_change": -0.15,
+      "yesterday_limits": 0,
+      "alert_level": 0,
+      "alert_reason": "今+0.8%",
+      "signal": "none"
+    },
+    "新能源汽车": {
+      "status": "➖ 横盘整理",
+      "streak": 0,
+      "today_change": 0.15,
+      "today_limits": 0,
+      "yesterday_change": 0.14,
+      "yesterday_limits": 0,
+      "alert_level": 0,
+      "alert_reason": "今+0.1%",
+      "signal": "none"
+    },
+    "消费电子": {
+      "status": "🔥 强势延续",
+      "streak": 2,
+      "today_change": 1.17,
+      "today_limits": 0,
+      "yesterday_change": 1.66,
+      "yesterday_limits": 0,
+      "alert_level": 0,
+      "alert_reason": "连强2天",
+      "signal": "continue"
+    }
+  },
+  "summary": {
+    "sell_signals": 0,
+    "buy_signals": 0,
+    "caution_signals": 2
+  }
+}

@@ -1,0 +1,110 @@
+{
+  "generated_at": "2026-05-17T09:36:18.410716",
+  "db_stats": {
+    "stock_lhb_stats": 2,
+    "dept_return_rank": 3,
+    "dept_lhb_rank": 2,
+    "inst_buy_sell": 0,
+    "inst_seat_track": 0,
+    "daily_active_dept": 0
+  },
+  "synergy_pairs": [
+    {
+      "dept_a": "沪股通专用",
+      "dept_b": "深股通专用",
+      "co_occur_count": 1,
+      "stocks": [
+        "2026-05-08"
+      ]
+    }
+  ],
+  "inst_favorite_stocks": [
+    {
+      "date": "1m",
+      "code": "920088",
+      "name": "科力股份",
+      "inst_buy_count": 38,
+      "inst_sell_count": 0,
+      "inst_net_buy_wan": -28937.89,
+      "inst_total_buy_wan": 265110.29,
+      "reason": "个股上榜统计"
+    },
+    {
+      "date": "1m",
+      "code": "002361",
+      "name": "神剑股份",
+      "inst_buy_count": 29,
+      "inst_sell_count": 0,
+      "inst_net_buy_wan": -136183.93,
+      "inst_total_buy_wan": 1662678.42,
+      "reason": "个股上榜统计"
+    }
+  ],
+  "trader_type_top": {
+    "one_day_tour": [],
+    "lock_position": [],
+    "igniter": [
+      {
+        "dept_name": "深股通专用",
+        "tag": true,
+        "d1_winrate": 48.4,
+        "d2_winrate": 45.2,
+        "d3_winrate": 44.6,
+        "d5_winrate": 41.4,
+        "d10_winrate": 37.5,
+        "d1_count": 839,
+        "d1_avg_return_pct": 0.4,
+        "period": "1m"
+      },
+      {
+        "dept_name": "国泰海通",
+        "tag": true,
+        "d1_winrate": 48.5,
+        "d2_winrate": 51.1,
+        "d3_winrate": 48.8,
+        "d5_winrate": 47.1,
+        "d10_winrate": 42.4,
+        "d1_count": 616,
+        "d1_avg_return_pct": 0.27,
+        "period": "1m"
+      },
+      {
+        "dept_name": "沪股通专用",
+        "tag": true,
+        "d1_winrate": 51.3,
+        "d2_winrate": 49.1,
+        "d3_winrate": 47.8,
+        "d5_winrate": 44.8,
+        "d10_winrate": 38.1,
+        "d1_count": 595,
+        "d1_avg_return_pct": 0.72,
+        "period": "1m"
+      }
+    ],
+    "analysis_note": "一日游型:高D1胜率+低后续胜率; 锁仓型:D5/D10胜率持续高; 点火型:极高D1胜率+大量参与"
+  },
+  "net_buy_top": [
+    {
+      "stock": "920088",
+      "name": "科力股份",
+      "date": "2026-05-08",
+      "total_net_buy_wan": -28937.89,
+      "total_buy_wan": 265110.29,
+      "total_sell_wan": 294048.18,
+      "list_count": 38,
+      "dept_count": 2,
+      "avg_return_pct": 0.46
+    },
+    {
+      "stock": "002361",
+      "name": "神剑股份",
+      "date": "2026-05-08",
+      "total_net_buy_wan": -136183.93,
+      "total_buy_wan": 1662678.42,
+      "total_sell_wan": 1798862.36,
+      "list_count": 29,
+      "dept_count": 2,
+      "avg_return_pct": 0.46
+    }
+  ]
+}

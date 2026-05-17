@@ -1,0 +1,121 @@
+{
+  "meta": {
+    "report": "矛盾论市场预测力实战评估报告",
+    "generated_at": "2026-05-17T13:31:30.241744",
+    "date_range": "2024-01-01 ~ 2026-05-15",
+    "samples": "569天"
+  },
+  "mainline_recognition": [
+    {
+      "type": "mainline_recognition",
+      "status": "主线确认",
+      "samples": 5141,
+      "avg_t1_return": 2.21,
+      "win_rate": 63.4,
+      "grade": "S级"
+    },
+    {
+      "type": "mainline_recognition",
+      "status": "主线形成中",
+      "samples": 3508,
+      "avg_t1_return": 0.7,
+      "win_rate": 49.9,
+      "grade": "B级"
+    },
+    {
+      "type": "mainline_recognition",
+      "status": "题材轮动",
+      "samples": 4532,
+      "avg_t1_return": 0.98,
+      "win_rate": 52.1,
+      "grade": "B级"
+    },
+    {
+      "type": "mainline_recognition",
+      "status": "主线缺失",
+      "samples": 2767,
+      "avg_t1_return": 1.01,
+      "win_rate": 51.6,
+      "grade": "B级"
+    },
+    {
+      "type": "switch_accuracy",
+      "total_events": 398,
+      "upgrades": 194,
+      "downgrades": 204,
+      "avg_frequency_days": 1.4,
+      "peak_window": "切换后2天",
+      "peak_return": 1.53,
+      "peak_win_rate": 56.8
+    },
+    {
+      "type": "quant_predict",
+      "signal": "显著缩量",
+      "samples": 76,
+      "upgrade_rate": 42.1,
+      "downgrade_rate": 30.3,
+      "direction": "📈倾向升级",
+      "net_accuracy": 11.8
+    },
+    {
+      "type": "quant_predict",
+      "signal": "温和缩量",
+      "samples": 86,
+      "upgrade_rate": 45.3,
+      "downgrade_rate": 23.3,
+      "direction": "📈强烈升级",
+      "net_accuracy": 22.0
+    },
+    {
+      "type": "quant_predict",
+      "signal": "量能平稳",
+      "samples": 232,
+      "upgrade_rate": 31.9,
+      "downgrade_rate": 36.6,
+      "direction": "📉倾向降级",
+      "net_accuracy": 4.7
+    },
+    {
+      "type": "quant_predict",
+      "signal": "温和放量",
+      "samples": 57,
+      "upgrade_rate": 24.6,
+      "downgrade_rate": 29.8,
+      "direction": "📉倾向降级",
+      "net_accuracy": 5.2
+    },
+    {
+      "type": "quant_predict",
+      "signal": "显著放量",
+      "samples": 112,
+      "upgrade_rate": 17.9,
+      "downgrade_rate": 42.0,
+      "direction": "📉强烈降级",
+      "net_accuracy": 24.1
+    },
+    {
+      "type": "quant_summary",
+      "strongest_up_signal": "温和缩量",
+      "strongest_up_net": 22.0,
+      "strongest_down_signal": "显著放量",
+      "strongest_down_net": 24.1,
+      "signal_coverage_pct": 98.9
+    },
+    {
+      "type": "overall_score",
+      "mainline_recognition_score": 8.0,
+      "switch_prediction_score": 75,
+      "quant_signal_score": 46.0,
+      "overall_score": 43.0,
+      "overall_grade": "C"
+    }
+  ],
+  "overall_score": {
+    "type": "overall_score",
+    "mainline_recognition_score": 8.0,
+    "switch_prediction_score": 75,
+    "quant_signal_score": 46.0,
+    "overall_score": 43.0,
+    "overall_grade": "C"
+  }
+}

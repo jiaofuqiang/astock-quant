@@ -1,0 +1,89 @@
+{
+  "type": "afternoon_report",
+  "date": "2026-05-13",
+  "generate_time": "15:00",
+  "market": {
+    "上证指数": {
+      "change_pct": 0.68,
+      "change": 28.72,
+      "price": 4243.21,
+      "volume_shou": 700357916.0,
+      "amount_wan": 143837849.0,
+      "turnover_pct": 1.45
+    },
+    "深证成指": {
+      "change_pct": 1.68,
+      "change": 265.74,
+      "price": 16090.66,
+      "volume_shou": 818534917.0,
+      "amount_wan": 177430262.0,
+      "turnover_pct": 3.37
+    },
+    "创业板指": {
+      "change_pct": 2.62,
+      "change": 103.18,
+      "price": 4038.06,
+      "volume_shou": 245445964.0,
+      "amount_wan": 85168075.0,
+      "turnover_pct": 4.75
+    }
+  },
+  "funds_performance": {
+    "youzi": 0,
+    "lianghua": 0,
+    "jigou": 0,
+    "total": 0
+  },
+  "lhb_summary": "{'total': 91, 'jigou': 8, 'beishang': 6, 'youzi': 34, 'tao': 26, 'duidao': 7}",
+  "sectors_top5": [],
+  "strongest_themes": [],
+  "stocks_top10": [],
+  "experience": {
+    "date": "2026-05-13",
+    "market": {
+      "actual_pct": 0,
+      "predicted": "震荡",
+      "correct": true
+    },
+    "sectors": {
+      "predicted": [
+        "地产基建"
+      ],
+      "actual_top5": [],
+      "hit_count": 0,
+      "accuracy": 0.0
+    },
+    "plan_hits": {},
+    "success_items": [
+      "大盘方向正确(预测震荡/实际+0.00%)"
+    ],
+    "fail_items": [
+      "题材预测完全偏差"
+    ],
+    "improvements": [
+      "无明确热点，应降低仓位预期"
+    ],
+    "consecutive_fails": 1
+  },
+  "upgrade": {
+    "date": "2026-05-13",
+    "consecutive_fails": 1,
+    "items": [
+      {
+        "type": "sector_weight",
+        "auto": true,
+        "desc": "板块预测偏差大，自动降低右侧板块权重，提高消息面板块权重"
+      },
+      {
+        "type": "position_control",
+        "auto": false,
+        "desc": "无明确热点，建议明日观望/仓位≤30%，需你确认"
+      },
+      {
+        "type": "trade_mode",
+        "auto": false,
+        "desc": "最赚钱模式：龙≥5板+竞价开≥3%跟风(+7.6%/暴利70%)，建议优先执行"
+      }
+    ]
+  }
+}

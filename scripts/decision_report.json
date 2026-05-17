@@ -1,0 +1,25 @@
+{
+  "timestamp": "2026-05-12T20:22:53.245394",
+  "buy_candidates": [],
+  "sell_signals": [],
+  "hold_signals": [
+    {
+      "code": "600869",
+      "name": "远东股份",
+      "action": "❗无实时数据"
+    },
+    {
+      "code": "603052",
+      "name": "可川科技",
+      "action": "❗无实时数据"
+    },
+    {
+      "code": "603269",
+      "name": "海鸥股份",
+      "action": "❗无实时数据"
+    }
+  ],
+  "env_key": "冰点",
+  "total_limit": 0,
+  "boom_sectors": 0
+}

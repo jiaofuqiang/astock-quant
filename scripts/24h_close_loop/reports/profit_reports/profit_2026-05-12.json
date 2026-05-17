@@ -1,0 +1,22 @@
+{
+  "type": "profit_report",
+  "date": "2026-05-12",
+  "generate_time": "15:49",
+  "today_buy": {
+    "count": 0,
+    "stocks": [],
+    "total_cost": 0
+  },
+  "today_sell": {
+    "count": 0,
+    "profit_avg": 0,
+    "total_profit": 0
+  },
+  "yesterday_buy_today_sell": {
+    "count": 0,
+    "profit_avg": 0
+  },
+  "multiday": {
+    "count": 0
+  }
+}

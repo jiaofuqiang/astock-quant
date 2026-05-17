@@ -1,0 +1,135 @@
+{
+  "type": "afternoon_report",
+  "date": "2026-05-12",
+  "generate_time": "15:13",
+  "market": {
+    "上证指数": {
+      "change_pct": -0.25,
+      "change": -10.53,
+      "price": 4214.49,
+      "volume_shou": 718984002.0,
+      "amount_wan": 146527259.0,
+      "turnover_pct": 1.5
+    },
+    "深证成指": {
+      "change_pct": -0.47,
+      "change": -74.38,
+      "price": 15824.92,
+      "volume_shou": 847817149.0,
+      "amount_wan": 177738375.0,
+      "turnover_pct": 3.49
+    },
+    "创业板指": {
+      "change_pct": 0.15,
+      "change": 5.91,
+      "price": 3934.88,
+      "volume_shou": 247035078.0,
+      "amount_wan": 83829326.0,
+      "turnover_pct": 4.78
+    }
+  },
+  "funds_performance": {
+    "youzi": 0,
+    "lianghua": 0,
+    "jigou": 0,
+    "total": 0
+  },
+  "lhb_summary": "{'total': 72, 'jigou': 7, 'beishang': 11, 'youzi': 19, 'tao': 19}",
+  "sectors_top5": [
+    {
+      "name": "地产基建",
+      "avg_change": 1.04,
+      "limit_up": 21,
+      "stock_count": 671,
+      "up_count": 465,
+      "strength": 42.5,
+      "avg_volume_ratio": 1.22
+    },
+    {
+      "name": "光模块与光通信",
+      "avg_change": 3.57,
+      "limit_up": 10,
+      "stock_count": 46,
+      "up_count": 37,
+      "strength": 23.8,
+      "avg_volume_ratio": 1.05
+    },
+    {
+      "name": "机器人",
+      "avg_change": 2.08,
+      "limit_up": 9,
+      "stock_count": 142,
+      "up_count": 115,
+      "strength": 21.0,
+      "avg_volume_ratio": 1.33
+    },
+    {
+      "name": "软件与应用",
+      "avg_change": 1.16,
+      "limit_up": 8,
+      "stock_count": 148,
+      "up_count": 101,
+      "strength": 18.6,
+      "avg_volume_ratio": 1.67
+    },
+    {
+      "name": "光伏",
+      "avg_change": 0.53,
+      "limit_up": 5,
+      "stock_count": 112,
+      "up_count": 63,
+      "strength": 12.3,
+      "avg_volume_ratio": 1.38
+    }
+  ],
+  "strongest_themes": [
+    "地产基建"
+  ],
+  "stocks_top10": [],
+  "experience": {
+    "date": "2026-05-12",
+    "market": {
+      "actual_pct": 0,
+      "predicted": "",
+      "correct": false
+    },
+    "sectors": {
+      "predicted": [],
+      "actual_top5": [
+        "地产基建",
+        "光模块与光通信",
+        "机器人",
+        "软件与应用",
+        "光伏"
+      ],
+      "hit_count": 0,
+      "accuracy": 0
+    },
+    "plan_hits": {},
+    "success_items": [
+      "今日热点明确(涨停≥5板块5个)"
+    ],
+    "fail_items": [
+      "大盘方向偏差(预测/实际+0.00%)",
+      "题材预测完全偏差"
+    ],
+    "improvements": [],
+    "consecutive_fails": 1
+  },
+  "upgrade": {
+    "date": "2026-05-12",
+    "consecutive_fails": 1,
+    "items": [
+      {
+        "type": "sector_weight",
+        "auto": true,
+        "desc": "板块预测偏差大，自动降低右侧板块权重，提高消息面板块权重"
+      },
+      {
+        "type": "trade_mode",
+        "auto": false,
+        "desc": "最赚钱模式：龙≥5板+竞价开≥3%跟风(+7.6%/暴利70%)，建议优先执行"
+      }
+    ]
+  }
+}

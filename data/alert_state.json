@@ -1,0 +1,26 @@
+{
+  "pushed": {
+    "600391": {
+      "first_seen": "09:01",
+      "max_score": 75,
+      "alerts": 1
+    },
+    "300661": {
+      "first_seen": "10:21",
+      "max_score": 75,
+      "alerts": 1
+    },
+    "600584": {
+      "first_seen": "10:31",
+      "max_score": 75,
+      "alerts": 1
+    },
+    "300672": {
+      "first_seen": "13:50",
+      "max_score": 80,
+      "alerts": 1
+    }
+  },
+  "first_alerts": {},
+  "last_check": "09:16"
+}

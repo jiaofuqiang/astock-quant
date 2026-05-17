@@ -1,0 +1,719 @@
+#!/usr/bin/env python3
+"""
+矛盾量化打板引擎 v1.0
+======================
+基于《矛盾论》四层级穿透框架，量化每个涨停板的"矛盾质量"。
+输出：综合矛盾得分 → 决定是否买入 + 仓位
+
+四层级：
+  宏观层（60%）→ 市场能不能做
+  板块层（25%）→ 题材是不是主线  
+  个股层（10%）→ 这个板的质量
+  分时层（5%） → 封板力度
+
+得分范围：-100 ~ +100
+> 70: 🚀 全力打板（75%仓位）
+> 50: ✅ 可打板（50%仓位）
+> 30: ⚠️ 谨慎打板（25%仓位）
+< 30: ❌ 观望/不打
+"""
+
+import sqlite3, os, json, sys
+from datetime import datetime, date
+from collections import defaultdict, Counter
+
+# ========== 路径配置 ==========
+BASE = os.path.dirname(os.path.abspath(__file__))
+ASTOCK = os.path.expanduser('~/astock')
+V2BOARD = os.path.expanduser('~/V2board')
+DATA = os.path.join(ASTOCK, 'data')
+
+# DB连接（read-only, 超时控制）
+def db_connect(path):
+    if not os.path.exists(path): return None
+    try:
+        return sqlite3.connect(f'file:{path}?mode=ro', uri=True, timeout=3)
+    except:
+        return None
+
+# ================================================================
+# 第一层：宏观市场矛盾量化（60%权重）
+# ================================================================
+def analyze_macro():
+    """
+    从market_daily.db获取最新大盘数据，量化宏观矛盾状态。
+    
+    输入维度：
+    - 涨跌家数比 (zh_ratio)
+    - 涨停vs跌停家数 (limit_up / limit_down)
+    - 连板高度 (max_board)
+    - 炸板率 (zhaban_rate)
+    - 昨日涨停股收益 (pretoday_avg_change)
+    - 市场情绪 (market_mood / panic_score / boom_score)
+    - 九层穿透L1热度 (time_slice)
+    
+    输出：
+    - score: -100~+100 (正=多头主导, 负=空头主导)
+    - state: '多头' / '平衡' / '空头'
+    - max_position: 最大建议仓位(%)
+    - details: 各维度明细
+    """
+    scores = {}  # 各维度得分
+    details = []
+    
+    # 1.1 market_daily数据
+    conn = db_connect(os.path.join(DATA, 'market_daily.db'))
+    md = None
+    if conn:
+        conn.row_factory = sqlite3.Row
+        md = conn.execute("SELECT * FROM day_full ORDER BY date DESC LIMIT 1").fetchone()
+        if md: md = dict(md)
+        conn.close()
+    
+    if not md:
+        return {'error': '无market_daily数据', 'score': 0, 'state': '未知', 'max_position': 0}
+    
+    # 1.2 九层穿透数据
+    conn2 = db_connect(os.path.join(DATA, 'time_slice_history.db'))
+    dim = None
+    if conn2:
+        conn2.row_factory = sqlite3.Row
+        dim = conn2.execute("SELECT * FROM dim_cluster ORDER BY slice_id DESC LIMIT 1").fetchone()
+        if dim: dim = dict(dim)
+        conn2.close()
+    
+    # ===== 维度1：涨跌家数比 =====
+    zh = md.get('zh_ratio', 50)
+    if zh >= 70:
+        scores['涨跌比'] = 80
+        details.append(f'涨跌比{zh:.0f}%→多头强劲(+80)')
+    elif zh >= 50:
+        scores['涨跌比'] = 40
+        details.append(f'涨跌比{zh:.0f}%→多头占优(+40)')
+    elif zh >= 30:
+        scores['涨跌比'] = 0
+        details.append(f'涨跌比{zh:.0f}%→平衡(0)')
+    else:
+        scores['涨跌比'] = -60
+        details.append(f'涨跌比{zh:.0f}%→空头主导(-60)')
+    
+    # ===== 维度2：涨停vs跌停 =====
+    limit_up = md.get('limit_up', 0) or 0
+    limit_down = md.get('limit_down', 0) or 0
+    net_limit = limit_up - limit_down
+    if limit_up >= 80 and net_limit >= 50:
+        scores['涨停强度'] = 100
+        details.append(f'涨停{limit_up}只>>跌停{limit_down}只→高潮(+100)')
+    elif limit_up >= 40 and net_limit >= 20:
+        scores['涨停强度'] = 60
+        details.append(f'涨停{limit_up}只>跌停{limit_down}只→活跃(+60)')
+    elif limit_up >= 15 and net_limit >= 0:
+        scores['涨停强度'] = 20
+        details.append(f'涨停{limit_up}只≈跌停{limit_down}只→一般(+20)')
+    elif net_limit < 0:
+        scores['涨停强度'] = -50
+        details.append(f'涨停{limit_up}只<跌停{limit_down}只→亏钱效应(-50)')
+    else:
+        scores['涨停强度'] = -80
+        details.append(f'涨停{limit_up}只<<跌停{limit_down}只→恐慌(-80)')
+    
+    # ===== 维度3：连板高度 =====
+    max_board = md.get('max_board', 0) or 0
+    if max_board >= 7:
+        scores['连板高度'] = 80
+        details.append(f'最高板{max_board}板→空间打开(+80)')
+    elif max_board >= 5:
+        scores['连板高度'] = 60
+        details.append(f'最高板{max_board}板→有空间(+60)')
+    elif max_board >= 3:
+        scores['连板高度'] = 30
+        details.append(f'最高板{max_board}板→一般(+30)')
+    elif max_board >= 1:
+        scores['连板高度'] = 0
+        details.append(f'最高板{max_board}板→低位(0)')
+    else:
+        scores['连板高度'] = -40
+        details.append(f'无连板→冰点(-40)')
+    
+    # ===== 维度4：炸板率 =====
+    zhaban_rate = md.get('zhaban_rate', 30) or 30
+    if zhaban_rate < 20:
+        scores['炸板率'] = 60
+        details.append(f'炸板率{zhaban_rate:.0f}%→封板好(+60)')
+    elif zhaban_rate < 30:
+        scores['炸板率'] = 30
+        details.append(f'炸板率{zhaban_rate:.0f}%→正常(+30)')
+    elif zhaban_rate < 40:
+        scores['炸板率'] = -10
+        details.append(f'炸板率{zhaban_rate:.0f}%→偏高(-10)')
+    else:
+        scores['炸板率'] = -50
+        details.append(f'炸板率{zhaban_rate:.0f}%→很差(-50)')
+    
+    # ===== 维度5：昨日涨停股收益 =====
+    pre_avg = md.get('pretoday_avg_change', 0) or 0
+    if pre_avg > 3:
+        scores['隔日溢价'] = 80
+        details.append(f'昨日涨停今均{pre_avg:+.1f}%→高溢价(+80)')
+    elif pre_avg > 1:
+        scores['隔日溢价'] = 40
+        details.append(f'昨日涨停今均{pre_avg:+.1f}%→有溢价(+40)')
+    elif pre_avg > -1:
+        scores['隔日溢价'] = 0
+        details.append(f'昨日涨停今均{pre_avg:+.1f}%→无溢价(0)')
+    else:
+        scores['隔日溢价'] = -50
+        details.append(f'昨日涨停今均{pre_avg:+.1f}%→亏钱效应(-50)')
+    
+    # ===== 维度6：市场情绪 =====
+    mood = md.get('market_mood', '')
+    # 从九层穿透获取更精确的情绪
+    l1 = dim.get('l1_热度', '') if dim else ''
+    if '狂热' in l1:
+        scores['市场情绪'] = 100
+        details.append(f'L1热度狂热→高潮(+100)')
+    elif '活跃' in l1:
+        scores['市场情绪'] = 60
+        details.append(f'L1热度活跃→健康(+60)')
+    elif '平淡' in l1 or '平衡' in l1:
+        scores['市场情绪'] = 0
+        details.append(f'L1热度平淡→观望(0)')
+    elif '冰点' in l1 or '恐慌' in l1:
+        scores['市场情绪'] = -60
+        details.append(f'L1热度冰点→恐慌(-60)')
+    else:
+        # fallback到market_mood
+        if '恐慌' in mood:
+            scores['市场情绪'] = -40
+        elif '活跃' in mood or '高潮' in mood:
+            scores['市场情绪'] = 50
+        else:
+            scores['市场情绪'] = 0
+    
+    # ===== 综合宏观得分 =====
+    if not scores:
+        return {'error': '无有效维度', 'score': 0, 'state': '未知', 'max_position': 0}
+    
+    raw_score = sum(scores.values()) / len(scores)
+    # 非线性映射：让中间区域更敏感
+    score = raw_score
+    if abs(raw_score) < 20:
+        score = raw_score * 0.5  # 平衡区压缩
+    elif abs(raw_score) > 70:
+        score = raw_score * 1.2  # 极端区放大
+    score = max(-100, min(100, round(score)))
+    
+    # 状态判定
+    if score >= 40:
+        state = '多头'
+        max_pos = 100
+    elif score >= 0:
+        state = '平衡偏多'
+        max_pos = 50
+    elif score >= -30:
+        state = '平衡偏空'
+        max_pos = 25
+    else:
+        state = '空头'
+        max_pos = 0
+    
+    return {
+        'score': score,
+        'state': state,
+        'max_position': max_pos,
+        'dimensions': scores,
+        'details': details,
+        'data_date': md.get('date', ''),
+    }
+
+
+# ================================================================
+# 第二层：板块矛盾量化（25%权重）
+# ================================================================
+def analyze_sectors():
+    """
+    从板块数据和涨停数据量化板块层矛盾。
+    
+    核心：使用"五大数据穿透标准"识别主线
+    1. 成交额占比≥15%（资金穿透）
+    2. 板块内涨停≥10家（强度穿透）
+    3. 有≥2连板梯队（龙头穿透）
+    4. 板块连续3日上涨（持续性穿透）
+    5. 有明确逻辑驱动（逻辑穿透）
+    
+    输出：
+    - top_sectors: 按矛盾得分排序的板块列表
+    - has_main_line: 是否有主线
+    - main_line_name: 主线名称
+    """
+    # 从sector_index_data.json获取板块数据
+    sector_path = os.path.join(BASE, 'V2board/sector_index_data.json')
+    if not os.path.exists(sector_path):
+        sector_path = os.path.join(ASTOCK, 'sector_index_data.json')
+    if not os.path.exists(sector_path):
+        sector_path = os.path.join(V2BOARD, 'sector_index_data.json')
+    ban_path = os.path.join(DATA, 'daily_limit_data.db')
+    
+    sectors = []
+    
+    # 加载板块指数数据
+    if os.path.exists(sector_path):
+        with open(sector_path) as f:
+            si = json.load(f)
+        
+        sectors_data = si.get('sectors', si.get('data', []))
+        
+        # 兼容两种格式：直接列表 或 {hot_sectors, other_sectors}
+        if not sectors_data:
+            sectors_data = si.get('hot_sectors', []) + si.get('other_sectors', [])
+        
+        for s in sectors_data:
+            name = s.get('name', s.get('sector_name', ''))
+            if not name: continue
+            
+            chg = float(s.get('avg_change', s.get('chg_pct', s.get('change_pct', 0))) or 0)
+            limit_ct = int(s.get('limit_up', s.get('limit_count', 0)) or 0)
+            top_chg = float(s.get('max_change', s.get('ldr_chg', s.get('top_chg', 0))) or 0)
+            strength = float(s.get('strength', 0) or 0)
+            
+            # 板块矛盾得分计算
+            score = 0
+            details = []
+            
+            # 涨幅分
+            if chg >= 5:
+                score += 40
+                details.append(f'涨幅{chg:+.1f}%→爆发(+40)')
+            elif chg >= 3:
+                score += 25
+                details.append(f'涨幅{chg:+.1f}%→强势(+25)')
+            elif chg >= 1:
+                score += 10
+                details.append(f'涨幅{chg:+.1f}%→温和(+10)')
+            elif chg >= 0:
+                score += 0
+            else:
+                score -= 20
+                details.append(f'涨幅{chg:+.1f}%→弱势(-20)')
+            
+            # 涨停数分
+            if limit_ct >= 10:
+                score += 40
+                details.append(f'涨停{limit_ct}家→板块爆发(+40)')
+            elif limit_ct >= 5:
+                score += 25
+                details.append(f'涨停{limit_ct}家→板块效应(+25)')
+            elif limit_ct >= 2:
+                score += 10
+                details.append(f'涨停{limit_ct}家→有联动(+10)')
+            elif limit_ct >= 1:
+                score += 5
+                details.append(f'涨停{limit_ct}家→个别涨停(+5)')
+            
+            # 龙头涨幅分
+            if top_chg >= 30:
+                score += 20
+                details.append(f'龙头涨幅{top_chg:.0f}%→空间打开(+20)')
+            elif top_chg >= 15:
+                score += 10
+                details.append(f'龙头涨幅{top_chg:.0f}%→有高度(+10)')
+            
+            score = max(-100, min(100, score))
+            
+            sectors.append({
+                'name': name,
+                'score': score,
+                'chg': chg,
+                'limit_count': limit_ct,
+                'top_chg': top_chg,
+                'details': ' | '.join(details) if details else '',
+            })
+    
+    # 排序
+    sectors.sort(key=lambda x: -x['score'])
+    
+    # 判断是否有主线
+    top = sectors[:5] if sectors else []
+    has_main_line = False
+    main_line_name = ''
+    
+    for s in top:
+        if s['limit_count'] >= 5 and s['chg'] >= 3:
+            has_main_line = True
+            main_line_name = s['name']
+            break
+    
+    if not has_main_line and top:
+        # 宽松判断
+        for s in top:
+            if s['limit_count'] >= 3:
+                has_main_line = True
+                main_line_name = s['name']
+                break
+    
+    return {
+        'top_sectors': top,
+        'has_main_line': has_main_line,
+        'main_line_name': main_line_name,
+        'total_sectors': len(sectors),
+    }
+
+
+# ================================================================
+# 第三层：个股矛盾量化（10%权重）
+# ================================================================
+def analyze_stock(code, name=''):
+    """
+    对单个首板涨停股做微观矛盾量化。
+    
+    输入维度：
+    - T-1日量价特征（离MA5距离、T-1涨跌幅、量比）
+    - 龙虎榜评分（如果有）
+    - 封板时间（越早越好）
+    - 封单额（越大越好）
+    - 换手率（适中最好）
+    - 市值（适中最活跃）
+    
+    输出：矛盾得分 -100~+100
+    """
+    # 从kline_cache.db获取K线特征
+    conn = db_connect(os.path.join(DATA, 'kline_cache.db'))
+    if not conn:
+        return {'code': code, 'score': 0, 'error': '无K线数据'}
+    
+    conn.row_factory = sqlite3.Row
+    
+    # 获取该股所有K线
+    rows = conn.execute(
+        "SELECT date,open,close,high,low,volume FROM kline WHERE code=? ORDER BY date",
+        (code,)
+    ).fetchall()
+    conn.close()
+    
+    if len(rows) < 5:
+        return {'code': code, 'name': name, 'score': 0, 'error': 'K线不足5天'}
+    
+    # 最新日（假设为T日=涨停日）
+    k_t = rows[-1]
+    k_t1 = rows[-2]  # T-1
+    k_t2 = rows[-3]  # T-2
+    
+    cp = k_t['close']
+    op_t = k_t['open']
+    
+    # ===== 维度1：T-1日涨跌幅 =====
+    # 从回测研究：T-1跌>3% 胜率81.4% 收+4.40%
+    pre_close_t1 = rows[-3]['close'] if len(rows) >= 3 else k_t1['close']
+    chg_t1 = (k_t1['close'] - pre_close_t1) / max(pre_close_t1, 0.01) * 100
+    
+    score_chg = 0
+    if chg_t1 < -3:
+        score_chg = 50  # 🏆 超跌→质变信号
+    elif chg_t1 < 0:
+        score_chg = 20
+    elif chg_t1 < 3:
+        score_chg = 0
+    else:
+        score_chg = -10  # 已经涨了→追高风险
+    
+    # ===== 维度2：T-1日离MA5距离 =====
+    # 从回测研究：离MA5 -5~-2% 胜率81.8%
+    ma5 = sum(rows[i]['close'] for i in range(-6, -1)) / 5
+    dist_ma5 = (k_t1['close'] - ma5) / max(ma5, 0.01) * 100
+    
+    score_ma5 = 0
+    if -5 <= dist_ma5 <= -2:
+        score_ma5 = 50  # 🏆 临近MA5超跌
+    elif -2 <= dist_ma5 <= 0:
+        score_ma5 = 25
+    elif 0 <= dist_ma5 <= 3:
+        score_ma5 = 10
+    elif dist_ma5 < -5:
+        score_ma5 = 20  # 深度超跌，但风险也大
+    else:
+        score_ma5 = -15  # 远离均线，追高风险
+    
+    # ===== 维度3：T-1量比（vs T-2） =====
+    vol_t1 = k_t1['volume'] or 1
+    vol_t2 = k_t2['volume'] or 1
+    vol_ratio = vol_t1 / max(vol_t2, 1)
+    
+    score_vol = 0
+    if 0.8 <= vol_ratio <= 1.2:
+        score_vol = 30  # 温和放量最佳
+    elif 0.5 <= vol_ratio <= 0.8:
+        score_vol = 15  # 缩量→蓄力
+    elif 1.2 <= vol_ratio <= 2:
+        score_vol = 10  # 放量但不太大
+    elif vol_ratio > 2:
+        score_vol = -20  # 巨量诱多
+    else:
+        score_vol = -10
+    
+    # ===== 维度4：T-5累计涨幅 =====
+    if len(rows) >= 6:
+        k_t5 = rows[-6]
+        chg_t5 = (k_t1['close'] - k_t5['close']) / max(k_t5['close'], 0.01) * 100
+    else:
+        chg_t5 = 0
+    
+    score_t5 = 0
+    if -3 <= chg_t5 <= 3:
+        score_t5 = 40  # 横盘后起爆
+    elif -10 <= chg_t5 < -3:
+        score_t5 = 25  # 超跌反弹
+    elif 3 < chg_t5 <= 10:
+        score_t5 = 10  # 小幅上涨后加速
+    elif chg_t5 > 10:
+        score_t5 = -20  # 已经涨了很多
+    else:
+        score_t5 = -30  # 深跌
+    
+    # ===== 维度5：T-3日趋势（涨跌天数比） =====
+    up3 = sum(1 for i in range(-4, -1) if rows[i]['close'] > rows[i-1]['close'])
+    dn3 = sum(1 for i in range(-4, -1) if rows[i]['close'] < rows[i-1]['close'])
+    
+    if up3 == 3:
+        score_trend = -15  # 三连阳→追高风险
+    elif up3 >= 2 and dn3 <= 1:
+        score_trend = 5
+    elif up3 == 1 and dn3 == 2:
+        score_trend = 20  # 调整中
+    elif dn3 >= 2:
+        score_trend = 30  # 充分调整
+    else:
+        score_trend = 0
+    
+    # ===== 综合个股矛盾得分 =====
+    raw = score_chg + score_ma5 + score_vol + score_t5 + score_trend
+    score = max(-100, min(100, raw))
+    
+    # 矛盾主要方面判定
+    if score >= 40:
+        main_aspect = '多头'
+    elif score >= 0:
+        main_aspect = '平衡偏多'
+    elif score >= -30:
+        main_aspect = '平衡偏空'
+    else:
+        main_aspect = '空头'
+    
+    # 信号标签
+    signals = []
+    if score_chg >= 30:
+        signals.append('🔴超跌质变')
+    if score_ma5 >= 25:
+        signals.append('📏近MA5')
+    if score_vol >= 20:
+        signals.append('📊放量温和')
+    if score_t5 >= 30:
+        signals.append('⚡横盘起爆')
+    if score_trend >= 20:
+        signals.append('🔄充分调整')
+    
+    return {
+        'code': code,
+        'name': name,
+        'score': score,
+        'main_aspect': main_aspect,
+        'dimensions': {
+            'chg_t1': round(chg_t1, 2),
+            'dist_ma5': round(dist_ma5, 2),
+            'vol_ratio': round(vol_ratio, 2),
+            'chg_t5': round(chg_t5, 2) if 'chg_t5' in dir() else 0,
+            'up3': up3,
+            'dn3': dn3,
+        },
+        'dim_scores': {
+            'chg_t1': score_chg,
+            'ma5': score_ma5,
+            'vol': score_vol,
+            't5': score_t5,
+            'trend': score_trend,
+        },
+        'signals': signals,
+        'price': cp,
+        'open_pct': round((op_t - k_t1['close']) / max(k_t1['close'], 0.01) * 100, 2),
+    }
+
+
+# ================================================================
+# 综合打板决策
+# ================================================================
+def make_decision(macro, sectors, stock_analysis, stock_code='', stock_name=''):
+    """
+    穿透式综合决策：
+    宏观矛盾(60%) × 板块矛盾(25%) × 个股矛盾(10%) × 分时矛盾(5%)
+    
+    权重设计逻辑：宏观决定"能不能做"，板块决定"做什么方向"
+    个股决定"做不做这个"，分时决定"什么时候买"
+    """
+    
+    macro_score = macro.get('score', 0)
+    
+    # 板块得分：取TOP1板块的得分
+    sec = sectors.get('top_sectors', [])
+    sector_score = sec[0]['score'] if sec else 0
+    has_main = sectors.get('has_main_line', False)
+    main_name = sectors.get('main_line_name', '')
+    
+    # 个股得分
+    stock_score = stock_analysis.get('score', 0) if stock_analysis else 0
+    
+    # 宏观矛盾有最高决策权：如果宏观空头，直接否决
+    if macro_score < -30:
+        return {
+            'decision': '❌ 不打',
+            'reason': '宏观空头',
+            'position': 0,
+            'total_score': -100,
+            'macro_score': macro_score,
+            'sector_score': sector_score,
+            'stock_score': stock_score,
+            'macro': macro,
+            'sectors': sectors,
+            'stock': stock_analysis,
+        }
+    
+    # 穿透式综合得分
+    total = macro_score * 0.60 + sector_score * 0.25 + stock_score * 0.10
+    
+    # 额外加成：四层矛盾同向共振
+    resonance = 0
+    if macro_score > 30 and sector_score > 30 and stock_score > 0:
+        resonance = 10  # 共振加分
+    elif macro_score > 0 and sector_score > 0 and stock_score < -20:
+        resonance = -15  # 个股背离板块→警告
+    
+    total += resonance
+    
+    # 主线加成
+    if has_main and stock_name:
+        # 检查个股是否在主线上（简化：暂不验证）
+        pass
+    
+    total = max(-100, min(100, round(total)))
+    
+    # 仓位决策
+    if total >= 70:
+        decision = '🚀 全力打板'
+        position = 75
+        reason = '四层矛盾共振'
+    elif total >= 50:
+        decision = '✅ 可打板'
+        position = 50
+        reason = '宏观+板块良性'
+    elif total >= 30:
+        decision = '⚠️ 谨慎打板'
+        position = 25
+        reason = '部分矛盾支持'
+    elif total >= 0:
+        decision = '👀 观察'
+        position = 0
+        reason = '矛盾不明确'
+    else:
+        decision = '❌ 观望/不打'
+        position = 0
+        reason = '空头矛盾主导'
+    
+    return {
+        'decision': decision,
+        'reason': reason,
+        'position': position,
+        'total_score': total,
+        'resonance': resonance,
+        'macro_score': macro_score,
+        'sector_score': sector_score,
+        'stock_score': stock_score,
+        'macro': macro,
+        'sectors': sectors,
+        'stock': stock_analysis,
+    }
+
+
+# ================================================================
+# 主入口
+# ================================================================
+def run(code='', name=''):
+    """
+    完整运行矛盾量化打板引擎
+    
+    Args:
+        code: 个股代码（可选，分析单只）
+        name: 个股名称（可选）
+    
+    Returns:
+        完整决策报告
+    """
+    # 1. 宏观层
+    macro = analyze_macro()
+    
+    # 2. 板块层
+    sectors = analyze_sectors()
+    
+    # 3. 个股层（如果有代码）
+    stock_analysis = None
+    if code:
+        stock_analysis = analyze_stock(code, name)
+    
+    # 4. 综合决策
+    decision = make_decision(macro, sectors, stock_analysis, code, name)
+    
+    return decision
+
+
+# ================================================================
+# 输出
+# ================================================================
+if __name__ == '__main__':
+    import sys
+    
+    code = ''
+    name = ''
+    for arg in sys.argv[1:]:
+        if '=' in arg:
+            k, v = arg.split('=', 1)
+            if k == '--code': code = v
+            if k == '--name': name = v
+    
+    result = run(code, name)
+    
+    if '--json' in sys.argv:
+        print(json.dumps(result, ensure_ascii=False, indent=2, default=str))
+    else:
+        print("=" * 70)
+        print("矛盾量化打板引擎 v1.0")
+        print("=" * 70)
+        
+        d = result
+        print(f"\n📊 综合矛盾得分: {d.get('total_score', 0):+d}")
+        print(f"🎯 决策: {d.get('decision', 'N/A')}")
+        print(f"📏 仓位: {d.get('position', 0)}%")
+        print(f"💡 理由: {d.get('reason', 'N/A')}")
+        
+        print(f"\n{'─'*50}")
+        print("四层级穿透:")
+        print(f"  🌍 宏观层(60%): {d.get('macro_score', 0):+d}")
+        if d.get('macro'):
+            m = d['macro']
+            print(f"     状态: {m.get('state', 'N/A')}, 最大仓位: {m.get('max_position', 0)}%")
+            for det in m.get('details', [])[:5]:
+                print(f"     {det}")
+        
+        print(f"  🏭 板块层(25%): {d.get('sector_score', 0):+d}")
+        if d.get('sectors'):
+            s = d['sectors']
+            print(f"     主线: {s.get('main_line_name', '无')}")
+            for sec in s.get('top_sectors', [])[:3]:
+                print(f"     {sec['name']}: {sec['score']:+d} (涨停{sec['limit_count']}家, {sec['chg']:+.1f}%)")
+        
+        if d.get('stock'):
+            st = d['stock']
+            print(f"  📈 个股层(10%): {st.get('score', 0):+d}")
+            print(f"     矛盾主要方面: {st.get('main_aspect', 'N/A')}")
+            print(f"     信号: {', '.join(st.get('signals', []))}")
+            dims = st.get('dim_scores', {})
+            print(f"     T-1涨跌:{dims.get('chg_t1', 0):+d} MA5:{dims.get('ma5', 0):+d} 量比:{dims.get('vol', 0):+d}")
+            
+        if d.get('resonance'):
+            print(f"  🔄 共振加成: {d['resonance']:+d}")

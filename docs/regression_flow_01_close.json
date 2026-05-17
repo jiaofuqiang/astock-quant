@@ -1,0 +1,1125 @@
+{
+  "meta": {
+    "engine": "严格时间线回测引擎 v1.0",
+    "timestamp": "2026-05-17 16:34:55",
+    "trade_rule": "T-1龙虎榜选股→T开盘买入→T+1收盘卖出",
+    "lhb_type": "01",
+    "sell_strategy": "close",
+    "sample_filter": "纯主板(6/000/001/002/003, 排除300创业板)"
+  },
+  "overall": {
+    "n": 1541,
+    "avg_return": 0.04,
+    "win_rate": 45.4,
+    "median_return": -0.88,
+    "std_return": 7.73,
+    "max_return": 26.34,
+    "min_return": -23.09,
+    "big_win_rate": 23.0,
+    "big_loss_rate": 25.2,
+    "sharpe": 0.0,
+    "profit_factor": 1.01
+  },
+  "penetration_layers": {
+    "L6_宏观周期": {
+      "月度": {
+        "1": {
+          "n": 177,
+          "avg_return": 0.63,
+          "win_rate": 46.3
+        },
+        "2": {
+          "n": 154,
+          "avg_return": 0.88,
+          "win_rate": 53.9
+        },
+        "3": {
+          "n": 225,
+          "avg_return": 0.16,
+          "win_rate": 48.0
+        },
+        "4": {
+          "n": 174,
+          "avg_return": 0.8,
+          "win_rate": 51.1
+        },
+        "5": {
+          "n": 122,
+          "avg_return": -0.74,
+          "win_rate": 42.6
+        },
+        "6": {
+          "n": 101,
+          "avg_return": -0.89,
+          "win_rate": 37.6
+        },
+        "7": {
+          "n": 117,
+          "avg_return": -0.85,
+          "win_rate": 41.9
+        },
+        "8": {
+          "n": 94,
+          "avg_return": 1.5,
+          "win_rate": 52.1
+        },
+        "9": {
+          "n": 100,
+          "avg_return": -1.18,
+          "win_rate": 38.0
+        },
+        "10": {
+          "n": 73,
+          "avg_return": -1.56,
+          "win_rate": 34.2
+        },
+        "11": {
+          "n": 98,
+          "avg_return": -0.34,
+          "win_rate": 39.8
+        },
+        "12": {
+          "n": 106,
+          "avg_return": 0.35,
+          "win_rate": 45.3
+        }
+      },
+      "星期": {
+        "0": {
+          "n": 540,
+          "avg_return": 0.27,
+          "win_rate": 45.6
+        },
+        "1": {
+          "n": 491,
+          "avg_return": 0.26,
+          "win_rate": 46.4
+        },
+        "2": {
+          "n": 510,
+          "avg_return": -0.43,
+          "win_rate": 44.3
+        }
+      },
+      "季度": {
+        "1": {
+          "n": 556,
+          "avg_return": 0.51,
+          "win_rate": 49.1
+        },
+        "2": {
+          "n": 397,
+          "avg_return": -0.1,
+          "win_rate": 45.1
+        },
+        "3": {
+          "n": 311,
+          "avg_return": -0.24,
+          "win_rate": 43.7
+        },
+        "4": {
+          "n": 277,
+          "avg_return": -0.39,
+          "win_rate": 40.4
+        }
+      }
+    },
+    "L5_资金博弈": {
+      "无机构": {
+        "n": 1455,
+        "avg_return": 0.06,
+        "win_rate": 45.5
+      },
+      "机构参与": {
+        "n": 86,
+        "avg_return": -0.31,
+        "win_rate": 44.2
+      }
+    },
+    "L4_环境匹配": {
+      "冰点": {
+        "n": 317,
+        "avg_return": 0.35,
+        "win_rate": 47.9
+      },
+      "活跃": {
+        "n": 165,
+        "avg_return": 1.42,
+        "win_rate": 53.9
+      },
+      "震荡": {
+        "n": 1032,
+        "avg_return": -0.28,
+        "win_rate": 43.2
+      },
+      "高潮": {
+        "n": 27,
+        "avg_return": 0.02,
+        "win_rate": 48.1
+      }
+    },
+    "L3_个股筛选": {
+      "unknown": {
+        "n": 1541,
+        "avg_return": 0.04,
+        "win_rate": 45.4
+      }
+    },
+    "L2_席位验证": {
+      "赚钱席位票": {
+        "n": 70,
+        "avg_return": -0.38
+      },
+      "亏钱席位票": {
+        "n": 33,
+        "avg_return": 0.79
+      }
+    },
+    "L1_操作执行": {
+      "T+1开盘卖平均": -0.01,
+      "T+1收盘卖平均": -0.01,
+      "收盘-开盘差异": -0.0,
+      "样本数": 1000
+    }
+  },
+  "top_trades": [
+    {
+      "id": 561,
+      "select_date": "2025-11-18",
+      "code": "002213",
+      "name": "大为股份",
+      "lhb_type": "01",
+      "chg_on_list": 11.04,
+      "buy_price": 29.0,
+      "sell_price": 36.64,
+      "t1_return_pct": 26.34,
+      "is_win": true,
+      "max_drawdown_pct": -1.34,
+      "max_rise_pct": 14.86,
+      "sell_date": "2025-11-20",
+      "sell_strategy": "close",
+      "dimensions": {
+        "L6_macro": {
+          "weekday": 1,
+          "month": 11,
+          "quarter": 4,
+          "is_quarter_end": false
+        },
+        "L5_fund": {
+          "inst_buy_count": 0,
+          "inst_sell_count": 0,
+          "quant_buy_count": 0,
+          "youzi_buy_count": 0,
+          "net_total_wan": 0,
+          "has_win_seat": false,
+          "has_lose_seat": false
+        },
+        "L4_env": {
+          "env_tier": "冰点",
+          "prev_limit_up": 15
+        },
+        "L3_stock": {
+          "sblx": "",
+          "buy_total_wan": 0
+        },
+        "L2_seat": {
+          "yz_labels": [],
+          "total_buy_seats": 0
+        }
+      }
+    },
+    {
+      "id": 1255,
+      "select_date": "2025-04-09",
+      "code": "002570",
+      "name": "贝因美",
+      "lhb_type": "01",
+      "chg_on_list": 8.22,
+      "buy_price": 5.5,
+      "sell_price": 6.93,
+      "t1_return_pct": 26.0,
+      "is_win": true,
+      "max_drawdown_pct": -1.64,
+      "max_rise_pct": 14.55,
+      "sell_date": "2025-04-11",
+      "sell_strategy": "close",
+      "dimensions": {
+        "L6_macro": {
+          "weekday": 2,
+          "month": 4,
+          "quarter": 2,
+          "is_quarter_end": false
+        },
+        "L5_fund": {
+          "inst_buy_count": 0,
+          "inst_sell_count": 0,
+          "quant_buy_count": 0,
+          "youzi_buy_count": 0,
+          "net_total_wan": 0,
+          "has_win_seat": false,
+          "has_lose_seat": false
+        },
+        "L4_env": {
+          "env_tier": "高潮",
+          "prev_limit_up": 95
+        },
+        "L3_stock": {
+          "sblx": "",
+          "buy_total_wan": 0
+        },
+        "L2_seat": {
+          "yz_labels": [],
+          "total_buy_seats": 0
+        }
+      }
+    },
+    {
+      "id": 436,
+      "select_date": "2025-12-23",
+      "code": "002361",
+      "name": "神剑股份",
+      "lhb_type": "01",
+      "chg_on_list": 41.6,
+      "buy_price": 9.57,
+      "sell_price": 11.97,
+      "t1_return_pct": 25.08,
+      "is_win": true,
+      "max_drawdown_pct": 0.0,
+      "max_rise_pct": 13.69,
+      "sell_date": "2025-12-25",
+      "sell_strategy": "close",
+      "dimensions": {
+        "L6_macro": {
+          "weekday": 1,
+          "month": 12,
+          "quarter": 4,
+          "is_quarter_end": true
+        },
+        "L5_fund": {
+          "inst_buy_count": 0,
+          "inst_sell_count": 0,
+          "quant_buy_count": 0,
+          "youzi_buy_count": 0,
+          "net_total_wan": 0,
+          "has_win_seat": false,
+          "has_lose_seat": false
+        },
+        "L4_env": {
+          "env_tier": "震荡",
+          "prev_limit_up": 27
+        },
+        "L3_stock": {
+          "sblx": "",
+          "buy_total_wan": 0
+        },
+        "L2_seat": {
+          "yz_labels": [],
+          "total_buy_seats": 0
+        }
+      }
+    },
+    {
+      "id": 1034,
+      "select_date": "2025-06-23",
+      "code": "600110",
+      "name": "诺德股份",
+      "lhb_type": "01",
+      "chg_on_list": 27.56,
+      "buy_price": 5.52,
+      "sell_price": 6.86,
+      "t1_return_pct": 24.28,
+      "is_win": true,
+      "max_drawdown_pct": 0.0,
+      "max_rise_pct": 13.04,
+      "sell_date": "2025-06-25",
+      "sell_strategy": "close",
+      "dimensions": {
+        "L6_macro": {
+          "weekday": 0,
+          "month": 6,
+          "quarter": 2,
+          "is_quarter_end": true
+        },
+        "L5_fund": {
+          "inst_buy_count": 0,
+          "inst_sell_count": 0,
+          "quant_buy_count": 0,
+          "youzi_buy_count": 0,
+          "net_total_wan": 0,
+          "has_win_seat": false,
+          "has_lose_seat": false
+        },
+        "L4_env": {
+          "env_tier": "震荡",
+          "prev_limit_up": 30
+        },
+        "L3_stock": {
+          "sblx": "",
+          "buy_total_wan": 0
+        },
+        "L2_seat": {
+          "yz_labels": [],
+          "total_buy_seats": 0
+        }
+      }
+    },
+    {
+      "id": 37,
+      "select_date": "2026-04-28",
+      "code": "002081",
+      "name": "金螳螂",
+      "lhb_type": "01",
+      "chg_on_list": 11.07,
+      "buy_price": 4.8,
+      "sell_price": 5.9,
+      "t1_return_pct": 22.92,
+      "is_win": true,
+      "max_drawdown_pct": 0.0,
+      "max_rise_pct": 11.67,
+      "sell_date": "2026-04-30",
+      "sell_strategy": "close",
+      "dimensions": {
+        "L6_macro": {
+          "weekday": 1,
+          "month": 4,
+          "quarter": 2,
+          "is_quarter_end": false
+        },
+        "L5_fund": {
+          "inst_buy_count": 0,
+          "inst_sell_count": 1,
+          "quant_buy_count": 0,
+          "youzi_buy_count": 0,
+          "net_total_wan": 1.4,
+          "has_win_seat": false,
+          "has_lose_seat": false
+        },
+        "L4_env": {
+          "env_tier": "震荡",
+          "prev_limit_up": 21
+        },
+        "L3_stock": {
+          "sblx": "",
+          "buy_total_wan": 2.55
+        },
+        "L2_seat": {
+          "yz_labels": [
+            "上海分公司",
+            "岳阳岳阳大道",
+            "深股通专用",
+            "深股通专用",
+            "浙江分公司"
+          ],
+          "total_buy_seats": 5
+        }
+      }
+    },
+    {
+      "id": 427,
+      "select_date": "2025-12-24",
+      "code": "002759",
+      "name": "天际股份",
+      "lhb_type": "01",
+      "chg_on_list": 24.22,
+      "buy_price": 40.51,
+      "sell_price": 49.5,
+      "t1_return_pct": 22.19,
+      "is_win": true,
+      "max_drawdown_pct": -2.1,
+      "max_rise_pct": 14.37,
+      "sell_date": "2025-12-26",
+      "sell_strategy": "close",
+      "dimensions": {
+        "L6_macro": {
+          "weekday": 2,
+          "month": 12,
+          "quarter": 4,
+          "is_quarter_end": true
+        },
+        "L5_fund": {
+          "inst_buy_count": 0,
+          "inst_sell_count": 0,
+          "quant_buy_count": 0,
+          "youzi_buy_count": 0,
+          "net_total_wan": 0,
+          "has_win_seat": false,
+          "has_lose_seat": false
+        },
+        "L4_env": {
+          "env_tier": "活跃",
+          "prev_limit_up": 40
+        },
+        "L3_stock": {
+          "sblx": "",
+          "buy_total_wan": 0
+        },
+        "L2_seat": {
+          "yz_labels": [],
+          "total_buy_seats": 0
+        }
+      }
+    },
+    {
+      "id": 1482,
+      "select_date": "2025-01-21",
+      "code": "002730",
+      "name": "电光科技",
+      "lhb_type": "01",
+      "chg_on_list": 18.11,
+      "buy_price": 22.54,
+      "sell_price": 27.54,
+      "t1_return_pct": 22.18,
+      "is_win": true,
+      "max_drawdown_pct": -6.12,
+      "max_rise_pct": 11.09,
+      "sell_date": "2025-01-23",
+      "sell_strategy": "close",
+      "dimensions": {
+        "L6_macro": {
+          "weekday": 1,
+          "month": 1,
+          "quarter": 1,
+          "is_quarter_end": false
+        },
+        "L5_fund": {
+          "inst_buy_count": 0,
+          "inst_sell_count": 0,
+          "quant_buy_count": 0,
+          "youzi_buy_count": 0,
+          "net_total_wan": -0.05,
+          "has_win_seat": false,
+          "has_lose_seat": true
+        },
+        "L4_env": {
+          "env_tier": "冰点",
+          "prev_limit_up": 8
+        },
+        "L3_stock": {
+          "sblx": "",
+          "buy_total_wan": 1.18
+        },
+        "L2_seat": {
+          "yz_labels": [
+            "浙江互联网分公司",
+            "浙江分公司",
+            "拉萨金融城南环路",
+            "拉萨团结路第二",
+            "拉萨团结路第一"
+          ],
+          "total_buy_seats": 5
+        }
+      }
+    },
+    {
+      "id": 964,
+      "select_date": "2025-07-09",
+      "code": "603778",
+      "name": "国晟科技",
+      "lhb_type": "01",
+      "chg_on_list": 10.26,
+      "buy_price": 4.09,
+      "sell_price": 4.99,
+      "t1_return_pct": 22.0,
+      "is_win": true,
+      "max_drawdown_pct": -1.47,
+      "max_rise_pct": 11.0,
+      "sell_date": "2025-07-11",
+      "sell_strategy": "close",
+      "dimensions": {
+        "L6_macro": {
+          "weekday": 2,
+          "month": 7,
+          "quarter": 3,
+          "is_quarter_end": false
+        },
+        "L5_fund": {
+          "inst_buy_count": 0,
+          "inst_sell_count": 0,
+          "quant_buy_count": 0,
+          "youzi_buy_count": 0,
+          "net_total_wan": 0,
+          "has_win_seat": false,
+          "has_lose_seat": false
+        },
+        "L4_env": {
+          "env_tier": "震荡",
+          "prev_limit_up": 17
+        },
+        "L3_stock": {
+          "sblx": "",
+          "buy_total_wan": 0
+        },
+        "L2_seat": {
+          "yz_labels": [],
+          "total_buy_seats": 0
+        }
+      }
+    },
+    {
+      "id": 1539,
+      "select_date": "2025-01-06",
+      "code": "002733",
+      "name": "雄韬股份",
+      "lhb_type": "01",
+      "chg_on_list": 10.38,
+      "buy_price": 17.0,
+      "sell_price": 20.7,
+      "t1_return_pct": 21.76,
+      "is_win": true,
+      "max_drawdown_pct": -0.35,
+      "max_rise_pct": 10.71,
+      "sell_date": "2025-01-08",
+      "sell_strategy": "close",
+      "dimensions": {
+        "L6_macro": {
+          "weekday": 0,
+          "month": 1,
+          "quarter": 1,
+          "is_quarter_end": false
+        },
+        "L5_fund": {
+          "inst_buy_count": 1,
+          "inst_sell_count": 2,
+          "quant_buy_count": 0,
+          "youzi_buy_count": 0,
+          "net_total_wan": 0.34,
+          "has_win_seat": false,
+          "has_lose_seat": false
+        },
+        "L4_env": {
+          "env_tier": "震荡",
+          "prev_limit_up": 25
+        },
+        "L3_stock": {
+          "sblx": "",
+          "buy_total_wan": 1.22
+        },
+        "L2_seat": {
+          "yz_labels": [
+            "机构专用",
+            "上海西藏南路",
+            "上海西藏南路",
+            "深股通专用",
+            "深股通专用"
+          ],
+          "total_buy_seats": 5
+        }
+      }
+    },
+    {
+      "id": 375,
+      "select_date": "2026-01-13",
+      "code": "000681",
+      "name": "视觉中国",
+      "lhb_type": "01",
+      "chg_on_list": 20.38,
+      "buy_price": 29.0,
+      "sell_price": 35.11,
+      "t1_return_pct": 21.07,
+      "is_win": true,
+      "max_drawdown_pct": -0.17,
+      "max_rise_pct": 19.28,
+      "sell_date": "2026-01-15",
+      "sell_strategy": "close",
+      "dimensions": {
+        "L6_macro": {
+          "weekday": 1,
+          "month": 1,
+          "quarter": 1,
+          "is_quarter_end": false
+        },
+        "L5_fund": {
+          "inst_buy_count": 0,
+          "inst_sell_count": 0,
+          "quant_buy_count": 0,
+          "youzi_buy_count": 0,
+          "net_total_wan": 0,
+          "has_win_seat": false,
+          "has_lose_seat": false
+        },
+        "L4_env": {
+          "env_tier": "冰点",
+          "prev_limit_up": 16
+        },
+        "L3_stock": {
+          "sblx": "",
+          "buy_total_wan": 0
+        },
+        "L2_seat": {
+          "yz_labels": [],
+          "total_buy_seats": 0
+        }
+      }
+    }
+  ],
+  "worst_trades": [
+    {
+      "id": 948,
+      "select_date": "2025-07-15",
+      "code": "603176",
+      "name": "汇通集团",
+      "lhb_type": "01",
+      "chg_on_list": 10.5,
+      "buy_price": 7.45,
+      "sell_price": 5.73,
+      "t1_return_pct": -23.09,
+      "is_win": false,
+      "max_drawdown_pct": -16.51,
+      "max_rise_pct": 0.0,
+      "sell_date": "2025-07-17",
+      "sell_strategy": "close",
+      "dimensions": {
+        "L6_macro": {
+          "weekday": 1,
+          "month": 7,
+          "quarter": 3,
+          "is_quarter_end": false
+        },
+        "L5_fund": {
+          "inst_buy_count": 0,
+          "inst_sell_count": 0,
+          "quant_buy_count": 0,
+          "youzi_buy_count": 0,
+          "net_total_wan": 0.11,
+          "has_win_seat": false,
+          "has_lose_seat": false
+        },
+        "L4_env": {
+          "env_tier": "冰点",
+          "prev_limit_up": 11
+        },
+        "L3_stock": {
+          "sblx": "",
+          "buy_total_wan": 0.3
+        },
+        "L2_seat": {
+          "yz_labels": [
+            "东亚前海证券有限责任公司上海分公司",
+            "中国中金财富证券有限公司武汉中北路",
+            "国盛证券有限责任公司杭州建设三路",
+            "杭州凤起路",
+            "长春同志街第三"
+          ],
+          "total_buy_seats": 5
+        }
+      }
+    },
+    {
+      "id": 1306,
+      "select_date": "2025-03-24",
+      "code": "603359",
+      "name": "*ST东珠",
+      "lhb_type": "01",
+      "chg_on_list": 22.12,
+      "buy_price": 8.25,
+      "sell_price": 6.43,
+      "t1_return_pct": -22.06,
+      "is_win": false,
+      "max_drawdown_pct": -13.82,
+      "max_rise_pct": 4.0,
+      "sell_date": "2025-03-26",
+      "sell_strategy": "close",
+      "dimensions": {
+        "L6_macro": {
+          "weekday": 0,
+          "month": 3,
+          "quarter": 1,
+          "is_quarter_end": true
+        },
+        "L5_fund": {
+          "inst_buy_count": 0,
+          "inst_sell_count": 0,
+          "quant_buy_count": 0,
+          "youzi_buy_count": 0,
+          "net_total_wan": 0,
+          "has_win_seat": false,
+          "has_lose_seat": false
+        },
+        "L4_env": {
+          "env_tier": "冰点",
+          "prev_limit_up": 16
+        },
+        "L3_stock": {
+          "sblx": "",
+          "buy_total_wan": 0
+        },
+        "L2_seat": {
+          "yz_labels": [],
+          "total_buy_seats": 0
+        }
+      }
+    },
+    {
+      "id": 1474,
+      "select_date": "2025-01-22",
+      "code": "002917",
+      "name": "金奥博",
+      "lhb_type": "01",
+      "chg_on_list": 19.52,
+      "buy_price": 23.2,
+      "sell_price": 18.4,
+      "t1_return_pct": -20.69,
+      "is_win": false,
+      "max_drawdown_pct": -17.11,
+      "max_rise_pct": 0.95,
+      "sell_date": "2025-01-24",
+      "sell_strategy": "close",
+      "dimensions": {
+        "L6_macro": {
+          "weekday": 2,
+          "month": 1,
+          "quarter": 1,
+          "is_quarter_end": false
+        },
+        "L5_fund": {
+          "inst_buy_count": 1,
+          "inst_sell_count": 1,
+          "quant_buy_count": 0,
+          "youzi_buy_count": 0,
+          "net_total_wan": 0.5,
+          "has_win_seat": false,
+          "has_lose_seat": false
+        },
+        "L4_env": {
+          "env_tier": "震荡",
+          "prev_limit_up": 18
+        },
+        "L3_stock": {
+          "sblx": "",
+          "buy_total_wan": 1.24
+        },
+        "L2_seat": {
+          "yz_labels": [
+            "上海凯滨路",
+            "机构专用",
+            "中国国际金融股份有限公司上海分公司",
+            "绍兴",
+            "东阳中山路"
+          ],
+          "total_buy_seats": 5
+        }
+      }
+    },
+    {
+      "id": 1053,
+      "select_date": "2025-06-17",
+      "code": "000525",
+      "name": "红太阳",
+      "lhb_type": "01",
+      "chg_on_list": 10.12,
+      "buy_price": 9.81,
+      "sell_price": 7.85,
+      "t1_return_pct": -19.98,
+      "is_win": false,
+      "max_drawdown_pct": -14.27,
+      "max_rise_pct": 1.22,
+      "sell_date": "2025-06-19",
+      "sell_strategy": "close",
+      "dimensions": {
+        "L6_macro": {
+          "weekday": 1,
+          "month": 6,
+          "quarter": 2,
+          "is_quarter_end": true
+        },
+        "L5_fund": {
+          "inst_buy_count": 0,
+          "inst_sell_count": 0,
+          "quant_buy_count": 0,
+          "youzi_buy_count": 0,
+          "net_total_wan": 0,
+          "has_win_seat": false,
+          "has_lose_seat": false
+        },
+        "L4_env": {
+          "env_tier": "震荡",
+          "prev_limit_up": 21
+        },
+        "L3_stock": {
+          "sblx": "",
+          "buy_total_wan": 0
+        },
+        "L2_seat": {
+          "yz_labels": [],
+          "total_buy_seats": 0
+        }
+      }
+    },
+    {
+      "id": 789,
+      "select_date": "2025-09-01",
+      "code": "002104",
+      "name": "恒宝股份",
+      "lhb_type": "01",
+      "chg_on_list": 29.11,
+      "buy_price": 29.61,
+      "sell_price": 23.73,
+      "t1_return_pct": -19.86,
+      "is_win": false,
+      "max_drawdown_pct": -12.36,
+      "max_rise_pct": 2.67,
+      "sell_date": "2025-09-03",
+      "sell_strategy": "close",
+      "dimensions": {
+        "L6_macro": {
+          "weekday": 0,
+          "month": 9,
+          "quarter": 3,
+          "is_quarter_end": true
+        },
+        "L5_fund": {
+          "inst_buy_count": 0,
+          "inst_sell_count": 0,
+          "quant_buy_count": 0,
+          "youzi_buy_count": 0,
+          "net_total_wan": 0,
+          "has_win_seat": false,
+          "has_lose_seat": false
+        },
+        "L4_env": {
+          "env_tier": "震荡",
+          "prev_limit_up": 31
+        },
+        "L3_stock": {
+          "sblx": "",
+          "buy_total_wan": 0
+        },
+        "L2_seat": {
+          "yz_labels": [],
+          "total_buy_seats": 0
+        }
+      }
+    },
+    {
+      "id": 1442,
+      "select_date": "2025-02-12",
+      "code": "002881",
+      "name": "美格智能",
+      "lhb_type": "01",
+      "chg_on_list": 34.42,
+      "buy_price": 72.0,
+      "sell_price": 58.06,
+      "t1_return_pct": -19.36,
+      "is_win": false,
+      "max_drawdown_pct": -10.89,
+      "max_rise_pct": 1.39,
+      "sell_date": "2025-02-14",
+      "sell_strategy": "close",
+      "dimensions": {
+        "L6_macro": {
+          "weekday": 2,
+          "month": 2,
+          "quarter": 1,
+          "is_quarter_end": false
+        },
+        "L5_fund": {
+          "inst_buy_count": 0,
+          "inst_sell_count": 0,
+          "quant_buy_count": 0,
+          "youzi_buy_count": 0,
+          "net_total_wan": -8.25,
+          "has_win_seat": false,
+          "has_lose_seat": false
+        },
+        "L4_env": {
+          "env_tier": "震荡",
+          "prev_limit_up": 31
+        },
+        "L3_stock": {
+          "sblx": "",
+          "buy_total_wan": 3.07
+        },
+        "L2_seat": {
+          "yz_labels": [
+            "东亚前海证券有限责任公司上海分公司",
+            "绍兴",
+            "深股通专用",
+            "杭州五星路",
+            "深圳前海大道"
+          ],
+          "total_buy_seats": 5
+        }
+      }
+    },
+    {
+      "id": 382,
+      "select_date": "2026-01-12",
+      "code": "002413",
+      "name": "雷科防务",
+      "lhb_type": "01",
+      "chg_on_list": 7.95,
+      "buy_price": 20.21,
+      "sell_price": 16.31,
+      "t1_return_pct": -19.3,
+      "is_win": false,
+      "max_drawdown_pct": -10.34,
+      "max_rise_pct": 0.4,
+      "sell_date": "2026-01-14",
+      "sell_strategy": "close",
+      "dimensions": {
+        "L6_macro": {
+          "weekday": 0,
+          "month": 1,
+          "quarter": 1,
+          "is_quarter_end": false
+        },
+        "L5_fund": {
+          "inst_buy_count": 0,
+          "inst_sell_count": 0,
+          "quant_buy_count": 0,
+          "youzi_buy_count": 0,
+          "net_total_wan": 0,
+          "has_win_seat": false,
+          "has_lose_seat": false
+        },
+        "L4_env": {
+          "env_tier": "震荡",
+          "prev_limit_up": 36
+        },
+        "L3_stock": {
+          "sblx": "",
+          "buy_total_wan": 0
+        },
+        "L2_seat": {
+          "yz_labels": [],
+          "total_buy_seats": 0
+        }
+      }
+    },
+    {
+      "id": 916,
+      "select_date": "2025-07-23",
+      "code": "002266",
+      "name": "浙富控股",
+      "lhb_type": "01",
+      "chg_on_list": 10.54,
+      "buy_price": 4.92,
+      "sell_price": 4.0,
+      "t1_return_pct": -18.7,
+      "is_win": false,
+      "max_drawdown_pct": -13.41,
+      "max_rise_pct": 0.0,
+      "sell_date": "2025-07-25",
+      "sell_strategy": "close",
+      "dimensions": {
+        "L6_macro": {
+          "weekday": 2,
+          "month": 7,
+          "quarter": 3,
+          "is_quarter_end": false
+        },
+        "L5_fund": {
+          "inst_buy_count": 0,
+          "inst_sell_count": 0,
+          "quant_buy_count": 0,
+          "youzi_buy_count": 0,
+          "net_total_wan": 0,
+          "has_win_seat": false,
+          "has_lose_seat": false
+        },
+        "L4_env": {
+          "env_tier": "冰点",
+          "prev_limit_up": 14
+        },
+        "L3_stock": {
+          "sblx": "",
+          "buy_total_wan": 0
+        },
+        "L2_seat": {
+          "yz_labels": [],
+          "total_buy_seats": 0
+        }
+      }
+    },
+    {
+      "id": 776,
+      "select_date": "2025-09-02",
+      "code": "601212",
+      "name": "白银有色",
+      "lhb_type": "01",
+      "chg_on_list": 21.01,
+      "buy_price": 4.69,
+      "sell_price": 3.82,
+      "t1_return_pct": -18.55,
+      "is_win": false,
+      "max_drawdown_pct": -11.51,
+      "max_rise_pct": 0.0,
+      "sell_date": "2025-09-04",
+      "sell_strategy": "close",
+      "dimensions": {
+        "L6_macro": {
+          "weekday": 1,
+          "month": 9,
+          "quarter": 3,
+          "is_quarter_end": true
+        },
+        "L5_fund": {
+          "inst_buy_count": 0,
+          "inst_sell_count": 0,
+          "quant_buy_count": 0,
+          "youzi_buy_count": 0,
+          "net_total_wan": 0,
+          "has_win_seat": false,
+          "has_lose_seat": false
+        },
+        "L4_env": {
+          "env_tier": "震荡",
+          "prev_limit_up": 19
+        },
+        "L3_stock": {
+          "sblx": "",
+          "buy_total_wan": 0
+        },
+        "L2_seat": {
+          "yz_labels": [],
+          "total_buy_seats": 0
+        }
+      }
+    },
+    {
+      "id": 1300,
+      "select_date": "2025-03-25",
+      "code": "600558",
+      "name": "大西洋",
+      "lhb_type": "01",
+      "chg_on_list": 10.1,
+      "buy_price": 6.24,
+      "sell_price": 5.1,
+      "t1_return_pct": -18.27,
+      "is_win": false,
+      "max_drawdown_pct": -12.02,
+      "max_rise_pct": 0.0,
+      "sell_date": "2025-03-27",
+      "sell_strategy": "close",
+      "dimensions": {
+        "L6_macro": {
+          "weekday": 1,
+          "month": 3,
+          "quarter": 1,
+          "is_quarter_end": true
+        },
+        "L5_fund": {
+          "inst_buy_count": 0,
+          "inst_sell_count": 0,
+          "quant_buy_count": 0,
+          "youzi_buy_count": 0,
+          "net_total_wan": 0,
+          "has_win_seat": false,
+          "has_lose_seat": false
+        },
+        "L4_env": {
+          "env_tier": "震荡",
+          "prev_limit_up": 23
+        },
+        "L3_stock": {
+          "sblx": "",
+          "buy_total_wan": 0
+        },
+        "L2_seat": {
+          "yz_labels": [],
+          "total_buy_seats": 0
+        }
+      }
+    }
+  ]
+}

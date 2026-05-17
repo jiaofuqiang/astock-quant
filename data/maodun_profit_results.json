@@ -1,0 +1,142 @@
+{
+  "任务1_封板时间回测": {
+    "早盘封板(高开秒封,gap>=1%)": {
+      "count": 17,
+      "t1_avg_return": 1.1,
+      "t1_win_rate": 52.94
+    },
+    "盘中封板(平开涨停,gap -1%~1%)": {
+      "count": 10322,
+      "t1_avg_return": -0.23,
+      "t1_win_rate": 43.13
+    },
+    "尾盘封板(低开偷袭,gap<-1%)": {
+      "count": 4845,
+      "t1_avg_return": 0.15,
+      "t1_win_rate": 46.67
+    },
+    "_gap_distribution": {
+      "mean": -1.13,
+      "median": -0.4,
+      "p25": -1.4,
+      "p75": 0.0,
+      "min": -28.61,
+      "max": 4.52,
+      "lt_minus2_pct": 18.1,
+      "btw_minus2_0_pct": 46.7,
+      "btw_0_1_pct": 35.1,
+      "gt_1_pct": 0.1
+    }
+  },
+  "任务2_跳空高开效应": {
+    "gap_lt_minus2": {
+      "label": "大幅低开(<-2%)",
+      "count": 2749,
+      "t1_avg_return": 0.11,
+      "t1_win_rate": 45.73
+    },
+    "gap_minus2_minus1": {
+      "label": "中幅低开(-2%~-1%)",
+      "count": 2096,
+      "t1_avg_return": 0.19,
+      "t1_win_rate": 47.9
+    },
+    "gap_minus1_0": {
+      "label": "微幅低开(-1%~0%)",
+      "count": 4996,
+      "t1_avg_return": -0.14,
+      "t1_win_rate": 44.2
+    },
+    "gap_0_1": {
+      "label": "平开微幅(0%~1%)",
+      "count": 5326,
+      "t1_avg_return": -0.3,
+      "t1_win_rate": 42.13
+    },
+    "gap_gt_1": {
+      "label": "高开(>1%)",
+      "count": 17,
+      "t1_avg_return": 1.1,
+      "t1_win_rate": 52.94
+    }
+  },
+  "任务3_日内分时强度": {
+    "高位收盘(>80%位置)": {
+      "count": 1473,
+      "t1_avg_return": 0.87,
+      "t1_win_rate": 52.41
+    },
+    "中位收盘(30%~80%)": {
+      "count": 475,
+      "t1_avg_return": 0.09,
+      "t1_win_rate": 41.68
+    },
+    "低位收盘(<30%位置)": {
+      "count": 0,
+      "t1_avg_return": 0.0,
+      "t1_win_rate": 0.0
+    },
+    "涨停尾封(close=high)": {
+      "count": 13236,
+      "t1_avg_return": -0.22,
+      "t1_win_rate": 43.46
+    }
+  },
+  "附加_分季度收益": {
+    "2024Q1": {
+      "count": 1853,
+      "t1_avg_return": 0.53,
+      "t1_win_rate": 51.0
+    },
+    "2024Q2": {
+      "count": 1136,
+      "t1_avg_return": -0.36,
+      "t1_win_rate": 40.85
+    },
+    "2024Q3": {
+      "count": 1148,
+      "t1_avg_return": 0.24,
+      "t1_win_rate": 46.78
+    },
+    "2024Q4": {
+      "count": 2551,
+      "t1_avg_return": -0.42,
+      "t1_win_rate": 42.38
+    },
+    "2025Q1": {
+      "count": 1602,
+      "t1_avg_return": -0.18,
+      "t1_win_rate": 42.07
+    },
+    "2025Q2": {
+      "count": 1589,
+      "t1_avg_return": 0.03,
+      "t1_win_rate": 42.67
+    },
+    "2025Q3": {
+      "count": 1558,
+      "t1_avg_return": -0.38,
+      "t1_win_rate": 42.17
+    },
+    "2025Q4": {
+      "count": 1519,
+      "t1_avg_return": -0.15,
+      "t1_win_rate": 44.44
+    },
+    "2026Q1": {
+      "count": 1541,
+      "t1_avg_return": -0.12,
+      "t1_win_rate": 45.81
+    },
+    "2026Q2": {
+      "count": 687,
+      "t1_avg_return": -0.16,
+      "t1_win_rate": 44.4
+    }
+  },
+  "_整体统计": {
+    "样本数": 15184,
+    "T+1平均收益%": -0.11,
+    "T+1胜率%": 44.27
+  }
+}

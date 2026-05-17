@@ -1,0 +1,33 @@
+{
+  "engine": "lhb-selected-backtest-v2",
+  "total": 191,
+  "overall": {
+    "count": 191,
+    "t1_open": 1.66,
+    "t1_close": 2.17,
+    "win_rate": 59.7,
+    "big_win_rate": 25.1,
+    "big_loss_rate": 18.8
+  },
+  "tier_stats": {
+    "S": {
+      "count": 3,
+      "t1_open": 3.72,
+      "t1_close": 7.0,
+      "win_rate": 100.0
+    },
+    "A": {
+      "count": 56,
+      "t1_open": 1.62,
+      "t1_close": 2.2,
+      "win_rate": 58.9
+    },
+    "B": {
+      "count": 132,
+      "t1_open": 1.63,
+      "t1_close": 2.04,
+      "win_rate": 59.1
+    }
+  },
+  "features": {}
+}

@@ -1,0 +1,319 @@
+#!/usr/bin/env python3
+"""
+龙虎榜打板实战引擎 v1.0
+======================
+每天盘前/盘后自动输出买入候选和卖出信号。
+
+用法：
+  python3 scripts/lhb_strategy_engine.py              # 当天信号
+  python3 scripts/lhb_strategy_engine.py --date=2026-05-13  # 指定日期
+  python3 scripts/lhb_strategy_engine.py --sell       # T+1卖出信号
+"""
+
+import sqlite3, os, sys, json
+from collections import defaultdict, Counter
+from datetime import datetime, date, timedelta
+
+DB = os.path.expanduser("~/astock/data/kline_cache.db")
+LHB_DB = os.path.expanduser("~/astock/data/lhb_cache.db")
+
+QUANT_KW = ['东方财富证券股份有限公司拉萨','中国国际金融股份有限公司上海分公司','中国国际金融股份有限公司北京建国门外大街','中信证券股份有限公司总部','瑞银证券有限责任公司','摩根大通证券有限责任公司','高盛(中国)证券有限责任公司','华泰证券股份有限公司总部']
+YOUZI_KW = ['东方财富','华泰证券','中信证券','国泰君安','招商证券','银河证券','广发证券','国泰海通','中金财富','财通证券','平安证券']
+LASA_KW = ['拉萨','东环路','团结路','金融城南环路','香曲东路','昌都','江苏大道']
+
+def classify(dealer):
+    if '机构专用' in dealer: return '机构'
+    if '股通' in dealer: return '北上'
+    for q in QUANT_KW:
+        if q in dealer: return '量化'
+    for l in LASA_KW:
+        if l in dealer: return '散户'
+    for y in YOUZI_KW:
+        if y in dealer: return '游资'
+    return '其他'
+
+FAMOUS_MAP = {
+    '国泰海通证券股份有限公司武汉紫阳东路证券营业部': ('武汉紫阳', 'S'),
+    '国泰海通证券股份有限公司成都北一环路证券营业部': ('成都北一环', 'S'),
+    '国泰海通证券股份有限公司总部': ('国泰海通总部', 'A'),
+    '中信证券股份有限公司上海分公司': ('中信上海', 'A'),
+    '国泰海通证券股份有限公司南京太平南路证券营业部': ('南京太平南', 'B'),
+    '华鑫证券有限责任公司上海宛平南路证券营业部': ('炒股养家', 'B'),
+    '华鑫证券有限责任公司上海分公司': ('养家分仓', 'B'),
+    '国泰海通证券股份有限公司上海长宁区江苏路证券营业部': ('章盟主', 'B'),
+    '平安证券股份有限公司杭州曙光路证券营业部': ('平安曙光路', 'C'),
+    '中国银河证券股份有限公司绍兴证券营业部': ('绍兴', 'B'),
+    '华泰证券股份有限公司总部': ('华泰总部', 'A'),
+    '开源证券股份有限公司西安太华路证券营业部': ('开源太华路', 'B'),
+    '开源证券股份有限公司西安西大街证券营业部': ('开源西大街', 'B'),
+    '中泰证券股份有限公司常州惠国路证券营业部': ('中泰常州', 'B'),
+}
+
+def get_famous(dealer):
+    return FAMOUS_MAP.get(dealer, None)
+
+def is_valid(code, name=''):
+    if not (code.startswith('60') or code.startswith('00')): return False
+    if 'ST' in name or '*ST' in name: return False
+    return True
+
+def detect_board(arr, idx):
+    cnt = 0
+    for i in range(idx, -1, -1):
+        k = arr[i]; kp = arr[i-1] if i > 0 else arr[0]
+        chg = (k['close'] - kp['close']) / kp['close'] * 100 if kp['close'] > 0 else 0
+        if chg >= 9.8: cnt += 1
+        else: break
+    return cnt
+
+def short_name(dealer):
+    s = dealer.replace('证券股份有限公司','').replace('证券有限责任公司','').replace('证券营业部','').replace('有限责任公司','')
+    return s
+
+def main():
+    # 解析参数
+    query_date = None
+    sell_mode = False
+    for arg in sys.argv[1:]:
+        if arg.startswith('--date='):
+            query_date = arg.split('=')[1]
+        elif arg == '--sell':
+            sell_mode = True
+    
+    if query_date is None:
+        # 默认：取最近的龙虎榜日期
+        conn = sqlite3.connect(LHB_DB)
+        c = conn.cursor()
+        c.execute("SELECT MAX(date) FROM lhb_detail WHERE direction='buy'")
+        query_date = c.fetchone()[0]
+        conn.close()
+    
+    if not query_date:
+        print("❌ 无龙虎榜数据")
+        return
+    
+    today = query_date
+    td = datetime.strptime(today, '%Y-%m-%d')
+    
+    print("=" * 75)
+    print(f"📊 龙虎榜打板引擎 v1.0")
+    print(f"   龙虎榜日: {today}")
+    print(f"   T日(开盘): 等待次日开盘")
+    print("=" * 75)
+    
+    # === 龙虎榜数据 ===
+    conn = sqlite3.connect(LHB_DB)
+    conn.row_factory = sqlite3.Row
+    lrows = conn.execute("""
+        SELECT d.date, d.code, d.direction, d.dealer, d.net, l.name as sname
+        FROM lhb_detail d JOIN lhb_list l ON d.date=l.date AND d.code=l.code
+        WHERE d.date = ?
+        ORDER BY d.code, d.direction
+    """, (today,)).fetchall()
+    conn.close()
+    
+    filtered = [r for r in lrows if is_valid(r['code'], r['sname'] or '')]
+    if not filtered:
+        print(f"\n{today} 无主板非ST龙虎榜数据")
+        return
+    
+    # === K线 ===
+    conn = sqlite3.connect(DB)
+    conn.row_factory = sqlite3.Row
+    krows = conn.execute("SELECT code, date, open, close, high, low, volume FROM kline ORDER BY code, date").fetchall()
+    conn.close()
+    
+    kb = defaultdict(list)
+    for r in krows:
+        if is_valid(r['code']): kb[r['code']].append(r)
+    ki = {}
+    for code, arr in kb.items():
+        ki[code] = {arr[i]['date']: i for i in range(len(arr))}
+    
+    # === 聚合买盘 ===
+    stock_buyers = defaultdict(lambda: {'dealers': [], 'types': Counter(), 'name': ''})
+    for r in filtered:
+        if r['direction'] != 'buy': continue
+        key = r['code']
+        stock_buyers[key]['dealers'].append(r['dealer'])
+        stock_buyers[key]['types'][classify(r['dealer'])] += 1
+        stock_buyers[key]['name'] = r['sname']
+    
+    # === 分析每个票 ===
+    candidates = []
+    
+    for code, info in stock_buyers.items():
+        arr = kb.get(code, [])
+        if not arr: continue
+        idx = ki.get(code, {}).get(today)
+        if idx is None or idx < 1 or idx+1 >= len(arr): continue
+        
+        board = detect_board(arr, idx)
+        if board < 1: continue
+        
+        k = arr[idx]; kp = arr[idx-1]; k1 = arr[idx+1]
+        try:
+            pc = kp['close']; op = k['open']; cp = k['close']
+            hp = k['high']; lp = k['low']; vol = k['volume']
+        except: continue
+        if pc <= 0 or op <= 0: continue
+        
+        t_open = (op - pc) / pc * 100
+        t_low = (lp - pc) / pc * 100
+        t_vol_r = vol / max(kp['volume'] or 1, 1)
+        is_yziban = t_open >= 9.5 and t_low >= 9.0
+        
+        # T+1数据
+        try:
+            t1_op = k1['open']; t1_cp = k1['close']; t1_hp = k1['high']
+        except: continue
+        if t1_op <= 0 or t1_cp <= 0: continue
+        
+        ret_oc = (t1_cp - op) / op * 100
+        ret_oo = (t1_op - op) / op * 100
+        t1_open_chg = (t1_op - pc) / pc * 100
+        
+        # 分析买入营业部
+        yz = info['types'].get('游资', 0)
+        sh = info['types'].get('散户', 0)
+        ql = info['types'].get('量化', 0)
+        jg = info['types'].get('机构', 0)
+        bs = info['types'].get('北上', 0)
+        
+        # 知名游资
+        famous_dealers = []
+        famous_level = ''
+        for d in set(info['dealers']):
+            fi = get_famous(d)
+            if fi:
+                famous_dealers.append(fi[0])
+                if fi[1] in ('S', 'A') and not famous_level:
+                    famous_level = fi[1]
+        
+        # 组合检测
+        youzi_set = set(famous_dealers)
+        is_s_combo = ('武汉紫阳' in youzi_set and '成都北一环' in youzi_set) or \
+                     ('中信上海' in youzi_set and '国泰海通总部' in youzi_set)
+        
+        # 有机构时平安曙光路反指
+        has_inst = jg > 0
+        pingan_shuguang = '平安曙光路' in youzi_set
+        
+        # 买入信号判定
+        buy_signals = {
+            '有游资': yz >= 1,
+            '首板': board == 1,
+            '竞价<7%': t_open < 7,
+            '竞价>-3%': t_open > -3,
+            '无散户': sh == 0,
+        }
+        
+        all_pass = all(buy_signals.values())
+        all_pass_except_board = all(buy_signals[k] for k in buy_signals if k != '首板')
+        
+        # 仓位建议
+        if is_s_combo and all_pass:
+            position = 50  # 半仓
+            action = '✅满仓买入'
+        elif famous_level == 'S' and all_pass:
+            position = 25
+            action = '✅半仓买入'
+        elif famous_level == 'A' and all_pass and t_open <= 2:
+            position = 25
+            action = '✅半仓买入'
+        elif famous_level == 'A' and all_pass:
+            position = 15
+            action = '⚡轻仓买入'
+        elif all_pass:
+            position = 10
+            action = '观察仓'
+        else:
+            position = 0
+            action = '❌不买'
+        
+        # 特殊情况
+        if pingan_shuguang and has_inst:
+            action = '❌不买(平安+机构反指)'
+            position = -1  # 标记
+        
+        if is_yziban:
+            action = '❌一字板'
+            position = -1
+        
+        candidates.append({
+            'code': code, 'name': info['name'],
+            'board': board,
+            'bname': '首板' if board == 1 else f'{board}板',
+            'yz': yz, 'sh': sh, 'ql': ql, 'jg': jg,
+            't_open': t_open, 't_vol_r': t_vol_r,
+            'famous': ', '.join(famous_dealers) if famous_dealers else '—',
+            'all_pass': all_pass,
+            'action': action,
+            'position': position,
+            'ret_oc': ret_oc,
+            'ret_oo': ret_oo,
+            't1_open': t1_open_chg,
+            't1_date': k1['date'],
+        })
+    
+    # ===== 输出：买入候选 =====
+    if not sell_mode:
+        print(f"\n{'='*75}")
+        print(f"🔥 买入候选（{today}龙虎榜 → T日开盘买入）")
+        print(f"{'='*75}")
+        
+        # 先输出通过的
+        passed = [c for c in candidates if c['all_pass']]
+        failed = [c for c in candidates if not c['all_pass'] and not c.get('_hide', False)]
+        
+        if passed:
+            passed.sort(key=lambda x: -x['position'])
+            print(f"\n✅ 通过（{len(passed)}只）:")
+            print(f"{'代码':8s} {'名称':12s} {'板':>3s} {'Y/S/Q/I':10s} {'T开盘%':>7s} {'量比':>5s} {'知名游资':22s} {'建议':14s}")
+            print("-" * 85)
+            for c in passed:
+                yzstr = f"{c['yz']}/{c['sh']}/{c['ql']}/{c['jg']}"
+                print(f"{c['code']:8s} {c['name']:12s} {c['bname']:>3s} {yzstr:10s} {c['t_open']:+6.2f}% {c['t_vol_r']:>4.1f} {c['famous']:22s} {c['action']:14s}")
+        
+        if failed:
+            print(f"\n❌ 未通过（{len(failed)}只）:")
+            for c in failed[:15]:
+                if '一字' in c['action']:
+                    continue
+                reasons = []
+                if c['board'] != 1: reasons.append(f"非首板({c['board']}板)")
+                if c['t_open'] >= 7: reasons.append(f"开盘>7%({c['t_open']:+.1f}%)")
+                if c['t_open'] <= -3: reasons.append(f"开盘<-3%({c['t_open']:+.1f}%)")
+                if c['sh'] > 0: reasons.append(f"有散户({c['sh']}个)")
+                if c['t_vol_r'] < 0.5: reasons.append(f"量比<0.5({c['t_vol_r']:.1f})")
+                reason_str = ', '.join(reasons[:3])
+                print(f"  {c['code']:8s} {c['name']:12s} → {reason_str}")
+    
+    # ===== 输出：T+1卖出信号 =====
+    else:
+        print(f"\n{'='*75}")
+        print(f"⏰ 卖出信号（{today}开盘 → T开盘买入股票的T+1操作）")
+        print(f"{'='*75}")
+        
+        print(f"\n{'代码':8s} {'名称':12s} {'买入开盘%':>9s} {'T+1开盘%':>9s} {'操作':14s} {'盘尾':>8s}")
+        print("-" * 60)
+        for c in candidates:
+            if c['all_pass'] or '(首板)' in c['action']:
+                t1_open_chg = c['t1_open']
+                if t1_open_chg > 7:
+                    action_sell = '✅开盘卖'
+                elif t1_open_chg > 3:
+                    action_sell = '等冲高卖'
+                elif t1_open_chg > 0:
+                    action_sell = '等冲高'
+                elif t1_open_chg > -3:
+                    action_sell = '扛到盘尾'
+                else:
+                    action_sell = '⚠️止损卖'
+                
+                print(f"{c['code']:8s} {c['name']:12s} {c['t_open']:+8.2f}% {c['t1_open']:+8.2f}% {action_sell:14s} {c['ret_oc']:+7.2f}%")
+    
+    print("\n✅ 完成!")
+
+if __name__ == '__main__':
+    main()
