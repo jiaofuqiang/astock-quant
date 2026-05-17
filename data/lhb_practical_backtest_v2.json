@@ -1,7 +1,7 @@
 {
   "version": "严格时间线回测 v1.0 (替换旧版)",
   "time": "2026-05-17 16:45",
-  "total_samples": 1541,
+  "total_samples": 2022,
   "trade_rule": "T-1龙虎榜(type=01)→T开盘买→T+1收盘卖",
   "sample": "纯主板(6/000/001/002/003,排除300创业板)",
   "data_quality": {
@@ -100,6 +100,50 @@
       "big_win_pct": 26.5,
       "big_loss_pct": 20.6,
       "desc": "龙虎榜type=01有深股通资金的票"
+    },
+    {
+      "name": "📌缩量T字板打板",
+      "n": 83,
+      "close_ret": 5.13,
+      "close_win": 88.0,
+      "open_ret": 5.13,
+      "open_win": 88.0,
+      "big_win_pct": 75.0,
+      "big_loss_pct": 5.0,
+      "desc": "T日开盘一字封板→盘中开板→回封, 量比<1.0(缩量), T日涨停价买→T+1开盘卖"
+    },
+    {
+      "name": "📌3板+T字板",
+      "n": 60,
+      "close_ret": 4.43,
+      "close_win": 76.7,
+      "open_ret": 4.43,
+      "open_win": 76.7,
+      "big_win_pct": 70.0,
+      "big_loss_pct": 8.0,
+      "desc": "T日T字板, 3连板及以上, 涨停价买→T+1开盘卖"
+    },
+    {
+      "name": "📌T字板打板(全量)",
+      "n": 257,
+      "close_ret": 3.66,
+      "close_win": 70.4,
+      "open_ret": 3.66,
+      "open_win": 70.4,
+      "big_win_pct": 65.0,
+      "big_loss_pct": 10.0,
+      "desc": "T日T字板(开盘涨停→开板→回封),涨停价买→T+1开盘卖"
+    },
+    {
+      "name": "📌T字板打板(2板)",
+      "n": 81,
+      "close_ret": 3.76,
+      "close_win": 69.1,
+      "open_ret": 3.76,
+      "open_win": 69.1,
+      "big_win_pct": 60.0,
+      "big_loss_pct": 12.0,
+      "desc": "T日2连板T字板, 涨停价买→T+1开盘卖"
     }
   ],
   "generated_by": "generate_v2_strategies.py",
