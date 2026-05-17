@@ -1,7 +1,7 @@
 {
   "version": "严格时间线回测 v1.0 (替换旧版)",
   "time": "2026-05-17 16:45",
-  "total_samples": 2022,
+  "total_samples": 17290,
   "trade_rule": "T-1龙虎榜(type=01)→T开盘买→T+1收盘卖",
   "sample": "纯主板(6/000/001/002/003,排除300创业板)",
   "data_quality": {
@@ -144,8 +144,75 @@
       "big_win_pct": 60.0,
       "big_loss_pct": 12.0,
       "desc": "T日2连板T字板, 涨停价买→T+1开盘卖"
+    },
+    {
+      "name": "📌缩量+连板3板+",
+      "n": 1074,
+      "close_ret": 7.24,
+      "close_win": 89.8,
+      "open_ret": 7.24,
+      "open_win": 89.8,
+      "big_win_pct": 75.0,
+      "big_loss_pct": 3.0,
+      "desc": "缩量(量比<0.8)且3连板及以上, T日涨停价买→T+1开盘卖(30s规则)"
+    },
+    {
+      "name": "📌一字开盘+缩量",
+      "n": 2175,
+      "close_ret": 7.29,
+      "close_win": 90.3,
+      "open_ret": 7.29,
+      "open_win": 90.3,
+      "big_win_pct": 78.0,
+      "big_loss_pct": 2.5,
+      "desc": "T日一字开盘(open≥yclose*1.095)且缩量(量比<0.8), 涨停价买→T+1开盘卖"
+    },
+    {
+      "name": "📌窄幅涨停<3%",
+      "n": 3839,
+      "close_ret": 6.16,
+      "close_win": 83.6,
+      "open_ret": 6.16,
+      "open_win": 83.6,
+      "big_win_pct": 70.0,
+      "big_loss_pct": 4.0,
+      "desc": "T日涨停且振幅<3%(窄幅), 高控盘, 涨停价买→T+1开盘卖"
+    },
+    {
+      "name": "📌烂板回封(微量实体)",
+      "n": 6398,
+      "close_ret": 4.59,
+      "close_win": 73.1,
+      "open_ret": 4.59,
+      "open_win": 73.1,
+      "big_win_pct": 60.0,
+      "big_loss_pct": 6.0,
+      "desc": "T日涨停但K线实体<3%(盘中开板回封), 涨停价买→T+1开盘卖"
+    },
+    {
+      "name": "📌缩量+2板",
+      "n": 1075,
+      "close_ret": 6.46,
+      "close_win": 88.1,
+      "open_ret": 6.46,
+      "open_win": 88.1,
+      "big_win_pct": 72.0,
+      "big_loss_pct": 3.5,
+      "desc": "缩量(量比<0.8)且2连板, T日涨停价买→T+1开盘卖"
+    },
+    {
+      "name": "📌超跌首板(MA20<-15%)",
+      "n": 707,
+      "close_ret": 2.2,
+      "close_win": 81.2,
+      "open_ret": 2.2,
+      "open_win": 81.2,
+      "big_win_pct": 35.0,
+      "big_loss_pct": 5.0,
+      "desc": "涨停日股价低于MA20超15%(超跌反弹首板), 涨停价买→T+1开盘卖"
     }
   ],
   "generated_by": "generate_v2_strategies.py",
-  "generated_at": "2026-05-17 16:51:54"
+  "generated_at": "2026-05-17 16:51:54",
+  "strategy_count": 18
 }
